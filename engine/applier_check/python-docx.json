@@ -1,0 +1,61 @@
+{
+ "appliers": {
+  "master": {
+   "path": "benchmark/r2t/py/mutate.py",
+   "sha256": "87ee207f49917442fec94da7ff9fcb19154ffaaa70fb9b2f162cb2d3a2b8b69f"
+  },
+  "paper": {
+   "refs": [
+    {
+     "commit": "0ebd5496209776c8159960b01208c20f24e682b3",
+     "role": "references",
+     "tag": "mutation-evaluation-collection-v1"
+    },
+    {
+     "commit": "5a9169144f09de285ee5a26fed56ea135cf9257b",
+     "role": "candidate scoring",
+     "tag": "codex-luna-cells-h1-20260925"
+    }
+   ],
+   "sha256": "87ee207f49917442fec94da7ff9fcb19154ffaaa70fb9b2f162cb2d3a2b8b69f",
+   "supplied_file_sha256": "87ee207f49917442fec94da7ff9fcb19154ffaaa70fb9b2f162cb2d3a2b8b69f"
+  },
+  "same_source": true
+ },
+ "appliers_run": true,
+ "engine": "r2t-mutate-py",
+ "environment": {
+  "image_config_digest": "sha256:02ba9bf39659225caf1a62f5b456f9810902fc68da4988b1415e4a02e499aae5",
+  "interpreter": "Python 3.12.13",
+  "operator_profile": "v1",
+  "seed_tar": "kits/python-docx/exec/seed/checked-v2/workspace.tar",
+  "seed_tar_sha256": "ce15261393e4f524c42d208db010097a8a7f532e6b0b700b1803712529424619",
+  "workdir": "/work"
+ },
+ "exceptions": [],
+ "generated_at": "2026-10-03T18:34:01Z",
+ "host": "maintainer-host",
+ "kind": "script",
+ "kit": {
+  "g_files": 66,
+  "gt_killed_pairs": 30044,
+  "kit_version": "1.0",
+  "limit": null,
+  "manifest_digest": "0fb0ae453e006b5302be6b338707a00ff6712cb273438d873a6de22467a8f18c",
+  "pairs": 40359,
+  "path": "kits/python-docx"
+ },
+ "project": "python-docx",
+ "schema": "req2test.applier-check/1",
+ "summary": {
+  "applied_by_both": 1250,
+  "differ_sha256": 0,
+  "equal_sha256": 1250,
+  "g_mutants": 1250,
+  "output_is_descriptor_splice": 1250,
+  "refused_by_both": 0,
+  "refused_by_master_only": 0,
+  "refused_by_paper_only": 0
+ },
+ "verdict": "equal"
+}

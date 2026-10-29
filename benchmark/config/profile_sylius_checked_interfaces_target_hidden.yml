@@ -1,0 +1,94 @@
+# Checked-interfaces profile; TARGET_INTERFACES_V2_SPEC sections 5, 5a and 7.
+# Copied from profile_sylius_visibility_target_hidden.yml; the disclosure key is the only
+# prompt-bearing difference. The v1 profile is not edited.
+api_scoring: method_index
+boundary: boundary_sylius.yml
+conditions:
+  project_source_noun: Sylius source
+  retained_substrate: the retained Sylius Behat substrate (Setup, Transform and Hook contexts, the API
+    client and shared storage)
+disclosure:
+  checked_interfaces: true
+facts:
+- 'Step definitions are PHP 8 attributes on public context methods: `#[Given(''/^regex$/'')]`, `#[When(...)]`,
+  `#[Then(''plain text with :placeholder'')]`. Both plain-text and `/^regex$/` patterns are used, and
+  a single method may carry several attributes.'
+- '`#[Transform(...)]` methods on Transform contexts convert a captured string into an object, typically
+  by repository lookup.'
+- The scenario's `Background` steps run first; most are answered by the retained Setup contexts, but a
+  few are answered only by the Api contexts you are writing.
+- <wiring-channel>
+- Requests are issued through the retained `Sylius\Behat\Client\ApiClientInterface` (`ApiPlatformClient`,
+  wired over Symfony's `test.client`, in-process) together with `RequestFactoryInterface` and `ResponseCheckerInterface`.
+  The shared clipboard between steps is `Sylius\Behat\Service\SharedStorageInterface` (`->set($key, $value)`,
+  `->get($key)`).
+- Assertions are made with `Webmozart\Assert\Assert`.
+- 'Suites are tag-filtered and a scenario is reachable only through its suite: alongside the classes you
+  return, the harness registers the retained Setup, Transform and Hook contexts of the API suite whose
+  tag filter matches the scenario''s feature tag plus `@api`.'
+- Production namespaces are `Sylius\Component\*` and `Sylius\Bundle\*`. Put your classes under `src/Sylius/Behat/Context/Api/**`.
+  Removal took that directory with the code, so it does NOT exist yet -- create the path you need.
+- This workspace supports reading, searching, editing, and syntax parsing. It is not a provisioned application
+  runtime; nothing here is executed by the harness. The harness executes your final submitted test artifacts
+  against a separate, complete implementation after generation ends. You receive no harness execution
+  feedback during generation.
+- TARGET_CONTRACTS.md contains the reviewed public API and configuration supplement supplied in every
+  visibility view. It is context for writing tests; edits to it are not submitted.
+- 'Implementation visibility: the reviewed target bodies, including behavior-bearing delegated helpers,
+  are hidden; declarations and permitted surrounding implementations remain visible.'
+framework: behat
+language: php
+language_label: PHP
+platform_blurb: the Sylius e-commerce platform (PHP 8.3, Symfony 7, API Platform)
+project: sylius
+project_label: Sylius
+prompt_digest:
+  single_shot: 82e3b72e66bc983dd3e67124d2174e48824e3bf9ee9af5c96ba2b680f09fec23
+  c1.5: 42b35bd974c9c2080bc1c7abefa527dc4cda8c962ca5e9777447a0f2ea942714
+  c2: 2249cbbc67d4d2c0e1bd61bf6f7b16a351a3f0328a519d5fc8e6f565eae1c3b4
+  c3: 92165109c4b6f6ecf8fea0d87d399d38625e543e60e10682430d4bb6002f0906
+runtime:
+  needs_database: true
+submission:
+  acceptance_root: src/Sylius/Behat/
+  example_code: <?php ...
+  example_path: src/Sylius/Behat/Context/Api/Shop/XContext.php
+  extra_names:
+  - behat_services.yml
+  placement_hint: src/Sylius/Behat/Context/Api/...
+  retained_note: '`Context/Setup`, `Context/Transform`, `Context/Hook`, `Client` and `Service` are what
+    remains'
+  suffixes:
+  - .php
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Behat test code
+trial:
+  clause_bounded: This final-only profile has no harness trial channel.
+  clause_unbounded: This final-only profile has no harness trial channel.
+  client_interpreter: python3
+  runner_noun: Behat
+version: 1
+wiring_channel:
+  auto_registration: Contexts are Symfony services. The harness registers every class you return as `public`,
+    `autowired` and `autoconfigured`. If a constructor argument cannot be autowired (Sylius wires many
+    collaborators by service id, e.g. `@sylius.behat.api_platform_client.shop`, `@sylius.behat.api_platform_client.admin`,
+    `@sylius.behat.shared_storage`), return an extra file named `behat_services.yml` containing a Symfony
+    `services:` block with explicit `arguments:` for your classes.
+  format: a Symfony `services:` block for your classes
+  name: behat_services.yml
+  when_needed: a constructor argument cannot be autowired
+workspace:
+  readable_paths:
+  - src
+  - features
+  - config
+  - composer.json
+  - behat.dist.php
+  - .env.test_cached
+  - _bench/retained_services.yml
+  repo_dir: repo
+visibility:
+  scope: target_hidden
+  feedback: final_only

@@ -1,0 +1,169 @@
+# Task profile for the Sylius 2.3 API arm (r2t/data/profile.py, r2t/data/prompt.py)
+#
+# Copied from `profile_coreshop.yml` and rewritten for the second Behat
+# project. CoreShop's file stays byte-identical; nothing here is read by a
+# CoreShop invocation. See `boundary_sylius.yml` for the tree this profile is
+# cross-checked against, and `S_sylius.md` section 7 / `judge_php_python.md`
+# (Sylius section) for the D15 rulings this file states in prompt-facing
+# prose.
+#
+# THIS FILE IS FROZEN once its first sweep runs. The four digests at the
+# bottom are the sha256 of the four prompts it renders, and `load_profile`
+# re-derives them on every load; a changed prompt is a NEW profile, not an
+# edit -- see `profile_coreshop.yml`'s header for the argument in full.
+#
+# The prose is written as YAML literal blocks (`|-`) for the same reason
+# CoreShop's is: a literal block needs no escaping, so the bytes in this file
+# are the bytes sent to the model, backslashes and backticks included.
+
+version: 1
+project: sylius
+project_label: Sylius
+language: php
+language_label: PHP
+framework: behat
+api_scoring: method_index
+
+# Cross-checked against, and required to sit beside this file (see
+# `profile.py: _check_against_boundary`): `load_profile` refuses when
+# `submission.acceptance_root` is not REMOVABLE there, or when a backticked
+# token of `submission.retained_note` is not RETAINED.
+boundary: boundary_sylius.yml
+
+# ------------------------------------------------------------------- task
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Behat test code
+
+# ------------------------------------------------------------- submission
+# `Context/Api/**` is the removable glue (D15); the acceptance root is the
+# broader `src/Sylius/Behat/` prefix for the reason CoreShop's is broader
+# than its own example -- a model that writes one directory level away from
+# the example must not be silently discarded (`boundary_sylius.yml`'s
+# `removable:` comment says the same thing).
+submission:
+  acceptance_root: src/Sylius/Behat/
+  example_path: src/Sylius/Behat/Context/Api/Shop/XContext.php
+  example_code: '<?php ...'
+  placement_hint: src/Sylius/Behat/Context/Api/...
+  suffixes:
+    - .php
+  extra_names:
+    - behat_services.yml
+  # Every backticked path here is classified against the boundary and must
+  # come back RETAINED (`profile.py: _check_against_boundary`). These five
+  # are the substrate an API item actually leans on: the Setup/Transform/Hook
+  # contexts that answer the Background and convert arguments, and the
+  # Client/Service trees the API request path and shared storage live in.
+  retained_note: '`Context/Setup`, `Context/Transform`, `Context/Hook`, `Client` and `Service` are what remains'
+
+# --------------------------------------------------------- wiring channel
+# Same channel name as CoreShop's (`harness.SERVICES_FRAGMENT_NAME` is one
+# module constant, not per-project); the ids in `auto_registration` are
+# Sylius's own, read from `Resources/config/services/api.php` and
+# `services.php` -- quoted only because each one is a real, verified service
+# id (`sylius.behat.api_platform_client.shop` / `.admin`,
+# `sylius.behat.shared_storage`). `ResponseCheckerInterface` is registered
+# under its own FQCN as the id, not a dotted string, so it is named in the
+# facts below (bullet 5) rather than quoted here as if it were one.
+wiring_channel:
+  name: behat_services.yml
+  when_needed: a constructor argument cannot be autowired
+  format: |-
+    a Symfony `services:` block for your classes
+  auto_registration: |-
+    Contexts are Symfony services. The harness registers every class you return as `public`, `autowired` and `autoconfigured`. If a constructor argument cannot be autowired (Sylius wires many collaborators by service id, e.g. `@sylius.behat.api_platform_client.shop`, `@sylius.behat.api_platform_client.admin`, `@sylius.behat.shared_storage`), return an extra file named `behat_services.yml` containing a Symfony `services:` block with explicit `arguments:` for your classes.
+
+# ------------------------------------------------------------- runtime
+# What the STACK needs in order to run at all (plan decision D6; see
+# `profile_python_docx.yml`'s runtime comment for the full argument).
+# Sylius needs a running MySQL schema (`bin/console sylius:install`, the
+# per-scenario `DoctrineORMContext` purge) and a compiled Symfony container,
+# unlike python-docx's library-only stack. `needs_database` already defaults
+# to True, so this block changes nothing behaviourally -- it is written out
+# because a Behat/PHP profile that left it implicit would read, next to
+# python-docx's explicit `false`, as an omission rather than a decision.
+runtime:
+  needs_database: true
+
+# ------------------------------------------------------------- workspace
+# `_bench/retained_services.yml` is harness output the agent may read but not
+# write (the PHP-config DI capture `S_sylius.md` section 1 describes);
+# `.env.test_cached` carries the kernel class, APP_ENV and the committed JWT
+# keypaths the container needs to boot.
+#
+# `_bench/suite_map.json` is NOT here, and this is the one entry whose absence
+# is a decision (owner ruling 2026-09-10): each of its suite entries lists that
+# suite's REMOVABLE context service ids and the class each names, which is the
+# set of answer files the agent is being asked to write. The strip writes it
+# into the gold tree instead, and the harness reads it from there.
+workspace:
+  repo_dir: repo
+  readable_paths:
+    - src
+    - features
+    - config
+    - composer.json
+    - behat.dist.php
+    - .env.test_cached
+    - _bench/retained_services.yml
+
+# ------------------------------------------------------------------ facts
+# The framework facts a stripped repository cannot tell the model. Same job
+# as CoreShop's eight bullets, different framework surface: PHP 8 attributes
+# instead of docblocks, an in-process HTTP client instead of direct method
+# calls, and a per-suite (not global) set of retained contexts.
+facts:
+  - |-
+    Step definitions are PHP 8 attributes on public context methods: `#[Given('/^regex$/')]`, `#[When(...)]`, `#[Then('plain text with :placeholder')]`. Both plain-text and `/^regex$/` patterns are used, and a single method may carry several attributes.
+  - |-
+    `#[Transform(...)]` methods on Transform contexts convert a captured string into an object, typically by repository lookup.
+  - |-
+    The scenario's `Background` steps run first; most are answered by the retained Setup contexts, but a few are answered only by the Api contexts you are writing.
+  - "<wiring-channel>"
+  - |-
+    Requests are issued through the retained `Sylius\Behat\Client\ApiClientInterface` (`ApiPlatformClient`, wired over Symfony's `test.client`, in-process) together with `RequestFactoryInterface` and `ResponseCheckerInterface`. The shared clipboard between steps is `Sylius\Behat\Service\SharedStorageInterface` (`->set($key, $value)`, `->get($key)`).
+  - |-
+    Assertions are made with `Webmozart\Assert\Assert`.
+  - |-
+    Suites are tag-filtered and a scenario is reachable only through its suite: alongside the classes you return, the harness registers the retained Setup, Transform and Hook contexts of the API suite whose tag filter matches the scenario's feature tag plus `@api`.
+  - |-
+    Production namespaces are `Sylius\Component\*` and `Sylius\Bundle\*`. Put your classes under `src/Sylius/Behat/Context/Api/**`. Removal took that directory with the code, so it does NOT exist yet -- create the path you need.
+
+platform_blurb: |-
+  the Sylius e-commerce platform (PHP 8.3, Symfony 7, API Platform)
+
+# ------------------------------------------------------------- conditions
+conditions:
+  retained_substrate: |-
+    the retained Sylius Behat substrate (Setup, Transform and Hook contexts, the API client and shared storage)
+  project_source_noun: Sylius source
+
+# ------------------------------------------------------------------ trial
+# Byte-identical wording to CoreShop's: the sentence is structural, not
+# project-specific (see `profile_coreshop.yml`'s trial comment for the
+# argument against a scarcity signal in the C3 prompt). `runner_noun` is
+# `Behat` because the trial client runs the same Behat suite CoreShop's does.
+trial:
+  client_interpreter: python3
+  runner_noun: Behat
+  clause_bounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this {k} times.
+  clause_unbounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this as often as you want.
+
+# ----------------------------------------------------------------- freeze
+# sha256 of each rendered prompt, over the canonical task fixture in
+# `adapters.CANONICAL_TASK` (criterion_to_test, client=trial.py; c3 rendered
+# UNBOUNDED). Verified on every load. Derived with:
+#   PYTHONPATH=benchmark python3 -c "from r2t.data.profile import load_profile; \
+#     from r2t.data.prompt import prompt_digests; import json; \
+#     print(json.dumps(prompt_digests(load_profile( \
+#     'benchmark/config/profile_sylius.yml', verify_digests=False)), indent=1))"
+# and frozen from that moment, exactly as `profile_python_docx.yml` was.
+prompt_digest:
+  single_shot: d14b580963771cbe56d411ff9c515058c48b260ca1a4a131d843a9b53dd0a001
+  c1.5: c6bec96166d56f157efcf2f7e8b432dd9b3289c6fada1aee42bf3c4cfafb22a4
+  c2: 676ab8c4f7b478b9f12f8e197e5f0d8aca1be7f65ec808a9924a063f56c759a9
+  c3: bf26ecda88427ba532bb2d9dbfce0f5d8ab9f24cebb3a5337ab4d76d1c295024

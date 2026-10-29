@@ -1,0 +1,149 @@
+# Test/production boundary for the CoreShop v1 benchmark  (SPEC.md §3.1, decision D1)
+#
+# Three classes of code:
+#
+#   removable   test code the system under test must regenerate.  Deleted
+#               from the repository repo-wide (SPEC §2); the ground truth
+#               for an item is its closure over these files.
+#   retained    test *infrastructure* kept in the stripped repo.  It is a
+#               stable substrate, not an answer: nothing here is selected
+#               by a scenario's steps except where explicitly noted.
+#   production  never touched.
+#
+# D1 was decided as (b) "TestBundle retained", but recon showed the choice
+# is not actually free: three kernels instantiate CoreShopTestBundle and 49
+# production Twig templates call its Twig functions, so deleting it breaks
+# the application in prod and dev, not just in test.  (a) is therefore not
+# available as a "harder variant" without first un-entangling the bundle
+# from production — recorded here so the option is not silently assumed.
+#
+# The honest cost of (b) is that TestBundle carries 57 step definitions and
+# 35 transforms.  That is not hidden: `leak_profile` below makes the harness
+# record, per item, how many of its steps are answered by retained code, and
+# an item answered ENTIRELY by retained code fails the §5 must-fail leg and
+# is excluded as `passes_without_glue`.
+
+version: 1
+project: coreshop
+repo_root: projects/coreshop/source
+
+# ---------------------------------------------------------------- removable
+# Order matters only for readability; classification uses longest-prefix
+# match against `retained` first, then `removable`.
+removable:
+  # One broad prefix, narrowed by the `retained` exceptions below
+  # (classification is longest-prefix, so `retained` wins).  It is broad
+  # ON PURPOSE: the harness refuses to write a solution file outside
+  # removable territory, and the system prompt tells a model to put its
+  # classes under `src/CoreShop/Behat/Context/**`.  Enumerating only the
+  # four Context subdirectories made that instruction unfollowable —
+  # `src/CoreShop/Behat/Context/MyContext.php` classified as production
+  # and every file a compliant model wrote was silently discarded.
+  - path: src/CoreShop/Behat/
+    why: >
+      Behat test code: step definitions, argument transforms, page
+      objects and their helpers.  The retained list below carves out the
+      environment substrate that is not an answer to any scenario.
+
+# ------------------------------------------------------------- DI fragments
+# The service definitions of removable contexts are removed with them
+# (decision D2: the harness synthesises registration per item).
+removable_config:
+  - src/CoreShop/Behat/Resources/config/services/contexts/domain.yml
+  - src/CoreShop/Behat/Resources/config/services/contexts/setup.yml
+  - src/CoreShop/Behat/Resources/config/services/contexts/transform.yml
+  - src/CoreShop/Behat/Resources/config/services/contexts/cli.yml
+  - src/CoreShop/Behat/Resources/config/services/contexts/ui.yml
+  - src/CoreShop/Behat/Resources/config/services/contexts/ui_pimcore.yml
+  - src/CoreShop/Behat/Resources/config/services/contexts.yml
+  - src/CoreShop/Behat/Resources/config/services/pages.yml
+  - src/CoreShop/Behat/Resources/config/services/pages_pimcore.yml
+  - src/CoreShop/Behat/Resources/config/services/elements.yml
+  - src/CoreShop/Behat/Resources/config/services/elements_pimcore.yml
+  - src/CoreShop/Behat/Resources/config/services.yml
+  - src/CoreShop/Behat/Resources/config/suites.yml
+  - src/CoreShop/Behat/Resources/config/suites/
+  - src/CoreShop/Behat/Resources/config/profiles.yml
+  - src/CoreShop/Behat/Resources/config/profiles/
+
+# ----------------------------------------------------------------- retained
+retained:
+  - path: src/CoreShop/Behat/Context/Hook/
+    why: >
+      4 classes, zero step definitions.  @BeforeSuite installs Pimcore and
+      CoreShop; @BeforeScenario purges the database.  Environment plumbing,
+      identical for every item; regenerating it per item would measure
+      framework recall, not test generation.  (This resolves the SPEC's own
+      §3.1-vs-§4 disagreement in favour of §4.)
+  - path: src/CoreShop/Behat/Model/
+    why: >
+      5 Pimcore model stubs named as literal FQCNs by 22 .feature files and
+      registered through core_shop_resource.mapping.paths.  They are scenario
+      DATA that the criterion text itself references, not glue.
+  - path: src/CoreShop/Behat/Service/Setup.php
+    why: used by the retained Hook contexts
+  - path: src/CoreShop/Behat/Service/Index/
+    why: index extensions reachable only through DI tags, never from a step
+  - path: src/CoreShop/Behat/Service/CustomRelationalIndexInterpreter.php
+    why: same, registered by tag
+  - path: src/CoreShop/Behat/Service/ConfigurationBasedDisplayFractionProvider.php
+    why: referenced by config/packages/test_precision/config.yaml
+  - path: src/CoreShop/Behat/Service/Payum/
+    why: the `offline` payment gateway bound by extension config
+  - path: src/CoreShop/Behat/Service/CompilerPass/
+    why: dead code upstream, retained so deletion cannot be blamed for a failure
+  - path: src/CoreShop/Behat/Resources/
+    why: >
+      Behat's own configuration tree.  Its removable parts are listed
+      under `removable_config`; what is left (the retained hook wiring)
+      is substrate, and a solution must not be able to overwrite it.
+  - path: src/CoreShop/Behat/Bench/
+    why: >
+      HARNESS code — the recorder hook that produces every measurement.
+      A solution able to overwrite it could rewrite its own result.
+  - path: src/CoreShop/Bundle/TestBundle/
+    why: >
+      D1(b).  Cannot be deleted: src/Kernel.php, src/AppKernel.php and
+      src/BehatKernel.php all instantiate it, and CoreShopFrontendBundle's
+      PRODUCTION services import its twig.yml, whose functions are called by
+      49 production templates.  Carries 57 step definitions — the leak is
+      measured per item, not hidden.
+  - path: src/BehatKernel.php
+    why: the kernel Behat boots
+  - path: behat-bootstrap.php
+    why: Behat's bootstrap
+
+# Contexts always registered in the synthesised per-item suite, in this
+# order.  These are the retained substrate: the four environment hooks,
+# plus exactly those TestBundle contexts that CoreShop's own DOMAIN suites
+# register.  The list is fixed across items on purpose — deriving it per
+# item from the gold step bindings would hand the harness knowledge of the
+# answer, and every item would then get a different substrate.
+#
+# It is NOT "all of TestBundle": the contexts no domain suite wires are
+# left out, and one of them (Setup\DocumentContext) is the reason —
+# it carries two syntactically invalid regexes
+# (`/^the (document) has a editable with name "([^"]+)"), …$/`,
+# unbalanced parentheses) that make Behat abort the whole run as soon as
+# any step is searched.  Upstream never notices because no domain suite
+# registers it.
+retained_contexts:
+  - CoreShop\Behat\Context\Hook\PimcoreSetupContext
+  - CoreShop\Behat\Context\Hook\CoreShopSetupContext
+  - CoreShop\Bundle\TestBundle\Context\Hook\DoctrineORMContext
+  - CoreShop\Behat\Context\Hook\PimcoreDaoContext
+  - CoreShop\Bundle\TestBundle\Context\Transform\SharedStorageContext
+  - CoreShop\Bundle\TestBundle\Context\Transform\ClassContext
+  - CoreShop\Bundle\TestBundle\Context\Setup\ClassContext
+  - CoreShop\Bundle\TestBundle\Context\Domain\ClassContext
+  - CoreShop\Bundle\TestBundle\Context\Domain\PimcoreContext
+
+# `CoreShop\Behat\Context\Hook\DoctrineORMContext` is deliberately NOT in
+# the list above: it is dead upstream (registered in no suite and absent
+# from the compiled container); the live purger is TestBundle's.
+
+leak_profile:
+  # Per item the harness records how many of the scenario's steps are
+  # answered by `retained` code.  Items where that is ALL of them cannot
+  # fail the §5 must-fail leg and are excluded as `passes_without_glue`.
+  record: true

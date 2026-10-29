@@ -1,0 +1,84 @@
+# Test/production boundary for python-docx  (SPEC.md §3.1; plan decision D3)
+#
+# The second REAL project, and the first one where the boundary had to decide
+# something CoreShop never asked.  behave discovers step definitions by
+# importing every module under `features/steps/`, so that directory is the
+# answer and the whole of it is removable -- except that upstream also keeps
+# **53 binary fixtures** in `features/steps/test_files/`, inside the very
+# prefix that has to go.
+#
+# Deleting them with the code would not make the task harder, it would make it
+# IMPOSSIBLE: `.docx`, `.jpg`, `.png`, `.tif` and `.emf` files are inputs a
+# scenario reads ("Given a document having a table"), not glue a system under
+# test could write.  A run stripped of them fails every item for a reason that
+# has nothing to do with test generation, and the number would be recorded
+# against the model.
+#
+# So they are carved back out by the same mechanism CoreShop uses for
+# `Behat/Service/Index` and `Behat/Model`: longest-prefix match, `retained`
+# wins.  `features/steps/` is 15 characters and `features/steps/test_files` is
+# 25, so a fixture classifies RETAINED and a step module classifies REMOVABLE,
+# and nothing had to be special-cased to make that true.
+#
+# `boundary.selftest` pins the carve-out, and so does `profile_python_docx.yml`
+# -- its `retained_note` promises the agent that `features/steps/test_files/`
+# survived, and `load_profile` refuses to load a profile whose promise the
+# boundary contradicts.  Dropping the carve-out therefore breaks two checks in
+# two modules rather than silently emptying the corpus.
+
+version: 1
+project: python-docx
+repo_root: projects/python-docx/source
+
+# ---------------------------------------------------------------- removable
+# Order matters only for readability; classification is longest-prefix against
+# `retained` first, then `removable`.
+removable:
+  - path: features/steps/
+    why: >
+      behave step definitions and the helpers they import.  behave loads
+      every module under `features/steps/` and registers whatever the
+      decorators in them declare, so the directory IS the answer.  The
+      `retained` list below carves out the binary fixtures, which are data
+      rather than an answer.
+
+# ------------------------------------------------------------- DI fragments
+# behave has no service container: a step module is imported and its decorated
+# functions register themselves.  There is no suite file, no service list and
+# nothing to synthesise per item, so this list is EMPTY rather than absent --
+# an empty list says "asked and answered", a missing key says nothing.
+removable_config: []
+
+# ----------------------------------------------------------------- retained
+retained:
+  - path: features/steps/test_files
+    why: >
+      53 binary fixtures (.docx, .jpg, .png, .bmp, .gif, .tif, .emf, .wmf)
+      that scenarios READ.  They are the direct analogue of CoreShop's
+      retained `Behat/Model` stubs: scenario DATA the criterion text itself
+      refers to, which no system under test could regenerate and which no
+      step definition selects.  Written without a trailing slash so the
+      prefix also matches the directory itself, and it is a SUBSTRATE ROOT
+      (`repo.BEHAVE_SUBSTRATE_ROOTS`): editing a fixture .docx would change
+      what the scenario asserts about, which is answer-space tampering and
+      aborts the sweep rather than scoring it.
+  - path: features/environment.py
+    why: >
+      behave's lifecycle hooks.  Upstream's is twelve lines and creates
+      `features/_scratch/`; the harness replaces it with its own recorder at
+      strip time (SPEC §6) and moves the original to gold.  Either way it is
+      environment plumbing, identical for every item, and regenerating it per
+      item would measure recall of behave's lifecycle rather than test
+      generation.  It sits BESIDE the acceptance root rather than under it,
+      which is why the profile cross-check reads its `retained_note` both as
+      a repo-relative path and as one relative to the acceptance root.
+
+# Contexts always registered in the synthesised per-item suite.  EMPTY, and
+# not merely unset: behave has no container to register anything IN, and the
+# `retained_contexts` a Behat suite needs has no counterpart here.  Spelling
+# it as an empty list records that the question was asked.
+retained_contexts: []
+
+# `features/*.feature` and `src/**` are PRODUCTION by falling through both
+# lists -- the same way CoreShop's own `.feature` files and
+# `src/CoreShop/Component/**` do.  Nothing here is ever touched.

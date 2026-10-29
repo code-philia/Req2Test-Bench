@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://req2test.example/schemas/worker-runtime-v3.schema.json",
+  "title": "r2t Worker Runtime v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "worker",
+    "worker_spec_sha256",
+    "seed_dir",
+    "seed_manifest_sha256",
+    "seed_key",
+    "workspace_seed_digest",
+    "database_dump_digest",
+    "container_image_digest",
+    "harness_version",
+    "needs_database",
+    "docker_execution_authority",
+    "docker_execution_binding"
+  ],
+  "properties": {
+    "schema": {"const": "r2t.worker-runtime/v3"},
+    "worker": {"$ref": "#/$defs/worker"},
+    "worker_spec_sha256": {"$ref": "#/$defs/sha256"},
+    "seed_dir": {"$ref": "#/$defs/absolutePath"},
+    "seed_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "seed_key": {"type": "string", "minLength": 1},
+    "workspace_seed_digest": {"$ref": "#/$defs/sha256"},
+    "database_dump_digest": {
+      "anyOf": [
+        {"const": "no_database"},
+        {"$ref": "#/$defs/sha256"}
+      ]
+    },
+    "container_image_digest": {
+      "type": "string",
+      "minLength": 71,
+      "maxLength": 71,
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "harness_version": {
+      "anyOf": [
+        {"type": "integer", "minimum": 1},
+        {"type": "string", "minLength": 1}
+      ]
+    },
+    "needs_database": {"type": "boolean"},
+    "docker_execution_authority": {"$ref": "#/$defs/evidenceReference"},
+    "docker_execution_binding": {"$ref": "#/$defs/evidenceReference"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"needs_database": {"const": true}},
+        "required": ["needs_database"]
+      },
+      "then": {
+        "properties": {
+          "database_dump_digest": {"$ref": "#/$defs/sha256"}
+        }
+      },
+      "else": {
+        "properties": {
+          "database_dump_digest": {"const": "no_database"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "absolutePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^/[^\\u0000\\r\\n]*$"
+    },
+    "evidenceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "file_sha256", "digest"],
+      "properties": {
+        "path": {"$ref": "#/$defs/absolutePath"},
+        "file_sha256": {"$ref": "#/$defs/sha256"},
+        "digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "worker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "index",
+        "workspace",
+        "container",
+        "schema",
+        "credential",
+        "env_file",
+        "workdir",
+        "out_path",
+        "artifacts_root"
+      ],
+      "properties": {
+        "index": {"type": "integer", "minimum": 0},
+        "workspace": {"$ref": "#/$defs/absolutePath"},
+        "container": {"type": "string", "minLength": 1},
+        "schema": {"type": "string"},
+        "credential": {"type": "string"},
+        "env_file": {"$ref": "#/$defs/absolutePath"},
+        "workdir": {"type": "string", "minLength": 1, "pattern": "^/"},
+        "out_path": {"$ref": "#/$defs/absolutePath"},
+        "artifacts_root": {"$ref": "#/$defs/absolutePath"}
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+PRESERVED imported package init
+=== RUN   TestStripFixture
+PRESERVED wrapper setup
+=== RUN   TestStripFixture/native_selected_handlers
+PRESERVED before hook
+PRESERVED given 42
+PRESERVED original helper 42
+PRESERVED action 43
+REMOVED method assertion
+REMOVED literal assertion
+REMOVED imported assertion
+PRESERVED after hook
+    suite.go:640: EXPECTED false assertion
+R2T_GODOG_EXIT TestStripFixture 1
+=== NAME  TestStripFixture
+    bdd_strip_test.go:36: native assertion failed
+PRESERVED wrapper defer
+PRESERVED wrapper cleanup
+--- FAIL: TestStripFixture (0.00s)
+    --- FAIL: TestStripFixture/native_selected_handlers (0.00s)
+FAIL
+FAIL	github.com/EvilFreelancer/coddy-agent/internal/stripfixture	0.006s
+FAIL

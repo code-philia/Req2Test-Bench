@@ -1,0 +1,47 @@
+{
+ "appliers": {
+  "master": {
+   "path": "benchmark/r2t/java/Mutate.java",
+   "sha256": "1b9dce7bbc6a2a3d3a97b76ecfab7999d60a430e839632daec7d86e23bee8824"
+  },
+  "paper": {
+   "refs": [
+    {
+     "commit": "0ebd5496209776c8159960b01208c20f24e682b3",
+     "role": "references and candidate scoring",
+     "tag": "mutation-evaluation-collection-v1"
+    }
+   ],
+   "sha256": "0ade84feea4bcf864aa52de46db5fde3237f56b9de04a401af41ca28563e31f6"
+  },
+  "reviewed_diff": "Mutate.java 0ebd5496 -> 21f1cb23 only adds the optional --source-level/--target-level/--release-level flags and passes them to javac when given. Algorand's manifest carries a single r2t.java-analysis-recipe/1 authority, for which toolkit/mutation_java.py:1410-1415 (analysis_binding_for_path) returns compiler_argv [], so the flags are never passed and the applier runs its legacy path; the engine pins the bytes to the exact splice either way.",
+  "same_source": false
+ },
+ "appliers_run": false,
+ "engine": "r2t-mutate-java",
+ "environment": {
+  "seed_tar": "kits/algorand-sdk/exec/seed/checked-v2-rev3/workspace.tar",
+  "seed_tar_sha256": "2fb3b2747ef2b975e724f04ed877ec4ec057c1ade99eaa8917125c0704a6a24e"
+ },
+ "exceptions": [],
+ "generated_at": "2026-10-03T18:32:03Z",
+ "host": "maintainer-host",
+ "kind": "splice",
+ "kit": {
+  "g_files": 116,
+  "gt_killed_pairs": 7504,
+  "kit_version": "1.0",
+  "limit": null,
+  "manifest_digest": "03b9f816320674247e319cf4e13d76f7833ee434fec7841c2db0a071686a4c52",
+  "pairs": 12853,
+  "path": "kits/algorand-sdk"
+ },
+ "project": "algorand-sdk",
+ "schema": "req2test.applier-check/1",
+ "summary": {
+  "g_mutants": 1531,
+  "splice_refused": 0,
+  "splices_on_seed": 1531
+ },
+ "verdict": "equal"
+}

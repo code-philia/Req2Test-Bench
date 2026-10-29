@@ -1,0 +1,34 @@
+=== RUN   TestDeadlock
+panic: test timed out after 10m0s
+	running tests:
+		TestDeadlock (10m0s)
+
+goroutine 17 [running]:
+testing.(*M).startAlarm.func1()
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:2682 +0x345
+created by time.goFunc
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/time/sleep.go:215 +0x2d
+
+goroutine 1 [chan receive]:
+testing.(*T).Run(0xc000003880, {0x5809c4?, 0xc0000f5b30?}, 0x58cef8)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:2005 +0x485
+testing.runTests.func1(0xc000003880)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:2477 +0x37
+testing.tRunner(0xc000003880, 0xc0000f5c70)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1934 +0xea
+testing.runTests(0xc00000e060, {0x6bcb20, 0x4, 0x4}, {0x7?, 0xc0000b48c0?, 0x6c2360?})
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:2475 +0x4b4
+testing.(*M).Run(0xc0000c0140)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:2337 +0x63a
+main.main()
+	_testmain.go:51 +0x9b
+
+goroutine 7 [chan receive]:
+github.com/EvilFreelancer/coddy-agent/external/cli.TestDeadlock(0xc000003a40?)
+	/srv/r2t/binhang/t.dQxY/mod/external/cli/crash_test.go:10 +0x25
+testing.tRunner(0xc000003a40, 0x58cef8)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1934 +0xea
+created by testing.(*T).Run in goroutine 1
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1997 +0x465
+FAIL	github.com/EvilFreelancer/coddy-agent/external/cli	600.030s
+FAIL

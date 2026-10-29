@@ -1,0 +1,1229 @@
+{
+  "godog_version": "v0.15.1",
+  "schema": "r2t.go-bootstrap-selection/1",
+  "selections": [
+    {
+      "suite": {
+        "glue_path": "fixture/bdd_native_test.go",
+        "test_name": "TestNativeSelection63",
+        "feature_path": "features/native_selection_fixture.feature",
+        "godog_tags": ""
+      },
+      "feature_sha256": "5e02810bf61229ba1381eac71cb4d4cc3f4d46db9f629d51dc8988dd57b3060f",
+      "document": {
+        "uri": "features/native_selection_fixture.feature",
+        "feature": {
+          "location": {
+            "line": 2,
+            "column": 1
+          },
+          "tags": [
+            {
+              "location": {
+                "line": 1,
+                "column": 1
+              },
+              "name": "@top",
+              "id": "17"
+            }
+          ],
+          "language": "en",
+          "keyword": "Feature",
+          "name": "native selection fixture",
+          "description": "",
+          "children": [
+            {
+              "background": {
+                "location": {
+                  "line": 3,
+                  "column": 3
+                },
+                "keyword": "Background",
+                "name": "",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 4,
+                      "column": 5
+                    },
+                    "keyword": "Given ",
+                    "keywordType": "Context",
+                    "text": "a shared background",
+                    "id": "0"
+                  }
+                ],
+                "id": "1"
+              }
+            },
+            {
+              "scenario": {
+                "location": {
+                  "line": 7,
+                  "column": 3
+                },
+                "tags": [
+                  {
+                    "location": {
+                      "line": 6,
+                      "column": 3
+                    },
+                    "name": "@blue",
+                    "id": "3"
+                  }
+                ],
+                "keyword": "Scenario",
+                "name": "ordinary",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 8,
+                      "column": 5
+                    },
+                    "keyword": "Then ",
+                    "keywordType": "Outcome",
+                    "text": "an ordinary step",
+                    "id": "2"
+                  }
+                ],
+                "examples": [],
+                "id": "4"
+              }
+            },
+            {
+              "scenario": {
+                "location": {
+                  "line": 11,
+                  "column": 3
+                },
+                "tags": [
+                  {
+                    "location": {
+                      "line": 10,
+                      "column": 3
+                    },
+                    "name": "@outline",
+                    "id": "15"
+                  }
+                ],
+                "keyword": "Scenario Outline",
+                "name": "examples inherit tags",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 12,
+                      "column": 5
+                    },
+                    "keyword": "Then ",
+                    "keywordType": "Outcome",
+                    "text": "value <value>",
+                    "id": "5"
+                  }
+                ],
+                "examples": [
+                  {
+                    "location": {
+                      "line": 14,
+                      "column": 5
+                    },
+                    "tags": [
+                      {
+                        "location": {
+                          "line": 13,
+                          "column": 5
+                        },
+                        "name": "@fast",
+                        "id": "9"
+                      }
+                    ],
+                    "keyword": "Examples",
+                    "name": "fast rows",
+                    "description": "",
+                    "tableHeader": {
+                      "location": {
+                        "line": 15,
+                        "column": 7
+                      },
+                      "cells": [
+                        {
+                          "location": {
+                            "line": 15,
+                            "column": 9
+                          },
+                          "value": "value"
+                        }
+                      ],
+                      "id": "6"
+                    },
+                    "tableBody": [
+                      {
+                        "location": {
+                          "line": 16,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 16,
+                              "column": 9
+                            },
+                            "value": "one"
+                          }
+                        ],
+                        "id": "7"
+                      },
+                      {
+                        "location": {
+                          "line": 17,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 17,
+                              "column": 9
+                            },
+                            "value": "two"
+                          }
+                        ],
+                        "id": "8"
+                      }
+                    ],
+                    "id": "10"
+                  },
+                  {
+                    "location": {
+                      "line": 19,
+                      "column": 5
+                    },
+                    "tags": [
+                      {
+                        "location": {
+                          "line": 18,
+                          "column": 5
+                        },
+                        "name": "@slow",
+                        "id": "13"
+                      }
+                    ],
+                    "keyword": "Examples",
+                    "name": "slow row",
+                    "description": "",
+                    "tableHeader": {
+                      "location": {
+                        "line": 20,
+                        "column": 7
+                      },
+                      "cells": [
+                        {
+                          "location": {
+                            "line": 20,
+                            "column": 9
+                          },
+                          "value": "value"
+                        }
+                      ],
+                      "id": "11"
+                    },
+                    "tableBody": [
+                      {
+                        "location": {
+                          "line": 21,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 21,
+                              "column": 9
+                            },
+                            "value": "three"
+                          }
+                        ],
+                        "id": "12"
+                      }
+                    ],
+                    "id": "14"
+                  }
+                ],
+                "id": "16"
+              }
+            }
+          ]
+        },
+        "comments": []
+      },
+      "pickles": [
+        {
+          "header_line": 7,
+          "row_line": 7,
+          "ast_node_ids": [
+            "4"
+          ],
+          "tags": [
+            "@top",
+            "@blue"
+          ],
+          "step_lines": [
+            4,
+            8
+          ]
+        },
+        {
+          "header_line": 11,
+          "row_line": 16,
+          "ast_node_ids": [
+            "16",
+            "7"
+          ],
+          "tags": [
+            "@top",
+            "@outline",
+            "@fast"
+          ],
+          "step_lines": [
+            4,
+            12
+          ]
+        },
+        {
+          "header_line": 11,
+          "row_line": 17,
+          "ast_node_ids": [
+            "16",
+            "8"
+          ],
+          "tags": [
+            "@top",
+            "@outline",
+            "@fast"
+          ],
+          "step_lines": [
+            4,
+            12
+          ]
+        },
+        {
+          "header_line": 11,
+          "row_line": 21,
+          "ast_node_ids": [
+            "16",
+            "12"
+          ],
+          "tags": [
+            "@top",
+            "@outline",
+            "@slow"
+          ],
+          "step_lines": [
+            4,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "suite": {
+        "glue_path": "fixture/bdd_native_test.go",
+        "test_name": "TestNativeSelection64",
+        "feature_path": "features/native_selection_fixture.feature",
+        "godog_tags": "@fast"
+      },
+      "feature_sha256": "5e02810bf61229ba1381eac71cb4d4cc3f4d46db9f629d51dc8988dd57b3060f",
+      "document": {
+        "uri": "features/native_selection_fixture.feature",
+        "feature": {
+          "location": {
+            "line": 2,
+            "column": 1
+          },
+          "tags": [
+            {
+              "location": {
+                "line": 1,
+                "column": 1
+              },
+              "name": "@top",
+              "id": "17"
+            }
+          ],
+          "language": "en",
+          "keyword": "Feature",
+          "name": "native selection fixture",
+          "description": "",
+          "children": [
+            {
+              "background": {
+                "location": {
+                  "line": 3,
+                  "column": 3
+                },
+                "keyword": "Background",
+                "name": "",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 4,
+                      "column": 5
+                    },
+                    "keyword": "Given ",
+                    "keywordType": "Context",
+                    "text": "a shared background",
+                    "id": "0"
+                  }
+                ],
+                "id": "1"
+              }
+            },
+            {
+              "scenario": {
+                "location": {
+                  "line": 7,
+                  "column": 3
+                },
+                "tags": [
+                  {
+                    "location": {
+                      "line": 6,
+                      "column": 3
+                    },
+                    "name": "@blue",
+                    "id": "3"
+                  }
+                ],
+                "keyword": "Scenario",
+                "name": "ordinary",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 8,
+                      "column": 5
+                    },
+                    "keyword": "Then ",
+                    "keywordType": "Outcome",
+                    "text": "an ordinary step",
+                    "id": "2"
+                  }
+                ],
+                "examples": [],
+                "id": "4"
+              }
+            },
+            {
+              "scenario": {
+                "location": {
+                  "line": 11,
+                  "column": 3
+                },
+                "tags": [
+                  {
+                    "location": {
+                      "line": 10,
+                      "column": 3
+                    },
+                    "name": "@outline",
+                    "id": "15"
+                  }
+                ],
+                "keyword": "Scenario Outline",
+                "name": "examples inherit tags",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 12,
+                      "column": 5
+                    },
+                    "keyword": "Then ",
+                    "keywordType": "Outcome",
+                    "text": "value <value>",
+                    "id": "5"
+                  }
+                ],
+                "examples": [
+                  {
+                    "location": {
+                      "line": 14,
+                      "column": 5
+                    },
+                    "tags": [
+                      {
+                        "location": {
+                          "line": 13,
+                          "column": 5
+                        },
+                        "name": "@fast",
+                        "id": "9"
+                      }
+                    ],
+                    "keyword": "Examples",
+                    "name": "fast rows",
+                    "description": "",
+                    "tableHeader": {
+                      "location": {
+                        "line": 15,
+                        "column": 7
+                      },
+                      "cells": [
+                        {
+                          "location": {
+                            "line": 15,
+                            "column": 9
+                          },
+                          "value": "value"
+                        }
+                      ],
+                      "id": "6"
+                    },
+                    "tableBody": [
+                      {
+                        "location": {
+                          "line": 16,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 16,
+                              "column": 9
+                            },
+                            "value": "one"
+                          }
+                        ],
+                        "id": "7"
+                      },
+                      {
+                        "location": {
+                          "line": 17,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 17,
+                              "column": 9
+                            },
+                            "value": "two"
+                          }
+                        ],
+                        "id": "8"
+                      }
+                    ],
+                    "id": "10"
+                  },
+                  {
+                    "location": {
+                      "line": 19,
+                      "column": 5
+                    },
+                    "tags": [
+                      {
+                        "location": {
+                          "line": 18,
+                          "column": 5
+                        },
+                        "name": "@slow",
+                        "id": "13"
+                      }
+                    ],
+                    "keyword": "Examples",
+                    "name": "slow row",
+                    "description": "",
+                    "tableHeader": {
+                      "location": {
+                        "line": 20,
+                        "column": 7
+                      },
+                      "cells": [
+                        {
+                          "location": {
+                            "line": 20,
+                            "column": 9
+                          },
+                          "value": "value"
+                        }
+                      ],
+                      "id": "11"
+                    },
+                    "tableBody": [
+                      {
+                        "location": {
+                          "line": 21,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 21,
+                              "column": 9
+                            },
+                            "value": "three"
+                          }
+                        ],
+                        "id": "12"
+                      }
+                    ],
+                    "id": "14"
+                  }
+                ],
+                "id": "16"
+              }
+            }
+          ]
+        },
+        "comments": []
+      },
+      "pickles": [
+        {
+          "header_line": 11,
+          "row_line": 16,
+          "ast_node_ids": [
+            "16",
+            "7"
+          ],
+          "tags": [
+            "@top",
+            "@outline",
+            "@fast"
+          ],
+          "step_lines": [
+            4,
+            12
+          ]
+        },
+        {
+          "header_line": 11,
+          "row_line": 17,
+          "ast_node_ids": [
+            "16",
+            "8"
+          ],
+          "tags": [
+            "@top",
+            "@outline",
+            "@fast"
+          ],
+          "step_lines": [
+            4,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "suite": {
+        "glue_path": "fixture/bdd_native_test.go",
+        "test_name": "TestNativeSelection65",
+        "feature_path": "features/native_selection_fixture.feature",
+        "godog_tags": "~@slow"
+      },
+      "feature_sha256": "5e02810bf61229ba1381eac71cb4d4cc3f4d46db9f629d51dc8988dd57b3060f",
+      "document": {
+        "uri": "features/native_selection_fixture.feature",
+        "feature": {
+          "location": {
+            "line": 2,
+            "column": 1
+          },
+          "tags": [
+            {
+              "location": {
+                "line": 1,
+                "column": 1
+              },
+              "name": "@top",
+              "id": "17"
+            }
+          ],
+          "language": "en",
+          "keyword": "Feature",
+          "name": "native selection fixture",
+          "description": "",
+          "children": [
+            {
+              "background": {
+                "location": {
+                  "line": 3,
+                  "column": 3
+                },
+                "keyword": "Background",
+                "name": "",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 4,
+                      "column": 5
+                    },
+                    "keyword": "Given ",
+                    "keywordType": "Context",
+                    "text": "a shared background",
+                    "id": "0"
+                  }
+                ],
+                "id": "1"
+              }
+            },
+            {
+              "scenario": {
+                "location": {
+                  "line": 7,
+                  "column": 3
+                },
+                "tags": [
+                  {
+                    "location": {
+                      "line": 6,
+                      "column": 3
+                    },
+                    "name": "@blue",
+                    "id": "3"
+                  }
+                ],
+                "keyword": "Scenario",
+                "name": "ordinary",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 8,
+                      "column": 5
+                    },
+                    "keyword": "Then ",
+                    "keywordType": "Outcome",
+                    "text": "an ordinary step",
+                    "id": "2"
+                  }
+                ],
+                "examples": [],
+                "id": "4"
+              }
+            },
+            {
+              "scenario": {
+                "location": {
+                  "line": 11,
+                  "column": 3
+                },
+                "tags": [
+                  {
+                    "location": {
+                      "line": 10,
+                      "column": 3
+                    },
+                    "name": "@outline",
+                    "id": "15"
+                  }
+                ],
+                "keyword": "Scenario Outline",
+                "name": "examples inherit tags",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 12,
+                      "column": 5
+                    },
+                    "keyword": "Then ",
+                    "keywordType": "Outcome",
+                    "text": "value <value>",
+                    "id": "5"
+                  }
+                ],
+                "examples": [
+                  {
+                    "location": {
+                      "line": 14,
+                      "column": 5
+                    },
+                    "tags": [
+                      {
+                        "location": {
+                          "line": 13,
+                          "column": 5
+                        },
+                        "name": "@fast",
+                        "id": "9"
+                      }
+                    ],
+                    "keyword": "Examples",
+                    "name": "fast rows",
+                    "description": "",
+                    "tableHeader": {
+                      "location": {
+                        "line": 15,
+                        "column": 7
+                      },
+                      "cells": [
+                        {
+                          "location": {
+                            "line": 15,
+                            "column": 9
+                          },
+                          "value": "value"
+                        }
+                      ],
+                      "id": "6"
+                    },
+                    "tableBody": [
+                      {
+                        "location": {
+                          "line": 16,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 16,
+                              "column": 9
+                            },
+                            "value": "one"
+                          }
+                        ],
+                        "id": "7"
+                      },
+                      {
+                        "location": {
+                          "line": 17,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 17,
+                              "column": 9
+                            },
+                            "value": "two"
+                          }
+                        ],
+                        "id": "8"
+                      }
+                    ],
+                    "id": "10"
+                  },
+                  {
+                    "location": {
+                      "line": 19,
+                      "column": 5
+                    },
+                    "tags": [
+                      {
+                        "location": {
+                          "line": 18,
+                          "column": 5
+                        },
+                        "name": "@slow",
+                        "id": "13"
+                      }
+                    ],
+                    "keyword": "Examples",
+                    "name": "slow row",
+                    "description": "",
+                    "tableHeader": {
+                      "location": {
+                        "line": 20,
+                        "column": 7
+                      },
+                      "cells": [
+                        {
+                          "location": {
+                            "line": 20,
+                            "column": 9
+                          },
+                          "value": "value"
+                        }
+                      ],
+                      "id": "11"
+                    },
+                    "tableBody": [
+                      {
+                        "location": {
+                          "line": 21,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 21,
+                              "column": 9
+                            },
+                            "value": "three"
+                          }
+                        ],
+                        "id": "12"
+                      }
+                    ],
+                    "id": "14"
+                  }
+                ],
+                "id": "16"
+              }
+            }
+          ]
+        },
+        "comments": []
+      },
+      "pickles": [
+        {
+          "header_line": 7,
+          "row_line": 7,
+          "ast_node_ids": [
+            "4"
+          ],
+          "tags": [
+            "@top",
+            "@blue"
+          ],
+          "step_lines": [
+            4,
+            8
+          ]
+        },
+        {
+          "header_line": 11,
+          "row_line": 16,
+          "ast_node_ids": [
+            "16",
+            "7"
+          ],
+          "tags": [
+            "@top",
+            "@outline",
+            "@fast"
+          ],
+          "step_lines": [
+            4,
+            12
+          ]
+        },
+        {
+          "header_line": 11,
+          "row_line": 17,
+          "ast_node_ids": [
+            "16",
+            "8"
+          ],
+          "tags": [
+            "@top",
+            "@outline",
+            "@fast"
+          ],
+          "step_lines": [
+            4,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "suite": {
+        "glue_path": "fixture/bdd_native_test.go",
+        "test_name": "TestNativeSelection66",
+        "feature_path": "features/native_selection_fixture.feature",
+        "godog_tags": "@top&&@fast,@blue"
+      },
+      "feature_sha256": "5e02810bf61229ba1381eac71cb4d4cc3f4d46db9f629d51dc8988dd57b3060f",
+      "document": {
+        "uri": "features/native_selection_fixture.feature",
+        "feature": {
+          "location": {
+            "line": 2,
+            "column": 1
+          },
+          "tags": [
+            {
+              "location": {
+                "line": 1,
+                "column": 1
+              },
+              "name": "@top",
+              "id": "17"
+            }
+          ],
+          "language": "en",
+          "keyword": "Feature",
+          "name": "native selection fixture",
+          "description": "",
+          "children": [
+            {
+              "background": {
+                "location": {
+                  "line": 3,
+                  "column": 3
+                },
+                "keyword": "Background",
+                "name": "",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 4,
+                      "column": 5
+                    },
+                    "keyword": "Given ",
+                    "keywordType": "Context",
+                    "text": "a shared background",
+                    "id": "0"
+                  }
+                ],
+                "id": "1"
+              }
+            },
+            {
+              "scenario": {
+                "location": {
+                  "line": 7,
+                  "column": 3
+                },
+                "tags": [
+                  {
+                    "location": {
+                      "line": 6,
+                      "column": 3
+                    },
+                    "name": "@blue",
+                    "id": "3"
+                  }
+                ],
+                "keyword": "Scenario",
+                "name": "ordinary",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 8,
+                      "column": 5
+                    },
+                    "keyword": "Then ",
+                    "keywordType": "Outcome",
+                    "text": "an ordinary step",
+                    "id": "2"
+                  }
+                ],
+                "examples": [],
+                "id": "4"
+              }
+            },
+            {
+              "scenario": {
+                "location": {
+                  "line": 11,
+                  "column": 3
+                },
+                "tags": [
+                  {
+                    "location": {
+                      "line": 10,
+                      "column": 3
+                    },
+                    "name": "@outline",
+                    "id": "15"
+                  }
+                ],
+                "keyword": "Scenario Outline",
+                "name": "examples inherit tags",
+                "description": "",
+                "steps": [
+                  {
+                    "location": {
+                      "line": 12,
+                      "column": 5
+                    },
+                    "keyword": "Then ",
+                    "keywordType": "Outcome",
+                    "text": "value <value>",
+                    "id": "5"
+                  }
+                ],
+                "examples": [
+                  {
+                    "location": {
+                      "line": 14,
+                      "column": 5
+                    },
+                    "tags": [
+                      {
+                        "location": {
+                          "line": 13,
+                          "column": 5
+                        },
+                        "name": "@fast",
+                        "id": "9"
+                      }
+                    ],
+                    "keyword": "Examples",
+                    "name": "fast rows",
+                    "description": "",
+                    "tableHeader": {
+                      "location": {
+                        "line": 15,
+                        "column": 7
+                      },
+                      "cells": [
+                        {
+                          "location": {
+                            "line": 15,
+                            "column": 9
+                          },
+                          "value": "value"
+                        }
+                      ],
+                      "id": "6"
+                    },
+                    "tableBody": [
+                      {
+                        "location": {
+                          "line": 16,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 16,
+                              "column": 9
+                            },
+                            "value": "one"
+                          }
+                        ],
+                        "id": "7"
+                      },
+                      {
+                        "location": {
+                          "line": 17,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 17,
+                              "column": 9
+                            },
+                            "value": "two"
+                          }
+                        ],
+                        "id": "8"
+                      }
+                    ],
+                    "id": "10"
+                  },
+                  {
+                    "location": {
+                      "line": 19,
+                      "column": 5
+                    },
+                    "tags": [
+                      {
+                        "location": {
+                          "line": 18,
+                          "column": 5
+                        },
+                        "name": "@slow",
+                        "id": "13"
+                      }
+                    ],
+                    "keyword": "Examples",
+                    "name": "slow row",
+                    "description": "",
+                    "tableHeader": {
+                      "location": {
+                        "line": 20,
+                        "column": 7
+                      },
+                      "cells": [
+                        {
+                          "location": {
+                            "line": 20,
+                            "column": 9
+                          },
+                          "value": "value"
+                        }
+                      ],
+                      "id": "11"
+                    },
+                    "tableBody": [
+                      {
+                        "location": {
+                          "line": 21,
+                          "column": 7
+                        },
+                        "cells": [
+                          {
+                            "location": {
+                              "line": 21,
+                              "column": 9
+                            },
+                            "value": "three"
+                          }
+                        ],
+                        "id": "12"
+                      }
+                    ],
+                    "id": "14"
+                  }
+                ],
+                "id": "16"
+              }
+            }
+          ]
+        },
+        "comments": []
+      },
+      "pickles": [
+        {
+          "header_line": 7,
+          "row_line": 7,
+          "ast_node_ids": [
+            "4"
+          ],
+          "tags": [
+            "@top",
+            "@blue"
+          ],
+          "step_lines": [
+            4,
+            8
+          ]
+        },
+        {
+          "header_line": 11,
+          "row_line": 16,
+          "ast_node_ids": [
+            "16",
+            "7"
+          ],
+          "tags": [
+            "@top",
+            "@outline",
+            "@fast"
+          ],
+          "step_lines": [
+            4,
+            12
+          ]
+        },
+        {
+          "header_line": 11,
+          "row_line": 17,
+          "ast_node_ids": [
+            "16",
+            "8"
+          ],
+          "tags": [
+            "@top",
+            "@outline",
+            "@fast"
+          ],
+          "step_lines": [
+            4,
+            12
+          ]
+        }
+      ]
+    }
+  ],
+  "toolchain": "go1.25.0"
+}

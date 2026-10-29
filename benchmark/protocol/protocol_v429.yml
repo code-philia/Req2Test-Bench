@@ -1,0 +1,81 @@
+# Immutable benchmark 2.0 recipe v429; specifications/BENCHMARK_V2_RUNTIME_PATH_AMENDMENT.md section 5,
+# specifications/BENCHMARK_V2_SPEC.md section 9 (PR 6) and specifications/FRONTIER_ARMS_20261015_AMENDMENT.md.
+# gpt-6.1-sol, Algorand SDK, `setting: checked_interfaces_target_hidden`, condition c2r,
+# on the project's 2.0 target-hidden views and its v1.1 runtime pack.
+# The twin is protocol_v421.yml, the withdrawn GPT-6.1 Sol cell. Every field but
+# protocol_version, runtime_pack (the v1.1 pack) and notes is the twin's.
+# IMMUTABLE after its digests are pinned.
+schema: r2t.protocol/1
+protocol_version: 429
+reconstructed: false
+condition: c2r
+trials: 0
+agent_timeout_seconds: 3600
+primary_budget: agent_timeout_seconds
+native_knobs:
+  codex:
+    max_model_calls: 200
+repeats: 1
+coverage: true
+setting: checked_interfaces_target_hidden
+comparison_class: fixed_model_scaffold
+prompt_profile:
+  path: config/profile_algorand_checked_interfaces_target_hidden_exec.yml
+  project: algorand-sdk
+  arm_prompt_key: c2r
+  prompt_digest:
+    single_shot: 2cd39cf42f5533fe5f7c41892cc8f08b01e77609bb3a26f47dd48b62c018e6e1
+    c1.5: 05a7a7dd4402b94b4f2e95865b6e42f24e173046ae346b76c1b8d0197190b1d2
+    c2: 1265e1d36419676fec44b9e4ccd200974dead7db7124576363ee5742e10c7b70
+    c3: 3cb8a510401a5689a69391ed99e7c20f510bb4250af50c7747346b850dc3ae38
+    c2r: cda4126bcd599ec393b7ab4ac1e002b7b6607551d86faa4ed0aa880cf7a61549
+runtime_pack:
+  project: algorand-sdk
+  manifest_sha256: ec7afa2a5da180ed667af4885d1d7dc8bdd7a01cd7d8342ffed98864d6d1eff6
+notes:
+  specification: specifications/BENCHMARK_V2_RUNTIME_PATH_AMENDMENT.md section 5 re-collects the withdrawn Codex x
+    GPT-6.1 Sol cell protocol_v421.yml on the project's v1.1 runtime pack (owner decisions D1 and D4 of 2026-10-21).
+    The arm is the one specifications/BENCHMARK_V2_SPEC.md section 9 (PR 6) adds as the first new arm of benchmark 2.0
+    (question 6), under specifications/FRONTIER_ARMS_20261015_AMENDMENT.md with the changes that section lists.
+    specifications/EXECUTION_ENABLED_TH_SENSITIVITY_SPEC.md (the specification below) defines the condition c2r. Rows
+    under this file are 2.0 rows and are never pooled with rows of another protocol, in a table or in any mean. This
+    file fixes the recipe of one cell only; it authorizes no collection.
+  admission: Codex development arm under CODEX_AGENT_ADMISSION_SPEC.md. Existing publication and qualification
+    gates remain unchanged.
+  execution_channel: The workspace is a provisioned runtime of the agent's own target-hidden view through the
+    algorand-sdk runtime pack (specification section 3), so the agent's own commands and tests run on its own
+    files in its own sandbox. No harness trial client, socket, callback or evaluation results are available during
+    generation.
+  runtime_pack: The launch binds the algorand-sdk runtime pack whose manifest digest is runtime_pack manifest_sha256
+    and refuses an installed pack with any other, so the cell cannot mix pack versions and a rebuilt pack needs a new
+    protocol (specification section 6). This is the pack runtime-algorand-sdk-v1.1
+    (BENCHMARK_V2_RUNTIME_PATH_AMENDMENT.md section 4), the pack of protocol_v421.yml with its runner, rt/libexec/run,
+    replaced by runner v5.1 and its pack.json updated. Its manifest differs from protocol_v421.yml's in the runner's
+    line only. Runner v5.1 can mount the workspace under any directory, and wherever runner v5 could mount it, v5.1
+    gives bubblewrap the same arguments (that amendment's section 3).
+  request_budget: max_model_calls counts upstream provider request attempts including retries, not native
+    turns or tool calls. Request 201 is never forwarded.
+  model_input: The native Responses request names gpt-6.1-sol with high reasoning effort, omits temperature and top_p,
+    and has web search and provider-hosted tools disabled. The baseline cell protocol_v417.yml keeps deepseek-flash.
+    gpt-6.1-sol runs on its pinned native Codex release (docs/CODEX_RUNTIME.md) through a ChatGPT account
+    (FRONTIER_ARMS_20261015_AMENDMENT.md section 4).
+  comparability: protocol_v421.yml, the withdrawn GPT-6.1 Sol cell of benchmark 2.0 for this project and setting, is
+    this file's twin, and this file differs from it only in protocol_version, runtime_pack and notes. The baseline
+    cell it is compared with is protocol_v417.yml (deepseek-flash). This file's runtime pack differs from that cell's
+    by the runner the agent can read at /r2t-rt/libexec/run. That runner builds the old runner's nested sandbox,
+    argument for argument, at every workspace path where the old runner works (BENCHMARK_V2_RUNTIME_PATH_AMENDMENT.md
+    sections 3 and 4). How rows under the two files are compared is BENCHMARK_V2_SPEC.md's decision (section 9, PR 6),
+    not this file's.
+  evaluation_runtime_inputs: Final evaluation uses the existing --timeout 600, --repeats 1 and --coverage policy.
+    The 600-second evaluator timeout is an explicit run argument, not a field applied by the current protocol runtime.
+visibility:
+  scope: target_hidden
+  feedback: final_only
+model_request:
+  schema: r2t.protocol-model-request/1
+  model: gpt-6.1-sol
+  wire_api: responses
+  reasoning_effort: high
+  omitted_parameters:
+  - temperature
+  - top_p

@@ -1,0 +1,105 @@
+# Checked-interfaces profile; TARGET_INTERFACES_V2_SPEC sections 5, 5a and 7.
+# Copied from profile_kapua_visibility_target_hidden.yml; the disclosure key is the only
+# prompt-bearing difference. The v1 profile is not edited.
+version: 1
+project: kapua
+project_label: Eclipse Kapua
+language: java
+language_label: Java
+framework: cucumber
+api_scoring: none
+boundary: boundary_kapua.yml
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Cucumber test code
+submission:
+  acceptance_root: service/account/test/src/test/java/org/eclipse/kapua/service/account/test/r2t/generated/
+  example_path: service/account/test/src/test/java/org/eclipse/kapua/service/account/test/r2t/generated/GeneratedSteps.java
+  example_code: package org.eclipse.kapua.service.account.test.r2t.generated; ...
+  placement_hint: service/account/test/src/test/java/org/eclipse/kapua/service/account/test/r2t/generated/...
+  suffixes:
+  - .java
+  extra_names: []
+  retained_note: The shared qa/common substrate remains available.
+wiring_channel: null
+runtime:
+  needs_database: false
+workspace:
+  repo_dir: repo
+  readable_paths:
+  - broker
+  - client
+  - commons
+  - commons-rest
+  - console
+  - consumer
+  - extras
+  - job-engine
+  - locator
+  - message
+  - plug-ins
+  - pom.xml
+  - qa
+  - rest-api
+  - service
+  - simulator-kura
+  - translator
+  - transport
+facts:
+- Step definitions are public methods on plain Java classes, annotated with `io.cucumber.java.en.Given`, `@When`,
+  `@Then`, `@And` or `@But`. For each item the prompt's answer path is an empty `r2t.generated` package inside that
+  feature's runner module, and the harness adds that exact package to the selected runner's native glue. The runner
+  module supplies the suite's complete test compile classpath. The Given/When/Then keyword is irrelevant to matching.
+- Patterns may be Cucumber Expressions such as `{string}`, `{int}`, `{long}` and `{word}`, or regular expressions.
+  Existing parameter and data-table types under the retained `org.eclipse.kapua.qa.common.cucumber` package remain
+  available.
+- When the selected feature has an `@setup` scenario, the harness copies that prerequisite scenario verbatim, including
+  its tags, ahead of the selected scenario. `MiscAuthorization.feature` has no setup scenario or Background and
+  runs its selected scenario alone. `Given Init Security Context` and the `@env_none` hooks remain in retained `BasicSteps`;
+  do not redeclare them.
+- Cucumber-Guice creates glue objects and injects shared `StepData` with `javax.inject.Inject`; glue classes may
+  be `com.google.inject.Singleton`. The selected unit modules also retain a `*LocatorConfiguration` hook that installs
+  the real service under test and its mocked collaborators into `KapuaLocator` during `@setup`.
+- All shared classes under `qa/common`, every selected `Run*.java` runner and every `*LocatorConfiguration.java`
+  are retained. Native runner glue outside the generated package is unchanged. Do not redeclare retained hooks,
+  steps, parameter types or runner classes.
+- The admissible `@env_none` suite uses embedded H2 in the test JVM, migrated by Liquibase, with Shiro and Guice
+  in-process. It needs no database server, broker, Elasticsearch process, Docker socket or other external service.
+- Assertions may use JUnit 4 (`org.junit.Assert`) and should let assertion failures propagate so Cucumber records
+  the failing step. Reuse the retained domain-table objects under `org.eclipse.kapua.qa.common.cucumber` when the
+  feature supplies a data table.
+- Production code spans the Maven reactor's service, commons, locator, message, transport and related modules. Production
+  files, feature files and `pom.xml` are never accepted as an answer.
+- In the separate execution repository, the build is a 250-pom Maven reactor using JDK 17 and Cucumber-JVM 6.11.0
+  with JUnit 4 and surefire 3.0.0-M7. The execution worker supplies the JDK 17 toolchain and warm dependencies;
+  changes to `pom.xml` are discarded.
+- This workspace supports reading, searching, editing, and syntax parsing. It is not a provisioned application runtime;
+  nothing here is executed by the harness. The harness executes your final submitted test artifacts against a separate,
+  complete implementation after generation ends. You receive no harness execution feedback during generation.
+- TARGET_CONTRACTS.md contains the reviewed public API and configuration supplement supplied identically in every
+  visibility view. It is context for writing tests; edits to it are not submitted.
+- Existing QA helpers, JUnit category markers and test fixtures remain readable as test context in every view. Their
+  source examples are retained infrastructure; edits to them are not submitted.
+- 'Implementation visibility: the reviewed target implementation bodies and explicitly mapped executable resources
+  are hidden; declarations, the common contract supplement and retained test infrastructure remain visible.'
+platform_blurb: Eclipse Kapua, a modular Java IoT platform (Maven, JDK 17)
+conditions:
+  retained_substrate: retained common hooks and state, per-suite runners and locator configurations, plus the feature
+    files
+  project_source_noun: Eclipse Kapua source
+trial:
+  client_interpreter: python3
+  runner_noun: Cucumber
+  clause_bounded: This final-only profile has no harness trial channel.
+  clause_unbounded: This final-only profile has no harness trial channel.
+prompt_digest:
+  single_shot: 1d13f4c75a39a93b976376180d2a90c694aa763cbe54c7d8e91939fdc12f8f9f
+  c1.5: 80ff47888dbccf2f66dc0148e5c92547a8dca8a3715e614d5e285394902b08e5
+  c2: 19b8679e38e5defe16cfa8f48b74305029d7c7cdfa1501a3b7ee72bb461da180
+  c3: c05c7e6de57fea0ebb13ee5c7d16d2abc272627a82f4be4db1401d06cdc6479a
+disclosure:
+  checked_interfaces: true
+visibility:
+  scope: target_hidden
+  feedback: final_only

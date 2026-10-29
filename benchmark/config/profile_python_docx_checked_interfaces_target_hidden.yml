@@ -1,0 +1,91 @@
+# Checked-interfaces profile; TARGET_INTERFACES_V2_SPEC sections 5, 5a and 7.
+# Copied from profile_python_docx_visibility_target_hidden.yml; the disclosure key is the only
+# prompt-bearing difference. The v1 profile is not edited.
+# `api_scoring: method_index` is required by spec section 6.2:
+# the undisclosed-API row is withheld without a method index.
+api_scoring: method_index
+boundary: boundary_python_docx.yml
+conditions:
+  project_source_noun: python-docx source
+  retained_substrate: the retained `features/environment.py` hooks and the `features/steps/test_files/`
+    fixtures
+disclosure:
+  checked_interfaces: true
+facts:
+- Step definitions are plain functions decorated with `@given`, `@when` or `@then`, imported from `behave`
+  (`from behave import given, when, then`). behave loads every module under `features/steps/`; the Given/When/Then
+  keyword is irrelevant to matching.
+- Step parameters are captured by the default `parse` matcher with `{name}` or `{name:Type}` placeholders
+  (`@then('the paragraph has {count:d} runs')`). For regular expressions call `use_step_matcher('re')`
+  first, and switch back with `use_step_matcher('parse')` -- the setting applies to every step defined
+  after it.
+- To convert a captured string into an object, register a type with `behave.register_type(Bool=parse_bool)`
+  and name it in the placeholder (`{value:Bool}`). There is no separate transform decorator.
+- The scenario's `Background` steps run before it and need definitions too.
+- '`features/environment.py` holds the lifecycle hooks (`before_all`, `before_feature`, `before_scenario`,
+  and their `after_` counterparts). It is retained: do not write one.'
+- The `context` object passed to every step is the shared state between steps of a scenario (`context.document
+  = document`, then read `context.document` in a later step). behave resets it per scenario; anything
+  that must outlive a scenario belongs on `context.config` or in the environment hooks.
+- Assertions are plain `assert` statements. behave reports the AssertionError as the step failure, so
+  include a message (`assert len(paragraphs) == 3, "got %d" % len(paragraphs)`).
+- In the execution repository, the library under test is imported as `docx` and lives in `src/docx/`;
+  `src` is already on the import path, so `from docx import Document` works without installing anything.
+  Production code is never accepted.
+- The `.docx`, `.jpg`, `.png`, `.bmp`, `.gif`, `.tif`, `.emf` and `.wmf` fixtures a scenario opens are
+  still on disk in `features/steps/test_files/`, and their names are the ones the scenario text uses.
+  The helper module that used to turn a name into a path went with the removed code; write whatever helper
+  you need, or build the path directly.
+- A scenario that SAVES a document writes into `features/_scratch/`, which the retained environment hook
+  creates before the run. Nothing else in the tree may be written.
+- This workspace supports reading, searching, editing, and syntax parsing. It is not a provisioned application
+  runtime; nothing here is executed by the harness. The harness executes your final submitted test artifacts
+  against a separate, complete implementation after generation ends. You receive no harness execution
+  feedback during generation.
+- TARGET_CONTRACTS.md contains the reviewed public API and configuration supplement supplied in every
+  visibility view. It is context for writing tests; edits to it are not submitted.
+- 'Implementation visibility: the reviewed target bodies, including behavior-bearing delegated helpers,
+  are hidden; declarations and permitted surrounding implementations remain visible.'
+framework: behave
+language: python
+language_label: Python
+platform_blurb: the python-docx library for reading and writing Word .docx files (Python 3.12, lxml)
+project: python-docx
+project_label: python-docx
+prompt_digest:
+  single_shot: 44be9d3abe7898ccee641371c050822fb040f63d0277c9706fc68cc8b68fc1eb
+  c1.5: 8ec28acabbc01b308b2be64ccd32742f8cbc006ba63099ab0ad603accdbaa26d
+  c2: 2a2db16ec83a31b3d3e98fb2d1bfedb831cb4ee663a1b5fd9b811938c647ff9b
+  c3: f313bf357c4cba51fb5762c0aa99fdb030fef26d45c22ce70296c46eaa49bbde
+runtime:
+  needs_database: false
+submission:
+  acceptance_root: features/steps/
+  example_code: from behave import given, then ...
+  example_path: features/steps/document.py
+  extra_names: []
+  placement_hint: features/steps/...
+  retained_note: '`features/environment.py` and the fixtures in `features/steps/test_files/` are what
+    remain'
+  suffixes:
+  - .py
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: behave test code
+trial:
+  clause_bounded: This final-only profile has no harness trial channel.
+  clause_unbounded: This final-only profile has no harness trial channel.
+  client_interpreter: python3
+  runner_noun: behave
+version: 1
+wiring_channel: null
+workspace:
+  readable_paths:
+  - features
+  - src
+  - pyproject.toml
+  repo_dir: repo
+visibility:
+  scope: target_hidden
+  feedback: final_only

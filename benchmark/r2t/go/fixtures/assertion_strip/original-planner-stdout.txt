@@ -1,0 +1,107 @@
+{
+  "helper_source": "package stripfixture\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io\"\n\t\"os\"\n\t\"path/filepath\"\n\t\"reflect\"\n\t\"testing\"\n\t\"time\"\n\n\t\"github.com/cucumber/godog\"\n\t\"github.com/cucumber/godog/formatters\"\n\tmessages \"github.com/cucumber/messages/go/v21\"\n)\n\ntype r2tConfig struct {\n\tPaths    []string\n\tTags     string\n\tOutput   string\n\tTestName string\n}\ntype r2tFormatter struct {\n\t*godog.BaseFmt\n\tenc    *json.Encoder\n\tstarts map[string]time.Time\n}\n\nfunc (f *r2tFormatter) event(v any) {\n\tif err := f.enc.Encode(v); err != nil {\n\t\tpanic(err)\n\t}\n}\nfunc (f *r2tFormatter) TestRunStarted() {\n\tf.BaseFmt.TestRunStarted()\n\tf.event(map[string]any{\"event\": \"run_started\"})\n}\nfunc (f *r2tFormatter) Feature(doc *messages.GherkinDocument, path string, raw []byte) {\n\tf.BaseFmt.Feature(doc, path, raw)\n\tf.event(map[string]any{\"event\": \"feature\", \"path\": path, \"document\": doc})\n}\nfunc (f *r2tFormatter) Pickle(p *messages.Pickle) {\n\tf.BaseFmt.Pickle(p)\n\tf.event(map[string]any{\"event\": \"pickle\", \"pickle\": p})\n}\nfunc (f *r2tFormatter) Defined(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition) {\n\tf.BaseFmt.Defined(p, s, d)\n\tf.starts[p.Id+\"/\"+s.Id] = time.Now()\n\trow := map[string]any{\"event\": \"defined\", \"pickle_id\": p.Id, \"uri\": p.Uri, \"step\": s, \"matched\": d != nil}\n\tif d != nil {\n\t\tmatched := f.Storage.MustGetStepDefintionMatch(s.AstNodeIds[0])\n\t\trow[\"registration_file\"] = matched.File\n\t\trow[\"registration_line\"] = matched.Line\n\t\trow[\"native_arguments\"] = matched.Args\n\t\trow[\"expression\"] = d.Expr.String()\n\t\trow[\"handler_type\"] = reflect.TypeOf(d.Handler).String()\n\t\trow[\"keyword\"] = d.Keyword\n\t}\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Passed(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition) {\n\tf.BaseFmt.Passed(p, s, d)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"passed\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Failed(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition, err error) {\n\tf.BaseFmt.Failed(p, s, d, err)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"failed\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\trow[\"error\"] = err.Error()\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Skipped(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition) {\n\tf.BaseFmt.Skipped(p, s, d)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"skipped\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Undefined(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition) {\n\tf.BaseFmt.Undefined(p, s, d)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"undefined\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Pending(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition) {\n\tf.BaseFmt.Pending(p, s, d)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"pending\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Ambiguous(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition, err error) {\n\tf.BaseFmt.Ambiguous(p, s, d, err)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"ambiguous\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\trow[\"error\"] = err.Error()\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Summary() { f.BaseFmt.Summary(); f.event(map[string]any{\"event\": \"summary\"}) }\nfunc r2tRun(s *godog.TestSuite, t *testing.T) int {\n\tvar cfg r2tConfig\n\traw, err := os.ReadFile(\"/r2t-go/run/work/_bench/go/context.json\")\n\tif err != nil {\n\t\tt.Fatal(err)\n\t}\n\tif err = json.Unmarshal(raw, \u0026cfg); err != nil {\n\t\tt.Fatal(err)\n\t}\n\tif cfg.TestName != t.Name() {\n\t\tt.Fatal(\"context test differs\")\n\t}\n\tif err = os.MkdirAll(filepath.Dir(cfg.Output), 0700); err != nil {\n\t\tt.Fatal(err)\n\t}\n\toutput, err := os.OpenFile(cfg.Output, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0600)\n\tif err != nil {\n\t\tt.Fatal(err)\n\t}\n\tdefer output.Close()\n\tenc := json.NewEncoder(output)\n\tif s.Options == nil {\n\t\tt.Fatal(\"selected suite requires explicit Options\")\n\t}\n\tif err = enc.Encode(map[string]any{\"event\": \"interposed\", \"test\": t.Name(), \"original_options\": map[string]any{\"paths\": s.Options.Paths, \"tags\": s.Options.Tags, \"concurrency\": s.Options.Concurrency, \"strict\": s.Options.Strict, \"testing_t_present\": s.Options.TestingT != nil}}); err != nil {\n\t\tt.Fatal(err)\n\t}\n\tformatters.Format(\"r2t-godog-native\", \"native Defined qualification\", func(name string, w io.Writer) formatters.Formatter {\n\t\treturn \u0026r2tFormatter{godog.NewBaseFmt(name, io.Discard), enc, map[string]time.Time{}}\n\t})\n\topts := godog.Options{}\n\tif s.Options != nil {\n\t\topts = *s.Options\n\t}\n\topts.Paths = append([]string(nil), cfg.Paths...)\n\topts.FeatureContents = nil\n\topts.FS = nil\n\topts.Tags = cfg.Tags\n\topts.Concurrency = 1\n\topts.Randomize = 0\n\topts.StopOnFailure = false\n\topts.TestingT = t\n\topts.Strict = true\n\topts.ShowStepDefinitions = false\n\topts.ShowHelp = false\n\topts.Format = \"r2t-godog-native\"\n\topts.Output = output\n\ts.Options = \u0026opts\n\tcode := s.Run()\n\tif err = enc.Encode(map[string]any{\"event\": \"exit\", \"code\": code, \"frozen_paths\": opts.Paths, \"frozen_tags\": opts.Tags, \"serial\": opts.Concurrency, \"testing_t\": opts.TestingT == t}); err != nil {\n\t\tt.Fatal(err)\n\t}\n\tfmt.Println(\"R2T_GODOG_EXIT\", t.Name(), code)\n\treturn code\n}\n",
+  "map": {
+    "byte_delta": 5,
+    "end_byte": 1272,
+    "file": "internal/stripfixture/bdd_strip_test.go",
+    "helper": "zz_r2t_harness_test.go",
+    "line_delta": 0,
+    "original_sha256": "064e5ecad32230231093b522d0408f7f97ab206d64403bc7bbe0717db0ffe758",
+    "original_source_lines_preserved": true,
+    "original_start_line": 36,
+    "package_name": "stripfixture",
+    "registration_declarations": [
+      {
+        "handler": {
+          "column": 1,
+          "end_byte": 179,
+          "file": "internal/stripfixture/helpers_test.go",
+          "kind": "function_or_method",
+          "line": 6,
+          "name": "Assert",
+          "signature": "func() error",
+          "start_byte": 73
+        },
+        "registration": {
+          "column": 3,
+          "end_byte": 728,
+          "file": "internal/stripfixture/bdd_strip_test.go",
+          "line": 24,
+          "start_byte": 683
+        },
+        "registration_method": "Given"
+      },
+      {
+        "handler": {
+          "column": 35,
+          "end_byte": 987,
+          "file": "internal/stripfixture/bdd_strip_test.go",
+          "kind": "function_literal",
+          "line": 25,
+          "name": "func@763",
+          "signature": "func() error",
+          "start_byte": 763
+        },
+        "registration": {
+          "column": 3,
+          "end_byte": 988,
+          "file": "internal/stripfixture/bdd_strip_test.go",
+          "line": 25,
+          "start_byte": 731
+        },
+        "registration_method": "When"
+      },
+      {
+        "handler": {
+          "column": 1,
+          "end_byte": 357,
+          "file": "internal/stripfixture/assertions_test.go",
+          "kind": "function_or_method",
+          "line": 11,
+          "name": "Assert",
+          "signature": "func() error",
+          "start_byte": 181
+        },
+        "registration": {
+          "column": 3,
+          "end_byte": 1040,
+          "file": "internal/stripfixture/bdd_strip_test.go",
+          "line": 31,
+          "start_byte": 991
+        },
+        "registration_method": "Then"
+      },
+      {
+        "handler": {
+          "column": 54,
+          "end_byte": 600,
+          "file": "internal/stripfixture/assertions_test.go",
+          "kind": "function_literal",
+          "line": 17,
+          "name": "func@461",
+          "signature": "func() error",
+          "start_byte": 461
+        },
+        "registration": {
+          "column": 2,
+          "end_byte": 601,
+          "file": "internal/stripfixture/assertions_test.go",
+          "line": 17,
+          "start_byte": 409
+        },
+        "registration_method": "Then"
+      }
+    ],
+    "replacement": "r2tRun(\u0026suite,t)",
+    "resolved_method": "github.com/cucumber/godog.TestSuite.Run",
+    "source_dependencies": [
+      "internal/stripfixture/helpers_test.go",
+      "internal/stripfixture/assertions_test.go"
+    ],
+    "start_byte": 1261,
+    "test_name": "TestStripFixture",
+    "transformed_sha256": "8a5efdf9791329d5b44f63ca41f56de212193cd1c1faa972dfd1683b7eaa2e39",
+    "type_resolution": "go/types with real go list -deps -export -test in selected build context"
+  },
+  "transformed_source": "package stripfixture\n\nimport (\n \"context\"\n \"fmt\"\n \"testing\"\n \"github.com/cucumber/godog\"\n)\n\nfunc TestStripFixture(t *testing.T) {\n fmt.Println(\"PRESERVED wrapper setup\")\n defer fmt.Println(\"PRESERVED wrapper defer\")\n t.Cleanup(func() { fmt.Println(\"PRESERVED wrapper cleanup\") })\n init := func(sc *godog.ScenarioContext) {\n  setup, assertion := \u0026setupState{}, \u0026assertionState{}\n  sc.Before(func(ctx context.Context, _ *godog.Scenario) (context.Context, error) {\n   fmt.Println(\"PRESERVED before hook\")\n   return ctx, nil\n  })\n  sc.After(func(ctx context.Context, _ *godog.Scenario, _ error) (context.Context, error) {\n   fmt.Println(\"PRESERVED after hook\")\n   return ctx, nil\n  })\n  sc.Given(`^a preserved setup$`, setup.Assert)\n  sc.When(`^a preserved action$`, func() error {\n   assertion.value = originalHelper(setup.value)\n   if assertion.value != 43 { return fmt.Errorf(\"action did not preserve helper result\") }\n   fmt.Println(\"PRESERVED action\", assertion.value)\n   return nil\n  })\n  sc.Then(`^a method assertion$`, assertion.Assert)\n  registerLiteral(sc)\n }\n opts := \u0026godog.Options{Paths: []string{\"../../features/strip.feature\"}, Tags: \"\", Format: \"pretty\"}\n suite := godog.TestSuite{Name: \"strip-native\", ScenarioInitializer: init, Options: opts}\n if r2tRun(\u0026suite,t) != 0 { t.Fatal(\"native assertion failed\") }\n}\nfunc TestUnselected(t *testing.T) { t.Fatal(\"FORBIDDEN unselected test\") }\n"
+}

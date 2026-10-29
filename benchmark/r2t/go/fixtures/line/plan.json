@@ -1,0 +1,146 @@
+{
+  "helper_source": "package fixture\n\nimport (\n\t\"context\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io\"\n\t\"os\"\n\t\"path/filepath\"\n\t\"reflect\"\n\t\"testing\"\n\t\"time\"\n\n\t\"github.com/cucumber/godog\"\n\t\"github.com/cucumber/godog/formatters\"\n\tmessages \"github.com/cucumber/messages/go/v21\"\n)\n\ntype r2tConfig struct {\n\tPaths    []string\n\tTags     string\n\tOutput   string\n\tTestName string\n}\ntype r2tFormatter struct {\n\t*godog.BaseFmt\n\tenc    *json.Encoder\n\tstarts map[string]time.Time\n}\n\nfunc (f *r2tFormatter) event(v any) {\n\tif err := f.enc.Encode(v); err != nil {\n\t\tpanic(err)\n\t}\n}\nfunc (f *r2tFormatter) TestRunStarted() {\n\tf.BaseFmt.TestRunStarted()\n\tf.event(map[string]any{\"event\": \"run_started\"})\n}\nfunc (f *r2tFormatter) Feature(doc *messages.GherkinDocument, path string, raw []byte) {\n\tf.BaseFmt.Feature(doc, path, raw)\n\tf.event(map[string]any{\"event\": \"feature\", \"path\": path, \"document\": doc})\n}\nfunc (f *r2tFormatter) Pickle(p *messages.Pickle) {\n\tf.BaseFmt.Pickle(p)\n\tf.event(map[string]any{\"event\": \"pickle\", \"pickle\": p})\n}\nfunc (f *r2tFormatter) Defined(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition) {\n\tf.BaseFmt.Defined(p, s, d)\n\tf.starts[p.Id+\"/\"+s.Id] = time.Now()\n\trow := map[string]any{\"event\": \"defined\", \"pickle_id\": p.Id, \"uri\": p.Uri, \"step\": s, \"matched\": d != nil}\n\tif d != nil {\n\t\tmatched := f.Storage.MustGetStepDefintionMatch(s.AstNodeIds[0])\n\t\trow[\"registration_file\"] = matched.File\n\t\trow[\"registration_line\"] = matched.Line\n\t\trow[\"native_arguments\"] = matched.Args\n\t\trow[\"expression\"] = d.Expr.String()\n\t\trow[\"handler_type\"] = reflect.TypeOf(d.Handler).String()\n\t\trow[\"keyword\"] = d.Keyword\n\t}\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Passed(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition) {\n\tf.BaseFmt.Passed(p, s, d)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"passed\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Failed(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition, err error) {\n\tf.BaseFmt.Failed(p, s, d, err)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"failed\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\trow[\"error\"] = err.Error()\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Skipped(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition) {\n\tf.BaseFmt.Skipped(p, s, d)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"skipped\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Undefined(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition) {\n\tf.BaseFmt.Undefined(p, s, d)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"undefined\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Pending(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition) {\n\tf.BaseFmt.Pending(p, s, d)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"pending\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Ambiguous(p *messages.Pickle, s *messages.PickleStep, d *formatters.StepDefinition, err error) {\n\tf.BaseFmt.Ambiguous(p, s, d, err)\n\trow := map[string]any{\"event\": \"status\", \"status\": \"ambiguous\", \"pickle_id\": p.Id, \"step_id\": s.Id, \"seconds\": time.Since(f.starts[p.Id+\"/\"+s.Id]).Seconds()}\n\trow[\"error\"] = err.Error()\n\tf.event(row)\n}\nfunc (f *r2tFormatter) Summary() { f.BaseFmt.Summary(); f.event(map[string]any{\"event\": \"summary\"}) }\n\n// r2tSetStep receives the index of the executing step, or -1 between steps.\n// The measurement build binds it to the recorder's SetStep; a run without the\n// recorder keeps the no-op, because a build without measurement records no\n// entries to attribute (r2t/go/measurement.py, runtime_helper).\nvar r2tSetStep = func(int) {}\n\n// r2tAttributeSteps makes every direct-call entry name the step that made it\n// (TARGET_INTERFACES_V2_SPEC.md section 4). The counter is the position of the\n// step in the pickle godog is running -- the Background's steps first, then the\n// scenario's own -- which is exactly the order the record's step list is built\n// in, and godog runs the before-step hook for every step of the pickle,\n// including the ones it skips after a failure.\n//\n// Registration order is the fix, not an accident: godog runs both step-hook\n// lists forward in registration order, so the harness must bracket the\n// candidate's hooks from the outside. The clearing after-step hook is\n// registered before the candidate's initializer runs, so it clears the index\n// first on the way out; the two setters are registered after it, so they set\n// the index last on the way in. A production call made from a candidate hook\n// on either side therefore sees no step and carries null, as does one made\n// during glue construction.\nfunc r2tAttributeSteps(s *godog.TestSuite) {\n\toriginal := s.ScenarioInitializer\n\ts.ScenarioInitializer = func(sc *godog.ScenarioContext) {\n\t\tindex := 0\n\t\t// The incoming step error is godog's to carry; a hook returning it\n\t\t// again would append it to itself.\n\t\tsc.StepContext().After(func(ctx context.Context, _ *godog.Step, _ godog.StepResultStatus, _ error) (context.Context, error) {\n\t\t\tr2tSetStep(-1)\n\t\t\treturn ctx, nil\n\t\t})\n\t\tif original != nil {\n\t\t\toriginal(sc)\n\t\t}\n\t\tsc.Before(func(ctx context.Context, _ *godog.Scenario) (context.Context, error) {\n\t\t\tindex = 0\n\t\t\tr2tSetStep(-1)\n\t\t\treturn ctx, nil\n\t\t})\n\t\tsc.StepContext().Before(func(ctx context.Context, _ *godog.Step) (context.Context, error) {\n\t\t\tr2tSetStep(index)\n\t\t\tindex++\n\t\t\treturn ctx, nil\n\t\t})\n\t}\n}\nfunc r2tRun(s *godog.TestSuite, t *testing.T) int {\n\tvar cfg r2tConfig\n\traw, err := os.ReadFile(\"/r2t-go/run/work/_bench/go/context.json\")\n\tif err != nil {\n\t\tt.Fatal(err)\n\t}\n\tif err = json.Unmarshal(raw, \u0026cfg); err != nil {\n\t\tt.Fatal(err)\n\t}\n\tif cfg.TestName != t.Name() {\n\t\tt.Fatal(\"context test differs\")\n\t}\n\tif err = os.MkdirAll(filepath.Dir(cfg.Output), 0700); err != nil {\n\t\tt.Fatal(err)\n\t}\n\toutput, err := os.OpenFile(cfg.Output, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0600)\n\tif err != nil {\n\t\tt.Fatal(err)\n\t}\n\tdefer output.Close()\n\tenc := json.NewEncoder(output)\n\tif s.Options == nil {\n\t\tt.Fatal(\"selected suite requires explicit Options\")\n\t}\n\tif err = enc.Encode(map[string]any{\"event\": \"interposed\", \"test\": t.Name(), \"original_options\": map[string]any{\"paths\": s.Options.Paths, \"tags\": s.Options.Tags, \"concurrency\": s.Options.Concurrency, \"strict\": s.Options.Strict, \"testing_t_present\": s.Options.TestingT != nil}}); err != nil {\n\t\tt.Fatal(err)\n\t}\n\tformatters.Format(\"r2t-godog-native\", \"native Defined qualification\", func(name string, w io.Writer) formatters.Formatter {\n\t\treturn \u0026r2tFormatter{godog.NewBaseFmt(name, io.Discard), enc, map[string]time.Time{}}\n\t})\n\topts := godog.Options{}\n\tif s.Options != nil {\n\t\topts = *s.Options\n\t}\n\topts.Paths = append([]string(nil), cfg.Paths...)\n\topts.FeatureContents = nil\n\topts.FS = nil\n\topts.Tags = cfg.Tags\n\topts.Concurrency = 1\n\topts.Randomize = 0\n\topts.StopOnFailure = false\n\topts.TestingT = t\n\topts.Strict = true\n\topts.ShowStepDefinitions = false\n\topts.ShowHelp = false\n\topts.Format = \"r2t-godog-native\"\n\topts.Output = output\n\ts.Options = \u0026opts\n\tr2tAttributeSteps(s)\n\tcode := s.Run()\n\tif err = enc.Encode(map[string]any{\"event\": \"exit\", \"code\": code, \"frozen_paths\": opts.Paths, \"frozen_tags\": opts.Tags, \"serial\": opts.Concurrency, \"testing_t\": opts.TestingT == t}); err != nil {\n\t\tt.Fatal(err)\n\t}\n\tfmt.Println(\"R2T_GODOG_EXIT\", t.Name(), code)\n\treturn code\n}\n",
+  "map": {
+    "byte_delta": 5,
+    "end_byte": 1746,
+    "file": "internal/r2tfixture/bdd_fixture_test.go",
+    "helper": "zz_r2t_harness_test.go",
+    "line_delta": 0,
+    "original_sha256": "7b0704a2a8b47004c6b524869d3ac52cc30623b5b24ea877fed086bbff4dbdf2",
+    "original_source_lines_preserved": true,
+    "original_start_line": 55,
+    "package_name": "fixture",
+    "registration_declarations": [
+      {
+        "handler": {
+          "column": 45,
+          "end_byte": 869,
+          "file": "internal/r2tfixture/bdd_fixture_test.go",
+          "kind": "function_literal",
+          "line": 25,
+          "name": "func@710",
+          "signature": "func() error",
+          "start_byte": 710
+        },
+        "registration": {
+          "column": 3,
+          "end_byte": 870,
+          "file": "internal/r2tfixture/bdd_fixture_test.go",
+          "line": 25,
+          "start_byte": 668
+        },
+        "registration_method": "Step",
+        "runtime_registration": {
+          "file": "fake_registration.go",
+          "line": 700
+        }
+      },
+      {
+        "handler": {
+          "column": 41,
+          "end_byte": 984,
+          "file": "internal/r2tfixture/bdd_fixture_test.go",
+          "kind": "function_literal",
+          "line": 32,
+          "name": "func@911",
+          "signature": "func(v int) error",
+          "start_byte": 911
+        },
+        "registration": {
+          "column": 3,
+          "end_byte": 985,
+          "file": "internal/r2tfixture/bdd_fixture_test.go",
+          "line": 32,
+          "start_byte": 873
+        },
+        "registration_method": "Step",
+        "runtime_registration": {
+          "file": "fake_registration.go",
+          "line": 707
+        }
+      },
+      {
+        "handler": {
+          "column": 33,
+          "end_byte": 1157,
+          "file": "internal/r2tfixture/bdd_fixture_test.go",
+          "kind": "function_literal",
+          "line": 33,
+          "name": "func@1018",
+          "signature": "func(table *github.com/cucumber/godog.Table) error",
+          "start_byte": 1018
+        },
+        "registration": {
+          "column": 3,
+          "end_byte": 1158,
+          "file": "internal/r2tfixture/bdd_fixture_test.go",
+          "line": 33,
+          "start_byte": 988
+        },
+        "registration_method": "Step",
+        "runtime_registration": {
+          "file": "fake_registration.go",
+          "line": 708
+        }
+      },
+      {
+        "handler": {
+          "column": 37,
+          "end_byte": 1332,
+          "file": "internal/r2tfixture/bdd_fixture_test.go",
+          "kind": "function_literal",
+          "line": 39,
+          "name": "func@1195",
+          "signature": "func(doc *github.com/cucumber/godog.DocString) error",
+          "start_byte": 1195
+        },
+        "registration": {
+          "column": 3,
+          "end_byte": 1333,
+          "file": "internal/r2tfixture/bdd_fixture_test.go",
+          "line": 39,
+          "start_byte": 1161
+        },
+        "registration_method": "Step",
+        "runtime_registration": {
+          "file": "fake_registration.go",
+          "line": 714
+        }
+      },
+      {
+        "handler": {
+          "column": 45,
+          "end_byte": 1478,
+          "file": "internal/r2tfixture/bdd_fixture_test.go",
+          "kind": "function_literal",
+          "line": 45,
+          "name": "func@1378",
+          "signature": "func(v int) error",
+          "start_byte": 1378
+        },
+        "registration": {
+          "column": 3,
+          "end_byte": 1479,
+          "file": "internal/r2tfixture/bdd_fixture_test.go",
+          "line": 45,
+          "start_byte": 1336
+        },
+        "registration_method": "Step",
+        "runtime_registration": {
+          "file": "fake_registration.go",
+          "line": 720
+        }
+      }
+    ],
+    "replacement": "r2tRun(\u0026suite,t)",
+    "resolved_method": "github.com/cucumber/godog.TestSuite.Run",
+    "source_dependencies": [
+      "internal/r2tfixture/retained_test.go"
+    ],
+    "start_byte": 1735,
+    "test_name": "TestHarnessFixture",
+    "transformed_sha256": "4c6a9499b4aad226d9ec6c5027127b651834cfee994221244eb39311e315bfdd",
+    "type_resolution": "go/types with real go list -deps -export -test in selected build context"
+  },
+  "transformed_source": "package fixture\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"github.com/cucumber/godog\"\n\t\"testing\"\n)\n\nfunc TestHarnessFixture(t *testing.T) {\n\tfmt.Println(\"PROBE_WRAPPER_SETUP\")\n\tdefer fmt.Println(\"PROBE_WRAPPER_DEFER\")\n\tt.Cleanup(func() { fmt.Println(\"PROBE_WRAPPER_T_CLEANUP\") })\n\tinit := func(sc *godog.ScenarioContext) {\n\t\tvalue := 0\n\t\tsc.Before(func(ctx context.Context, _ *godog.Scenario) (context.Context, error) {\n\t\t\tfmt.Println(\"PROBE_SUBJECT_BEFORE_HOOK\")\n\t\t\treturn ctx, nil\n\t\t})\n\t\tsc.After(func(ctx context.Context, _ *godog.Scenario, _ error) (context.Context, error) {\n\t\t\tfmt.Println(\"PROBE_SUBJECT_AFTER_HOOK\")\n\t\t\treturn ctx, nil\n\t\t})\n//line fake_registration.go:700\n\t\tsc.Step(`^a retained background helper$`, func() error {\n\t\t\tfmt.Println(\"PROBE_REAL_STEP_HANDLER\")\n\t\t\tif retainedHelper() != 42 {\n\t\t\t\treturn fmt.Errorf(\"retained helper differs\")\n\t\t\t}\n\t\t\treturn nil\n\t\t})\n\t\tsc.Step(`^the probe value is (\\d+)$`, func(v int) error { value = v; t.Log(\"PROBE_CAPTURED_T\", v); return nil })\n\t\tsc.Step(`^the probe table:$`, func(table *godog.Table) error {\n\t\t\tif table.Rows[1].Cells[1].Value != \"42\" {\n\t\t\t\treturn fmt.Errorf(\"table differs\")\n\t\t\t}\n\t\t\treturn nil\n\t\t})\n\t\tsc.Step(`^the probe docstring:$`, func(doc *godog.DocString) error {\n\t\t\tif doc.Content != \"alpha\\nbeta\" {\n\t\t\t\treturn fmt.Errorf(\"docstring differs\")\n\t\t\t}\n\t\t\treturn nil\n\t\t})\n\t\tsc.Step(`^the probe value equals (\\d+)$`, func(v int) error {\n\t\t\tif value != v {\n\t\t\t\treturn fmt.Errorf(\"value differs\")\n\t\t\t}\n\t\t\treturn nil\n\t\t})\n\t}\n\topts := \u0026godog.Options{Paths: []string{\"features/incorrect.feature\"}, Tags: \"@wrong\", Concurrency: 7, Format: \"pretty\"}\n\tsuite := godog.TestSuite{Name: \"original-shape\", ScenarioInitializer: init, Options: opts}\n\topts.Tags = \"@mutated_before_run\"\n\tif r2tRun(\u0026suite,t) != 0 {\n\t\tt.Fatal(\"fixture suite failed\")\n\t}\n}\nfunc TestForeignSuiteSentinel(t *testing.T) { t.Fatal(\"PROBE_FOREIGN_SUITE_MUST_NOT_RUN\") }\n"
+}

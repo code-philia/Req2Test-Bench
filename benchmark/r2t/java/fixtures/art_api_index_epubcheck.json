@@ -1,0 +1,3207 @@
+{
+ "api_index": {
+  "AbstractChecker": [
+   "org.w3c.epubcheck.core.AbstractChecker"
+  ],
+  "AccessibilityVocab": [
+   "com.adobe.epubcheck.vocab.AccessibilityVocab"
+  ],
+  "AdobeFontManglingFilter": [
+   "com.adobe.epubcheck.ocf.encryption.AdobeFontManglingFilter"
+  ],
+  "AggregateVocab": [
+   "com.adobe.epubcheck.vocab.AggregateVocab"
+  ],
+  "AltStylesheetVocab": [
+   "com.adobe.epubcheck.vocab.AltStylesheetVocab"
+  ],
+  "Archive": [
+   "com.adobe.epubcheck.util.Archive"
+  ],
+  "BaseURLHandler": [
+   "com.adobe.epubcheck.xml.handlers.BaseURLHandler"
+  ],
+  "BasicResolver": [
+   "com.adobe.epubcheck.xml.XMLValidator"
+  ],
+  "BitmapChecker": [
+   "com.adobe.epubcheck.bitmap.BitmapChecker"
+  ],
+  "Builder": [
+   "com.adobe.epubcheck.ocf.OCFContainer",
+   "com.adobe.epubcheck.opf.LinkedResource"
+  ],
+  "CSSChecker": [
+   "com.adobe.epubcheck.css.CSSChecker"
+  ],
+  "CSSHandler": [
+   "com.adobe.epubcheck.css.CSSHandler"
+  ],
+  "CheckMessage": [
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "CheckerMetadata": [
+   "com.adobe.epubcheck.reporting.CheckerMetadata"
+  ],
+  "CheckingReport": [
+   "com.adobe.epubcheck.reporting.CheckingReport"
+  ],
+  "ClipTime": [
+   "com.adobe.epubcheck.overlay.ClipTime"
+  ],
+  "ComicsVocab": [
+   "com.adobe.epubcheck.vocab.ComicsVocab"
+  ],
+  "CssAtRule": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssAtomicConstruct": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssAttributeMatchSelector": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssAttributeSelector": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssClassName": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssComposedConstruct": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssConstruct": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssDeclaration": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssErrorCode": [
+   "org.idpf.epubcheck.util.css.CssExceptions"
+  ],
+  "CssEscape": [
+   "org.idpf.epubcheck.util.css.CssEscape"
+  ],
+  "CssEscapeMemoizer": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "CssException": [
+   "org.idpf.epubcheck.util.css.CssExceptions"
+  ],
+  "CssFunction": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssGrammarException": [
+   "org.idpf.epubcheck.util.css.CssExceptions"
+  ],
+  "CssHashName": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssInputStream": [
+   "org.idpf.epubcheck.util.css.CssInputStream"
+  ],
+  "CssKeyword": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssLocation": [
+   "org.idpf.epubcheck.util.css.CssLocation"
+  ],
+  "CssParser": [
+   "org.idpf.epubcheck.util.css.CssParser"
+  ],
+  "CssPseudoSelector": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssQuantity": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssReader": [
+   "org.idpf.epubcheck.util.css.CssReader"
+  ],
+  "CssScanner": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "CssScannerException": [
+   "org.idpf.epubcheck.util.css.CssExceptions"
+  ],
+  "CssScopedGroup": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssSelector": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssSelectorCombinator": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssSelectorConstructFactory": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssSimpleSelectorSequence": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssSource": [
+   "org.idpf.epubcheck.util.css.CssSource"
+  ],
+  "CssString": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssSymbol": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssToken": [
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "CssTokenIterator": [
+   "org.idpf.epubcheck.util.css.CssTokenList"
+  ],
+  "CssTokenList": [
+   "org.idpf.epubcheck.util.css.CssTokenList"
+  ],
+  "CssTypeSelector": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssURI": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "CssUnicodeRange": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "DCMESVocab": [
+   "com.adobe.epubcheck.vocab.DCMESVocab"
+  ],
+  "DTBookChecker": [
+   "com.adobe.epubcheck.dtbook.DTBookChecker"
+  ],
+  "DTBookHandler": [
+   "com.adobe.epubcheck.dtbook.DTBookHandler"
+  ],
+  "DataNavVocab": [
+   "com.adobe.epubcheck.vocab.DataNavVocab"
+  ],
+  "DeclarationHandler": [
+   "com.adobe.epubcheck.xml.handlers.DeclarationHandler"
+  ],
+  "DefaultReportImpl": [
+   "com.adobe.epubcheck.util.DefaultReportImpl"
+  ],
+  "DefaultResolver": [
+   "com.adobe.epubcheck.xml.handlers.DefaultResolver"
+  ],
+  "DefaultSeverities": [
+   "com.adobe.epubcheck.messages.DefaultSeverities"
+  ],
+  "DelegateDefaultHandler": [
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler"
+  ],
+  "DelegateLocator": [
+   "com.adobe.epubcheck.xml.handlers.DelegateLocator"
+  ],
+  "DictVocab": [
+   "com.adobe.epubcheck.vocab.DictVocab"
+  ],
+  "EPUBLocation": [
+   "com.adobe.epubcheck.api.EPUBLocation"
+  ],
+  "EPUBVersion": [
+   "com.adobe.epubcheck.util.EPUBVersion"
+  ],
+  "EPUB_TYPES": [
+   "com.adobe.epubcheck.vocab.StructureVocab"
+  ],
+  "EnumVocab": [
+   "com.adobe.epubcheck.vocab.EnumVocab"
+  ],
+  "EpubCheck": [
+   "com.adobe.epubcheck.api.EpubCheck"
+  ],
+  "EpubCheckVocab": [
+   "com.adobe.epubcheck.vocab.EpubCheckVocab"
+  ],
+  "FallbackChainResolver": [
+   "com.adobe.epubcheck.opf.FallbackChainResolver"
+  ],
+  "Feature": [
+   "com.adobe.epubcheck.api.FeatureReport"
+  ],
+  "FeatureEnum": [
+   "com.adobe.epubcheck.util.FeatureEnum"
+  ],
+  "FileResourceProvider": [
+   "com.adobe.epubcheck.util.FileResourceProvider"
+  ],
+  "ForeignVocabs": [
+   "com.adobe.epubcheck.vocab.ForeignVocabs"
+  ],
+  "HTMLUtils": [
+   "com.adobe.epubcheck.xml.HTMLUtils"
+  ],
+  "IDPFFontManglingFilter": [
+   "com.adobe.epubcheck.ocf.encryption.IDPFFontManglingFilter"
+  ],
+  "ITEMREF_PROPERTIES": [
+   "com.adobe.epubcheck.vocab.RenditionVocabs"
+  ],
+  "ITEM_PROPERTIES": [
+   "com.adobe.epubcheck.vocab.PackageVocabs"
+  ],
+  "ImageHeuristics": [
+   "com.adobe.epubcheck.bitmap.BitmapChecker"
+  ],
+  "ImageSource": [
+   "com.adobe.epubcheck.util.SourceSet"
+  ],
+  "IndexVocab": [
+   "com.adobe.epubcheck.vocab.IndexVocab"
+  ],
+  "InfraUtil": [
+   "org.w3c.epubcheck.util.infra.InfraUtil"
+  ],
+  "Int64ValueSequence": [
+   "org.idpf.epubcheck.util.saxon.Int64ValueSequence"
+  ],
+  "InvalidDateException": [
+   "com.adobe.epubcheck.util.InvalidDateException"
+  ],
+  "InvalidVersionException": [
+   "com.adobe.epubcheck.util.InvalidVersionException"
+  ],
+  "JsonWriter": [
+   "com.adobe.epubcheck.util.JsonWriter"
+  ],
+  "KeyValue": [
+   "com.adobe.epubcheck.util.KeyValue"
+  ],
+  "LINKREL_PROPERTIES": [
+   "com.adobe.epubcheck.vocab.PackageVocabs"
+  ],
+  "LinkedResource": [
+   "com.adobe.epubcheck.opf.LinkedResource"
+  ],
+  "LinkedResources": [
+   "com.adobe.epubcheck.opf.LinkedResources"
+  ],
+  "LocaleHolder": [
+   "com.adobe.epubcheck.messages.LocaleHolder"
+  ],
+  "LocalizedMessageDictionary": [
+   "com.adobe.epubcheck.messages.LocalizedMessageDictionary"
+  ],
+  "LocalizedMessages": [
+   "com.adobe.epubcheck.messages.LocalizedMessages"
+  ],
+  "Localizer": [
+   "com.thaiopensource.util.Localizer"
+  ],
+  "LocationHandler": [
+   "com.adobe.epubcheck.xml.handlers.LocationHandler"
+  ],
+  "LocationImpl": [
+   "com.adobe.epubcheck.util.LocationImpl"
+  ],
+  "META_PROPERTIES": [
+   "com.adobe.epubcheck.vocab.RenditionVocabs"
+  ],
+  "MIMEType": [
+   "org.w3c.epubcheck.constants.MIMEType"
+  ],
+  "MagazineNavigationVocab": [
+   "com.adobe.epubcheck.vocab.MagazineNavigationVocab"
+  ],
+  "MappingDocumentChecker": [
+   "com.adobe.epubcheck.ocf.MappingDocumentChecker"
+  ],
+  "Mark": [
+   "org.idpf.epubcheck.util.css.CssReader"
+  ],
+  "MasterReport": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "MediaOverlaysVocab": [
+   "com.adobe.epubcheck.vocab.MediaOverlaysVocab"
+  ],
+  "Message": [
+   "com.adobe.epubcheck.messages.Message"
+  ],
+  "MessageDictionaryDumper": [
+   "com.adobe.epubcheck.messages.MessageDictionaryDumper"
+  ],
+  "MessageId": [
+   "com.adobe.epubcheck.messages.MessageId"
+  ],
+  "Messages": [
+   "com.adobe.epubcheck.util.Messages"
+  ],
+  "Metadata": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "MetadataSet": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "NCXChecker": [
+   "com.adobe.epubcheck.ncx.NCXChecker"
+  ],
+  "NCXHandler": [
+   "com.adobe.epubcheck.ncx.NCXHandler"
+  ],
+  "Namespaces": [
+   "com.adobe.epubcheck.xml.Namespaces"
+  ],
+  "NavChecker": [
+   "com.adobe.epubcheck.nav.NavChecker"
+  ],
+  "NavHandler": [
+   "com.adobe.epubcheck.nav.NavHandler"
+  ],
+  "OCFChecker": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "OCFCheckerState": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "OCFContainer": [
+   "com.adobe.epubcheck.ocf.OCFContainer"
+  ],
+  "OCFContainerFileChecker": [
+   "com.adobe.epubcheck.ocf.OCFContainerFileChecker"
+  ],
+  "OCFContainerFileHandler": [
+   "com.adobe.epubcheck.ocf.OCFContainerFileHandler"
+  ],
+  "OCFDirectoryResources": [
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources"
+  ],
+  "OCFEncryptionFileChecker": [
+   "com.adobe.epubcheck.ocf.OCFEncryptionFileChecker"
+  ],
+  "OCFEncryptionFileHandler": [
+   "com.adobe.epubcheck.ocf.OCFEncryptionFileHandler"
+  ],
+  "OCFExtensionChecker": [
+   "com.adobe.epubcheck.ocf.OCFExtensionChecker"
+  ],
+  "OCFFilenameChecker": [
+   "com.adobe.epubcheck.ocf.OCFFilenameChecker"
+  ],
+  "OCFMetaFile": [
+   "com.adobe.epubcheck.ocf.OCFMetaFile"
+  ],
+  "OCFMetaFileChecker": [
+   "com.adobe.epubcheck.ocf.OCFMetaFileChecker"
+  ],
+  "OCFZipChecker": [
+   "com.adobe.epubcheck.ocf.OCFZipChecker"
+  ],
+  "OCFZipResources": [
+   "com.adobe.epubcheck.ocf.OCFZipResources"
+  ],
+  "OPFChecker": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "OPFChecker30": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "OPFHandler": [
+   "com.adobe.epubcheck.opf.OPFHandler"
+  ],
+  "OPFHandler30": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "OPFItem": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "OPFItems": [
+   "com.adobe.epubcheck.opf.OPFItems"
+  ],
+  "OPFReference": [
+   "com.adobe.epubcheck.opf.OPFReference"
+  ],
+  "OPSChecker": [
+   "com.adobe.epubcheck.ops.OPSChecker"
+  ],
+  "OPSHandler": [
+   "com.adobe.epubcheck.ops.OPSHandler"
+  ],
+  "OPSHandler30": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "OPSType": [
+   "com.adobe.epubcheck.util.OPSType"
+  ],
+  "OverlayChecker": [
+   "com.adobe.epubcheck.overlay.OverlayChecker"
+  ],
+  "OverlayHandler": [
+   "com.adobe.epubcheck.overlay.OverlayHandler"
+  ],
+  "OverriddenMessageDictionary": [
+   "com.adobe.epubcheck.messages.OverriddenMessageDictionary"
+  ],
+  "OverriddenMessages": [
+   "com.adobe.epubcheck.messages.OverriddenMessages"
+  ],
+  "PackageDocumentData": [
+   "com.adobe.epubcheck.ocf.PackageDocumentData"
+  ],
+  "PackageDocumentPeeker": [
+   "com.adobe.epubcheck.ocf.PackageDocumentPeeker"
+  ],
+  "PackageDocumentPeekerHandler": [
+   "com.adobe.epubcheck.ocf.PackageDocumentPeekerHandler"
+  ],
+  "PackageVocabs": [
+   "com.adobe.epubcheck.vocab.PackageVocabs"
+  ],
+  "Parser": [
+   "com.adobe.epubcheck.util.SourceSet",
+   "org.w3c.epubcheck.util.microsyntax.ViewportMeta"
+  ],
+  "PreprocessingDefaultHandler": [
+   "com.adobe.epubcheck.xml.handlers.PreprocessingDefaultHandler"
+  ],
+  "Property": [
+   "com.adobe.epubcheck.vocab.Property"
+  ],
+  "PublicationMetadata": [
+   "com.adobe.epubcheck.reporting.PublicationMetadata"
+  ],
+  "PublicationResourceChecker": [
+   "com.adobe.epubcheck.opf.PublicationResourceChecker"
+  ],
+  "QuietReport": [
+   "com.adobe.epubcheck.api.QuietReport"
+  ],
+  "Reference": [
+   "org.w3c.epubcheck.core.references.Reference"
+  ],
+  "ReferenceRegistry": [
+   "org.w3c.epubcheck.core.references.ReferenceRegistry"
+  ],
+  "RenditionVocabs": [
+   "com.adobe.epubcheck.vocab.RenditionVocabs"
+  ],
+  "ReportingErrorHandler": [
+   "com.adobe.epubcheck.xml.handlers.ReportingErrorHandler"
+  ],
+  "Resource": [
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "ResourceCollection": [
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "ResourceCollections": [
+   "com.adobe.epubcheck.opf.ResourceCollections"
+  ],
+  "ResourceReferencesChecker": [
+   "org.w3c.epubcheck.core.references.ResourceReferencesChecker"
+  ],
+  "ScriptedCompVocab": [
+   "com.adobe.epubcheck.vocab.ScriptedCompVocab"
+  ],
+  "SearchKeyMapChecker": [
+   "com.adobe.epubcheck.dict.SearchKeyMapChecker"
+  ],
+  "SearchKeyMapHandler": [
+   "com.adobe.epubcheck.dict.SearchKeyMapHandler"
+  ],
+  "Severity": [
+   "com.adobe.epubcheck.messages.Severity"
+  ],
+  "SmilClock": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "SourceSet": [
+   "com.adobe.epubcheck.util.SourceSet"
+  ],
+  "State": [
+   "com.adobe.epubcheck.vocab.PrefixDeclarationParser"
+  ],
+  "StructureVocab": [
+   "com.adobe.epubcheck.vocab.StructureVocab"
+  ],
+  "SystemIdSequence": [
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "TokenBuilder": [
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "URLChecker": [
+   "org.w3c.epubcheck.core.references.URLChecker"
+  ],
+  "URLFragment": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "URLResourceProvider": [
+   "com.adobe.epubcheck.util.URLResourceProvider"
+  ],
+  "UncheckedVocab": [
+   "com.adobe.epubcheck.vocab.UncheckedVocab"
+  ],
+  "UnicodeUtils": [
+   "org.w3c.epubcheck.util.text.UnicodeUtils"
+  ],
+  "ValidationContext": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "ValidationContextBuilder": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "ValidationContextPredicates": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "ValidatorMap": [
+   "com.adobe.epubcheck.util.ValidatorMap"
+  ],
+  "ViewportMeta": [
+   "org.w3c.epubcheck.util.microsyntax.ViewportMeta"
+  ],
+  "VocabUtil": [
+   "com.adobe.epubcheck.vocab.VocabUtil"
+  ],
+  "WrappingDefaultHandler": [
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "WriterReportImpl": [
+   "com.adobe.epubcheck.util.WriterReportImpl"
+  ],
+  "XMLAttribute": [
+   "com.adobe.epubcheck.xml.model.XMLAttribute"
+  ],
+  "XMLElement": [
+   "com.adobe.epubcheck.xml.model.XMLElement"
+  ],
+  "XMLEncodingSniffer": [
+   "com.adobe.epubcheck.xml.XMLEncodingSniffer"
+  ],
+  "XMLHandler": [
+   "com.adobe.epubcheck.xml.handlers.XMLHandler"
+  ],
+  "XMLNode": [
+   "com.adobe.epubcheck.xml.model.XMLNode"
+  ],
+  "XMLParser": [
+   "com.adobe.epubcheck.xml.XMLParser"
+  ],
+  "XMLValidator": [
+   "com.adobe.epubcheck.xml.XMLValidator"
+  ],
+  "XMLValidators": [
+   "com.adobe.epubcheck.xml.XMLValidators"
+  ],
+  "XmlReportAbstract": [
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "XmlReportImpl": [
+   "com.adobe.epubcheck.util.XmlReportImpl"
+  ],
+  "XmpReportImpl": [
+   "com.adobe.epubcheck.util.XmpReportImpl"
+  ],
+  "_and": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_atkeyword": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_cdc": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_cdo": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_classname": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_comment": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_dashmatch": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_function": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_hashname": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_ident": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_important": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_includes": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_not": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_num": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_only": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_prefixmatch": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_quantity": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_string": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_substringmatch": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_suffixmatch": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_urange": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_uri": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "_ws": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "add": [
+   "com.adobe.epubcheck.opf.LinkedResources",
+   "com.adobe.epubcheck.opf.ResourceCollections",
+   "com.adobe.epubcheck.overlay.ClipTime",
+   "com.adobe.epubcheck.util.SourceSet",
+   "org.idpf.epubcheck.util.css.CssParser"
+  ],
+  "addCheckMessage": [
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "addContentHandler": [
+   "com.adobe.epubcheck.xml.XMLParser",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler"
+  ],
+  "addDTDHandler": [
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler"
+  ],
+  "addEncryptedResource": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "addEncryption": [
+   "com.adobe.epubcheck.ocf.OCFContainer"
+  ],
+  "addError": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "addErrorHandler": [
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler"
+  ],
+  "addLocation": [
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "addMappingDocument": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "addObfuscatedResource": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "addPrefixNamespace": [
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "addProperty": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState",
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "addResource": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState",
+   "com.adobe.epubcheck.ocf.OCFContainer"
+  ],
+  "addRootfile": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "addTime": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "addType": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "addUniqueId": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "addValidator": [
+   "com.adobe.epubcheck.xml.XMLParser"
+  ],
+  "addVersion": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "append": [
+   "org.idpf.epubcheck.util.css.CssScanner",
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "apply": [
+   "com.adobe.epubcheck.ocf.OCFChecker",
+   "com.adobe.epubcheck.opf.MetadataSet",
+   "com.adobe.epubcheck.opf.OPFChecker30",
+   "com.adobe.epubcheck.opf.OPFItems",
+   "com.adobe.epubcheck.opf.ValidationContext",
+   "com.adobe.epubcheck.util.SourceSet",
+   "com.adobe.epubcheck.util.ValidatorMap",
+   "com.adobe.epubcheck.vocab.EnumVocab",
+   "com.adobe.epubcheck.vocab.Property",
+   "org.idpf.epubcheck.util.css.CssParser",
+   "org.idpf.epubcheck.util.css.CssToken",
+   "org.idpf.epubcheck.util.css.CssTokenList"
+  ],
+  "asList": [
+   "com.adobe.epubcheck.opf.LinkedResources",
+   "com.adobe.epubcheck.opf.ResourceCollections",
+   "org.w3c.epubcheck.core.references.ReferenceRegistry"
+  ],
+  "asLocation": [
+   "com.adobe.epubcheck.ocf.OCFMetaFile"
+  ],
+  "asMultimap": [
+   "org.w3c.epubcheck.util.microsyntax.ViewportMeta"
+  ],
+  "asPath": [
+   "com.adobe.epubcheck.ocf.OCFMetaFile"
+  ],
+  "asToken": [
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "asURL": [
+   "com.adobe.epubcheck.ocf.OCFMetaFile"
+  ],
+  "at": [
+   "com.adobe.epubcheck.api.EPUBLocation",
+   "org.idpf.epubcheck.util.css.CssReader"
+  ],
+  "baseURL": [
+   "com.adobe.epubcheck.xml.handlers.BaseURLHandler"
+  ],
+  "build": [
+   "com.adobe.epubcheck.ocf.OCFContainer",
+   "com.adobe.epubcheck.ocf.PackageDocumentData",
+   "com.adobe.epubcheck.opf.LinkedResource",
+   "com.adobe.epubcheck.opf.LinkedResources",
+   "com.adobe.epubcheck.opf.MetadataSet",
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.opf.OPFItems",
+   "com.adobe.epubcheck.opf.ResourceCollection",
+   "com.adobe.epubcheck.opf.ResourceCollections",
+   "com.adobe.epubcheck.opf.ValidationContext",
+   "com.adobe.epubcheck.util.SourceSet",
+   "com.adobe.epubcheck.util.ValidatorMap",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "org.idpf.epubcheck.util.css.CssGrammar",
+   "org.w3c.epubcheck.core.references.Resource",
+   "org.w3c.epubcheck.util.microsyntax.ViewportMeta"
+  ],
+  "buildDate": [
+   "com.adobe.epubcheck.api.EpubCheck"
+  ],
+  "buildItems": [
+   "com.adobe.epubcheck.opf.OPFHandler"
+  ],
+  "builder": [
+   "com.adobe.epubcheck.opf.LinkedResources",
+   "com.adobe.epubcheck.opf.MetadataSet",
+   "com.adobe.epubcheck.opf.ResourceCollection",
+   "com.adobe.epubcheck.opf.ResourceCollections",
+   "com.adobe.epubcheck.util.ValidatorMap"
+  ],
+  "call": [
+   "org.idpf.epubcheck.util.saxon.ColumnNumberFunction",
+   "org.idpf.epubcheck.util.saxon.LineNumberFunction",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "canDecrypt": [
+   "com.adobe.epubcheck.ocf.OCFContainer",
+   "com.adobe.epubcheck.ocf.encryption.AdobeFontManglingFilter",
+   "com.adobe.epubcheck.ocf.encryption.IDPFFontManglingFilter",
+   "com.adobe.epubcheck.ocf.encryption.UnsupportedEncryptionFilter"
+  ],
+  "canonicalCaseFold": [
+   "org.w3c.epubcheck.util.text.UnicodeUtils"
+  ],
+  "capitalize": [
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "characters": [
+   "com.adobe.epubcheck.ncx.NCXHandler",
+   "com.adobe.epubcheck.ocf.PackageDocumentPeekerHandler",
+   "com.adobe.epubcheck.opf.OPFHandler",
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "check": [
+   "com.adobe.epubcheck.api.EpubCheck",
+   "com.adobe.epubcheck.ocf.MappingDocumentChecker",
+   "com.adobe.epubcheck.ocf.OCFChecker",
+   "com.adobe.epubcheck.ocf.OCFContainerFileChecker",
+   "com.adobe.epubcheck.ocf.OCFEncryptionFileChecker",
+   "com.adobe.epubcheck.ocf.OCFExtensionChecker",
+   "com.adobe.epubcheck.ocf.OCFFilenameChecker",
+   "com.adobe.epubcheck.ocf.OCFMetaFileChecker",
+   "com.adobe.epubcheck.ocf.OCFZipChecker",
+   "com.adobe.epubcheck.opf.OPFChecker",
+   "com.adobe.epubcheck.opf.PublicationResourceChecker",
+   "org.w3c.epubcheck.core.references.ResourceReferencesChecker"
+  ],
+  "checkBoldItalics": [
+   "com.adobe.epubcheck.ops.OPSHandler"
+  ],
+  "checkCiteAttribute": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkCollections": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkCollectionsContent": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkContainerFile": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "checkContainerStructure": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "checkContent": [
+   "com.adobe.epubcheck.bitmap.BitmapChecker",
+   "com.adobe.epubcheck.css.CSSChecker",
+   "com.adobe.epubcheck.dict.SearchKeyMapChecker",
+   "com.adobe.epubcheck.dtbook.DTBookChecker",
+   "com.adobe.epubcheck.nav.NavChecker",
+   "com.adobe.epubcheck.ncx.NCXChecker",
+   "com.adobe.epubcheck.opf.OPFChecker",
+   "com.adobe.epubcheck.opf.OPFChecker30",
+   "com.adobe.epubcheck.opf.PublicationResourceChecker",
+   "com.adobe.epubcheck.ops.OPSChecker",
+   "com.adobe.epubcheck.overlay.OverlayChecker"
+  ],
+  "checkDeclaredPackageDocuments": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "checkDependentCondition": [
+   "com.adobe.epubcheck.ops.OPSHandler"
+  ],
+  "checkDictCollection": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkDictCollectionContent": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkDiscouragedElements": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkEncryptionFile": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "checkFallbacks": [
+   "org.w3c.epubcheck.core.references.ResourceReferencesChecker"
+  ],
+  "checkFileExtension": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "checkFragment": [
+   "org.w3c.epubcheck.core.references.ResourceReferencesChecker"
+  ],
+  "checkGuide": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "checkHRef": [
+   "com.adobe.epubcheck.ops.OPSHandler"
+  ],
+  "checkHead": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkHeader": [
+   "com.adobe.epubcheck.bitmap.BitmapChecker"
+  ],
+  "checkIFrame": [
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkImage": [
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkImageDimensions": [
+   "com.adobe.epubcheck.bitmap.BitmapChecker"
+  ],
+  "checkIndexCollection": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkItem": [
+   "com.adobe.epubcheck.opf.OPFChecker",
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkItemAfterResourceValidation": [
+   "com.adobe.epubcheck.opf.OPFChecker",
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkItemContent": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "checkItemReferences": [
+   "com.adobe.epubcheck.overlay.OverlayHandler"
+  ],
+  "checkLanguageTag": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "checkLink": [
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkLinkedResources": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkMediaOverlaysDuration": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkMessageForParameterCount": [
+   "com.adobe.epubcheck.messages.OverriddenMessages"
+  ],
+  "checkMimetypeFile": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "checkMimetypeMatches": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkNav": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkObject": [
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkOtherMetaFiles": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "checkOverlaysStyles": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkPackage": [
+   "com.adobe.epubcheck.opf.OPFChecker",
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkPagination": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkPaint": [
+   "com.adobe.epubcheck.ops.OPSHandler"
+  ],
+  "checkPreviewCollection": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkProperties": [
+   "com.adobe.epubcheck.css.CSSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30",
+   "com.adobe.epubcheck.overlay.OverlayHandler"
+  ],
+  "checkPublicationAfterContent": [
+   "com.adobe.epubcheck.ncx.NCXChecker",
+   "com.adobe.epubcheck.opf.PublicationResourceChecker"
+  ],
+  "checkPublicationBeforeContent": [
+   "com.adobe.epubcheck.css.CSSChecker",
+   "com.adobe.epubcheck.opf.PublicationResourceChecker"
+  ],
+  "checkPublicationProfile": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "checkPublicationVersion": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "checkReadingOrder": [
+   "org.w3c.epubcheck.core.references.ResourceReferencesChecker"
+  ],
+  "checkReference": [
+   "org.w3c.epubcheck.core.references.ResourceReferencesChecker"
+  ],
+  "checkReferenceType": [
+   "org.w3c.epubcheck.core.references.ResourceReferencesChecker"
+  ],
+  "checkRegionBasedNav": [
+   "org.w3c.epubcheck.core.references.ResourceReferencesChecker"
+  ],
+  "checkRemoteReference": [
+   "org.w3c.epubcheck.core.references.ResourceReferencesChecker"
+  ],
+  "checkResourceCanBeDecrypted": [
+   "com.adobe.epubcheck.opf.PublicationResourceChecker"
+  ],
+  "checkResourceExists": [
+   "com.adobe.epubcheck.opf.PublicationResourceChecker"
+  ],
+  "checkResourceURL": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkSSMLPh": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkSVGFontFaceURI": [
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkScript": [
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkSemantics": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkSpecifics": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkSpineItem": [
+   "com.adobe.epubcheck.opf.OPFChecker",
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "checkString": [
+   "com.adobe.epubcheck.util.CheckUtil"
+  ],
+  "checkSymbol": [
+   "com.adobe.epubcheck.ops.OPSHandler"
+  ],
+  "checkTime": [
+   "com.adobe.epubcheck.overlay.OverlayHandler"
+  ],
+  "checkType": [
+   "com.adobe.epubcheck.nav.NavHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30",
+   "com.adobe.epubcheck.overlay.OverlayHandler"
+  ],
+  "checkTypes": [
+   "com.adobe.epubcheck.nav.NavHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "checkURL": [
+   "com.adobe.epubcheck.xml.handlers.BaseURLHandler",
+   "org.w3c.epubcheck.core.references.URLChecker"
+  ],
+  "checkUndeclaredReference": [
+   "org.w3c.epubcheck.core.references.ResourceReferencesChecker"
+  ],
+  "checkUniqueIdentExists": [
+   "com.adobe.epubcheck.opf.OPFHandler"
+  ],
+  "checkValueAndNext": [
+   "com.adobe.epubcheck.util.DateParser"
+  ],
+  "checkXMLStylesheetPI": [
+   "com.adobe.epubcheck.ops.OPSHandler"
+  ],
+  "checkXMLVersion": [
+   "com.adobe.epubcheck.xml.handlers.XMLHandler"
+  ],
+  "checkZipFile": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "close": [
+   "com.adobe.epubcheck.api.MasterReport",
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFZipResources",
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "collect": [
+   "org.idpf.epubcheck.util.css.CssReader"
+  ],
+  "collectFiles": [
+   "com.adobe.epubcheck.util.Archive"
+  ],
+  "collection": [
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "compareTo": [
+   "com.adobe.epubcheck.api.EPUBLocation",
+   "com.adobe.epubcheck.overlay.SmilClock",
+   "com.adobe.epubcheck.reporting.CheckMessage",
+   "com.adobe.epubcheck.reporting.ItemMetadata"
+  ],
+  "computePath": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "consume": [
+   "com.adobe.epubcheck.vocab.PrefixDeclarationParser"
+  ],
+  "container": [
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "contains": [
+   "com.adobe.epubcheck.ocf.OCFContainer",
+   "com.adobe.epubcheck.util.URISchemes"
+  ],
+  "containsAny": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "containsPrimary": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "context": [
+   "com.adobe.epubcheck.api.EPUBLocation",
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "copy": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "correctToUtf8": [
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "correctedColumnNumber": [
+   "com.adobe.epubcheck.css.CSSHandler"
+  ],
+  "correctedLineNumber": [
+   "com.adobe.epubcheck.css.CSSHandler"
+  ],
+  "create": [
+   "com.adobe.epubcheck.util.SourceSet",
+   "org.idpf.epubcheck.util.css.CssEscape",
+   "org.idpf.epubcheck.util.css.CssGrammar",
+   "org.idpf.epubcheck.util.css.CssLocation",
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "createArchive": [
+   "com.adobe.epubcheck.util.Archive"
+  ],
+  "createAttributeMatchSelector": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "createAttributeSelector": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "createCombinator": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "createFunctionalPseudo": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "createFunctionalSelectorListPseudo": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "createJsonWriter": [
+   "com.adobe.epubcheck.util.JsonWriter"
+  ],
+  "createPseudoSelector": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "createReport": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "createSelectorList": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "createSimpleSelector": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "createSimpleSelectorSequence": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "createTypeSelector": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "currentElement": [
+   "com.adobe.epubcheck.xml.handlers.XMLHandler"
+  ],
+  "declaration": [
+   "com.adobe.epubcheck.css.CSSHandler",
+   "org.idpf.epubcheck.util.css.CssContentHandler"
+  ],
+  "decode": [
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "decrypt": [
+   "com.adobe.epubcheck.ocf.encryption.AdobeFontManglingFilter",
+   "com.adobe.epubcheck.ocf.encryption.IDPFFontManglingFilter",
+   "com.adobe.epubcheck.ocf.encryption.UnsupportedEncryptionFilter"
+  ],
+  "deleteEpubFile": [
+   "com.adobe.epubcheck.util.Archive"
+  ],
+  "dependsOnFocus": [
+   "org.idpf.epubcheck.util.saxon.ColumnNumberFunction",
+   "org.idpf.epubcheck.util.saxon.LineNumberFunction",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "displayHelp": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "displayVersion": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "doValidate": [
+   "com.adobe.epubcheck.api.EpubCheck"
+  ],
+  "docURL": [
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "dump": [
+   "com.adobe.epubcheck.messages.MessageDictionaryDumper"
+  ],
+  "dumpMessageDictionary": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "encodePath": [
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "endAtRule": [
+   "com.adobe.epubcheck.css.CSSHandler",
+   "org.idpf.epubcheck.util.css.CssContentHandler"
+  ],
+  "endDocument": [
+   "com.adobe.epubcheck.css.CSSHandler",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler",
+   "org.idpf.epubcheck.util.css.CssContentHandler"
+  ],
+  "endElement": [
+   "com.adobe.epubcheck.nav.NavHandler",
+   "com.adobe.epubcheck.ncx.NCXHandler",
+   "com.adobe.epubcheck.ocf.PackageDocumentPeekerHandler",
+   "com.adobe.epubcheck.opf.OPFHandler",
+   "com.adobe.epubcheck.opf.OPFHandler30",
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30",
+   "com.adobe.epubcheck.overlay.OverlayHandler",
+   "com.adobe.epubcheck.util.XmlReportAbstract",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.XMLHandler"
+  ],
+  "endMediaElement": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "endObject": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "endPrefixMapping": [
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "endSelectors": [
+   "com.adobe.epubcheck.css.CSSHandler",
+   "org.idpf.epubcheck.util.css.CssContentHandler"
+  ],
+  "eqWithinTolerance": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "equals": [
+   "com.adobe.epubcheck.api.EPUBLocation",
+   "com.adobe.epubcheck.opf.MetadataSet",
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.overlay.SmilClock",
+   "com.adobe.epubcheck.util.OPSType",
+   "com.adobe.epubcheck.vocab.Property",
+   "org.idpf.epubcheck.util.css.CssExceptions",
+   "org.idpf.epubcheck.util.css.CssLocation",
+   "org.idpf.epubcheck.util.css.CssScanner",
+   "org.idpf.epubcheck.util.css.CssSource",
+   "org.idpf.epubcheck.util.css.CssToken",
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "error": [
+   "com.adobe.epubcheck.css.CSSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30",
+   "com.adobe.epubcheck.util.SourceSet",
+   "com.adobe.epubcheck.util.WriterReportImpl",
+   "com.adobe.epubcheck.xml.XMLValidator",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.ReportingErrorHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler",
+   "org.idpf.epubcheck.util.css.CssToken",
+   "org.idpf.epubcheck.util.css.ForgivingErrorHandler",
+   "org.w3c.epubcheck.util.microsyntax.ViewportMeta"
+  ],
+  "errorReset": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "exists": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "externalEntityDecl": [
+   "com.adobe.epubcheck.xml.handlers.DeclarationHandler"
+  ],
+  "fallback": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "fallbackStyle": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "fatalError": [
+   "com.adobe.epubcheck.util.WriterReportImpl",
+   "com.adobe.epubcheck.xml.XMLValidator",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.ReportingErrorHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "featureReport": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "filter": [
+   "com.adobe.epubcheck.vocab.Property",
+   "org.idpf.epubcheck.util.css.CssTokenList"
+  ],
+  "finalizeSource": [
+   "com.adobe.epubcheck.util.SourceSet"
+  ],
+  "findCheckMessage": [
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "findClassName": [
+   "com.adobe.epubcheck.css.CSSHandler"
+  ],
+  "findLocation": [
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "findReservedStringInHTMLCustomNamespace": [
+   "com.adobe.epubcheck.xml.handlers.PreprocessingDefaultHandler"
+  ],
+  "fixMessage": [
+   "com.adobe.epubcheck.util.DefaultReportImpl",
+   "com.adobe.epubcheck.util.WriterReportImpl"
+  ],
+  "fixedLayout": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "flatten": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "floorToMSPrecision": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "floorToMilliSeconds": [
+   "com.adobe.epubcheck.overlay.ClipTime"
+  ],
+  "flush": [
+   "com.adobe.epubcheck.util.outWriter"
+  ],
+  "formatMessage": [
+   "com.adobe.epubcheck.util.DefaultReportImpl"
+  ],
+  "forward": [
+   "org.idpf.epubcheck.util.css.CssReader"
+  ],
+  "forwardMatch": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "fromItem": [
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "fromString": [
+   "com.adobe.epubcheck.messages.MessageId",
+   "com.adobe.epubcheck.messages.Severity",
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "fromTime": [
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "fromURL": [
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "generate": [
+   "com.adobe.epubcheck.api.QuietReport",
+   "com.adobe.epubcheck.reporting.CheckingReport",
+   "com.adobe.epubcheck.util.DefaultReportImpl",
+   "com.adobe.epubcheck.util.WriterReportImpl",
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "generateElement": [
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "generateEventOutcome": [
+   "com.adobe.epubcheck.util.XmpReportImpl"
+  ],
+  "generateFont": [
+   "com.adobe.epubcheck.util.XmpReportImpl"
+  ],
+  "generateProperty": [
+   "com.adobe.epubcheck.util.XmlReportImpl"
+  ],
+  "generateReport": [
+   "com.adobe.epubcheck.util.XmlReportImpl",
+   "com.adobe.epubcheck.util.XmpReportImpl"
+  ],
+  "generateSignificantProperty": [
+   "com.adobe.epubcheck.util.XmpReportImpl"
+  ],
+  "get": [
+   "com.adobe.epubcheck.messages.DefaultSeverities",
+   "com.adobe.epubcheck.messages.LocaleHolder",
+   "com.adobe.epubcheck.opf.MetadataSet",
+   "com.adobe.epubcheck.util.Messages",
+   "com.adobe.epubcheck.vocab.EnumVocab",
+   "com.adobe.epubcheck.xml.XMLValidators",
+   "org.idpf.epubcheck.util.css.CssScanner",
+   "org.w3c.epubcheck.constants.MIMEType"
+  ],
+  "getAdditionalLocations": [
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "getAll": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "getAny": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "getArgumentTypes": [
+   "org.idpf.epubcheck.util.saxon.ColumnNumberFunction",
+   "org.idpf.epubcheck.util.saxon.LineNumberFunction",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "getAttribute": [
+   "com.adobe.epubcheck.xml.model.XMLElement"
+  ],
+  "getAttributeCount": [
+   "com.adobe.epubcheck.xml.model.XMLElement"
+  ],
+  "getAttributeMatchType": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "getAttributeNS": [
+   "com.adobe.epubcheck.xml.model.XMLElement"
+  ],
+  "getBOM": [
+   "org.idpf.epubcheck.util.css.CssInputStream"
+  ],
+  "getBomCharset": [
+   "org.idpf.epubcheck.util.css.CssInputStream"
+  ],
+  "getBundle": [
+   "com.thaiopensource.util.Localizer"
+  ],
+  "getBundleName": [
+   "com.adobe.epubcheck.util.Messages"
+  ],
+  "getById": [
+   "com.adobe.epubcheck.opf.LinkedResources"
+  ],
+  "getByRole": [
+   "com.adobe.epubcheck.opf.ResourceCollections"
+  ],
+  "getByURL": [
+   "com.adobe.epubcheck.opf.LinkedResources"
+  ],
+  "getCRC": [
+   "com.adobe.epubcheck.util.Archive"
+  ],
+  "getCalendar": [
+   "com.adobe.epubcheck.util.DateParser"
+  ],
+  "getChar": [
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "getCharOffset": [
+   "org.idpf.epubcheck.util.css.CssLocation"
+  ],
+  "getCharacterOffset": [
+   "com.adobe.epubcheck.util.LocationImpl"
+  ],
+  "getChars": [
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "getCollections": [
+   "com.adobe.epubcheck.opf.OPFHandler30",
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "getColumn": [
+   "com.adobe.epubcheck.api.EPUBLocation",
+   "org.idpf.epubcheck.util.css.CssLocation"
+  ],
+  "getColumnNumber": [
+   "com.adobe.epubcheck.opf.OPFReference",
+   "com.adobe.epubcheck.util.LocationImpl",
+   "com.adobe.epubcheck.xml.handlers.DelegateLocator"
+  ],
+  "getCombinatorType": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "getComponents": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "getCompressionMethod": [
+   "com.adobe.epubcheck.ocf.OCFZipResources"
+  ],
+  "getContainer": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "getContext": [
+   "com.adobe.epubcheck.api.EPUBLocation"
+  ],
+  "getCorrectedEPUBLocation": [
+   "com.adobe.epubcheck.css.CSSHandler"
+  ],
+  "getCssCharset": [
+   "org.idpf.epubcheck.util.css.CssInputStream"
+  ],
+  "getCssSource": [
+   "com.adobe.epubcheck.css.CSSChecker"
+  ],
+  "getCustomMessageFile": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "getDataURLType": [
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "getDictionary": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "getDocumentURL": [
+   "com.adobe.epubcheck.opf.LinkedResource",
+   "com.adobe.epubcheck.opf.OPFReference"
+  ],
+  "getEncoding": [
+   "com.adobe.epubcheck.xml.handlers.DelegateLocator"
+  ],
+  "getEpubFile": [
+   "com.adobe.epubcheck.util.Archive"
+  ],
+  "getEpubFileName": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "getEpubName": [
+   "com.adobe.epubcheck.util.Archive"
+  ],
+  "getError": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "getErrorCode": [
+   "org.idpf.epubcheck.util.css.CssExceptions"
+  ],
+  "getErrorCount": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "getErrors": [
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "getExtension": [
+   "com.adobe.epubcheck.util.ResourceUtil"
+  ],
+  "getFatalErrorCount": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "getFeature": [
+   "com.adobe.epubcheck.api.FeatureReport"
+  ],
+  "getFileName": [
+   "com.adobe.epubcheck.reporting.ItemMetadata"
+  ],
+  "getFullName": [
+   "com.adobe.epubcheck.vocab.Property"
+  ],
+  "getFunction": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "getFunctionQName": [
+   "org.idpf.epubcheck.util.saxon.ColumnNumberFunction",
+   "org.idpf.epubcheck.util.saxon.LineNumberFunction",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "getGroupType": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "getID": [
+   "com.adobe.epubcheck.messages.Message",
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "getIDPosition": [
+   "org.w3c.epubcheck.core.references.ResourceRegistry"
+  ],
+  "getIDType": [
+   "org.w3c.epubcheck.core.references.ResourceRegistry"
+  ],
+  "getId": [
+   "com.adobe.epubcheck.opf.LinkedResource",
+   "com.adobe.epubcheck.opf.MetadataSet",
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.reporting.ItemMetadata",
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "getIdentId": [
+   "com.adobe.epubcheck.opf.OPFHandler"
+  ],
+  "getImageFile": [
+   "com.adobe.epubcheck.bitmap.BitmapChecker"
+  ],
+  "getImageSizes": [
+   "com.adobe.epubcheck.bitmap.BitmapChecker"
+  ],
+  "getImageSources": [
+   "com.adobe.epubcheck.util.SourceSet"
+  ],
+  "getImageURLs": [
+   "com.adobe.epubcheck.util.SourceSet"
+  ],
+  "getImportant": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "getInfoCount": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "getInputStream": [
+   "org.idpf.epubcheck.util.css.CssSource"
+  ],
+  "getInstance": [
+   "com.adobe.epubcheck.api.EpubCheckFactory",
+   "com.adobe.epubcheck.messages.LocalizedMessages",
+   "com.adobe.epubcheck.util.Messages",
+   "com.adobe.epubcheck.xml.XMLValidator"
+  ],
+  "getIntFromBytes": [
+   "com.adobe.epubcheck.ocf.OCFZipChecker"
+  ],
+  "getIsFixedFormat": [
+   "com.adobe.epubcheck.reporting.ItemMetadata"
+  ],
+  "getIsSpineItem": [
+   "com.adobe.epubcheck.reporting.ItemMetadata"
+  ],
+  "getItem": [
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "getItemById": [
+   "com.adobe.epubcheck.opf.OPFHandler",
+   "com.adobe.epubcheck.opf.OPFItems"
+  ],
+  "getItemByName": [
+   "com.adobe.epubcheck.reporting.ItemMetadata"
+  ],
+  "getItemByURL": [
+   "com.adobe.epubcheck.opf.OPFHandler",
+   "com.adobe.epubcheck.opf.OPFItems"
+  ],
+  "getItemIndex": [
+   "com.adobe.epubcheck.reporting.CheckingReport"
+  ],
+  "getItems": [
+   "com.adobe.epubcheck.opf.OPFHandler",
+   "com.adobe.epubcheck.opf.OPFItems",
+   "com.adobe.epubcheck.reporting.CheckingReport"
+  ],
+  "getJsonReport": [
+   "com.adobe.epubcheck.reporting.CheckingReport"
+  ],
+  "getKey": [
+   "com.adobe.epubcheck.util.KeyValue"
+  ],
+  "getLast": [
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "getLength": [
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "getLine": [
+   "com.adobe.epubcheck.api.EPUBLocation",
+   "org.idpf.epubcheck.util.css.CssLocation"
+  ],
+  "getLineNumber": [
+   "com.adobe.epubcheck.opf.OPFReference",
+   "com.adobe.epubcheck.util.LocationImpl",
+   "com.adobe.epubcheck.xml.handlers.DelegateLocator"
+  ],
+  "getLinkedResources": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "getLocale": [
+   "com.adobe.epubcheck.api.MasterReport",
+   "com.adobe.epubcheck.messages.LocalizedMessageDictionary",
+   "com.adobe.epubcheck.tool.EpubChecker",
+   "com.adobe.epubcheck.util.Messages"
+  ],
+  "getLocation": [
+   "com.adobe.epubcheck.api.FeatureReport",
+   "com.adobe.epubcheck.opf.OPFItem",
+   "org.idpf.epubcheck.util.css.CssExceptions",
+   "org.idpf.epubcheck.util.css.CssGrammar",
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "getLocations": [
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "getMappingDocument": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "getMaximumNumberOfArguments": [
+   "org.idpf.epubcheck.util.saxon.ColumnNumberFunction",
+   "org.idpf.epubcheck.util.saxon.LineNumberFunction",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "getMediaOverlay": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "getMessage": [
+   "com.adobe.epubcheck.messages.LocalizedMessageDictionary",
+   "com.adobe.epubcheck.messages.LocalizedMessages",
+   "com.adobe.epubcheck.messages.Message",
+   "com.adobe.epubcheck.messages.OverriddenMessageDictionary",
+   "com.adobe.epubcheck.messages.OverriddenMessages",
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "getMessageAsString": [
+   "com.adobe.epubcheck.messages.LocalizedMessages"
+  ],
+  "getMessages": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "getMetadata": [
+   "com.adobe.epubcheck.opf.OPFHandler30",
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "getMetadataLinks": [
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "getMimeType": [
+   "com.adobe.epubcheck.opf.LinkedResource",
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.opf.ValidationContext",
+   "org.w3c.epubcheck.core.references.Resource",
+   "org.w3c.epubcheck.core.references.ResourceRegistry"
+  ],
+  "getMinimumNumberOfArguments": [
+   "org.idpf.epubcheck.util.saxon.ColumnNumberFunction",
+   "org.idpf.epubcheck.util.saxon.LineNumberFunction",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "getMouseEvents": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "getName": [
+   "com.adobe.epubcheck.api.FeatureReport",
+   "com.adobe.epubcheck.vocab.EnumVocab",
+   "com.adobe.epubcheck.vocab.Property",
+   "com.adobe.epubcheck.xml.model.XMLNode",
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "getNameFromPath": [
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "getNames": [
+   "com.adobe.epubcheck.vocab.EnumVocab"
+  ],
+  "getNamespace": [
+   "com.adobe.epubcheck.xml.model.XMLNode"
+  ],
+  "getOPFHandler": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "getOPFItem": [
+   "org.w3c.epubcheck.core.references.ResourceRegistry"
+  ],
+  "getObfuscationLocation": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "getOpf12PackageFile": [
+   "com.adobe.epubcheck.opf.OPFHandler"
+  ],
+  "getOpf20PackageFile": [
+   "com.adobe.epubcheck.opf.OPFHandler"
+  ],
+  "getOriginalSeverity": [
+   "com.adobe.epubcheck.messages.Message"
+  ],
+  "getPackageDocuments": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "getParameterCount": [
+   "com.adobe.epubcheck.messages.OverriddenMessages"
+  ],
+  "getParent": [
+   "com.adobe.epubcheck.xml.model.XMLElement"
+  ],
+  "getPath": [
+   "com.adobe.epubcheck.api.EPUBLocation",
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFZipResources",
+   "com.adobe.epubcheck.opf.OPFHandler",
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "getPreferredMediaType": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "getPrefix": [
+   "com.adobe.epubcheck.xml.model.XMLNode"
+  ],
+  "getPrefixedName": [
+   "com.adobe.epubcheck.vocab.Property"
+  ],
+  "getPrimary": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "getPrivateData": [
+   "com.adobe.epubcheck.xml.model.XMLElement"
+  ],
+  "getProcessDuration": [
+   "com.adobe.epubcheck.reporting.CheckerMetadata",
+   "com.adobe.epubcheck.reporting.CheckingReport"
+  ],
+  "getProperties": [
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFZipResources",
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "getProperty": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "getPublicId": [
+   "com.adobe.epubcheck.util.LocationImpl",
+   "com.adobe.epubcheck.xml.handlers.DelegateLocator"
+  ],
+  "getPublicationID": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "getPublicationTypes": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "getPublicationVersion": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "getReference": [
+   "com.adobe.epubcheck.opf.OPFHandler"
+  ],
+  "getReferenceCount": [
+   "com.adobe.epubcheck.opf.OPFHandler"
+  ],
+  "getRefinedBy": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "getRefiners": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "getRefines": [
+   "com.adobe.epubcheck.opf.LinkedResource",
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "getRefining": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "getRel": [
+   "com.adobe.epubcheck.opf.LinkedResource"
+  ],
+  "getRenditionLayout": [
+   "com.adobe.epubcheck.reporting.ItemMetadata",
+   "com.adobe.epubcheck.reporting.PublicationMetadata"
+  ],
+  "getRenditionOrientation": [
+   "com.adobe.epubcheck.reporting.ItemMetadata",
+   "com.adobe.epubcheck.reporting.PublicationMetadata"
+  ],
+  "getRenditionSpread": [
+   "com.adobe.epubcheck.reporting.ItemMetadata",
+   "com.adobe.epubcheck.reporting.PublicationMetadata"
+  ],
+  "getReportingLevel": [
+   "com.adobe.epubcheck.api.MasterReport",
+   "com.adobe.epubcheck.util.ReportingLevel"
+  ],
+  "getResource": [
+   "org.w3c.epubcheck.core.references.ResourceRegistry"
+  ],
+  "getResourcePath": [
+   "com.adobe.epubcheck.util.ResourceUtil"
+  ],
+  "getResourceStream": [
+   "com.adobe.epubcheck.util.ResourceUtil"
+  ],
+  "getResourceURL": [
+   "com.adobe.epubcheck.util.ResourceUtil"
+  ],
+  "getResources": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState",
+   "com.adobe.epubcheck.ocf.OCFContainer",
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "getResultType": [
+   "org.idpf.epubcheck.util.saxon.ColumnNumberFunction",
+   "org.idpf.epubcheck.util.saxon.LineNumberFunction",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "getRoles": [
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "getRootURL": [
+   "com.adobe.epubcheck.ocf.OCFContainer"
+  ],
+  "getSHAHash": [
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFResources",
+   "com.adobe.epubcheck.ocf.OCFZipResources"
+  ],
+  "getSchema": [
+   "com.adobe.epubcheck.xml.XMLValidator"
+  ],
+  "getScheme": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "getScriptEvents": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "getSeverity": [
+   "com.adobe.epubcheck.messages.Message",
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "getSize": [
+   "com.adobe.epubcheck.util.Archive"
+  ],
+  "getSourceSize": [
+   "com.adobe.epubcheck.util.SourceSet"
+  ],
+  "getSpineItems": [
+   "com.adobe.epubcheck.opf.OPFHandler",
+   "com.adobe.epubcheck.opf.OPFItems"
+  ],
+  "getSpinePosition": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "getStringFromBundle": [
+   "com.adobe.epubcheck.messages.LocalizedMessages"
+  ],
+  "getSubType": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "getSuggestion": [
+   "com.adobe.epubcheck.messages.LocalizedMessages",
+   "com.adobe.epubcheck.messages.Message",
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "getSystemID": [
+   "org.idpf.epubcheck.util.css.CssLocation",
+   "org.idpf.epubcheck.util.css.CssSource"
+  ],
+  "getSystemId": [
+   "com.adobe.epubcheck.util.LocationImpl",
+   "com.adobe.epubcheck.xml.handlers.DelegateLocator"
+  ],
+  "getTempImageFile": [
+   "com.adobe.epubcheck.bitmap.BitmapChecker"
+  ],
+  "getTimeInMs": [
+   "com.adobe.epubcheck.overlay.ClipTime"
+  ],
+  "getTimeWOPrecisionLoss": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "getTitle": [
+   "com.adobe.epubcheck.opf.OPFReference"
+  ],
+  "getTolerance": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "getType": [
+   "com.adobe.epubcheck.opf.OPFReference",
+   "org.idpf.epubcheck.util.css.CssGrammar",
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "getTypes": [
+   "com.adobe.epubcheck.ocf.PackageDocumentData"
+  ],
+  "getURI": [
+   "com.adobe.epubcheck.vocab.AggregateVocab",
+   "com.adobe.epubcheck.vocab.EnumVocab",
+   "com.adobe.epubcheck.vocab.UncheckedVocab"
+  ],
+  "getURL": [
+   "com.adobe.epubcheck.opf.LinkedResource",
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.opf.OPFReference",
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "getUid": [
+   "com.adobe.epubcheck.ncx.NCXHandler",
+   "com.adobe.epubcheck.opf.OPFHandler"
+  ],
+  "getUniqueIdentifier": [
+   "com.adobe.epubcheck.ocf.PackageDocumentData"
+  ],
+  "getUnit": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "getUsageCount": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "getValidators": [
+   "com.adobe.epubcheck.util.ValidatorMap"
+  ],
+  "getValue": [
+   "com.adobe.epubcheck.api.FeatureReport",
+   "com.adobe.epubcheck.opf.MetadataSet",
+   "com.adobe.epubcheck.util.KeyValue",
+   "com.adobe.epubcheck.xml.model.XMLAttribute"
+  ],
+  "getValues": [
+   "org.w3c.epubcheck.util.microsyntax.ViewportMeta"
+  ],
+  "getVersion": [
+   "com.adobe.epubcheck.ocf.PackageDocumentData"
+  ],
+  "getVocabURI": [
+   "com.adobe.epubcheck.vocab.Property"
+  ],
+  "getWarningCount": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "getXMLVersion": [
+   "com.adobe.epubcheck.xml.handlers.DelegateLocator"
+  ],
+  "handleAtRule": [
+   "org.idpf.epubcheck.util.css.CssParser"
+  ],
+  "handleAtRuleParam": [
+   "org.idpf.epubcheck.util.css.CssParser"
+  ],
+  "handleDeclaration": [
+   "org.idpf.epubcheck.util.css.CssParser"
+  ],
+  "handleDeclarationBlock": [
+   "org.idpf.epubcheck.util.css.CssParser"
+  ],
+  "handleDocTypeUserInfo": [
+   "com.adobe.epubcheck.xml.handlers.DeclarationHandler"
+  ],
+  "handleFontFaceInfo": [
+   "com.adobe.epubcheck.css.CSSHandler"
+  ],
+  "handleInfo": [
+   "com.adobe.epubcheck.reporting.ItemMetadata",
+   "com.adobe.epubcheck.reporting.PublicationMetadata"
+  ],
+  "handlePropertyValue": [
+   "org.idpf.epubcheck.util.css.CssParser"
+  ],
+  "handleRuleSet": [
+   "org.idpf.epubcheck.util.css.CssParser"
+  ],
+  "hasBlock": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "hasContentDocumentFallback": [
+   "com.adobe.epubcheck.opf.OPFItem",
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "hasCoreMediaTypeFallback": [
+   "com.adobe.epubcheck.opf.OPFItem",
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "hasDataURL": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "hasErrors": [
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "hasFallback": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "hasFallbackStyle": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "hasFeature": [
+   "com.adobe.epubcheck.api.FeatureReport"
+  ],
+  "hasItem": [
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "hasNext": [
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFZipResources",
+   "org.idpf.epubcheck.util.css.CssTokenList"
+  ],
+  "hasProp": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "hasProperty": [
+   "org.w3c.epubcheck.util.microsyntax.ViewportMeta"
+  ],
+  "hasPubType": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "hasReferencesTo": [
+   "org.w3c.epubcheck.core.references.ReferenceRegistry"
+  ],
+  "hasResource": [
+   "com.adobe.epubcheck.opf.LinkedResources"
+  ],
+  "hasRole": [
+   "com.adobe.epubcheck.opf.ResourceCollection",
+   "com.adobe.epubcheck.opf.ResourceCollections"
+  ],
+  "hasRuleSet": [
+   "org.idpf.epubcheck.util.css.CssParser"
+  ],
+  "hasSources": [
+   "com.adobe.epubcheck.util.SourceSet"
+  ],
+  "hasUTF8BOM": [
+   "com.adobe.epubcheck.xml.XMLEncodingSniffer"
+  ],
+  "hashCode": [
+   "com.adobe.epubcheck.opf.MetadataSet",
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.util.OPSType",
+   "com.adobe.epubcheck.vocab.Property",
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "head": [
+   "org.idpf.epubcheck.util.saxon.Int64ValueSequence",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "hint": [
+   "com.adobe.epubcheck.util.WriterReportImpl"
+  ],
+  "id": [
+   "com.adobe.epubcheck.opf.LinkedResource",
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "ignorableWhitespace": [
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "inSpine": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "index": [
+   "org.idpf.epubcheck.util.css.CssTokenList"
+  ],
+  "info": [
+   "com.adobe.epubcheck.api.QuietReport",
+   "com.adobe.epubcheck.reporting.CheckingReport",
+   "com.adobe.epubcheck.util.DefaultReportImpl",
+   "com.adobe.epubcheck.util.WriterReportImpl",
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "initHandler": [
+   "com.adobe.epubcheck.opf.OPFChecker",
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "initTransformerFactory": [
+   "org.idpf.epubcheck.util.saxon.SaxonSchemaReaderFactory"
+  ],
+  "initialize": [
+   "com.adobe.epubcheck.api.QuietReport",
+   "com.adobe.epubcheck.messages.DefaultSeverities",
+   "com.adobe.epubcheck.reporting.CheckingReport",
+   "com.adobe.epubcheck.util.DefaultReportImpl",
+   "com.adobe.epubcheck.util.WriterReportImpl",
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "internalEntityDecl": [
+   "com.adobe.epubcheck.xml.handlers.DeclarationHandler"
+  ],
+  "is": [
+   "org.w3c.epubcheck.constants.MIMEType"
+  ],
+  "isASCIIWhitespace": [
+   "org.w3c.epubcheck.util.infra.InfraUtil"
+  ],
+  "isAbsoluteURLString": [
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "isAllowed": [
+   "com.adobe.epubcheck.vocab.PackageVocabs",
+   "com.adobe.epubcheck.vocab.Property",
+   "com.adobe.epubcheck.vocab.PropertyStatus",
+   "com.adobe.epubcheck.vocab.RenditionVocabs",
+   "com.adobe.epubcheck.vocab.StructureVocab"
+  ],
+  "isAllowedForType": [
+   "com.adobe.epubcheck.vocab.PackageVocabs"
+  ],
+  "isAudioType": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "isBlessedAudioType": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "isBlessedFontMimetype20": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "isBlessedFontType": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "isBlessedImageType": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "isBlessedItemType": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "isBlessedScriptType": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "isBlessedStyleType": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "isBlessedVideoType": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "isCaseInsensitiveAttribute": [
+   "com.adobe.epubcheck.xml.HTMLUtils"
+  ],
+  "isCommonVideoType": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "isCoreMediaType": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "isCorrectOverlay": [
+   "com.adobe.epubcheck.overlay.OverlayTextChecker"
+  ],
+  "isCustomElement": [
+   "com.adobe.epubcheck.xml.HTMLUtils"
+  ],
+  "isCustomNamespace": [
+   "com.adobe.epubcheck.xml.HTMLUtils"
+  ],
+  "isDataAttribute": [
+   "com.adobe.epubcheck.xml.HTMLUtils"
+  ],
+  "isDeclared": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "isDeprecated": [
+   "com.adobe.epubcheck.vocab.PackageVocabs",
+   "com.adobe.epubcheck.vocab.Property",
+   "com.adobe.epubcheck.vocab.PropertyStatus",
+   "com.adobe.epubcheck.vocab.RenditionVocabs",
+   "com.adobe.epubcheck.vocab.StructureVocab"
+  ],
+  "isDeprecatedBlessedItemType": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "isDeprecatedBlessedStyleType": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "isDirectory": [
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFZipResources"
+  ],
+  "isEmpty": [
+   "com.adobe.epubcheck.util.SourceSet",
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "isFile": [
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFZipResources"
+  ],
+  "isFixedLayout": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "isFontType": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "isITSAttribute": [
+   "com.adobe.epubcheck.xml.HTMLUtils"
+  ],
+  "isInSpine": [
+   "com.adobe.epubcheck.opf.OPFItem",
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "isLinear": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "isMediaFragment": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "isNav": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "isNcx": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "isNewLine": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "isNextEscape": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "isNormative": [
+   "com.adobe.epubcheck.xml.XMLValidator"
+  ],
+  "isObfuscated": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "isPackaged": [
+   "com.adobe.epubcheck.ocf.OCFContainer"
+  ],
+  "isPalpable": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "isPathRelativeSchemeLessURLString": [
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "isPresent": [
+   "com.adobe.epubcheck.ocf.OCFMetaFile"
+  ],
+  "isPrimary": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "isPublicationResourceReference": [
+   "org.w3c.epubcheck.core.references.Reference"
+  ],
+  "isQuiet": [
+   "com.adobe.epubcheck.util.outWriter"
+  ],
+  "isReferenced": [
+   "org.w3c.epubcheck.core.references.ReferenceRegistry"
+  ],
+  "isReferencedByOverlay": [
+   "com.adobe.epubcheck.overlay.OverlayTextChecker"
+  ],
+  "isRemote": [
+   "com.adobe.epubcheck.ocf.OCFContainer",
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.opf.ValidationContext",
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "isResolved": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "isSameOrigin": [
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "isScriptType": [
+   "com.adobe.epubcheck.opf.OPFChecker"
+  ],
+  "isScripted": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "isValid": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "isValidDataAttribute": [
+   "com.adobe.epubcheck.xml.HTMLUtils"
+  ],
+  "isValidProperty": [
+   "org.w3c.epubcheck.util.microsyntax.ViewportMeta"
+  ],
+  "isValidRole": [
+   "com.adobe.epubcheck.opf.OPFHandler"
+  ],
+  "isVideoType": [
+   "com.adobe.epubcheck.opf.OPFChecker30"
+  ],
+  "item": [
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "iterate": [
+   "org.idpf.epubcheck.util.saxon.Int64ValueSequence",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "iterator": [
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFZipResources",
+   "org.idpf.epubcheck.util.css.CssTokenList"
+  ],
+  "listFiles": [
+   "com.adobe.epubcheck.util.Archive"
+  ],
+  "loadOverriddenMessageSeverities": [
+   "com.adobe.epubcheck.messages.OverriddenMessages"
+  ],
+  "location": [
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.xml.handlers.LocationHandler"
+  ],
+  "lookup": [
+   "com.adobe.epubcheck.vocab.AggregateVocab",
+   "com.adobe.epubcheck.vocab.EnumVocab",
+   "com.adobe.epubcheck.vocab.UncheckedVocab"
+  ],
+  "main": [
+   "com.adobe.epubcheck.tool.Checker",
+   "com.adobe.epubcheck.util.DateParserTest"
+  ],
+  "makeAttribute": [
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "makeCallExpression": [
+   "org.idpf.epubcheck.util.saxon.ColumnNumberFunction",
+   "org.idpf.epubcheck.util.saxon.LineNumberFunction",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "makeCanonical": [
+   "com.adobe.epubcheck.util.Archive"
+  ],
+  "makeElement": [
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "makeTypeCompatible": [
+   "com.adobe.epubcheck.api.EPUBProfile"
+  ],
+  "map": [
+   "org.idpf.epubcheck.util.css.CssInputStream"
+  ],
+  "mark": [
+   "org.idpf.epubcheck.util.css.CssReader"
+  ],
+  "markResolved": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "matchDoctypeId": [
+   "com.adobe.epubcheck.xml.handlers.DeclarationHandler"
+  ],
+  "matches": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "matchesMagic": [
+   "com.adobe.epubcheck.xml.XMLEncodingSniffer"
+  ],
+  "matchesOrEOF": [
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "matchingType": [
+   "com.adobe.epubcheck.api.EPUBProfile"
+  ],
+  "mediaOverlay": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "message": [
+   "com.adobe.epubcheck.api.MasterReport",
+   "com.adobe.epubcheck.api.QuietReport",
+   "com.adobe.epubcheck.reporting.CheckingReport",
+   "com.adobe.epubcheck.util.DefaultReportImpl",
+   "com.adobe.epubcheck.util.WriterReportImpl",
+   "com.adobe.epubcheck.util.XmlReportAbstract",
+   "com.thaiopensource.util.Localizer"
+  ],
+  "meta": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "metadata": [
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "metadataLinks": [
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "millisecondsValue": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "millisecondsValueAsLong": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "mimetype": [
+   "com.adobe.epubcheck.opf.LinkedResource",
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.opf.ValidationContext",
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "ncx": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "newBundle": [
+   "com.adobe.epubcheck.messages.LocalizedMessages",
+   "com.adobe.epubcheck.util.Messages"
+  ],
+  "newChecker": [
+   "org.w3c.epubcheck.core.CheckerFactory"
+  ],
+  "newFrom": [
+   "com.adobe.epubcheck.vocab.Property"
+  ],
+  "newInstance": [
+   "com.adobe.epubcheck.api.EpubCheckFactory"
+  ],
+  "newReader": [
+   "org.idpf.epubcheck.util.css.CssSource"
+  ],
+  "next": [
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFZipResources",
+   "org.idpf.epubcheck.util.css.CssReader",
+   "org.idpf.epubcheck.util.css.CssTokenList"
+  ],
+  "nonlinear": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "normalize": [
+   "org.w3c.epubcheck.util.text.UnicodeUtils",
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "notSet": [
+   "com.adobe.epubcheck.overlay.ClipTime",
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "notationDecl": [
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "of": [
+   "com.adobe.epubcheck.api.EPUBLocation",
+   "com.adobe.epubcheck.opf.ValidationContext",
+   "com.adobe.epubcheck.vocab.AggregateVocab"
+  ],
+  "open": [
+   "com.adobe.epubcheck.xml.XMLValidator"
+  ],
+  "openStream": [
+   "com.adobe.epubcheck.ocf.OCFContainer",
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFZipResources",
+   "com.adobe.epubcheck.util.FileResourceProvider",
+   "com.adobe.epubcheck.util.ThrowingResourceProvider",
+   "com.adobe.epubcheck.util.URLResourceProvider"
+  ],
+  "optional": [
+   "com.adobe.epubcheck.opf.LinkedResource"
+  ],
+  "outWriter": [
+   "com.adobe.epubcheck.util.outWriter"
+  ],
+  "parse": [
+   "com.adobe.epubcheck.util.DateParser",
+   "com.adobe.epubcheck.util.SourceSet",
+   "org.idpf.epubcheck.util.css.CssParser",
+   "org.w3c.epubcheck.util.microsyntax.ViewportMeta",
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "parseHTMLFragment": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "parseItem": [
+   "com.adobe.epubcheck.css.CSSChecker"
+  ],
+  "parsePrefixDeclaration": [
+   "com.adobe.epubcheck.vocab.VocabUtil"
+  ],
+  "parsePrefixMappings": [
+   "com.adobe.epubcheck.vocab.PrefixDeclarationParser"
+  ],
+  "parseProperties": [
+   "com.adobe.epubcheck.vocab.VocabUtil"
+  ],
+  "parseProperty": [
+   "com.adobe.epubcheck.vocab.VocabUtil"
+  ],
+  "parsePropertyList": [
+   "com.adobe.epubcheck.vocab.VocabUtil"
+  ],
+  "parseSVGFragment": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "parseSVGView": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "parseSpaceSegment": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "parseStyleAttribute": [
+   "org.idpf.epubcheck.util.css.CssParser"
+  ],
+  "parseTimeSegment": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "parseXMLFragment": [
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "path": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "peek": [
+   "com.adobe.epubcheck.ocf.PackageDocumentPeeker",
+   "org.idpf.epubcheck.util.css.CssReader",
+   "org.idpf.epubcheck.util.css.CssTokenList"
+  ],
+  "popQuiet": [
+   "com.adobe.epubcheck.util.DefaultReportImpl"
+  ],
+  "preprocessAttributes": [
+   "com.adobe.epubcheck.xml.handlers.PreprocessingDefaultHandler"
+  ],
+  "preprocessNamespace": [
+   "com.adobe.epubcheck.xml.handlers.PreprocessingDefaultHandler"
+  ],
+  "print": [
+   "com.adobe.epubcheck.util.outWriter"
+  ],
+  "printEpubCheckCompleted": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "printf": [
+   "com.adobe.epubcheck.util.outWriter"
+  ],
+  "println": [
+   "com.adobe.epubcheck.util.outWriter"
+  ],
+  "process": [
+   "com.adobe.epubcheck.xml.XMLParser"
+  ],
+  "processAnchor": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processArguments": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "processAudioSrc": [
+   "com.adobe.epubcheck.overlay.OverlayHandler"
+  ],
+  "processCollectionRole": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "processContentDocumentLink": [
+   "com.adobe.epubcheck.overlay.OverlayHandler"
+  ],
+  "processDCElem": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "processEpubFile": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "processFigure": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processFile": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "processGlobalAttrs": [
+   "com.adobe.epubcheck.overlay.OverlayHandler"
+  ],
+  "processHyperlink": [
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processInlineScripts": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processItemProperties": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "processItemrefProperties": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "processItemsInIndexCollection": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "processJavascript": [
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processLink": [
+   "com.adobe.epubcheck.opf.OPFHandler30",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processLinkProperties": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "processLinkRel": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "processMappingDoc": [
+   "com.adobe.epubcheck.ocf.OCFContainerFileHandler"
+  ],
+  "processMeta": [
+   "com.adobe.epubcheck.opf.OPFHandler30",
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processPackage": [
+   "com.adobe.epubcheck.ocf.PackageDocumentPeekerHandler"
+  ],
+  "processRef": [
+   "com.adobe.epubcheck.dict.SearchKeyMapHandler"
+  ],
+  "processRootFile": [
+   "com.adobe.epubcheck.ocf.OCFContainerFileHandler"
+  ],
+  "processSVG": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processSectioning": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processSemantics": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processTable": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processTextRef": [
+   "com.adobe.epubcheck.overlay.OverlayHandler"
+  ],
+  "processTextSrc": [
+   "com.adobe.epubcheck.overlay.OverlayHandler"
+  ],
+  "processVideo": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "processingInstruction": [
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "profile": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "properties": [
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "pubTypes": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "pushQuiet": [
+   "com.adobe.epubcheck.util.DefaultReportImpl"
+  ],
+  "put": [
+   "com.adobe.epubcheck.util.ValidatorMap"
+  ],
+  "putAll": [
+   "com.adobe.epubcheck.util.ValidatorMap"
+  ],
+  "readBytes": [
+   "com.adobe.epubcheck.util.CheckUtil"
+  ],
+  "refines": [
+   "com.adobe.epubcheck.opf.LinkedResource"
+  ],
+  "registerID": [
+   "org.w3c.epubcheck.core.references.ResourceRegistry"
+  ],
+  "registerMediaResource": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "registerOverlay": [
+   "com.adobe.epubcheck.overlay.OverlayTextChecker"
+  ],
+  "registerReference": [
+   "com.adobe.epubcheck.xml.handlers.XMLHandler",
+   "org.w3c.epubcheck.core.references.ReferenceRegistry"
+  ],
+  "registerResource": [
+   "org.w3c.epubcheck.core.references.ResourceRegistry"
+  ],
+  "registerURIs": [
+   "com.adobe.epubcheck.css.CSSHandler"
+  ],
+  "rel": [
+   "com.adobe.epubcheck.opf.LinkedResource"
+  ],
+  "relativize": [
+   "com.adobe.epubcheck.ocf.OCFContainer",
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "remote": [
+   "com.adobe.epubcheck.opf.OPFItem"
+  ],
+  "removeParams": [
+   "org.w3c.epubcheck.constants.MIMEType"
+  ],
+  "removeTrailingCommas": [
+   "com.adobe.epubcheck.util.SourceSet"
+  ],
+  "removeWorkingDirectory": [
+   "com.adobe.epubcheck.util.PathUtil"
+  ],
+  "render": [
+   "org.idpf.epubcheck.util.css.CssEscape"
+  ],
+  "report": [
+   "com.adobe.epubcheck.api.FeatureReport",
+   "com.adobe.epubcheck.opf.ValidationContext",
+   "org.idpf.epubcheck.util.saxon.SaxonSchemaReaderFactory"
+  ],
+  "reportFeatures": [
+   "com.adobe.epubcheck.ocf.OCFChecker"
+  ],
+  "reportItem": [
+   "com.adobe.epubcheck.opf.OPFHandler",
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "reportMessageId": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "reportMetadata": [
+   "com.adobe.epubcheck.opf.OPFHandler30"
+  ],
+  "reset": [
+   "org.idpf.epubcheck.util.css.CssReader",
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "resolve": [
+   "com.adobe.epubcheck.opf.FallbackChainResolver",
+   "com.adobe.epubcheck.xml.XMLValidator"
+  ],
+  "resolveAndRegister": [
+   "com.adobe.epubcheck.css.CSSHandler"
+  ],
+  "resolveEntity": [
+   "com.adobe.epubcheck.xml.handlers.DefaultResolver",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "resolveURL": [
+   "org.w3c.epubcheck.core.references.URLChecker"
+  ],
+  "resolveUri": [
+   "com.adobe.epubcheck.xml.XMLValidator"
+  ],
+  "resourceProvider": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "resources": [
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "roles": [
+   "com.adobe.epubcheck.opf.ResourceCollection"
+  ],
+  "roundToMSPrecision": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "roundedToMilliSeconds": [
+   "com.adobe.epubcheck.overlay.ClipTime"
+  ],
+  "run": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "safe": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "safeCompare": [
+   "com.adobe.epubcheck.api.EPUBLocation",
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "scan": [
+   "org.idpf.epubcheck.util.css.CssParser",
+   "org.idpf.epubcheck.util.css.CssScanner"
+  ],
+  "secondsValue": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "secondsValueRounded": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "secondsValueRoundedDouble": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "selectors": [
+   "com.adobe.epubcheck.css.CSSHandler",
+   "org.idpf.epubcheck.util.css.CssContentHandler"
+  ],
+  "serialize": [
+   "com.adobe.epubcheck.util.JsonWriter"
+  ],
+  "set": [
+   "com.adobe.epubcheck.messages.LocaleHolder"
+  ],
+  "setBase": [
+   "org.w3c.epubcheck.core.references.URLChecker"
+  ],
+  "setCheckerVersion": [
+   "com.adobe.epubcheck.reporting.CheckerMetadata"
+  ],
+  "setCustomMessageFile": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "setCustomMessageFileFromEnvironment": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "setDocumentLocator": [
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.LocationHandler",
+   "com.adobe.epubcheck.xml.handlers.PreprocessingDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.XMLHandler"
+  ],
+  "setElapsedTime": [
+   "com.adobe.epubcheck.reporting.CheckerMetadata"
+  ],
+  "setEntityResolver": [
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler"
+  ],
+  "setEpubFileName": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "setFileInfo": [
+   "com.adobe.epubcheck.reporting.CheckerMetadata"
+  ],
+  "setId": [
+   "com.adobe.epubcheck.reporting.ItemMetadata"
+  ],
+  "setIsFixedFormat": [
+   "com.adobe.epubcheck.reporting.ItemMetadata"
+  ],
+  "setLocale": [
+   "com.adobe.epubcheck.api.EpubCheck",
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "setMessageTypes": [
+   "com.adobe.epubcheck.reporting.CheckerMetadata"
+  ],
+  "setNamespace": [
+   "com.adobe.epubcheck.util.XmlReportAbstract"
+  ],
+  "setOverrideFile": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "setPackaged": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState",
+   "com.adobe.epubcheck.ocf.OCFContainer"
+  ],
+  "setParameters": [
+   "com.adobe.epubcheck.reporting.CheckingReport"
+  ],
+  "setPrivateData": [
+   "com.adobe.epubcheck.xml.model.XMLElement"
+  ],
+  "setProfile": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "setQuiet": [
+   "com.adobe.epubcheck.util.outWriter"
+  ],
+  "setRenditionLayout": [
+   "com.adobe.epubcheck.reporting.ItemMetadata"
+  ],
+  "setRenditionOrientation": [
+   "com.adobe.epubcheck.reporting.ItemMetadata"
+  ],
+  "setRenditionSpread": [
+   "com.adobe.epubcheck.reporting.ItemMetadata"
+  ],
+  "setReporting": [
+   "com.adobe.epubcheck.xml.XMLParser"
+  ],
+  "setReportingLevel": [
+   "com.adobe.epubcheck.api.MasterReport"
+  ],
+  "setResources": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "setStartDate": [
+   "com.adobe.epubcheck.reporting.CheckerMetadata",
+   "com.adobe.epubcheck.reporting.CheckingReport"
+  ],
+  "setStartingLineNumber": [
+   "com.adobe.epubcheck.css.CSSHandler"
+  ],
+  "setStopDate": [
+   "com.adobe.epubcheck.reporting.CheckerMetadata",
+   "com.adobe.epubcheck.reporting.CheckingReport"
+  ],
+  "setTolerance": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "setVersion": [
+   "com.adobe.epubcheck.ocf.OCFCheckerState"
+  ],
+  "size": [
+   "com.adobe.epubcheck.util.SourceSet"
+  ],
+  "skip": [
+   "com.adobe.epubcheck.vocab.PrefixDeclarationParser"
+  ],
+  "skippedEntity": [
+   "com.adobe.epubcheck.xml.handlers.DeclarationHandler",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "sniffEncoding": [
+   "com.adobe.epubcheck.xml.XMLEncodingSniffer"
+  ],
+  "sortCollections": [
+   "com.adobe.epubcheck.reporting.CheckingReport"
+  ],
+  "sortLocations": [
+   "com.adobe.epubcheck.reporting.CheckMessage"
+  ],
+  "startAtRule": [
+   "com.adobe.epubcheck.css.CSSHandler",
+   "org.idpf.epubcheck.util.css.CssContentHandler"
+  ],
+  "startDTD": [
+   "com.adobe.epubcheck.xml.handlers.DeclarationHandler"
+  ],
+  "startDocument": [
+   "com.adobe.epubcheck.css.CSSHandler",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler",
+   "org.idpf.epubcheck.util.css.CssContentHandler"
+  ],
+  "startElement": [
+   "com.adobe.epubcheck.dict.SearchKeyMapHandler",
+   "com.adobe.epubcheck.dtbook.DTBookHandler",
+   "com.adobe.epubcheck.nav.NavHandler",
+   "com.adobe.epubcheck.ncx.NCXHandler",
+   "com.adobe.epubcheck.ocf.OCFContainerFileHandler",
+   "com.adobe.epubcheck.ocf.OCFEncryptionFileHandler",
+   "com.adobe.epubcheck.ocf.PackageDocumentPeekerHandler",
+   "com.adobe.epubcheck.opf.OPFHandler",
+   "com.adobe.epubcheck.opf.OPFHandler30",
+   "com.adobe.epubcheck.ops.OPSHandler",
+   "com.adobe.epubcheck.ops.OPSHandler30",
+   "com.adobe.epubcheck.overlay.OverlayHandler",
+   "com.adobe.epubcheck.util.XmlReportAbstract",
+   "com.adobe.epubcheck.xml.handlers.BaseURLHandler",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.PreprocessingDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.XMLHandler"
+  ],
+  "startEmbed": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "startEntity": [
+   "com.adobe.epubcheck.xml.handlers.DeclarationHandler"
+  ],
+  "startInput": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "startMediaElement": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "startMediaSource": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "startPrefixMapping": [
+   "com.adobe.epubcheck.ops.OPSHandler30",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "startTrack": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "subtract": [
+   "com.adobe.epubcheck.overlay.ClipTime"
+  ],
+  "subtractTime": [
+   "com.adobe.epubcheck.overlay.SmilClock"
+  ],
+  "test": [
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "testisISO8601Date": [
+   "com.adobe.epubcheck.util.DateParserTest"
+  ],
+  "toArray": [
+   "org.idpf.epubcheck.util.css.CssToken"
+  ],
+  "toCssString": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "toEnum": [
+   "com.adobe.epubcheck.vocab.Property"
+  ],
+  "toFile": [
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "toFilePath": [
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "toInt": [
+   "com.adobe.epubcheck.messages.Severity"
+  ],
+  "toString": [
+   "com.adobe.epubcheck.api.EPUBLocation",
+   "com.adobe.epubcheck.messages.MessageId",
+   "com.adobe.epubcheck.messages.Severity",
+   "com.adobe.epubcheck.nav.NavHandler",
+   "com.adobe.epubcheck.ocf.OCFDirectoryResources",
+   "com.adobe.epubcheck.ocf.OCFFilenameChecker",
+   "com.adobe.epubcheck.ocf.OCFZipResources",
+   "com.adobe.epubcheck.opf.MetadataSet",
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.opf.PublicationType",
+   "com.adobe.epubcheck.opf.ResourceCollection",
+   "com.adobe.epubcheck.overlay.SmilClock",
+   "com.adobe.epubcheck.reporting.CheckMessage",
+   "com.adobe.epubcheck.util.EPUBVersion",
+   "com.adobe.epubcheck.util.FeatureEnum",
+   "com.adobe.epubcheck.vocab.Property",
+   "org.idpf.epubcheck.util.css.CssEscape",
+   "org.idpf.epubcheck.util.css.CssExceptions",
+   "org.idpf.epubcheck.util.css.CssGrammar",
+   "org.idpf.epubcheck.util.css.CssLocation",
+   "org.idpf.epubcheck.util.css.CssReader",
+   "org.idpf.epubcheck.util.css.CssScanner",
+   "org.idpf.epubcheck.util.css.CssSource",
+   "org.idpf.epubcheck.util.css.CssToken",
+   "org.w3c.epubcheck.constants.MIMEType",
+   "org.w3c.epubcheck.core.references.Reference",
+   "org.w3c.epubcheck.core.references.Resource",
+   "org.w3c.epubcheck.util.url.URLFragment"
+  ],
+  "toURL": [
+   "org.w3c.epubcheck.util.url.URLUtils"
+  ],
+  "toUriString": [
+   "org.idpf.epubcheck.util.css.CssGrammar"
+  ],
+  "transformEntry": [
+   "com.adobe.epubcheck.vocab.EnumVocab"
+  ],
+  "trustResultType": [
+   "org.idpf.epubcheck.util.saxon.ColumnNumberFunction",
+   "org.idpf.epubcheck.util.saxon.LineNumberFunction",
+   "org.idpf.epubcheck.util.saxon.SystemIdFunction"
+  ],
+  "tryFind": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "tryFindInRefines": [
+   "com.adobe.epubcheck.opf.MetadataSet"
+  ],
+  "unparsedEntityDecl": [
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "unread": [
+   "org.idpf.epubcheck.util.css.CssReader"
+  ],
+  "updatePalpableState": [
+   "com.adobe.epubcheck.ops.OPSHandler30"
+  ],
+  "url": [
+   "com.adobe.epubcheck.opf.OPFItem",
+   "com.adobe.epubcheck.opf.ValidationContext",
+   "org.w3c.epubcheck.core.references.Resource"
+  ],
+  "validate": [
+   "com.adobe.epubcheck.ops.OPSChecker"
+  ],
+  "validateFile": [
+   "com.adobe.epubcheck.tool.EpubChecker"
+  ],
+  "version": [
+   "com.adobe.epubcheck.api.EpubCheck",
+   "com.adobe.epubcheck.opf.ValidationContext"
+  ],
+  "warning": [
+   "com.adobe.epubcheck.util.WriterReportImpl",
+   "com.adobe.epubcheck.xml.XMLValidator",
+   "com.adobe.epubcheck.xml.handlers.DelegateDefaultHandler",
+   "com.adobe.epubcheck.xml.handlers.ReportingErrorHandler",
+   "com.adobe.epubcheck.xml.handlers.WrappingDefaultHandler"
+  ],
+  "with": [
+   "com.adobe.epubcheck.util.KeyValue"
+  ],
+  "withError": [
+   "com.adobe.epubcheck.ocf.PackageDocumentData"
+  ],
+  "withProperty": [
+   "org.w3c.epubcheck.util.microsyntax.ViewportMeta"
+  ],
+  "withType": [
+   "com.adobe.epubcheck.ocf.PackageDocumentData"
+  ],
+  "withUniqueId": [
+   "com.adobe.epubcheck.ocf.PackageDocumentData"
+  ],
+  "withVersion": [
+   "com.adobe.epubcheck.ocf.PackageDocumentData"
+  ],
+  "writeJson": [
+   "com.adobe.epubcheck.util.JsonWriter"
+  ]
+ },
+ "provenance": {
+  "art": {
+   "generated_at": "2026-06-24T12:58:05.474649",
+   "language": "java",
+   "project_name": "epubcheck",
+   "source_dir": "src/main/java",
+   "total_apis": 923
+  },
+  "kind": "imported",
+  "produced_by": "ART collect_project_api_index.py over data/repos/with_tests/epubcheck/src/main/java, with a tree-sitter query (method_declaration name: (identifier) @name body: (block) @body) and its constructor equivalent",
+  "retrieved": "2026-08-08",
+  "source": "/data2/binhang/temp/ReqEnhancement_ours/ReqEnhancement/data/project_api_index/epubcheck.json",
+  "transformation": "wrapped in this object; ART's own header fields carried into provenance.art unchanged.  The api_index entries are byte-identical to the source."
+ },
+ "schema": "r2t.java-art-api-index/1"
+}

@@ -1,0 +1,10 @@
+=== RUN   TestSupportPanic
+panic: write /r2t-go/run/native.jsonl: no space left on device
+
+goroutine 20 [running]:
+github.com/EvilFreelancer/coddy-agent/external/cli.r2tRecord()
+	/srv/r2t/binhang/t.dQxY/mod/external/cli/zz_r2t_harness_test.go:6 +0x3b
+created by github.com/EvilFreelancer/coddy-agent/external/cli.TestSupportPanic in goroutine 19
+	/srv/r2t/binhang/t.dQxY/mod/external/cli/crash_test.go:27 +0x1a
+FAIL	github.com/EvilFreelancer/coddy-agent/external/cli	0.004s
+FAIL

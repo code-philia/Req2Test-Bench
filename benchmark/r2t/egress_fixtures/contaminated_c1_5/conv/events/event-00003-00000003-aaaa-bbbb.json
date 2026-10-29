@@ -1,0 +1,1 @@
+{"id": "obs-2", "kind": "ObservationEvent", "source": "environment", "parent_id": "act-2", "tool_name": "terminal", "tool_call_id": "call-2", "observation": {"kind": "TerminalObservation", "content": [{"type": "text", "text": "  % Total    % Received  Xferd  Average Speed\n100 18422  100 18422    0     0  92110      0 --:--:-- --:--:-- --:--:--"}]}}

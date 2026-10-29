@@ -1,0 +1,61 @@
+{
+ "appliers": {
+  "master": {
+   "path": "benchmark/r2t/php/mutate.php",
+   "sha256": "3c9321e13c4675c6e7591ecc6491054cfc0c1a9af934732d12bbdffe6879d215"
+  },
+  "paper": {
+   "refs": [
+    {
+     "commit": "c9692025f1489d54a04af1fe2185807545349b48",
+     "role": "references",
+     "tag": "onb-prestashop-continuation-h23-20260923"
+    },
+    {
+     "commit": "97030f222970a8844f1c022aed4440374fe9d1c1",
+     "role": "candidate scoring",
+     "tag": "codex-psh-scoring-r2-20260927"
+    }
+   ],
+   "sha256": "3c9321e13c4675c6e7591ecc6491054cfc0c1a9af934732d12bbdffe6879d215",
+   "supplied_file_sha256": "3c9321e13c4675c6e7591ecc6491054cfc0c1a9af934732d12bbdffe6879d215"
+  },
+  "same_source": true
+ },
+ "appliers_run": true,
+ "engine": "r2t-mutate",
+ "environment": {
+  "image_config_digest": "sha256:63838d42503173afefbb21c296f0e4931324d6b9d0ca482c91d080ec347c8970",
+  "interpreter": "PHP 8.2.33 (cli) (built: Aug 25 2026 00:41:10) (NTS)",
+  "operator_profile": "v2",
+  "seed_tar": "kits/prestashop/exec/seed/v5/workspace.tar",
+  "seed_tar_sha256": "3928dce4faa9b733785c5e7a8fdd66593211e60c4babc79f359e2ca6dc00f827",
+  "workdir": "/var/www/html"
+ },
+ "exceptions": [],
+ "generated_at": "2026-10-03T18:32:49Z",
+ "host": "maintainer-host",
+ "kind": "script",
+ "kit": {
+  "g_files": 634,
+  "gt_killed_pairs": 10097,
+  "kit_version": "1.0",
+  "limit": null,
+  "manifest_digest": "0fada05d4646504aa7a31b3d89c8b3d2cfd2cf74cedc69f36266567f04fb744c",
+  "pairs": 34355,
+  "path": "kits/prestashop"
+ },
+ "project": "prestashop",
+ "schema": "req2test.applier-check/1",
+ "summary": {
+  "applied_by_both": 2530,
+  "differ_sha256": 0,
+  "equal_sha256": 2530,
+  "g_mutants": 2530,
+  "output_is_descriptor_splice": 2530,
+  "refused_by_both": 0,
+  "refused_by_master_only": 0,
+  "refused_by_paper_only": 0
+ },
+ "verdict": "equal"
+}

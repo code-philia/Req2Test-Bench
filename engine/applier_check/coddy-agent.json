@@ -1,0 +1,65 @@
+{
+ "appliers": {
+  "master": {
+   "catalogue_builder": {
+    "path": "benchmark/r2t/go/mutate.go",
+    "sha256": "c9f4f072593035e523ebe0c5469473e206feb6385ca774f9bf8e158bc7697810"
+   },
+   "identity_constants_match_master": true,
+   "runtime": "the kit seed's _bench/go/support/mutate.go",
+   "sha256": "d89899e35b314c836b3ba073ffd11d3f80cdd69d99f870c78e8395c3a4b4862b"
+  },
+  "paper": {
+   "refs": [
+    {
+     "commit": "7c1f4e3fc21dbbdf033c217b97ec02291ff8f86e",
+     "role": "references; route-B candidate scoring",
+     "tag": "coddy-agent-fullgold-attempt4-v1-20260929"
+    },
+    {
+     "commit": "f6e7f5648f22df10c0ce6390d9b166423a902f75",
+     "role": "references (supplement); route-B candidate scoring",
+     "tag": "coddy-agent-fullgold-attempt4-supplement-v4-20260930"
+    }
+   ],
+   "sha256": "d89899e35b314c836b3ba073ffd11d3f80cdd69d99f870c78e8395c3a4b4862b"
+  },
+  "same_source": true
+ },
+ "appliers_run": false,
+ "engine": "r2t-mutate-go",
+ "environment": {
+  "seed_applier": {
+   "identity_constants": {
+    "ENGINE": "r2t-mutate-go",
+    "ENGINE_VERSION": "1.0",
+    "ENUMERATOR_REV": "r2t-mutate-go/typed-validity-1"
+   },
+   "path": "_bench/go/support/mutate.go",
+   "sha256": "d89899e35b314c836b3ba073ffd11d3f80cdd69d99f870c78e8395c3a4b4862b"
+  },
+  "seed_tar": "kits/coddy-agent/exec/seed/v1/workspace.tar",
+  "seed_tar_sha256": "a0314b326e3fdb52b3b93e0c829a634fab262267caab2ce7c9a8de25722ee655"
+ },
+ "exceptions": [],
+ "generated_at": "2026-10-03T18:32:03Z",
+ "host": "maintainer-host",
+ "kind": "splice",
+ "kit": {
+  "g_files": 236,
+  "gt_killed_pairs": 56539,
+  "kit_version": "1.0",
+  "limit": null,
+  "manifest_digest": "612d35069347ce7d394a51487664ac5d1f77ae88635f00970af028de660bc49f",
+  "pairs": 227886,
+  "path": "kits/coddy-agent"
+ },
+ "project": "coddy-agent",
+ "schema": "req2test.applier-check/1",
+ "summary": {
+  "g_mutants": 4950,
+  "splice_refused": 0,
+  "splices_on_seed": 4950
+ },
+ "verdict": "equal"
+}

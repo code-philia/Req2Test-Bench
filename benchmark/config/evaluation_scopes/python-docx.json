@@ -1,0 +1,13 @@
+{
+  "asset_index_sha256": "b3b4c3a414a4b761e7918fbe28e8c7204c82ffeda45335f2fbb2bce84cbb2006",
+  "declared_subset": null,
+  "mutation_validation_sha256": null,
+  "schema": "r2t.mutation-evaluation-scope/1",
+  "scope": {
+    "id": "python-docx-full239-single-observation-v1",
+    "map_release_sha256": "4626a2857364014fe6d0f397305c0ac28b41fc0115d058b232e3e440fa5f032d",
+    "mutation_map_sha256": "cf3001c78ebfc5716256e0623692ccf549bf54e3d0c7574065618cb128d19d91",
+    "population_id": "python-docx-v1",
+    "task_items_sha256": "9358e4144a0abe31762747edaa8874c7816ff4ec05a10162f1adb1d64895b67d"
+  }
+}

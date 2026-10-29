@@ -1,0 +1,2612 @@
+{
+ "schema": "req2test.leaderboard/2",
+ "release": "1.1",
+ "complete": true,
+ "provenance": {
+  "paper_board": {
+   "path": "req2test/data/leaderboard_paper.json",
+   "sha256": "470f0487d5ad69abff29a44ecafe0758d4a172c059f793c9c9ee3421740aa2a9"
+  },
+  "v2_cells_sha256": "dbbc1ac1a2ce61c373411cfc1b3f9c1409d950301aad114e627f31bc36c020b8",
+  "aggregation": "req2test.aggregate leaderboard"
+ },
+ "metrics": [
+  "pass_at_1",
+  "kill_complete_at_1",
+  "api_f1",
+  "coverage_j",
+  "mutation_recall"
+ ],
+ "notes": {
+  "†": "† Results reported in the [paper](https://arxiv.org/abs/2610.36584), on the 2,051 eval instances, generated without the runtime packs, so the agent could not run the application.",
+  "‡": "‡ Algorand SDK, Kapua and 135 PrestaShop instances ran on DeepSeek's 17 October 2026 update of DeepSeek-V4.1-Flash."
+ },
+ "rows": [
+  {
+   "id": "codex-ds-runtime",
+   "system": "Codex CLI",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "high",
+   "arm": "codex-ds-runtime",
+   "results": "1.1",
+   "mark": "‡",
+   "views": {
+    "th": {
+     "pass_at_1": 0.9321734918918019,
+     "kill_complete_at_1": 0.3638396823435867,
+     "api_f1": 0.7103684565520019,
+     "coverage_j": 0.8531814620933157,
+     "mutation_recall": 0.8593543373465474,
+     "projects": 8
+    }
+   },
+   "pending": []
+  },
+  {
+   "id": "codex-sol61",
+   "system": "Codex CLI",
+   "model": "GPT-6.1 Sol",
+   "reasoning": "high",
+   "arm": "codex-sol61",
+   "results": "1.1",
+   "mark": null,
+   "views": {
+    "th": {
+     "pass_at_1": 0.871986967826601,
+     "kill_complete_at_1": 0.35546551461174786,
+     "api_f1": 0.6490570448223343,
+     "coverage_j": 0.7755919594346252,
+     "mutation_recall": 0.7936049043115787,
+     "projects": 8
+    }
+   },
+   "pending": []
+  },
+  {
+   "id": "aider-ds",
+   "system": "Aider",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "off",
+   "arm": "aider",
+   "results": "paper",
+   "mark": "†",
+   "views": {
+    "th": {
+     "pass_at_1": 0.0973002430952261,
+     "kill_complete_at_1": 0.044611638568581885,
+     "api_f1": 0.06550615065072489,
+     "coverage_j": 0.07990692616166252,
+     "mutation_recall": 0.08481215253560334,
+     "projects": 8
+    }
+   },
+   "pending": []
+  },
+  {
+   "id": "openhands-ds",
+   "system": "OpenHands",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "off",
+   "arm": "openhands",
+   "results": "paper",
+   "mark": "†",
+   "views": {
+    "th": {
+     "pass_at_1": 0.3270430683851072,
+     "kill_complete_at_1": 0.18134147184009528,
+     "api_f1": 0.2636475246803476,
+     "coverage_j": 0.30865565513507237,
+     "mutation_recall": 0.3124238738897649,
+     "projects": 8
+    }
+   },
+   "pending": []
+  },
+  {
+   "id": "claude-code-ds",
+   "system": "Claude Code",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "high",
+   "arm": "claude-code-deepseek-flash",
+   "results": "paper",
+   "mark": "†",
+   "views": {
+    "th": {
+     "pass_at_1": 0.8053735799695702,
+     "kill_complete_at_1": 0.3443357286835257,
+     "api_f1": 0.6197778156643485,
+     "coverage_j": 0.7322676963837252,
+     "mutation_recall": 0.7333162721578853,
+     "projects": 8
+    }
+   },
+   "pending": []
+  },
+  {
+   "id": "codex-ds-off",
+   "system": "Codex CLI",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "off",
+   "arm": "codex2-deepseek-flash-ro",
+   "results": "paper",
+   "mark": "†",
+   "views": {
+    "th": {
+     "pass_at_1": 0.5764869488798132,
+     "kill_complete_at_1": 0.23649371432727218,
+     "api_f1": 0.419231181785672,
+     "coverage_j": 0.5310020063615223,
+     "mutation_recall": 0.5342339407427218,
+     "projects": 8
+    }
+   },
+   "pending": []
+  },
+  {
+   "id": "codex-ds",
+   "system": "Codex CLI",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "high",
+   "arm": "codex2-deepseek-flash",
+   "results": "paper",
+   "mark": "†",
+   "views": {
+    "th": {
+     "pass_at_1": 0.8277999922772172,
+     "kill_complete_at_1": 0.3380733738437023,
+     "api_f1": 0.6423438061316511,
+     "coverage_j": 0.7587949324251446,
+     "mutation_recall": 0.7627442489118276,
+     "projects": 8
+    }
+   },
+   "pending": []
+  },
+  {
+   "id": "codex-luna",
+   "system": "Codex CLI",
+   "model": "GPT-6 Luna",
+   "reasoning": "high",
+   "arm": "codex2-gpt-6-luna",
+   "results": "paper",
+   "mark": "†",
+   "views": {
+    "th": {
+     "pass_at_1": 0.6618463587169789,
+     "kill_complete_at_1": 0.28345947587427,
+     "api_f1": 0.49902758318859364,
+     "coverage_j": 0.5963646887835053,
+     "mutation_recall": 0.6056221047634162,
+     "projects": 8
+    }
+   },
+   "pending": []
+  },
+  {
+   "id": "codex-sol",
+   "system": "Codex CLI",
+   "model": "GPT-6 Sol",
+   "reasoning": "high",
+   "arm": "codex2-gpt-6-sol",
+   "results": "paper",
+   "mark": "†",
+   "views": {
+    "th": {
+     "pass_at_1": 0.7354646122865282,
+     "kill_complete_at_1": 0.3132202399959001,
+     "api_f1": 0.5416211120184705,
+     "coverage_j": 0.6525245244080183,
+     "mutation_recall": 0.6608634548606542,
+     "projects": 8
+    }
+   },
+   "pending": []
+  },
+  {
+   "id": "claude-code-sonnet55",
+   "system": "Claude Code",
+   "model": "Claude Sonnet 5.5",
+   "reasoning": "high",
+   "arm": "claude-code-sonnet-5-5",
+   "results": "paper",
+   "mark": "†",
+   "views": {
+    "th": {
+     "pass_at_1": 0.8088964034918921,
+     "kill_complete_at_1": 0.35923750143539723,
+     "api_f1": 0.6168238342895931,
+     "coverage_j": 0.7599419292091247,
+     "mutation_recall": 0.7555015013102478,
+     "projects": 8
+    }
+   },
+   "pending": []
+  }
+ ],
+ "cells": [
+  {
+   "project": "python-docx",
+   "arm": "codex-ds-runtime",
+   "view": "th",
+   "population": 237,
+   "pass": 236,
+   "pass_den": 237,
+   "kc": 129,
+   "api_f1": 0.8134826056050541,
+   "api_n": 236,
+   "cov_j": 0.8895329145202077,
+   "mut_recall": 0.9645402198478668,
+   "values": {
+    "pass_at_1": 0.9957805907172996,
+    "kill_complete_at_1": 0.5443037974683544,
+    "api_f1": 0.8100501895476488,
+    "coverage_j": 0.8857796110834135,
+    "mutation_recall": 0.9604704298907027
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex-ds-runtime",
+   "view": "th",
+   "population": 111,
+   "pass": 95,
+   "pass_den": 111,
+   "kc": 60,
+   "api_f1": 0.8532499199122027,
+   "api_n": 95,
+   "cov_j": 0.9513490827122362,
+   "mut_recall": 0.9474495389292421,
+   "values": {
+    "pass_at_1": 0.8558558558558559,
+    "kill_complete_at_1": 0.5405405405405406,
+    "api_f1": 0.7302589404653986,
+    "coverage_j": 0.8142176834023642,
+    "mutation_recall": 0.8108802360205225
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex-ds-runtime",
+   "view": "th",
+   "population": 274,
+   "pass": 269,
+   "pass_den": 274,
+   "kc": 66,
+   "api_f1": 0.8231636482014056,
+   "api_n": 266,
+   "cov_j": 0.8964929402763279,
+   "mut_recall": 0.9141683746112039,
+   "values": {
+    "pass_at_1": 0.9817518248175182,
+    "kill_complete_at_1": 0.24087591240875914,
+    "api_f1": 0.8079761270168779,
+    "coverage_j": 0.8801335800523074,
+    "mutation_recall": 0.8974864699650141
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex-ds-runtime",
+   "view": "th",
+   "population": 330,
+   "pass": 298,
+   "pass_den": 330,
+   "kc": 203,
+   "api_f1": 0.8100931939340751,
+   "api_n": 298,
+   "cov_j": 0.9749720944576787,
+   "mut_recall": 0.9744042953020134,
+   "values": {
+    "pass_at_1": 0.9030303030303031,
+    "kill_complete_at_1": 0.6151515151515151,
+    "api_f1": 0.7315387024010739,
+    "coverage_j": 0.8804293459042067,
+    "mutation_recall": 0.8799166060606061
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex-ds-runtime",
+   "view": "th",
+   "population": 98,
+   "pass": 95,
+   "pass_den": 98,
+   "kc": 22,
+   "api_f1": 0.5805383022774327,
+   "api_n": 23,
+   "cov_j": 0.9754788182617399,
+   "mut_recall": 0.926979,
+   "values": {
+    "pass_at_1": 0.9693877551020408,
+    "kill_complete_at_1": 0.22448979591836735,
+    "api_f1": 0.5340952380952381,
+    "coverage_j": 0.9456172217843397,
+    "mutation_recall": 0.8986020918367348
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex-ds-runtime",
+   "view": "th",
+   "population": 311,
+   "pass": 310,
+   "pass_den": 311,
+   "kc": 129,
+   "api_f1": 0.8126016008172381,
+   "api_n": 245,
+   "cov_j": 0.9790776036388035,
+   "mut_recall": 0.9666069468160687,
+   "values": {
+    "pass_at_1": 0.9967845659163987,
+    "kill_complete_at_1": 0.41479099678456594,
+    "api_f1": 0.8092983422773306,
+    "coverage_j": 0.9759294441415727,
+    "mutation_recall": 0.9634988858938306
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex-ds-runtime",
+   "view": "th",
+   "population": 348,
+   "pass": 299,
+   "pass_den": 343,
+   "kc": 97,
+   "api_f1": 0.7131052851462077,
+   "api_n": 299,
+   "cov_j": 0.8803413911368609,
+   "mut_recall": 0.924759,
+   "values": {
+    "pass_at_1": 0.8717201166180758,
+    "kill_complete_at_1": 0.27873563218390807,
+    "api_f1": 0.6216282223286184,
+    "coverage_j": 0.7674113001455435,
+    "mutation_recall": 0.8061310233236152
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex-ds-runtime",
+   "view": "th",
+   "population": 328,
+   "pass": 287,
+   "pass_den": 325,
+   "kc": 17,
+   "api_f1": 0.7229050655585222,
+   "api_n": 286,
+   "cov_j": 0.7654299331904283,
+   "mut_recall": 0.7449509081147727,
+   "values": {
+    "pass_at_1": 0.8830769230769231,
+    "kill_complete_at_1": 0.051829268292682924,
+    "api_f1": 0.6381018902838282,
+    "coverage_j": 0.6759335102327781,
+    "mutation_recall": 0.6578489557813532
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex-sol61",
+   "view": "th",
+   "population": 237,
+   "pass": 212,
+   "pass_den": 237,
+   "kc": 113,
+   "api_f1": 0.7835919177807052,
+   "api_n": 212,
+   "cov_j": 0.7820184248304891,
+   "mut_recall": 0.8475323344104864,
+   "values": {
+    "pass_at_1": 0.8945147679324894,
+    "kill_complete_at_1": 0.4767932489451477,
+    "api_f1": 0.7009345424873819,
+    "coverage_j": 0.6995270298061759,
+    "mutation_recall": 0.7581301894304772
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex-sol61",
+   "view": "th",
+   "population": 111,
+   "pass": 86,
+   "pass_den": 111,
+   "kc": 47,
+   "api_f1": 0.8168093022301574,
+   "api_n": 86,
+   "cov_j": 0.9258377349162222,
+   "mut_recall": 0.9410198390537076,
+   "values": {
+    "pass_at_1": 0.7747747747747747,
+    "kill_complete_at_1": 0.42342342342342343,
+    "api_f1": 0.6328432431693111,
+    "coverage_j": 0.7173157225477037,
+    "mutation_recall": 0.729078433861431
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex-sol61",
+   "view": "th",
+   "population": 274,
+   "pass": 262,
+   "pass_den": 274,
+   "kc": 79,
+   "api_f1": 0.8020602389376962,
+   "api_n": 259,
+   "cov_j": 0.9063232153438996,
+   "mut_recall": 0.9372284587417857,
+   "values": {
+    "pass_at_1": 0.9562043795620438,
+    "kill_complete_at_1": 0.28832116788321166,
+    "api_f1": 0.7665446564017097,
+    "coverage_j": 0.8666302278105901,
+    "mutation_recall": 0.8961819568990798
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex-sol61",
+   "view": "th",
+   "population": 330,
+   "pass": 293,
+   "pass_den": 330,
+   "kc": 198,
+   "api_f1": 0.7766717703499082,
+   "api_n": 293,
+   "cov_j": 0.9669184381649563,
+   "mut_recall": 0.9793747030716724,
+   "values": {
+    "pass_at_1": 0.8878787878787879,
+    "kill_complete_at_1": 0.6,
+    "api_f1": 0.6895903900379489,
+    "coverage_j": 0.858506370855552,
+    "mutation_recall": 0.8695660242424242
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex-sol61",
+   "view": "th",
+   "population": 98,
+   "pass": 76,
+   "pass_den": 98,
+   "kc": 28,
+   "api_f1": 0.8388888888888889,
+   "api_n": 12,
+   "cov_j": 0.9790339379342533,
+   "mut_recall": 0.964748,
+   "values": {
+    "pass_at_1": 0.7755102040816326,
+    "kill_complete_at_1": 0.2857142857142857,
+    "api_f1": 0.4026666666666667,
+    "coverage_j": 0.7592508090102372,
+    "mutation_recall": 0.7481719183673469
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex-sol61",
+   "view": "th",
+   "population": 311,
+   "pass": 284,
+   "pass_den": 311,
+   "kc": 116,
+   "api_f1": 0.8136448360034578,
+   "api_n": 226,
+   "cov_j": 0.9808649388659942,
+   "mut_recall": 0.9726037589676562,
+   "values": {
+    "pass_at_1": 0.9131832797427653,
+    "kill_complete_at_1": 0.3729903536977492,
+    "api_f1": 0.74749484933651,
+    "coverage_j": 0.8957094618583356,
+    "mutation_recall": 0.8881654905042263
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex-sol61",
+   "view": "th",
+   "population": 348,
+   "pass": 299,
+   "pass_den": 348,
+   "kc": 121,
+   "api_f1": 0.7343791111722564,
+   "api_n": 299,
+   "cov_j": 0.8975475212182319,
+   "mut_recall": 0.946437,
+   "values": {
+    "pass_at_1": 0.8591954022988506,
+    "kill_complete_at_1": 0.34770114942528735,
+    "api_f1": 0.6309751558635192,
+    "coverage_j": 0.7711687035754349,
+    "mutation_recall": 0.8131743189655173
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex-sol61",
+   "view": "th",
+   "population": 328,
+   "pass": 300,
+   "pass_den": 328,
+   "kc": 16,
+   "api_f1": 0.6795988008672579,
+   "api_n": 299,
+   "cov_j": 0.6960459026808499,
+   "mut_recall": 0.7066988530961917,
+   "values": {
+    "pass_at_1": 0.9146341463414634,
+    "kill_complete_at_1": 0.04878048780487805,
+    "api_f1": 0.6214068546156273,
+    "coverage_j": 0.6366273500129724,
+    "mutation_recall": 0.6463709022221266
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "aider",
+   "view": "th",
+   "population": 111,
+   "pass": 4,
+   "pass_den": 111,
+   "kc": 2,
+   "api_f1": 0.697,
+   "api_n": 4,
+   "cov_j": 0.888,
+   "mut_recall": 0.8571428571428572,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/checked-interfaces-v2/paper-cells/algorand-sdk__aider__target_hidden.json",
+    "sha256": "a5bff3a1060b6ae314801b363096f14e99010bd08e672ce605d4520ed2086240"
+   },
+   "values": {
+    "pass_at_1": 0.036036036036036036,
+    "kill_complete_at_1": 0.018018018018018018,
+    "api_f1": 0.025117117117117116,
+    "coverage_j": 0.032,
+    "mutation_recall": 0.03088803088803089
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "openhands",
+   "view": "th",
+   "population": 111,
+   "pass": 75,
+   "pass_den": 111,
+   "kc": 48,
+   "api_f1": 0.845,
+   "api_n": 75,
+   "cov_j": 0.9460077307782536,
+   "mut_recall": 0.9369466379022162,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/checked-interfaces-v2/paper-cells/algorand-sdk__openhands__target_hidden.json",
+    "sha256": "92bc0f91c33c15aeecdc50d711dc3948b6873ed80b4076f19968a9dc40e205f0"
+   },
+   "values": {
+    "pass_at_1": 0.6756756756756757,
+    "kill_complete_at_1": 0.43243243243243246,
+    "api_f1": 0.5709459459459459,
+    "coverage_j": 0.6391944126880093,
+    "mutation_recall": 0.6330720526366326
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "aider",
+   "view": "th",
+   "population": 334,
+   "pass": 1,
+   "pass_den": 333,
+   "kc": 0,
+   "api_f1": 0.5,
+   "api_n": 1,
+   "cov_j": 0.3275862068965517,
+   "mut_recall": 0.1875,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coreshop/aider-ds__th/h25-cell.json",
+    "sha256": "b64d6fa93ed2d54c4ef5555f70eead378120a3f8670eaaf339be3041586bc555",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "b2cd42a4d113a4f2f1082edc08d018b67891cec78bae762f42d9507c952ffd47"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.003003003003003003,
+    "kill_complete_at_1": 0.0,
+    "api_f1": 0.0015060105150195239,
+    "coverage_j": 0.0009837423630527078,
+    "mutation_recall": 0.0005630630630630631
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "openhands",
+   "view": "th",
+   "population": 334,
+   "pass": 5,
+   "pass_den": 333,
+   "kc": 4,
+   "api_f1": 0.9130952380952381,
+   "api_n": 5,
+   "cov_j": 0.9471741764900298,
+   "mut_recall": 0.9444444444444444,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coreshop/openhands-ds__th/h25-cell.json",
+    "sha256": "74eb93e9de57566537e489437a6ebd4c84a5996ca926bd259be6b46f6841516a",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "n/a",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "8d98f6d6c68c44c9ab8d2b873fbb2fd73a564ba34db1750637b4118b6735e016"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.015015015015015015,
+    "kill_complete_at_1": 0.011976047904191617,
+    "api_f1": 0.013751310297856844,
+    "coverage_j": 0.014221834481832278,
+    "mutation_recall": 0.014180847514180847
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "aider",
+   "view": "th",
+   "population": 237,
+   "pass": 101,
+   "pass_den": 237,
+   "kc": 39,
+   "api_f1": 0.7822294265216101,
+   "api_n": 101,
+   "cov_j": 0.7753057061250443,
+   "mut_recall": 0.8817243791782906,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/checked-interfaces-v2/paper-cells/python-docx__aider__target_hidden.json",
+    "sha256": "afbef21e70cce788409760c5d634e60c46292c823ca04e3c21efb4865ad35f6c"
+   },
+   "values": {
+    "pass_at_1": 0.42616033755274263,
+    "kill_complete_at_1": 0.16455696202531644,
+    "api_f1": 0.33335515645013764,
+    "coverage_j": 0.33040454142881637,
+    "mutation_recall": 0.37575595905910275
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "openhands",
+   "view": "th",
+   "population": 237,
+   "pass": 180,
+   "pass_den": 237,
+   "kc": 106,
+   "api_f1": 0.8592901067257411,
+   "api_n": 180,
+   "cov_j": 0.9228531334565206,
+   "mut_recall": 0.9636974590478727,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/checked-interfaces-v2/paper-cells/python-docx__openhands__target_hidden.json",
+    "sha256": "7cdd84c351d8ce2002d60263cc7dc683cd293b6af88159efdc8c90872c1fe871"
+   },
+   "values": {
+    "pass_at_1": 0.759493670886076,
+    "kill_complete_at_1": 0.4472573839662447,
+    "api_f1": 0.6526253975132211,
+    "coverage_j": 0.7009011140176106,
+    "mutation_recall": 0.7319221207958527
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "aider",
+   "view": "th",
+   "population": 319,
+   "pass": 0,
+   "pass_den": 308,
+   "kc": 0,
+   "api_f1": null,
+   "api_n": null,
+   "cov_j": null,
+   "mut_recall": null,
+   "source": {
+    "scoring": "re-scored",
+    "path": "sylius/aider-ds__th/h25-cell.json",
+    "sha256": "82a5090958d40033e26e1898a4d29fd805fc4848b2d38eb5e68194b8b6a749cc",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": []
+   },
+   "values": {
+    "pass_at_1": 0.0,
+    "kill_complete_at_1": 0.0,
+    "api_f1": 0.0,
+    "coverage_j": 0.0,
+    "mutation_recall": 0.0
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "openhands",
+   "view": "th",
+   "population": 319,
+   "pass": 47,
+   "pass_den": 316,
+   "kc": 19,
+   "api_f1": 0.8192118226600985,
+   "api_n": 29,
+   "cov_j": 0.9814812853131457,
+   "mut_recall": 0.9753957503361623,
+   "source": {
+    "scoring": "re-scored",
+    "path": "sylius/openhands-ds__th/h25-cell.json",
+    "sha256": "2913c2686899de22e8167204ffc6513cafa2e7cab66377489b64072b1d68b7c7",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "792142c0f7452aa8a93e3169c36c06c3ad7b407fe8e999adb0907bd4e888ba4f"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.14873417721518986,
+    "kill_complete_at_1": 0.05956112852664577,
+    "api_f1": 0.09516938631992881,
+    "coverage_j": 0.14597981142315775,
+    "mutation_recall": 0.14507468438544185
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 111,
+   "pass": 103,
+   "pass_den": 110,
+   "kc": 70,
+   "api_f1": 0.8723606248155397,
+   "api_n": 103,
+   "cov_j": 0.9566397254163864,
+   "mut_recall": 0.9490370371840037,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/algorand-sdk__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "a8ac6fa9802a1451425b0835e118ef126708186538d01c6e4970dc2a02a43ef5"
+   },
+   "values": {
+    "pass_at_1": 0.9363636363636364,
+    "kill_complete_at_1": 0.6306306306306306,
+    "api_f1": 0.8168467668727326,
+    "coverage_j": 0.8957626519807982,
+    "mutation_recall": 0.8886437711813853
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 274,
+   "pass": 221,
+   "pass_den": 272,
+   "kc": 56,
+   "api_f1": 0.8046251479966339,
+   "api_n": 218,
+   "cov_j": 0.8913591224931919,
+   "mut_recall": 0.8950692938140592,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coddy-agent/claude-code-ds__th/h25-cell.json",
+    "sha256": "27b5c7b80409e13d859bf0515e77f88be66bec1e487e913069d124bee909e76f",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "962dda4b05ae10a3769fae7c7f9db3de370a0cd1130bee6046aa97e235b83203"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.8125,
+    "kill_complete_at_1": 0.20437956204379562,
+    "api_f1": 0.6520223211978365,
+    "coverage_j": 0.7242292870257184,
+    "mutation_recall": 0.7272438012239232
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 334,
+   "pass": 240,
+   "pass_den": 333,
+   "kc": 15,
+   "api_f1": 0.703044627590296,
+   "api_n": 240,
+   "cov_j": 0.6519850510863059,
+   "mut_recall": 0.6232039688638451,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coreshop/claude-code-ds__th/h25-cell.json",
+    "sha256": "c7505f68d322fb000232d1153be52847cf29ff7db1be4fe4d1fc08e61830ba94",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "n/a",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "0253151e5a09c030b4c09d6de7ad6f30de2c3065b1528d522489ea6efb73c352"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7207207207207207,
+    "kill_complete_at_1": 0.04491017964071856,
+    "api_f1": 0.5082204488059061,
+    "coverage_j": 0.46989913591805826,
+    "mutation_recall": 0.44915601359556406
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 98,
+   "pass": 69,
+   "pass_den": 97,
+   "kc": 21,
+   "api_f1": 0.6820512820512821,
+   "api_n": 13,
+   "cov_j": 0.9801704267332697,
+   "mut_recall": 0.942694,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/e-petitions__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "aac63e25d2399bb642ae86589b353a2db803e4736a85c22eee0bf9172bddaea4"
+   },
+   "values": {
+    "pass_at_1": 0.711340206185567,
+    "kill_complete_at_1": 0.21428571428571427,
+    "api_f1": 0.35832302405498284,
+    "coverage_j": 0.6972346334494394,
+    "mutation_recall": 0.6705761443298969
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 330,
+   "pass": 297,
+   "pass_den": 329,
+   "kc": 205,
+   "api_f1": 0.8277400609049363,
+   "api_n": 297,
+   "cov_j": 0.9786837053911954,
+   "mut_recall": 0.97859,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/kapua__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "68f65163244fb15a5a2a9d7ba69df40050d8e3443edf1ef52c1164633bcd6df5"
+   },
+   "values": {
+    "pass_at_1": 0.9027355623100304,
+    "kill_complete_at_1": 0.6212121212121212,
+    "api_f1": 0.7472303893275565,
+    "coverage_j": 0.8834925851099849,
+    "mutation_recall": 0.8834079939209727
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 348,
+   "pass": 217,
+   "pass_den": 346,
+   "kc": 71,
+   "api_f1": 0.7419630832521767,
+   "api_n": 217,
+   "cov_j": 0.8955290532665026,
+   "mut_recall": 0.920751,
+   "source": {
+    "scoring": "re-scored",
+    "path": "prestashop/claude-code-ds__th/h25-cell.json",
+    "sha256": "342d35c0580596bcfb44a788bee13f4a223d63ab852f69f5a5988ccd64dd5e8f",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "8b7e01c0080d05f5156f6719c4887819fd0677116a7ae4d1dac398255e915365"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.6271676300578035,
+    "kill_complete_at_1": 0.20402298850574713,
+    "api_f1": 0.46533522851364845,
+    "coverage_j": 0.5616468339850609,
+    "mutation_recall": 0.5774652225433526
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 237,
+   "pass": 212,
+   "pass_den": 236,
+   "kc": 114,
+   "api_f1": 0.8220389237436657,
+   "api_n": 212,
+   "cov_j": 0.9023951547510423,
+   "mut_recall": 0.9715769060517738,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/python-docx__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "a0b3ed38ec330cf4cdcc722a6042cb353b91a2a9bd34a1f2d767a849ae41ae7f"
+   },
+   "values": {
+    "pass_at_1": 0.8983050847457628,
+    "kill_complete_at_1": 0.4810126582278481,
+    "api_f1": 0.7384417450578692,
+    "coverage_j": 0.8106261559628007,
+    "mutation_recall": 0.8727724749278647
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 319,
+   "pass": 266,
+   "pass_den": 319,
+   "kc": 113,
+   "api_f1": 0.8139146902597713,
+   "api_n": 208,
+   "cov_j": 0.9776873750244485,
+   "mut_recall": 0.956118259463531,
+   "source": {
+    "scoring": "re-scored",
+    "path": "sylius/claude-code-ds__th/h25-cell.json",
+    "sha256": "07289bf394ea118e7e910a4f80ca6536e518649a2df94db6a59e63d27f1c8ee5",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "disclosed"
+    },
+    "gate_note": null,
+    "lost_passes": [
+     "sylius/features/admin/locale/managing_locales/removing_locale.feature:23"
+    ],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "e320110e6728f9ebdf4926f7440e980f746526d1aae5feffbc1085f007bee4d4"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.8338557993730408,
+    "kill_complete_at_1": 0.3542319749216301,
+    "api_f1": 0.6718026014842556,
+    "coverage_j": 0.8152502876379414,
+    "mutation_recall": 0.797264755540123
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "aider",
+   "view": "th",
+   "population": 274,
+   "pass": 12,
+   "pass_den": 274,
+   "kc": 0,
+   "api_f1": 0.4296157059314954,
+   "api_n": 12,
+   "cov_j": 0.36807175478078513,
+   "mut_recall": 0.3342176581339937,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coddy-agent/aider-ds__th/h25-cell.json",
+    "sha256": "ca800acd6c74bd9e7c55073e5ef2cdfde799a5fbc47253ec877e1c1617c3311e",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "26a7a464f816b37f1c6b7f445cd739d676c2abbe41595db749b14728fc2d38d4"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.043795620437956206,
+    "kill_complete_at_1": 0.0,
+    "api_f1": 0.01902357369438356,
+    "coverage_j": 0.01611993086631176,
+    "mutation_recall": 0.014637269699298992
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "openhands",
+   "view": "th",
+   "population": 274,
+   "pass": 90,
+   "pass_den": 269,
+   "kc": 29,
+   "api_f1": 0.837083746906458,
+   "api_n": 89,
+   "cov_j": 0.919776706859794,
+   "mut_recall": 0.9275610663250524,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coddy-agent/openhands-ds__th/h25-cell.json",
+    "sha256": "ee0b61e533d4d35e789a7e1d2d4bb7f80fa20bdcfd472b59645b4f863064fe4f",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "30baf21fda63d96e3f568c002a1754319f66d9929f265d15f2ff6e1e6f9f8ce7"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.3345724907063197,
+    "kill_complete_at_1": 0.10583941605839416,
+    "api_f1": 0.280019262981123,
+    "coverage_j": 0.30773198370773774,
+    "mutation_recall": 0.3103364162425826
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 111,
+   "pass": 103,
+   "pass_den": 111,
+   "kc": 68,
+   "api_f1": 0.868,
+   "api_n": 103,
+   "cov_j": 0.957,
+   "mut_recall": 0.9524,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/algorand-sdk__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "376baf04e3b1dddf958a34a95e74b6a2a19796be2934c87b4f759cd4d1cc48ed"
+   },
+   "values": {
+    "pass_at_1": 0.9279279279279279,
+    "kill_complete_at_1": 0.6126126126126126,
+    "api_f1": 0.8054414414414414,
+    "coverage_j": 0.888027027027027,
+    "mutation_recall": 0.8837585585585586
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 111,
+   "pass": 78,
+   "pass_den": 111,
+   "kc": 46,
+   "api_f1": 0.831,
+   "api_n": 78,
+   "cov_j": 0.942,
+   "mut_recall": 0.9464071162941445,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/algorand-sdk__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "89fa0871e13e3cc1397617039bb9abee182642d0af8cb9969bd20a2664b610d9"
+   },
+   "values": {
+    "pass_at_1": 0.7027027027027027,
+    "kill_complete_at_1": 0.4144144144144144,
+    "api_f1": 0.583945945945946,
+    "coverage_j": 0.6619459459459459,
+    "mutation_recall": 0.6650428384769664
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 111,
+   "pass": 87,
+   "pass_den": 111,
+   "kc": 51,
+   "api_f1": 0.8,
+   "api_n": 87,
+   "cov_j": 0.929,
+   "mut_recall": 0.9328851610667641,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/algorand-sdk__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "de1048a3354c59beacc68cf9efa22df640a9508e92ea93b3654b26af6cd49116"
+   },
+   "values": {
+    "pass_at_1": 0.7837837837837838,
+    "kill_complete_at_1": 0.4594594594594595,
+    "api_f1": 0.6270270270270271,
+    "coverage_j": 0.7281351351351352,
+    "mutation_recall": 0.7311802613766529
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 274,
+   "pass": 237,
+   "pass_den": 273,
+   "kc": 56,
+   "api_f1": 0.848244419097506,
+   "api_n": 234,
+   "cov_j": 0.908606463293215,
+   "mut_recall": 0.9218640273929242,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coddy-agent/codex-ds__th/h25-cell.json",
+    "sha256": "10c78437e6b676904f1d7f45c183232a2973c9062498e5e20165a087f6f2bb1e",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "pass",
+     "gate5": "disclosed"
+    },
+    "gate_note": null,
+    "lost_passes": [
+     "coddy-agent/features/llm_limit_wait.feature:74"
+    ],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "d820c2586c0f5896d32a10cb20704235d2c9a70d4cf37d2cc4fa1937d6af77c6"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.8681318681318682,
+    "kill_complete_at_1": 0.20437956204379562,
+    "api_f1": 0.7351153531872956,
+    "coverage_j": 0.7887902263754284,
+    "mutation_recall": 0.8002995402641869
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 274,
+   "pass": 193,
+   "pass_den": 274,
+   "kc": 59,
+   "api_f1": 0.7859577789290887,
+   "api_n": 192,
+   "cov_j": 0.9108242172950732,
+   "mut_recall": 0.9308740011985629,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coddy-agent/codex-luna__th/h25-cell.json",
+    "sha256": "41c759d8736a5aca8df2678fc47ac5fac30f1d5206682078d1d42653b94f63be",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "3877c2ad4460197c6e629364232fb3f80106418301880448d0853074c0f2fd05"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7043795620437956,
+    "kill_complete_at_1": 0.21532846715328466,
+    "api_f1": 0.556840935625037,
+    "coverage_j": 0.6415659632771866,
+    "mutation_recall": 0.6556886212821994
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 274,
+   "pass": 210,
+   "pass_den": 274,
+   "kc": 65,
+   "api_f1": 0.7456235182043034,
+   "api_n": 207,
+   "cov_j": 0.8760416376464949,
+   "mut_recall": 0.9002230779009831,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coddy-agent/codex-sol__th/h25-cell.json",
+    "sha256": "65a456991d62b8e4bf7bb67bcd66f0218d459ea1457f8ea246d4bb3c1c751e54",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "3d8d39fb99b93de0ba47212e0833020a7bf81b0215cf4c1efc1f51e14eaa8965"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7664233576642335,
+    "kill_complete_at_1": 0.23722627737226276,
+    "api_f1": 0.5695353072630657,
+    "coverage_j": 0.6714187733787004,
+    "mutation_recall": 0.6899519940117024
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 334,
+   "pass": 222,
+   "pass_den": 334,
+   "kc": 14,
+   "api_f1": 0.7078848237733099,
+   "api_n": 221,
+   "cov_j": 0.6992479622206517,
+   "mut_recall": 0.6794219520971854,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coreshop/codex-ds__th/h25-cell.json",
+    "sha256": "c699ec34bcd7e205df7fa9a641d8656bfdb3ee8e9c5a6947ff397cb090bcae64",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "disclosed",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "44a9007a9091df77fd1deda7ea086d851429d53909c3d21ef612e7f69cf03e96"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.6646706586826348,
+    "kill_complete_at_1": 0.041916167664670656,
+    "api_f1": 0.46979743559730175,
+    "coverage_j": 0.4647696036316907,
+    "mutation_recall": 0.4515918364238777
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 334,
+   "pass": 192,
+   "pass_den": 334,
+   "kc": 13,
+   "api_f1": 0.6857097366467378,
+   "api_n": 191,
+   "cov_j": 0.6255952237256361,
+   "mut_recall": 0.6419481207234955,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coreshop/codex-luna__th/h25-cell.json",
+    "sha256": "29fdb31786c74b940429f6ee02f83066487bca273bf7f66e5158a851678bc27e",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "disclosed",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "465a58c8630046cf5c47977897ce57a7f4397e7405b73b299c8cdde313cbdfa7"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.5748502994011976,
+    "kill_complete_at_1": 0.038922155688622756,
+    "api_f1": 0.3933049840826634,
+    "coverage_j": 0.3596236016626411,
+    "mutation_recall": 0.3690240693979375
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 334,
+   "pass": 236,
+   "pass_den": 334,
+   "kc": 12,
+   "api_f1": 0.6670689096499315,
+   "api_n": 235,
+   "cov_j": 0.5920387869246425,
+   "mut_recall": 0.6077776817901447,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coreshop/codex-sol__th/h25-cell.json",
+    "sha256": "05ed5458ed5c817846f5ec8d96a6ac235cbbebcea3680665d3849593d35527dd",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "406ab23d7e01e62fa08fddf03fee41efd79ce77d85e604ec386a5352f219c948"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7065868263473054,
+    "kill_complete_at_1": 0.03592814371257485,
+    "api_f1": 0.4707543356388405,
+    "coverage_j": 0.4183268075275917,
+    "mutation_recall": 0.42944770330082077
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "aider",
+   "view": "th",
+   "population": 98,
+   "pass": 8,
+   "pass_den": 98,
+   "kc": 8,
+   "api_f1": null,
+   "api_n": 0,
+   "cov_j": 0.999,
+   "mut_recall": 1.0,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__aider__target_hidden.json",
+    "sha256": "459f4794885d2cc14c7069d7fc5116496045a8d253fd3645b6888b03f49af778"
+   },
+   "values": {
+    "pass_at_1": 0.08163265306122448,
+    "kill_complete_at_1": 0.08163265306122448,
+    "api_f1": 0.0,
+    "coverage_j": 0.08155102040816327,
+    "mutation_recall": 0.08163265306122448
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 98,
+   "pass": 76,
+   "pass_den": 98,
+   "kc": 21,
+   "api_f1": 0.556,
+   "api_n": 19,
+   "cov_j": 0.99,
+   "mut_recall": 0.948998,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "e37bd810b86f9005fa716756760ba43e3b9fc5b07d482494631dd79ad3a03d04"
+   },
+   "values": {
+    "pass_at_1": 0.7755102040816326,
+    "kill_complete_at_1": 0.21428571428571427,
+    "api_f1": 0.42256,
+    "coverage_j": 0.7677551020408163,
+    "mutation_recall": 0.7359576326530611
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 98,
+   "pass": 59,
+   "pass_den": 98,
+   "kc": 23,
+   "api_f1": 0.759,
+   "api_n": 9,
+   "cov_j": 0.943,
+   "mut_recall": 0.90476,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "8e8205dbd70c0aa7030b946a53f5ded4cbe24c7da1529fa56b83e91146b86b99"
+   },
+   "values": {
+    "pass_at_1": 0.6020408163265306,
+    "kill_complete_at_1": 0.23469387755102042,
+    "api_f1": 0.27324000000000004,
+    "coverage_j": 0.5677244897959184,
+    "mutation_recall": 0.5447024489795919
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 98,
+   "pass": 68,
+   "pass_den": 98,
+   "kc": 23,
+   "api_f1": 0.78,
+   "api_n": 10,
+   "cov_j": 0.956,
+   "mut_recall": 0.919922,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "437cdbaec7b8e30d4413bdaf00f9e7bf53bd5f688bb355a51d9f9f8091664db2"
+   },
+   "values": {
+    "pass_at_1": 0.6938775510204082,
+    "kill_complete_at_1": 0.23469387755102042,
+    "api_f1": 0.31200000000000006,
+    "coverage_j": 0.6633469387755102,
+    "mutation_recall": 0.6383132244897959
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "openhands",
+   "view": "th",
+   "population": 98,
+   "pass": 19,
+   "pass_den": 98,
+   "kc": 9,
+   "api_f1": 1.0,
+   "api_n": 3,
+   "cov_j": 0.992,
+   "mut_recall": 0.979624,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__openhands__target_hidden.json",
+    "sha256": "b8315277f97da8a1c868e8874767fd9a3d13ba6326a7017b24ddca646834cc5a"
+   },
+   "values": {
+    "pass_at_1": 0.19387755102040816,
+    "kill_complete_at_1": 0.09183673469387756,
+    "api_f1": 0.12,
+    "coverage_j": 0.1923265306122449,
+    "mutation_recall": 0.18992710204081634
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "aider",
+   "view": "th",
+   "population": 330,
+   "pass": 43,
+   "pass_den": 330,
+   "kc": 23,
+   "api_f1": 0.7572802313162442,
+   "api_n": 43,
+   "cov_j": 0.9681363179397361,
+   "mut_recall": 0.93872,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__aider__target_hidden.json",
+    "sha256": "447257a01c13552ed2793fabf70b6f8b34f0818673cd3eba0490d3acab2e28e5"
+   },
+   "values": {
+    "pass_at_1": 0.1303030303030303,
+    "kill_complete_at_1": 0.0696969696969697,
+    "api_f1": 0.09867590892908637,
+    "coverage_j": 0.12615109597396562,
+    "mutation_recall": 0.1223180606060606
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 330,
+   "pass": 313,
+   "pass_den": 330,
+   "kc": 202,
+   "api_f1": 0.8263816443981713,
+   "api_n": 313,
+   "cov_j": 0.9818010649917897,
+   "mut_recall": 0.97349,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "3a1bf50ee3c43e5a658267ac11044f32d2a40059b6c67cc67857191d4e417015"
+   },
+   "values": {
+    "pass_at_1": 0.9484848484848485,
+    "kill_complete_at_1": 0.6121212121212121,
+    "api_f1": 0.7838104687776595,
+    "coverage_j": 0.9312234343710005,
+    "mutation_recall": 0.923340515151515
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 330,
+   "pass": 231,
+   "pass_den": 330,
+   "kc": 162,
+   "api_f1": 0.816,
+   "api_n": 231,
+   "cov_j": 0.984,
+   "mut_recall": 0.98107,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "9a9169091c124b7d851092d288c107ef863ff086558fcfe1558ff542ba396ba4"
+   },
+   "values": {
+    "pass_at_1": 0.7,
+    "kill_complete_at_1": 0.4909090909090909,
+    "api_f1": 0.5711999999999999,
+    "coverage_j": 0.6888,
+    "mutation_recall": 0.686749
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 330,
+   "pass": 231,
+   "pass_den": 330,
+   "kc": 155,
+   "api_f1": 0.795,
+   "api_n": 231,
+   "cov_j": 0.974,
+   "mut_recall": 0.97613,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "41a0af7e981491fdfcd9feba3128bcc8c8ac57e28280ec68cb5ca6ee23bdf897"
+   },
+   "values": {
+    "pass_at_1": 0.7,
+    "kill_complete_at_1": 0.4696969696969697,
+    "api_f1": 0.5565,
+    "coverage_j": 0.6818,
+    "mutation_recall": 0.683291
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "openhands",
+   "view": "th",
+   "population": 330,
+   "pass": 113,
+   "pass_den": 330,
+   "kc": 74,
+   "api_f1": 0.7679440780196999,
+   "api_n": 113,
+   "cov_j": 0.9736335893012174,
+   "mut_recall": 0.97336,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__openhands__target_hidden.json",
+    "sha256": "072835a88f87f75f62cee8f463369ac1c65418e9c6c32144ca15300713d652dc"
+   },
+   "values": {
+    "pass_at_1": 0.3424242424242424,
+    "kill_complete_at_1": 0.22424242424242424,
+    "api_f1": 0.26296266914007904,
+    "coverage_j": 0.33339574421526535,
+    "mutation_recall": 0.3333020606060606
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "aider",
+   "view": "th",
+   "population": 348,
+   "pass": 20,
+   "pass_den": 348,
+   "kc": 8,
+   "api_f1": 0.8068630299009556,
+   "api_n": 20,
+   "cov_j": 0.9055843616020329,
+   "mut_recall": 0.917018,
+   "source": {
+    "scoring": "re-scored",
+    "path": "prestashop/aider-ds__th/h25-cell.json",
+    "sha256": "b1ea26606640497866ab7e6d83374cfcd4cb1411e1ea63851ef2450e0c4723eb",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "58bb88bcec4bd82d4ad9d4a28619c370db78f42972c4033e4bfc1bf6500a32f3"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.05747126436781609,
+    "kill_complete_at_1": 0.022988505747126436,
+    "api_f1": 0.046371438500054915,
+    "coverage_j": 0.0520450782529904,
+    "mutation_recall": 0.05270218390804598
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 348,
+   "pass": 234,
+   "pass_den": 348,
+   "kc": 76,
+   "api_f1": 0.7224580403982148,
+   "api_n": 234,
+   "cov_j": 0.884145657390103,
+   "mut_recall": 0.922925,
+   "source": {
+    "scoring": "re-scored",
+    "path": "prestashop/codex-ds__th/h25-cell.json",
+    "sha256": "4cbf7bc67a5a7ecff82f07e22008dfa747cb32d8073e5e878bbe320c61917d3d",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "8679c7d3c158cc648a47813bea99f4876b83a5571f310a9e986326efe5e0d265"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.6724137931034483,
+    "kill_complete_at_1": 0.21839080459770116,
+    "api_f1": 0.48579075130224786,
+    "coverage_j": 0.5945117351416209,
+    "mutation_recall": 0.6205875
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 348,
+   "pass": 147,
+   "pass_den": 341,
+   "kc": 45,
+   "api_f1": 0.730582201577607,
+   "api_n": 147,
+   "cov_j": 0.8944113438134209,
+   "mut_recall": 0.928606,
+   "source": {
+    "scoring": "re-scored",
+    "path": "prestashop/codex-luna__th/h25-cell.json",
+    "sha256": "aec53e901db94d1cf2116fed318bf080b7c5082df472e23d7622d360cc7cf356",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "n/a",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "c77a32b5924ec8f2c088c866e29f64e126e0378a09b1afd93a4507ae70d924c3"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.4310850439882698,
+    "kill_complete_at_1": 0.12931034482758622,
+    "api_f1": 0.3149430605041297,
+    "coverage_j": 0.385567353491416,
+    "mutation_recall": 0.4003081583577713
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 348,
+   "pass": 178,
+   "pass_den": 342,
+   "kc": 73,
+   "api_f1": 0.7527458609678298,
+   "api_n": 178,
+   "cov_j": 0.8946433555686852,
+   "mut_recall": 0.939102,
+   "source": {
+    "scoring": "re-scored",
+    "path": "prestashop/codex-sol__th/h25-cell.json",
+    "sha256": "5535c4230334db2f0be2ca8ea6a3266542e9d7519c29333cc7d3e3ea4a6a63b4",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "n/a",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "649c59885181144bc946eb240f5ff1713512ea70a48aa01d19802776fc8932cc"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.52046783625731,
+    "kill_complete_at_1": 0.20977011494252873,
+    "api_f1": 0.39178000950957226,
+    "coverage_j": 0.4656330914948128,
+    "mutation_recall": 0.4887723859649123
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "openhands",
+   "view": "th",
+   "population": 348,
+   "pass": 51,
+   "pass_den": 348,
+   "kc": 27,
+   "api_f1": 0.775877772257446,
+   "api_n": 51,
+   "cov_j": 0.924545997201626,
+   "mut_recall": 0.966046,
+   "source": {
+    "scoring": "re-scored",
+    "path": "prestashop/openhands-ds__th/h25-cell.json",
+    "sha256": "435bd81b42ec54719c06a4675b967676f3471cd4ec2d842a206ec614cd30170e",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "b6bc870ddf3c7bb1af2c6db556039f3643b38adaf58696f22b2b08e3219d40d6"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.14655172413793102,
+    "kill_complete_at_1": 0.07758620689655173,
+    "api_f1": 0.1137062252446257,
+    "coverage_j": 0.13549380993472107,
+    "mutation_recall": 0.14157570689655172
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 237,
+   "pass": 220,
+   "pass_den": 237,
+   "kc": 117,
+   "api_f1": 0.8258928547833515,
+   "api_n": 220,
+   "cov_j": 0.8797288065634242,
+   "mut_recall": 0.9533199546966324,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/python-docx__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "7e92a6c0fe2c2115841eaf32e21204c9d19d18bd2dbe5afdb5748fdf2659cf31"
+   },
+   "values": {
+    "pass_at_1": 0.9282700421940928,
+    "kill_complete_at_1": 0.4936708860759494,
+    "api_f1": 0.7666515951575414,
+    "coverage_j": 0.8166258963879887,
+    "mutation_recall": 0.8849383545707137
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 237,
+   "pass": 205,
+   "pass_den": 237,
+   "kc": 108,
+   "api_f1": 0.8330741538443344,
+   "api_n": 205,
+   "cov_j": 0.888,
+   "mut_recall": 0.9665988604620919,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/python-docx__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "34e556a3a109d87d2e3898689ff96148b108186ec0186fd60fffa9877a437a6c"
+   },
+   "values": {
+    "pass_at_1": 0.8649789029535865,
+    "kill_complete_at_1": 0.45569620253164556,
+    "api_f1": 0.7205915676712596,
+    "coverage_j": 0.7681012658227848,
+    "mutation_recall": 0.8360876219186871
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 237,
+   "pass": 209,
+   "pass_den": 237,
+   "kc": 133,
+   "api_f1": 0.8600344712151636,
+   "api_n": 209,
+   "cov_j": 0.886,
+   "mut_recall": 0.9400429525805627,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/python-docx__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "0071a281e4e9e7f86ce3ad3a21cfcf74e2d3da61c6fa00d124e0ed322d338db0"
+   },
+   "values": {
+    "pass_at_1": 0.8818565400843882,
+    "kill_complete_at_1": 0.5611814345991561,
+    "api_f1": 0.7584270231391106,
+    "coverage_j": 0.7813248945147679,
+    "mutation_recall": 0.8289830256934076
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 319,
+   "pass": 267,
+   "pass_den": 319,
+   "kc": 98,
+   "api_f1": 0.8073445823187074,
+   "api_n": 209,
+   "cov_j": 0.9780951407556611,
+   "mut_recall": 0.9575735472718864,
+   "source": {
+    "scoring": "re-scored",
+    "path": "sylius/codex-ds__th/h25-cell.json",
+    "sha256": "66161e2a58777516e7227280592dda25c0c00cfd8b8b0c1eefd23fc55818e3fe",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "402c178ce5e358e6bd48e53a1879ab4d926a8852ca90cdc1c4a0fa07dcf8fd45"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.8369905956112853,
+    "kill_complete_at_1": 0.3072100313479624,
+    "api_f1": 0.6695834035897216,
+    "coverage_j": 0.8186564344255846,
+    "mutation_recall": 0.8014800536727074
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 319,
+   "pass": 228,
+   "pass_den": 319,
+   "kc": 92,
+   "api_f1": 0.8049439296314242,
+   "api_n": 181,
+   "cov_j": 0.976012526301824,
+   "mut_recall": 0.9617207518528157,
+   "source": {
+    "scoring": "re-scored",
+    "path": "sylius/codex-luna__th/h25-cell.json",
+    "sha256": "16d14458909e00e7d63e4a5e73a8ad82a8e6b774f8832ecc6021a35cdf0fc645",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "638a24f2de676a77d5d18512a02f65688fe79561562c4e649a279a97778a9053"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7147335423197492,
+    "kill_complete_at_1": 0.2884012539184953,
+    "api_f1": 0.5781541716797135,
+    "coverage_j": 0.69758889027215,
+    "mutation_recall": 0.6873740796941754
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 319,
+   "pass": 265,
+   "pass_den": 319,
+   "kc": 95,
+   "api_f1": 0.751291192533075,
+   "api_n": 217,
+   "cov_j": 0.9753100636437873,
+   "mut_recall": 0.9593690794388433,
+   "source": {
+    "scoring": "re-scored",
+    "path": "sylius/codex-sol__th/h25-cell.json",
+    "sha256": "e91b825a0d3d8f3337024eabe4ddd332759d9a645686ba6ca2548aaac45e3632",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "5a27502c044438e189c4906b889516f14f10c45b046ba96453bac638bd88f67b"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.8307210031347962,
+    "kill_complete_at_1": 0.29780564263322884,
+    "api_f1": 0.6469451935701479,
+    "coverage_j": 0.8102105544376288,
+    "mutation_recall": 0.7969680440479419
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 111,
+   "pass": 74,
+   "pass_den": 111,
+   "kc": 43,
+   "api_f1": 0.8273878479377829,
+   "api_n": 74,
+   "cov_j": 0.9404764461349847,
+   "mut_recall": 0.9337440572738277,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/alg-th.items.jsonl",
+    "per_item_sha256": "3f1f58d9591190cb990e1738e4e9ef41d19b8f709e00a06babbaf09925efb4cd"
+   },
+   "values": {
+    "pass_at_1": 0.6666666666666666,
+    "kill_complete_at_1": 0.38738738738738737,
+    "api_f1": 0.5515918986251885,
+    "coverage_j": 0.6269842974233232,
+    "mutation_recall": 0.6224960381825518
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 274,
+   "pass": 142,
+   "pass_den": 271,
+   "kc": 32,
+   "api_f1": 0.822383741369993,
+   "api_n": 141,
+   "cov_j": 0.9161387882550285,
+   "mut_recall": 0.9253979114149113,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coddy-agent/codex-ds-off__th/h25-cell.json",
+    "sha256": "eaf0ae099f559de0e24012459b1acd1912f183952abaa67ce5101137fa834857",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "011e6d50d9817d2786c93fa97ed337b3e512c0526624ce5a81068907ce63f479"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.5239852398523985,
+    "kill_complete_at_1": 0.11678832116788321,
+    "api_f1": 0.43261902022151544,
+    "coverage_j": 0.4800432027018968,
+    "mutation_recall": 0.48489484657165094
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 334,
+   "pass": 124,
+   "pass_den": 334,
+   "kc": 10,
+   "api_f1": 0.71209130485391,
+   "api_n": 124,
+   "cov_j": 0.7264280055179015,
+   "mut_recall": 0.703861882168759,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coreshop/codex-ds-off__th/h25-cell.json",
+    "sha256": "de5941149e01d2866b9b585ea85cbcab4f54a422a6e202f124a2326fe7917eac",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "disclosed",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "515dfa5964ad83e90369a6087697882707f3fe41d81f63b91e753aed557d6321"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.3712574850299401,
+    "kill_complete_at_1": 0.029940119760479042,
+    "api_f1": 0.2651631285341887,
+    "coverage_j": 0.26969183438389155,
+    "mutation_recall": 0.2613139921824135
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 98,
+   "pass": 60,
+   "pass_den": 98,
+   "kc": 18,
+   "api_f1": 0.5066666666666667,
+   "api_n": 10,
+   "cov_j": 0.9681660178550082,
+   "mut_recall": 0.9321978333333333,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/epe-th.items.jsonl",
+    "per_item_sha256": "c1e24c85090348ea04cbc0b3a4e4b5c2d41440af2fd81e0bc358fb810683025c"
+   },
+   "values": {
+    "pass_at_1": 0.6122448979591837,
+    "kill_complete_at_1": 0.1836734693877551,
+    "api_f1": 0.2026666666666667,
+    "coverage_j": 0.5927547048091887,
+    "mutation_recall": 0.5707333673469387
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 330,
+   "pass": 214,
+   "pass_den": 330,
+   "kc": 138,
+   "api_f1": 0.7949789653950186,
+   "api_n": 214,
+   "cov_j": 0.9787499640322396,
+   "mut_recall": 0.9758704859813084,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/kap-th.items.jsonl",
+    "per_item_sha256": "853538d442142680140265f1c8b1d0c2ecfd47d08aa1c986a88b59cba9a8d446"
+   },
+   "values": {
+    "pass_at_1": 0.6484848484848484,
+    "kill_complete_at_1": 0.41818181818181815,
+    "api_f1": 0.5155318139228302,
+    "coverage_j": 0.6347045221299977,
+    "mutation_recall": 0.6328372242424243
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 237,
+   "pass": 189,
+   "pass_den": 237,
+   "kc": 98,
+   "api_f1": 0.8199397186691456,
+   "api_n": 189,
+   "cov_j": 0.886749626676087,
+   "mut_recall": 0.9532523544116124,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/leaderboard_base.json",
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/pdx-th.items.jsonl",
+    "per_item_sha256": "334db72fe81a10941fa184b2d42e0008c09033e96b634be13a45b587e08f4921"
+   },
+   "values": {
+    "pass_at_1": 0.7974683544303798,
+    "kill_complete_at_1": 0.41350210970464135,
+    "api_f1": 0.6538759781791921,
+    "coverage_j": 0.7071547655771326,
+    "mutation_recall": 0.7601885864295136
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 348,
+   "pass": 144,
+   "pass_den": 347,
+   "kc": 45,
+   "api_f1": 0.7146227089726556,
+   "api_n": 144,
+   "cov_j": 0.9021299874636772,
+   "mut_recall": 0.940469,
+   "source": {
+    "scoring": "re-scored",
+    "path": "prestashop/codex-ds-off__th/h25-cell.json",
+    "sha256": "e31c2de9f12362387a2e8ab6171e2b9038314c75973f17e1b2abdbfdc57dd23e",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "7546da8d525f0b61f46287f889b453c56a0f7443f4cf81882a2b9e012ca3e68a"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.414985590778098,
+    "kill_complete_at_1": 0.12931034482758622,
+    "api_f1": 0.29655812706646223,
+    "coverage_j": 0.37437094580625224,
+    "mutation_recall": 0.39028108357348706
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 319,
+   "pass": 184,
+   "pass_den": 319,
+   "kc": 68,
+   "api_f1": 0.7471591218331408,
+   "api_n": 147,
+   "cov_j": 0.9748774847896636,
+   "mut_recall": 0.9554854216558774,
+   "source": {
+    "scoring": "re-scored",
+    "path": "sylius/codex-ds-off__th/h25-cell.json",
+    "sha256": "e1259f60e07b0aaec3c0e22d1d33de88f806366c6da6ce99cef3e1440dc06a31",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "2b7bfdf4ad071aad7173313dd366bddc96ac06b5f5318b0d8eb7a58697a765b9"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.5768025078369906,
+    "kill_complete_at_1": 0.21316614420062696,
+    "api_f1": 0.43584282106933214,
+    "coverage_j": 0.5623117780604957,
+    "mutation_recall": 0.5511263874127944
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 111,
+   "pass": 90,
+   "pass_den": 111,
+   "kc": 54,
+   "api_f1": 0.8263790950461063,
+   "api_n": 90,
+   "cov_j": 0.947089737142404,
+   "mut_recall": 0.9367723932571124,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/claude_code_sonnet55_cells.json",
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/algorand-sdk/alg-th-evidence.json",
+    "sha256": "98bf879cd1c3effbacf32ecb25a5801139508889b6f8d573ad8aa8b80943d8aa",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "4b816b7e4036eb0236ac81e81028729648f98102c47f65ffab9bf64401d247e7"
+    },
+    "api_from": "evidence generation.render.api_reporting_only (api_f1, n_scored)",
+    "printed": "API F1 and coverage J equal alg-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/algorand-sdk__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "a8ac6fa9802a1451425b0835e118ef126708186538d01c6e4970dc2a02a43ef5"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.8108108108108109,
+    "kill_complete_at_1": 0.4864864864864865,
+    "api_f1": 0.6700371040914375,
+    "coverage_j": 0.7679105976830303,
+    "mutation_recall": 0.759545183721983
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 274,
+   "pass": 259,
+   "pass_den": 274,
+   "kc": 76,
+   "api_f1": 0.8419242451883254,
+   "api_n": 256,
+   "cov_j": 0.9178755507540662,
+   "mut_recall": 0.9172159671183814,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coddy-agent/claude-code-sonnet55__th/h25-cell.json",
+    "sha256": "2f7d1e8084038cea0bda2392ccbc2ae91941c84d91a9077653abd094a55a449f",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "c86b3e4e3d09727754c30c34f3dfa24f49109216b220685f4b718b25c600e90d"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.9452554744525548,
+    "kill_complete_at_1": 0.2773722627737226,
+    "api_f1": 0.7953232722074218,
+    "coverage_j": 0.8676268892164348,
+    "mutation_recall": 0.8670034141739444
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 334,
+   "pass": 287,
+   "pass_den": 334,
+   "kc": 22,
+   "api_f1": 0.780081834384742,
+   "api_n": 286,
+   "cov_j": 0.8581795819362401,
+   "mut_recall": 0.8291939932799044,
+   "source": {
+    "scoring": "re-scored",
+    "path": "coreshop/claude-code-sonnet55__th/h25-cell.json",
+    "sha256": "db914d119b51b84d04e847b8e38c767e0b9c968ba6c32801d859889d406e6e25",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "n/a",
+     "gate4": "disclosed",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "1a9e2be5a94c88ba92bb818a5bdbb6be2b070d8f9d340b491264b58e44f35398"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.8592814371257484,
+    "kill_complete_at_1": 0.0658682634730539,
+    "api_f1": 0.6699801940962048,
+    "coverage_j": 0.7374177844781464,
+    "mutation_recall": 0.7125110062015945
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 98,
+   "pass": 68,
+   "pass_den": 98,
+   "kc": 23,
+   "api_f1": 0.4666666666666667,
+   "api_n": 11,
+   "cov_j": 0.9666224957452412,
+   "mut_recall": 0.936555,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/claude_code_sonnet55_cells.json",
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/e-petitions/epe-th-evidence.json",
+    "sha256": "b8139365d9bfdbe5e299a21b45ac5e3109d03b558ede5c82daec367878ddc6a1",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "754f7d10a47a13325ca4d1bba6754105f92a78ec62b036bf023caf8a5beef6be"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal epe-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/e-petitions__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "aac63e25d2399bb642ae86589b353a2db803e4736a85c22eee0bf9172bddaea4"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.6938775510204082,
+    "kill_complete_at_1": 0.23469387755102042,
+    "api_f1": 0.20533333333333334,
+    "coverage_j": 0.6707176501089429,
+    "mutation_recall": 0.6498544897959184
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 330,
+   "pass": 261,
+   "pass_den": 330,
+   "kc": 173,
+   "api_f1": 0.808501009887969,
+   "api_n": 261,
+   "cov_j": 0.967399495409203,
+   "mut_recall": 0.97504,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/claude_code_sonnet55_cells.json",
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/kapua/kap-th-evidence.json",
+    "sha256": "6fd20539ce451dfd19b3d6f34b983d40051de05ca4ab0eea985e6ba6602efefb",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "c3eab1054b445fe3f7d6287659a82a16f3e4d152ae7ce8d6148389882c1f06c3"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal kap-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/kapua__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "68f65163244fb15a5a2a9d7ba69df40050d8e3443edf1ef52c1164633bcd6df5"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7909090909090909,
+    "kill_complete_at_1": 0.5242424242424243,
+    "api_f1": 0.6394507987295756,
+    "coverage_j": 0.7651250554600061,
+    "mutation_recall": 0.7711680000000001
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 348,
+   "pass": 214,
+   "pass_den": 348,
+   "kc": 75,
+   "api_f1": 0.7487893907244961,
+   "api_n": 214,
+   "cov_j": 0.9184398634079189,
+   "mut_recall": 0.943449,
+   "source": {
+    "scoring": "re-scored",
+    "path": "prestashop/claude-code-sonnet55__th/h25-cell.json",
+    "sha256": "5e35854c0f9a7c6395b58765782c0ed9f962f0b668dc6da293667f180a2d7315",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "3dcd5d6dfa2e2d5708aba0968b10e45cebeae1e5938f4f7d1e65c805a9cf8309"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.6149425287356322,
+    "kill_complete_at_1": 0.21551724137931033,
+    "api_f1": 0.460462441422535,
+    "coverage_j": 0.5647877320956742,
+    "mutation_recall": 0.5801669137931035
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 237,
+   "pass": 226,
+   "pass_den": 237,
+   "kc": 177,
+   "api_f1": 0.9289687275122486,
+   "api_n": 226,
+   "cov_j": 0.963896514280729,
+   "mut_recall": 0.9761746056456568,
+   "source": {
+    "scoring": "unaffected project; the cell of req2test/data/claude_code_sonnet55_cells.json",
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/python-docx/pdx-th-evidence.json",
+    "sha256": "f065b45257e6ef6a0a6b7cf4cf34c5753859abfb133fd5d41df46adee1a177e9",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "547616dd1b85d85fd1fd98ec38f0d10b8888b03a61161e9725a55f1522be125c"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal pdx-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/python-docx__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "a0b3ed38ec330cf4cdcc722a6042cb353b91a2a9bd34a1f2d767a849ae41ae7f"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.9535864978902954,
+    "kill_complete_at_1": 0.7468354430379747,
+    "api_f1": 0.8858520355180092,
+    "coverage_j": 0.9191587013816235,
+    "mutation_recall": 0.930866923527082
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 319,
+   "pass": 256,
+   "pass_den": 319,
+   "kc": 103,
+   "api_f1": 0.7228970599971388,
+   "api_n": 212,
+   "cov_j": 0.9804153766268578,
+   "mut_recall": 0.963100973775804,
+   "source": {
+    "scoring": "re-scored",
+    "path": "sylius/claude-code-sonnet55__th/h25-cell.json",
+    "sha256": "23d1ba62044c542b6a9e34df3c40a261f2e8599465867356cf320f90a9252768",
+    "schema": "h25-cell/1",
+    "gates": {
+     "gate2": "pass",
+     "gate3": "pass",
+     "gate4": "pass",
+     "gate5": "pass"
+    },
+    "gate_note": null,
+    "lost_passes": [],
+    "api_n_from": {
+     "path": "results.rebuilt.json",
+     "sha256": "ffb960260952e35d6b8c71382f6464c3605b4f22b72d45b369f15a89420c0a87"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.8025078369905956,
+    "kill_complete_at_1": 0.322884012539185,
+    "api_f1": 0.6081514949182278,
+    "coverage_j": 0.7867910232491399,
+    "mutation_recall": 0.7728960792683568
+   }
+  }
+ ]
+}

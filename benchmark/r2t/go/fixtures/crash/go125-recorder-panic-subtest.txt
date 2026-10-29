@@ -1,0 +1,23 @@
+=== RUN   TestRecorderPanic
+=== RUN   TestRecorderPanic/scenario
+--- FAIL: TestRecorderPanic (0.00s)
+    --- FAIL: TestRecorderPanic/scenario (0.00s)
+panic: write /r2t-go/run/native.jsonl: no space left on device [recovered, repanicked]
+
+goroutine 20 [running]:
+testing.tRunner.func1.2({0x555120, 0xc00012e2c0})
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1872 +0x237
+testing.tRunner.func1()
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1875 +0x35b
+panic({0x555120?, 0xc00012e2c0?})
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/runtime/panic.go:783 +0x132
+github.com/EvilFreelancer/coddy-agent/external/cli.(*r2tRec).event(...)
+	/srv/r2t/binhang/t.dQxY/mod/external/cli/zz_r2t_harness_test.go:12
+github.com/EvilFreelancer/coddy-agent/external/cli.TestRecorderPanic.func1(0xc000102c40?)
+	/srv/r2t/binhang/t.dQxY/mod/external/cli/subtest_test.go:6 +0x3c
+testing.tRunner(0xc000102c40, 0x58d038)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1934 +0xea
+created by testing.(*T).Run in goroutine 19
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1997 +0x465
+FAIL	github.com/EvilFreelancer/coddy-agent/external/cli	0.004s
+FAIL

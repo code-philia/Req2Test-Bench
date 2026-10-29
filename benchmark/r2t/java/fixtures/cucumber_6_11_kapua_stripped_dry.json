@@ -1,0 +1,185 @@
+[
+ {
+  "line": 16,
+  "elements": [
+   {
+    "start_timestamp": "2026-09-09T17:10:11.268Z",
+    "before": [
+     {
+      "result": {
+       "duration": 758125,
+       "status": "passed"
+      },
+      "match": {
+       "location": "org.eclipse.kapua.qa.common.BasicSteps.initParametersEmbedded(io.cucumber.java.Scenario)"
+      }
+     },
+     {
+      "result": {
+       "duration": 78178,
+       "status": "passed"
+      },
+      "match": {
+       "location": "org.eclipse.kapua.service.account.test.AccountLocatorConfiguration.setupDI()"
+      }
+     },
+     {
+      "result": {
+       "duration": 37132,
+       "status": "passed"
+      },
+      "match": {
+       "location": "org.eclipse.kapua.qa.common.SimulatedDeviceSteps.beforeScenario(io.cucumber.java.Scenario)"
+      }
+     }
+    ],
+    "line": 22,
+    "name": "Initialize test environment",
+    "description": "",
+    "id": "user-account-service;initialize-test-environment",
+    "after": [
+     {
+      "result": {
+       "duration": 46558,
+       "status": "passed"
+      },
+      "match": {
+       "location": "org.eclipse.kapua.qa.common.SimulatedDeviceSteps.cleanup()"
+      }
+     }
+    ],
+    "type": "scenario",
+    "keyword": "Scenario",
+    "steps": [
+     {
+      "result": {
+       "duration": 191392,
+       "status": "passed"
+      },
+      "line": 23,
+      "name": "Init Security Context",
+      "match": {
+       "location": "org.eclipse.kapua.qa.common.utils.InitShiro.start()"
+      },
+      "keyword": "Given "
+     }
+    ],
+    "tags": [
+     {
+      "name": "@account"
+     },
+     {
+      "name": "@env_none"
+     },
+     {
+      "name": "@setup"
+     },
+     {
+      "name": "@KapuaProperties(\"locator.class.impl=org.eclipse.kapua.qa.common.MockedLocator\")"
+     }
+    ]
+   },
+   {
+    "start_timestamp": "2026-09-09T17:10:11.324Z",
+    "before": [
+     {
+      "result": {
+       "duration": 53986,
+       "status": "passed"
+      },
+      "match": {
+       "location": "org.eclipse.kapua.qa.common.BasicSteps.beforeScenarioDockerBase(io.cucumber.java.Scenario)"
+      }
+     },
+     {
+      "result": {
+       "duration": 49836,
+       "status": "passed"
+      },
+      "match": {
+       "location": "org.eclipse.kapua.qa.common.SimulatedDeviceSteps.beforeScenario(io.cucumber.java.Scenario)"
+      }
+     }
+    ],
+    "line": 25,
+    "name": "Handle account creation",
+    "description": "  Create a test account and check whether it was created correctly.",
+    "id": "user-account-service;handle-account-creation",
+    "after": [
+     {
+      "result": {
+       "duration": 36567,
+       "status": "passed"
+      },
+      "match": {
+       "location": "org.eclipse.kapua.qa.common.SimulatedDeviceSteps.cleanup()"
+      }
+     },
+     {
+      "result": {
+       "duration": 69075,
+       "status": "passed"
+      },
+      "match": {
+       "location": "org.eclipse.kapua.qa.common.BasicSteps.afterScenarioNone(io.cucumber.java.Scenario)"
+      }
+     }
+    ],
+    "type": "scenario",
+    "keyword": "Scenario",
+    "steps": [
+     {
+      "result": {
+       "status": "undefined"
+      },
+      "line": 28,
+      "name": "I create a generic account with name \"test_acc\"",
+      "match": {},
+      "keyword": "Given "
+     },
+     {
+      "result": {
+       "duration": 76950,
+       "status": "skipped"
+      },
+      "line": 29,
+      "name": "The account matches the creator settings",
+      "match": {},
+      "keyword": "Then "
+     }
+    ],
+    "tags": [
+     {
+      "name": "@account"
+     },
+     {
+      "name": "@env_none"
+     }
+    ]
+   }
+  ],
+  "name": "User Account Service",
+  "description": "  The User Account Service is responsible for CRUD operations for user accounts in the Kapua\n  database.",
+  "id": "user-account-service",
+  "keyword": "Feature",
+  "uri": "classpath:features/AccountService.feature",
+  "tags": [
+   {
+    "name": "@account",
+    "type": "Tag",
+    "location": {
+     "line": 13,
+     "column": 1
+    }
+   },
+   {
+    "name": "@env_none",
+    "type": "Tag",
+    "location": {
+     "line": 14,
+     "column": 1
+    }
+   }
+  ]
+ }
+]

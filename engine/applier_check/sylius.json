@@ -1,0 +1,61 @@
+{
+ "appliers": {
+  "master": {
+   "path": "benchmark/r2t/php/mutate.php",
+   "sha256": "3c9321e13c4675c6e7591ecc6491054cfc0c1a9af934732d12bbdffe6879d215"
+  },
+  "paper": {
+   "refs": [
+    {
+     "commit": "0c345bfab4b29fadbd08f897792929f0b8da9d6e",
+     "role": "references",
+     "tag": "sylius_mutation_full-gold-results_v1"
+    },
+    {
+     "commit": "987e6d4e96bf6ad270e9a76d0544d2fa0bbd6595",
+     "role": "candidate scoring",
+     "tag": "sylius319-stub-gate-waived-gold-killed-h21-v1-20260928"
+    }
+   ],
+   "sha256": "3c9321e13c4675c6e7591ecc6491054cfc0c1a9af934732d12bbdffe6879d215",
+   "supplied_file_sha256": "3c9321e13c4675c6e7591ecc6491054cfc0c1a9af934732d12bbdffe6879d215"
+  },
+  "same_source": true
+ },
+ "appliers_run": true,
+ "engine": "r2t-mutate",
+ "environment": {
+  "image_config_digest": "sha256:605778bc17e886bc84cb24190188229c9b89a3c484d4083d8836c4806c542f91",
+  "interpreter": "PHP 8.3.33 (cli) (built: Jul 30 2026 22:53:30) (NTS)",
+  "operator_profile": "v2",
+  "seed_tar": "kits/sylius/exec/seed/workspace.tar",
+  "seed_tar_sha256": "4684969ad20842711c1d8a4150f3d8b1d195ae9eee597739663cc8313ced098a",
+  "workdir": "/var/www/html"
+ },
+ "exceptions": [],
+ "generated_at": "2026-10-03T18:33:46Z",
+ "host": "maintainer-host",
+ "kind": "script",
+ "kit": {
+  "g_files": 564,
+  "gt_killed_pairs": 66823,
+  "kit_version": "1.0",
+  "limit": null,
+  "manifest_digest": "b67529933f67e43a6ac4305b9ac9eb545ff6ab863cf86c6c803cb0c965c633e3",
+  "pairs": 256324,
+  "path": "kits/sylius"
+ },
+ "project": "sylius",
+ "schema": "req2test.applier-check/1",
+ "summary": {
+  "applied_by_both": 1923,
+  "differ_sha256": 0,
+  "equal_sha256": 1923,
+  "g_mutants": 1923,
+  "output_is_descriptor_splice": 1923,
+  "refused_by_both": 0,
+  "refused_by_master_only": 0,
+  "refused_by_paper_only": 0
+ },
+ "verdict": "equal"
+}

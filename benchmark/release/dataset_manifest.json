@@ -1,0 +1,840 @@
+{
+ "caveats": [
+  "EFFECTIVE SAMPLE SIZE. python-docx's 239 items fall into 32 distinct closure file-sets, the largest holding 36 items; CoreShop's 422 fall into 142. Sylius's 1,950 fall into 174, the largest holding 202 -- one step-definition set answers a tenth of that pool, so an item-level interval over Sylius overstates its evidence by more than either v1 project's does. Any interval, variance or significance test over items must resample the CLUSTERS: per-item outcomes inside one cluster move together, because one step-definition module answers every item in it.",
+  "INCLUSION THRESHOLD DIFFERS BY PROJECT, and the difference is in `summary.json` for both. CoreShop ships at min_live_steps=3; python-docx at 2. The rule counts a scenario's LIVE STEPS INCLUDING ITS BACKGROUND, and CoreShop's domain scenarios carry a 13-step Background while every python-docx scenario has none \u2014 so the same literal 3 is a far stricter rule against a library whose canonical criterion is `Given a blank document / Then ...`. At 3 the docx pool would be 136 items over 29 clusters instead of 239 over 32; both numbers are published, the released threshold is 2, and every excluded item is still listed with its reason. Sylius also ships at 2, like python-docx and unlike CoreShop's 3 -- but 848 of its 855 feature files carry a Background, so its 2 is not python-docx's 2 either. Every project's threshold is in its own summary.json and every excluded item keeps its reason.",
+  "THE VACUOUS FLOOR IS A MUTATION NUMBER, NOT A PASS RATE. A stub that defines every step with an empty body PASSES the scenario \u2014 that is what makes it the floor worth measuring \u2014 so the stub's scenario pass rate is 1.000 (239/239, measured; CoreShop's is 422/422) and discriminates nothing at all. The <= 0.02 gate is over MUTATION RECALL, and the python-docx pair is published with its numerators in release/python-docx/anti_vacuity.json. Gold's 1.000 in that pair is the REFERENCE IDENTITY, not a measurement: the kill set is DEFINED by the same sweep it is scored against, so the number cannot move and cannot catch a flaky item \u2014 flakiness is controlled by the N=3 validation legs in release/python-docx/validation.jsonl instead, and the gold side is gated by checks that can fail (sweep completeness, duplicate-freedom, kill-set/manifest consistency). The number to read is the stub's, and the number that says how much there was to detect is gold's kills over the covered pairs.",
+  "API SIMILARITY AND COVERAGE ARE INDEPENDENT. python-docx API rows use direct_calls joined to its pinned production method index. Rows collected before the recorder supplied direct_calls remain API-unscored; their per-scenario coverage is scored independently from gold and system lines.",
+  "THE DOCX SUBSET IS A CENSUS. `evaldocx32` holds one item from each of the 32 closure clusters, i.e. every representative there is; its sidecar records `census: true` so the seed beside it is not read as evidence of a random draw that never happened."
+ ],
+ "changelog": [
+  {
+   "changes": [
+    "Refresh all 282 coddy-agent requirements with step-attributed checked interfaces and add the 274-representative native step-definition census. Preserve the old 54-item subset, historical pool and bundle declaration; declare a separately versioned reference bundle."
+   ],
+   "date": "2026-09-21",
+   "version": "1.10"
+  },
+  {
+   "changes": [
+    "Register the full 1,950-item Sylius checked-interface companion from passing harness-19 gold with per-step attribution. Preserve the frozen release and historical bundle bindings; the separate 319-implementation evaluation map retains reviewed target selections."
+   ],
+   "date": "2026-09-21",
+   "version": "1.9"
+  },
+  {
+   "changes": [
+    "Register e-petitions development inputs: the preserved 119-item admission, fresh checked-interface companion and separate 98-implementation evaluation map. Existing project inputs are unchanged; no mutation or downloadable bundle is declared."
+   ],
+   "date": "2026-09-20",
+   "version": "1.8"
+  },
+  {
+   "changes": [
+    "Re-mint CoreShop's two declared companions in place (release/coreshop/items.jsonl, release/coreshop/eval100.jsonl): the same 422 and 100 frozen tasks in the same order, each row gaining the checked_interfaces list derived from the harness-18 gold run beside its untouched v1 target_interfaces. release/items_v1.jsonl is byte-unchanged and stays the frozen release.",
+    "Restate the three pins of the CoreShop companion digest -- the reserved evaluation bundle, its scope file and the code constant -- at the re-minted bytes; task_items_sha256 and map_release_sha256 remain equal, as the CoreShop scope requires."
+   ],
+   "date": "2026-09-16",
+   "version": "1.7"
+  },
+  {
+   "changes": [
+    "Add the python-docx checked_interfaces companion (release/python-docx/items_checked_v2.jsonl): the same 239 frozen tasks in the same order, each carrying the v2 list derived from the harness-18 gold run. release/python-docx/items.jsonl is byte-unchanged and stays the frozen release.",
+    "Re-pin python-docx's production_index_sha256 to the schema-2 (API Amendment 2) index the bundle ships; the schema-1 file stays in release/ as the preserved input of the 2026-09-07 target_interfaces derivation."
+   ],
+   "date": "2026-09-16",
+   "version": "1.6"
+  },
+  {
+   "changes": [
+    "Admit coddy-agent with measured release and reference identities, its level-one census subset, and the first Go bundle declaration. Existing project inputs are unchanged."
+   ],
+   "date": "2026-09-15",
+   "version": "1.5"
+  },
+  {
+   "changes": [
+    "Admit sylius: 1,950 criterion items of the Sylius 2.3 API arm in release/sylius/, with its published closure map, exclusions, summary and level-1 subset. Additive; no CoreShop or python-docx byte moves.",
+    "Declare the first post-Slice-1 bundle layout (rc.1, asset digest null): every preserved-v1 mutation evidence role is null and the bundle names its release pool instead."
+   ],
+   "date": "2026-09-10",
+   "version": "1.4"
+  },
+  {
+   "changes": [
+    "Add target_interfaces to annotated CoreShop companions and current python-docx tasks; task membership and order are unchanged.",
+    "Preserve frozen CoreShop files and the exact historical Python input separately.",
+    "Declare rc.7 annotated bundle roles for both projects; publication remains gated."
+   ],
+   "date": "2026-09-07",
+   "version": "1.3"
+  },
+  {
+   "changes": [
+    "Re-emitted all 422 CoreShop gold sidecars with repo-relative feature_file values; item membership and closure contents are unchanged.",
+    "Made active release-summary and corpus references portable.",
+    "Recorded independent coverage and API scoring: python-docx coverage is measurable while API similarity is explicitly not_measured.",
+    "Rebound CoreShop's derived scored-manifest and map identities to the portable boundary bytes; mutant membership and pair counts are unchanged.",
+    "Preserved the dataset-1.1 boundary and mutation-index snapshots so untouched legacy reports still revalidate after the portability migration."
+   ],
+   "date": "2026-08-12",
+   "version": "1.2"
+  }
+ ],
+ "dataset_version": "1.10",
+ "evaluated_and_excluded": [
+  {
+   "n_items": 0,
+   "stage": "extraction",
+   "what": "kedro",
+   "why": "extraction produced no items: the repository carries no Gherkin feature suite, so there is nothing for a criterion_to_test item to be extracted from. Dropped in slice 1 rather than carried as an empty project."
+  },
+  {
+   "n_items": 425,
+   "stage": "no harness",
+   "what": "python-pptx",
+   "why": "items extract cleanly (371 criterion + 54 requirement) and the corpus was re-cloned so provenance is real, but no stack executes it yet. Slice 3."
+  },
+  {
+   "n_items": 210,
+   "stage": "no harness",
+   "what": "algorand-sdk",
+   "why": "183 criterion + 27 requirement items with real provenance after the re-clone; no executing stack yet. Slice 3."
+  },
+  {
+   "n_items": 1088,
+   "stage": "not attempted in slice 1",
+   "what": "epubcheck",
+   "why": "1,041 criterion + 47 requirement items extracted; a JVM stack is a slice-3 decision and nothing here has run against it."
+  },
+  {
+   "n_items": 67,
+   "stage": "task deferred",
+   "what": "python-docx requirement_to_test",
+   "why": "the second task is keyed per FEATURE rather than per scenario, so these items have no closure and the round trip has nothing to restore. Recorded as an explicit exclusion (`requirement_task_deferred_in_v1`) in exclusions.csv, exactly as CoreShop's 234 are, so that a reader sees a deferral rather than a silent zero."
+  },
+  {
+   "n_items": 234,
+   "stage": "task deferred",
+   "what": "coreshop requirement_to_test",
+   "why": "same rule, in v1."
+  },
+  {
+   "n_items": 0,
+   "stage": "round trip",
+   "what": "python-docx round-trip exclusions",
+   "why": "no item failed either leg. 239 of 239 fail without the closure (undefined_steps, exit 1, identical across three runs) and pass with it (three of three). Risk 4 of the slice plan asked whether the features/_scratch state leak would void legs; measured, it did not \u2014 one item of 239 left a file behind (root-owned, but removable from the host because its directory is not) and no leg changed outcome."
+  },
+  {
+   "n_items": 17,
+   "stage": "round trip",
+   "what": "coreshop round-trip exclusions",
+   "why": "15 `passes_without_glue` and 2 `never_run_upstream` in v1, published in release/exclusions.csv and release/summary.json. Unchanged by slice 1."
+  },
+  {
+   "n_items": 855,
+   "stage": "task deferred",
+   "what": "sylius requirement_to_test",
+   "why": "the same v1 rule CoreShop's 234 and python-docx's 67 are recorded under: the second task is keyed per FEATURE rather than per scenario, so these items have no closure and the round trip has nothing to restore. Recorded as `requirement_task_deferred_in_v1` in release/sylius/exclusions.csv."
+  },
+  {
+   "n_items": 456,
+   "stage": "round trip",
+   "what": "sylius scenarios outside the API arm",
+   "why": "no member of the item's closure is removable under boundary_sylius.yml, so removal leaves the scenario intact and the fail leg cannot fail. The arm is the API arm by construction and these are its complement, recorded as `round_trip:empty_closure` rather than dropped silently."
+  },
+  {
+   "n_items": 5,
+   "stage": "round trip",
+   "what": "sylius round-trip exclusions",
+   "why": "items inside the API arm whose fail-then-pass round trip did not close (`round_trip:closure_incomplete`). Published with their reasons in release/sylius/exclusions.csv."
+  }
+ ],
+ "projects": {
+  "coddy-agent": {
+   "annotated_release": {
+    "items": "coddy-agent/items.jsonl",
+    "subsets": {}
+   },
+   "bundle": {
+    "annotated_release": {
+     "file": "coddy-agent/items.jsonl",
+     "sha256": "7e3b829d48bb13a20e04ad9dcf3f553f4f0c51b0f6ae6744130b3e7aa0f3b606"
+    },
+    "artifacts": {
+     "alias_table": null,
+     "annotated_release_items": "projects/coddy-agent/artifacts/release/annotated_items.jsonl",
+     "audit_attestation": null,
+     "autowirable_types": null,
+     "boundary": "bundles/v1/coddy-agent/boundary_coddy_agent.yml",
+     "candidate_results": null,
+     "candidate_run": null,
+     "coverage_run": "projects/coddy-agent/artifacts/runs/gold_baseline.jsonl",
+     "engine_source": null,
+     "gold": "projects/coddy-agent/gold",
+     "gold_baseline": "projects/coddy-agent/artifacts/runs/gold_baseline.jsonl",
+     "gold_results": null,
+     "gold_results_attestation": null,
+     "legacy_map": null,
+     "mutation_asset_index": null,
+     "mutation_map": null,
+     "mutation_validation": null,
+     "production_index": "projects/coddy-agent/artifacts/go_prod_index.json",
+     "profile": "bundles/v1/coddy-agent/profile_coddy_agent.yml",
+     "raw_manifest": null,
+     "release_gold": "projects/coddy-agent/artifacts/release/gold",
+     "release_items": "projects/coddy-agent/artifacts/release/items.jsonl",
+     "scored_manifest": null,
+     "seed": "projects/coddy-agent/seed/v1",
+     "worker_plan": "bundles/v1/coddy-agent/worker_plan.json"
+    },
+    "asset": {
+     "name": "r2t-v1.0.0-rc.2-coddy-agent.tar.gz",
+     "sha256": "40c9b2c3e8c8a47da795ee27fe17275016801783e4cc0baae0fc846cd75ae80f"
+    },
+    "coverage_run": {
+     "sha256": "3e2e5a0303fb90f51fc3951a1415e81802045a853c31172998fbea59e7fb0cc4"
+    },
+    "production_index": {
+     "sha256": "02b18319829e43fa7296b9e2770cde790675f1f6bcb6b3cf2b3d32fd19a3cd77"
+    },
+    "release_pool": {
+     "file": "coddy-agent/items_coddy_agent.jsonl",
+     "sha256": "7bf045caf6f1fa41956b25c0f9238a2edc27ca36a2c6806fd68545b9bf5d899d"
+    },
+    "seed": {
+     "manifest_sha256": "fbe6a4d9c55cfb37700b189680350936397dd9eeebc56d43b49c277efae5e297"
+    },
+    "version": "v1.0.0-rc.2",
+    "worker_plan": {
+     "container_kind": "go",
+     "k": 8,
+     "workdir": "/work"
+    }
+   },
+   "capabilities": {
+    "api_similarity": true,
+    "coverage": true,
+    "mutation": false
+   },
+   "capability_notes": {
+    "api_similarity": "Original Go production-method index and immediate caller entries; only calls directly from removable test implementations earn API credit. Retained-helper and unknown callers receive no API credit.",
+    "coverage": "Collected production line coverage in the selected parent Go test process, including setup and all selected Examples rows; child processes are outside measurement.",
+    "mutation": "Go source engine is qualified; this bundle contains no registered mutation population or kill-result evidence and does not enable mutation scoring."
+   },
+   "corpus": "projects/coddy-agent/source @ 5fadd23573bafff8a39baa4c19b01af1878e0ac2",
+   "digests": {
+    "exclusions": "32a10bb7069b20e35e7d68c3d4036b50e5796918b1d83c674b29792720fbd86c",
+    "items": "7bf045caf6f1fa41956b25c0f9238a2edc27ca36a2c6806fd68545b9bf5d899d",
+    "summary": "b3b1c843dc52e71c2800bca6546e659d5af89404d64a13c0bfc3d93f4266f78f"
+   },
+   "dir": "coddy-agent",
+   "effective_closure_cardinality": 54,
+   "framework": "godog",
+   "gold_manifest_sha256": "7ffe5d79b93e1eda127d7fd7087f4d3ab644dd225e5f3f0123383af520cd968e",
+   "gold_sidecars_sha256": "4ad5df8c904b561dcf2e894d435815fedb9af3a120309017f00162f85ae59112",
+   "harness_image": "r2t_coddy_agent:g2v2-20260920",
+   "inclusion_rule": {
+    "excluded": 0,
+    "exclusion_reasons": {},
+    "min_live_steps": 2,
+    "pool": 282
+   },
+   "items": "coddy-agent/items_coddy_agent.jsonl",
+   "items_in_closure_clusters": 271,
+   "language": "go",
+   "largest_closure_cluster": 25,
+   "mutation_engine": "r2t-mutate-go",
+   "mutation_engine_version": "1.0",
+   "n_gold_sidecars": 282,
+   "n_items": 282,
+   "notes": "MIT license (pinned source LICENSE). Retained ordinary test helpers expose worked production-API examples. The subject is heavily agent-developed and reference glue may be model-authored. Measured counts and exclusions are owned by summary.json and the regenerated dataset manifest.",
+   "provenance": {
+    "commit": "5fadd23573bafff8a39baa4c19b01af1878e0ac2",
+    "distinct_trees": 1,
+    "items_missing_fields": {},
+    "n_items": 282,
+    "repo_url": "https://github.com/coddy-project/coddy-agent",
+    "required_fields": [
+     "repo_url",
+     "commit",
+     "file_commit",
+     "file_date",
+     "file_path",
+     "line"
+    ],
+    "verified": true
+   },
+   "provenance_verified": true,
+   "subsets": {
+    "eval_level1_s20260915": {
+     "census": true,
+     "closure_clusters": 54,
+     "content_sha256": "c7af92027e9a0d1279d3a96e3c06028961af9d8bdfd7ae1e620753fa72f409b7",
+     "file": "coddy-agent/eval_level1_s20260915.jsonl",
+     "n": 54,
+     "reconstructed": false,
+     "seed": 20260915,
+     "sidecar": "coddy-agent/eval_level1_s20260915.provenance.json",
+     "sidecar_sha256": "70f033a080c6742167fad5b0bcb9074760cb969bd85e0894d945aaf027a3edbe"
+    },
+    "eval_step_definition_census": {
+     "census": true,
+     "closure_clusters": null,
+     "content_sha256": "9b720488e59ec121a813417526949802eb02e4a397d293967eb10540c30a6979",
+     "file": "coddy-agent/eval_step_definition_census.jsonl",
+     "n": 274,
+     "reconstructed": false,
+     "seed": null,
+     "sidecar": "coddy-agent/eval_step_definition_census.provenance.json",
+     "sidecar_sha256": "bc2a7d199f08367f316671c131f77165be8f5ddfe9a3057d840455bfdb668615"
+    }
+   }
+  },
+  "coreshop": {
+   "annotated_release": {
+    "items": "coreshop/items.jsonl",
+    "subsets": {
+     "eval100": "coreshop/eval100.jsonl"
+    }
+   },
+   "bundle": {
+    "annotated_release": {
+     "file": "coreshop/eval100.jsonl",
+     "sha256": "7d5de3aeabb24e3ed744d841b76b958ac4e87f03ffe2d3161241ac43adac0e73"
+    },
+    "artifacts": {
+     "alias_table": "projects/coreshop/artifacts/alias_table.json",
+     "annotated_release_items": "projects/coreshop/artifacts/release/annotated_items.jsonl",
+     "audit_attestation": "bundles/v1/coreshop/materialisation_audit_v1.json",
+     "autowirable_types": "projects/coreshop/artifacts/autowirable_types.json",
+     "boundary": "bundles/v1/coreshop/boundary_coreshop.yml",
+     "candidate_results": "bundles/v1/coreshop/evidence/candidate_results.jsonl",
+     "candidate_run": "bundles/v1/coreshop/evidence/candidate_run.jsonl",
+     "coverage_run": "projects/coreshop/artifacts/runs/gold_baseline.jsonl",
+     "engine_source": "bundles/v1/coreshop/evidence/mutate.php",
+     "gold": "projects/coreshop/gold",
+     "gold_baseline": "projects/coreshop/artifacts/runs/gold_baseline.jsonl",
+     "gold_results": "projects/coreshop/artifacts/mutation/gold_results.jsonl",
+     "gold_results_attestation": "bundles/v1/coreshop/gold_results_attestation.json",
+     "legacy_map": "bundles/v1/coreshop/evidence/legacy_map.json",
+     "mutation_asset_index": "bundles/v1/coreshop/slice1_mutation_assets.json",
+     "mutation_map": "projects/coreshop/artifacts/mutation/mutant_map.json",
+     "mutation_validation": "bundles/v1/coreshop/mutation_validation.json",
+     "production_index": "projects/coreshop/artifacts/php_prod_index.json",
+     "profile": "bundles/v1/coreshop/profile_coreshop.yml",
+     "raw_manifest": "projects/coreshop/artifacts/mutation/raw_manifest.json",
+     "release_gold": "projects/coreshop/artifacts/release/gold",
+     "release_items": "projects/coreshop/artifacts/release/items.jsonl",
+     "scored_manifest": "projects/coreshop/artifacts/mutation/scored_manifest.json",
+     "seed": "projects/coreshop/seed/v1",
+     "worker_plan": "bundles/v1/coreshop/worker_plan.json"
+    },
+    "asset": {
+     "name": "r2t-v1.0.0-rc.7-coreshop.tar.gz",
+     "sha256": null
+    },
+    "production_index": {
+     "sha256": "ca47dea69350d5a876d7e2cab11a557f40f871a1590ad3a8ab3f335cd8c5eca7"
+    },
+    "seed": {
+     "manifest_sha256": "f4c2816ffac50b85fe77dd1d7729cbc059260c0ac562e6cac674487b01cce531"
+    },
+    "std_arm": {
+     "asset_version": "v1.0.0-rc.7",
+     "ceremony": {
+      "commit": "b2a365eae8df74dcd1386c24d342514e51aa2f82",
+      "report": "D4_J3_ceremony_report.md",
+      "report_sha256": "6cd8893f2a8b0ea460be6742867f3ce381b0e05a9115b2d4870965542c29980a",
+      "shipping_list": "consumed_inputs_manifest.json",
+      "shipping_list_sha256": "95d08a0a896b8a4c46c86aaae6b260cb49b8f2844e447f8659276057e147d7bb",
+      "tag": "repro-v1-gates-20260819c"
+     }
+    },
+    "version": "v1.0.0-rc.7",
+    "worker_plan": {
+     "container_kind": "php",
+     "k": 4,
+     "workdir": "/var/www/html"
+    }
+   },
+   "capabilities": {
+    "api_similarity": true,
+    "coverage": true,
+    "mutation": true
+   },
+   "capability_notes": {
+    "api_similarity": "`r2t index-prod` builds the PHP production method index the api triple is computed against.",
+    "coverage": "per-scenario line coverage, restricted to the production prefix, collected by the Behat recorder.",
+    "mutation": "r2t-mutate over src/CoreShop/{Component,Bundle}; the archived manifest re-verifies against its recorded digest."
+   },
+   "corpus": "projects/coreshop/source",
+   "digests": {
+    "exclusions": "4660399a1492bbab833eecace4caa136ab151277aa357a17875bf7ad31e87988",
+    "items": "515a9377f79fd04455a33bd372dd2110e19a8911d921485bee8cfcfce63673fd",
+    "summary": "d8acec6fc61185046df1612a24c72547ba6fd8ae0688c4d3a638ff393f2505ac"
+   },
+   "dir": ".",
+   "effective_closure_cardinality": 142,
+   "framework": "behat",
+   "gold_manifest_sha256": "3d03d56a02ec0676218c72833617013b6cd729e49610b8d830d89e3ae49f398b",
+   "gold_sidecars_sha256": "34d79b2339b44f80fd21e445922aa75fca1efdb85c1d274da3ad02ee7ff9ad10",
+   "harness_image": "coreshop_bench_img:base",
+   "inclusion_rule": {
+    "excluded": 357,
+    "exclusion_reasons": {
+     "no_oracle": 4,
+     "requirement_task_deferred_in_v1": 234,
+     "round_trip:never_run_upstream": 2,
+     "round_trip:passes_without_glue": 15,
+     "thin_scenario_lt_3_live_steps": 113
+    },
+    "min_live_steps": 3,
+    "pool": 779
+   },
+   "items": "items_v1.jsonl",
+   "items_in_closure_clusters": 370,
+   "language": "php",
+   "largest_closure_cluster": 21,
+   "mutation_engine": "r2t-mutate",
+   "mutation_engine_version": "1.0",
+   "n_gold_sidecars": 422,
+   "n_items": 422,
+   "notes": "Dataset 1.2 keeps the v1 CoreShop population and closure contents, but re-emits the gold feature_file field in canonical repo-relative form. Bundle rc.6 re-seeds the merged PHP direct-call recorder; the population, frozen SQL and historical evidence stay unchanged.",
+   "provenance": {
+    "commit": "05bf7af946c919896d0807e4f0c7af37f446653b",
+    "distinct_trees": 1,
+    "items_missing_fields": {},
+    "n_items": 422,
+    "repo_url": "https://github.com/coreshop/CoreShop.git",
+    "required_fields": [
+     "repo_url",
+     "commit",
+     "file_commit",
+     "file_date",
+     "file_path",
+     "line"
+    ],
+    "verified": true
+   },
+   "provenance_verified": true,
+   "subsets": {
+    "eval100": {
+     "census": null,
+     "closure_clusters": 77,
+     "content_sha256": "d4ae3ccb562ba4a5f806c46891e05c9c4042005a7e83b78830b3e237c244e44c",
+     "file": "eval100.jsonl",
+     "n": 100,
+     "reconstructed": true,
+     "seed": null,
+     "sidecar": "v1/eval100.provenance.json",
+     "sidecar_sha256": "bacb60c818ed8ed02992897278a7460cfde951c0f1b350816a3992d4fbc44769"
+    }
+   }
+  },
+  "e-petitions": {
+   "annotated_release": {
+    "items": "e-petitions/items_checked_v2.jsonl",
+    "subsets": {}
+   },
+   "capabilities": {
+    "api_similarity": true,
+    "coverage": true,
+    "mutation": false
+   },
+   "capability_notes": {
+    "api_similarity": "Public production methods called directly from removable steps; HTTP calls through retained Capybara generally disclose no product method.",
+    "coverage": "Fresh per-step Ruby gold at harness 19; production line coverage includes the required Examples union.",
+    "mutation": "No e-petitions mutation population or reference controls are admitted in this development phase."
+   },
+   "corpus": "projects/e-petitions/source @ 8968fc9c24a205094132c884c18982fec8ccbb5f",
+   "digests": {
+    "exclusions": "7c649f88a3a45fb583ba6d4908985b3d4157dbba8f2fb0b2fe448cde9bae0fa5",
+    "items": "b1dd45e46998dd460165e7eb2684d621733ed9a328a60592eaa138ae1982ba07",
+    "summary": "715cb251899551e15d0ccaca6bfe1a62e5d758db9c91a89d5adaee40e1c4fa1b"
+   },
+   "dir": "e-petitions",
+   "effective_closure_cardinality": 46,
+   "framework": "cucumber_ruby",
+   "gold_manifest_sha256": "7b15c648d102d73957b7851e150a574efb86902f1b9db2cc1aec090769a1e721",
+   "gold_sidecars_sha256": "c283b3d7cf213604e880cfa3a92d403729aa239046b3e66e084b7e37d482e962",
+   "harness_image": "sha256:df58279c613fb59500be4a53989d239b13c1dd257f7b292b47c9dce3117f6d96",
+   "inclusion_rule": {
+    "excluded": 239,
+    "exclusion_reasons": {
+     "javascript": 29,
+     "no_oracle": 1,
+     "requirement_task_deferred_in_v1": 51,
+     "round_trip:closure_incomplete": 87,
+     "wip": 72
+    },
+    "min_live_steps": 2,
+    "pool": 358
+   },
+   "items": "e-petitions/items.jsonl",
+   "items_in_closure_clusters": 99,
+   "language": "ruby",
+   "largest_closure_cluster": 11,
+   "n_gold_sidecars": 119,
+   "n_items": 119,
+   "notes": "Development inputs only; no downloadable scoring bundle or public result publication is declared. All 119 previously admitted requirements remain. The v2 experiment uses 98 distinct resolved step-definition representatives, with the original 46 file clusters preserved separately; see E_PETITIONS_CHECKED_INTERFACES_SPEC.md and maps/e-petitions/implementation_groups.json. Historical admission sidecars are preserved without new fields. Fresh checked gold and source-qualified maps have separate recorded identities; mutation quality is not measured.",
+   "provenance": {
+    "commit": "8968fc9c24a205094132c884c18982fec8ccbb5f",
+    "distinct_trees": 1,
+    "items_missing_fields": {},
+    "n_items": 119,
+    "repo_url": "https://github.com/alphagov/e-petitions.git",
+    "required_fields": [
+     "repo_url",
+     "commit",
+     "file_commit",
+     "file_date",
+     "file_path",
+     "line"
+    ],
+    "verified": true
+   },
+   "provenance_verified": true,
+   "subsets": {}
+  },
+  "python-docx": {
+   "annotated_release": {
+    "items": "python-docx/items_checked_v2.jsonl",
+    "subsets": {}
+   },
+   "bundle": {
+    "annotated_release": {
+     "file": "python-docx/items.jsonl",
+     "sha256": "9358e4144a0abe31762747edaa8874c7816ff4ec05a10162f1adb1d64895b67d"
+    },
+    "artifacts": {
+     "alias_table": null,
+     "annotated_release_items": "projects/python-docx/artifacts/release/annotated_items.jsonl",
+     "audit_attestation": "bundles/v1/python-docx/materialisation_audit_v1.json",
+     "autowirable_types": null,
+     "boundary": "bundles/v1/python-docx/boundary_python_docx.yml",
+     "candidate_results": "bundles/v1/python-docx/evidence/candidate_results.jsonl",
+     "candidate_run": "bundles/v1/python-docx/evidence/candidate_run.jsonl",
+     "coverage_run": "projects/python-docx/artifacts/runs/gold_baseline.jsonl",
+     "engine_source": "bundles/v1/python-docx/evidence/mutate.py",
+     "gold": "projects/python-docx/gold",
+     "gold_baseline": "projects/python-docx/artifacts/runs/gold_baseline.jsonl",
+     "gold_results": "projects/python-docx/artifacts/mutation/gold_results.jsonl",
+     "gold_results_attestation": "bundles/v1/python-docx/gold_results_attestation.json",
+     "legacy_map": "bundles/v1/python-docx/evidence/legacy_map.json",
+     "mutation_asset_index": "bundles/v1/python-docx/slice1_mutation_assets.json",
+     "mutation_map": "projects/python-docx/artifacts/mutation/mutant_map.json",
+     "mutation_validation": "bundles/v1/python-docx/mutation_validation.json",
+     "production_index": "projects/python-docx/artifacts/py_prod_index.json",
+     "profile": "bundles/v1/python-docx/profile_python_docx.yml",
+     "raw_manifest": "projects/python-docx/artifacts/mutation/raw_manifest.json",
+     "release_gold": "projects/python-docx/artifacts/release/gold",
+     "release_items": "projects/python-docx/artifacts/release/items.jsonl",
+     "scored_manifest": "projects/python-docx/artifacts/mutation/scored_manifest.json",
+     "seed": "projects/python-docx/seed/v1",
+     "worker_plan": "bundles/v1/python-docx/worker_plan.json"
+    },
+    "asset": {
+     "name": "r2t-v1.0.0-rc.7-python-docx.tar.gz",
+     "sha256": null
+    },
+    "production_index": {
+     "sha256": "428daa19219e3ee87208375f44016ba95220943fed47500e158de1d4e7194f9f"
+    },
+    "seed": {
+     "manifest_sha256": "a69222f0580b5539022de50cba34b9bf8150a70d2456c025f5ecc50f3b7184b6"
+    },
+    "version": "v1.0.0-rc.7",
+    "worker_plan": {
+     "container_kind": "py",
+     "k": 8,
+     "workdir": "/work"
+    }
+   },
+   "capabilities": {
+    "api_similarity": true,
+    "coverage": true,
+    "mutation": true
+   },
+   "capability_notes": {
+    "api_similarity": "`r2t index-prod` builds the Python production method index the api triple is computed against, from corpus e454546: 95 files, 309 classes, 1,289 methods (1,086 public), 0 unparsed, each method carrying its declaration line. The pinned bytes are the schema-2 (API Amendment 2) index shipped as the bundle's `production_index` role, which additionally identifies the 294 generated accessors; `release/python-docx/py_prod_index.json` is the earlier schema-1 index, kept as the preserved input of the 2026-09-07 `target_interfaces` derivation and no longer the pinned artifact. The profile declares `api_scoring: method_index`, so the api rows are scored from the `direct_calls` the behave recorder writes.",
+    "coverage": "per-scenario, in-memory, restricted to src/ \u2014 measured non-zero and src-only by the S4 gate.",
+    "mutation": "r2t-mutate-py over src/, cpython 3.12.13 as both parser and applier; 2,225 mutants over 95 files, 7 of the 8 operators with a non-empty population (Increment is empty \u2014 Python has no ++/--, and D5 provides for shipping that operator empty with the discrepancy recorded rather than inventing a += analogue nobody agreed to)."
+   },
+   "corpus": "projects/python-docx/source @ e454546",
+   "digests": {
+    "anti_vacuity": "33e488ecfed2d6034feb3073bbf612c05968a77f839eb7f2712cf9aec0ca0321",
+    "exclusions": "391459e2b7dac0e7ad42c1fb27f5d683dc3a05146c61edc34a86537c92607930",
+    "items": "9358e4144a0abe31762747edaa8874c7816ff4ec05a10162f1adb1d64895b67d",
+    "summary": "381ad95449a5e10c210b831e4d5c81fb04d836b7f2eb5619a9d62e812532ebaf",
+    "validation": "e0d69473c13c7cb6b34b79527af4566ca83200556ae1553d61b772cd3a2e5c57"
+   },
+   "dir": "python-docx",
+   "effective_closure_cardinality": 32,
+   "framework": "behave",
+   "gold_manifest_sha256": "89cfb7e1d7fd7cf515b7c8f0ae9f3807cb5cd1c24551eb986fd3730f513651b9",
+   "gold_sidecars_sha256": "36f0fa94195a0867c4d02e26a064bca0530df180cf02c0b6e7f758f16000bef6",
+   "harness_image": "r2t_docx_img:base",
+   "inclusion_rule": {
+    "excluded": 67,
+    "exclusion_reasons": {
+     "requirement_task_deferred_in_v1": 67
+    },
+    "min_live_steps": 2,
+    "pool": 306
+   },
+   "items": "python-docx/items.jsonl",
+   "items_in_closure_clusters": 231,
+   "language": "python",
+   "largest_closure_cluster": 36,
+   "mutation_engine": "r2t-mutate-py",
+   "mutation_engine_version": "1.0",
+   "n_gold_sidecars": 239,
+   "n_items": 239,
+   "notes": "239 criterion items, all of them round-trip validated (fail leg undefined_steps x3, pass leg passed x3) at harness version 6. Bundle rc.5 (2026-09-06) re-cuts the seed with the harness-11 recorder; item membership, closures, the gold sidecars, the extracted gold test tree and every legacy-report evidence role are the rc.4 bytes.",
+   "provenance": {
+    "commit": "e45454602b53e8e572b179ccf1c91093ec9f4ed7",
+    "distinct_trees": 1,
+    "items_missing_fields": {},
+    "n_items": 239,
+    "repo_url": "https://github.com/python-openxml/python-docx.git",
+    "required_fields": [
+     "repo_url",
+     "commit",
+     "file_commit",
+     "file_date",
+     "file_path",
+     "line"
+    ],
+    "verified": true
+   },
+   "provenance_verified": true,
+   "subsets": {
+    "evaldocx32": {
+     "census": true,
+     "closure_clusters": 32,
+     "content_sha256": "df640051d050706ab7581ba617a9260a622c234be20ddc1115f32544e6f2b582",
+     "file": "python-docx/evaldocx32.jsonl",
+     "n": 32,
+     "reconstructed": false,
+     "seed": 20260802,
+     "sidecar": "python-docx/evaldocx32.provenance.json",
+     "sidecar_sha256": "0137eea39ce15aa6024d8788ab77ee287f7500ca9a7004df9e34262f6c48a944"
+    }
+   }
+  },
+  "sylius": {
+   "annotated_release": {
+    "items": "sylius/items_checked_v2.jsonl",
+    "subsets": {}
+   },
+   "bundle": {
+    "annotated_release": {
+     "file": "sylius/items_checked_v2.jsonl",
+     "sha256": "dea64682a75666818a3323d9924fc501c084c981beaf4354f8cbcf907c02e183"
+    },
+    "artifacts": {
+     "alias_table": "projects/sylius/artifacts/alias_table.json",
+     "annotated_release_items": "projects/sylius/artifacts/release/annotated_items.jsonl",
+     "audit_attestation": null,
+     "autowirable_types": "projects/sylius/artifacts/autowirable_types.json",
+     "boundary": "bundles/v1/sylius/boundary_sylius.yml",
+     "candidate_results": null,
+     "candidate_run": null,
+     "coverage_run": "projects/sylius/artifacts/runs/gold_baseline.jsonl",
+     "engine_source": null,
+     "gold": "projects/sylius/gold",
+     "gold_baseline": "projects/sylius/artifacts/runs/gold_baseline.jsonl",
+     "gold_results": null,
+     "gold_results_attestation": null,
+     "legacy_map": null,
+     "mutation_asset_index": null,
+     "mutation_map": null,
+     "mutation_validation": null,
+     "production_index": "projects/sylius/artifacts/php_prod_index.json",
+     "profile": "bundles/v1/sylius/profile_sylius.yml",
+     "raw_manifest": null,
+     "release_gold": "projects/sylius/artifacts/release/gold",
+     "release_items": "projects/sylius/artifacts/release/items.jsonl",
+     "scored_manifest": null,
+     "seed": "projects/sylius/seed/checked-v2",
+     "worker_plan": "bundles/v1/sylius/worker_plan.json"
+    },
+    "asset": {
+     "name": "r2t-v1.0.0-rc.11-sylius.tar.gz",
+     "sha256": "924bc5f80d38287d7d20c2ff4846806faa088e411d43abfe531dcb74f0f8b84f"
+    },
+    "coverage_run": {
+     "sha256": "efa846e2593d1562e79b5304095b7ff4ec0c8e999d503a52c0f9232649420235"
+    },
+    "production_index": {
+     "sha256": "0fc2c6b4bb429cee8f2b340f9600b51c572ed26e738fe56def184d74dd39cf25"
+    },
+    "release_pool": {
+     "file": "sylius/items.jsonl",
+     "sha256": "8a54b954ad22c58a3472653e8d96ee4983b673a5bbad3c83aab18a430e56211f"
+    },
+    "seed": {
+     "manifest_sha256": "4e8b3a2fd3c77e966fce91c89045331a1216d4e59bf008ea615c27b30f0ea101"
+    },
+    "version": "v1.0.0-rc.11",
+    "worker_plan": {
+     "container_kind": "php",
+     "k": 8,
+     "workdir": "/var/www/html"
+    }
+   },
+   "capabilities": {
+    "api_similarity": true,
+    "coverage": true,
+    "mutation": false
+   },
+   "capability_notes": {
+    "api_similarity": "The pinned PHP production method index joins fresh recorder direct_calls. Checked-interface derivation records valid empty lists independently for each requirement; see the collection summary.",
+    "coverage": "Fresh harness-19 gold passed all 1,950 requirements with per-scenario coverage and per-step direct-call attribution.",
+    "mutation": "Historical population bindings remain separate. This refresh ships no mutation reference legs or killset and makes no mutation-quality claim."
+   },
+   "corpus": "projects/sylius/source @ 70cf6ca",
+   "digests": {
+    "exclusions": "223422e9b420f0617f5444c0fb2477c7e6fb91074b7e61e951509a5f1bc093e6",
+    "items": "8a54b954ad22c58a3472653e8d96ee4983b673a5bbad3c83aab18a430e56211f",
+    "summary": "6448c9b5824e24940fce3e459e8e69947b7aae551b141c5280397fbaaa0252af"
+   },
+   "dir": "sylius",
+   "effective_closure_cardinality": 174,
+   "framework": "behat",
+   "gold_manifest_sha256": "7190401e1682a44079d8fa1235b77383820800868e14f3b2b605b79e5e3f73cc",
+   "gold_sidecars_sha256": "d098c0c1017558f4ce2a2ed48b804641362cbeb514c8d1c30e043f7925723a77",
+   "harness_image": "sylius_bench_img:repro-v1",
+   "inclusion_rule": {
+    "excluded": 1316,
+    "exclusion_reasons": {
+     "requirement_task_deferred_in_v1": 855,
+     "round_trip:closure_incomplete": 5,
+     "round_trip:empty_closure": 456
+    },
+    "min_live_steps": 2,
+    "pool": 3266
+   },
+   "items": "sylius/items.jsonl",
+   "items_in_closure_clusters": 1904,
+   "language": "php",
+   "largest_closure_cluster": 202,
+   "mutation_engine": "r2t-mutate",
+   "mutation_engine_version": "1.0",
+   "n_gold_sidecars": 1950,
+   "n_items": 1950,
+   "notes": "The full 1,950-item release and historical gold sidecars remain unchanged. The checked companion derives from the reviewed 2026-09-20 collection tag; evaluation uses 319 implementation representatives of the 666 eligible requirements across 75 historical file clusters. Bundle rc.11 binds the fresh recorder seed and complete behavioral gold. The delivery record names download verification and replay evidence. Historical mutation bindings remain separate and no new mutation evidence is declared.",
+   "provenance": {
+    "commit": "70cf6ca686ec3efa4635a451bdd2b1358ab71d42",
+    "distinct_trees": 1,
+    "items_missing_fields": {},
+    "n_items": 1950,
+    "repo_url": "https://github.com/Sylius/Sylius.git",
+    "required_fields": [
+     "repo_url",
+     "commit",
+     "file_commit",
+     "file_date",
+     "file_path",
+     "line"
+    ],
+    "verified": true
+   },
+   "provenance_verified": true,
+   "subsets": {
+    "eval_level1_s20260910": {
+     "census": true,
+     "closure_clusters": 174,
+     "content_sha256": "a2d8ac7c613d59a49d2598e5d464864f4a774198fa2f230bd9d9d495689953ce",
+     "file": "sylius/eval_level1_s20260910.jsonl",
+     "n": 174,
+     "reconstructed": false,
+     "seed": 20260910,
+     "sidecar": "sylius/eval_level1_s20260910.provenance.json",
+     "sidecar_sha256": "5077e464b4e12b8564df2c05642376f00d7c5ce56bb700a69f0b13c0f536739c"
+    }
+   }
+  }
+ },
+ "release_inventory": {
+  "excluded": [
+   "dataset_manifest.json"
+  ],
+  "files": {
+   "algorand_bundle_v1.json": "182769b89d7a2f1f0cf84f5b1431657460fb6753e4aa16b6c5334db5bd25e51b",
+   "algorand_bundle_v2.json": "ef0304a3158918bc02fe654bdef7e2cb9aaf089b192d57a612fd9d8f29468e10",
+   "annotations/target_interfaces_20260907.json": "300692d55de0452d12b8f63aaa258fedb15310d71a7644a6e15c6a8aa2c08997",
+   "closure_clusters.json": "df7c249aa1421265f6195010024871389cbda8bc3ef64524d17620289b46c21e",
+   "coddy-agent/closure_clusters.json": "9da2475e5f38ae92fe4e664bd12b5adb295e9b1207a6c1f4f27f40906ec00008",
+   "coddy-agent/closures.json": "53689363be22992ce648aeaec67709a6c5a63a5b02f0da336c8fcf98a5969e50",
+   "coddy-agent/eval_level1_s20260915.jsonl": "c7af92027e9a0d1279d3a96e3c06028961af9d8bdfd7ae1e620753fa72f409b7",
+   "coddy-agent/eval_level1_s20260915.provenance.json": "70f033a080c6742167fad5b0bcb9074760cb969bd85e0894d945aaf027a3edbe",
+   "coddy-agent/eval_step_definition_census.jsonl": "9b720488e59ec121a813417526949802eb02e4a397d293967eb10540c30a6979",
+   "coddy-agent/eval_step_definition_census.provenance.json": "bc2a7d199f08367f316671c131f77165be8f5ddfe9a3057d840455bfdb668615",
+   "coddy-agent/exclusions.csv": "32a10bb7069b20e35e7d68c3d4036b50e5796918b1d83c674b29792720fbd86c",
+   "coddy-agent/go_prod_index.json": "02b18319829e43fa7296b9e2770cde790675f1f6bcb6b3cf2b3d32fd19a3cd77",
+   "coddy-agent/history/v1-bundle-declaration.json": "297901f09e57615d8dc32b3ce28b5bf82913f29369dd91302f30c79ebe2aa8d2",
+   "coddy-agent/items.jsonl": "7e3b829d48bb13a20e04ad9dcf3f553f4f0c51b0f6ae6744130b3e7aa0f3b606",
+   "coddy-agent/items_coddy_agent.jsonl": "7bf045caf6f1fa41956b25c0f9238a2edc27ca36a2c6806fd68545b9bf5d899d",
+   "coddy-agent/summary.json": "b3b1c843dc52e71c2800bca6546e659d5af89404d64a13c0bfc3d93f4266f78f",
+   "coreshop/eval100.jsonl": "7d5de3aeabb24e3ed744d841b76b958ac4e87f03ffe2d3161241ac43adac0e73",
+   "coreshop/items.jsonl": "cb4d0f2a313d23e323e052ba68da7fff87beced7a136a1a85bc31f555a679975",
+   "coreshop/materialisation_audit_v1.json": "bbf599e56d1d6bdf457f224cb96f4fdbeaa1eb8640c8b113e42719c934841cdd",
+   "coreshop/mutants_v1.json": "5148402326b4f5705dc579317dbf6375fc1bea93534d4767652c4eb1fe5a374c",
+   "coreshop/step_definition_census.jsonl": "21d398aaee3b3a44d6d6c963c2b8dc207496e602cfa9da37a229863ec81d2bbb",
+   "coreshop/step_definition_census.provenance.json": "6ef0b92a96758bc8247878aa993bd4184070b7bb820f63c008c150b27a3c52ab",
+   "e-petitions/TARGET_CONTRACTS.md": "6c6e3da8def4dcaf36996d0642674617f9dad2029fb580eb93e26b879c26aef7",
+   "e-petitions/closure_clusters.json": "f40aaf26d43cb32859a6769ed326af989d29921e5e0ad2fa3aa8e4ff9ec502e9",
+   "e-petitions/exclusions.csv": "7c649f88a3a45fb583ba6d4908985b3d4157dbba8f2fb0b2fe448cde9bae0fa5",
+   "e-petitions/items.jsonl": "b1dd45e46998dd460165e7eb2684d621733ed9a328a60592eaa138ae1982ba07",
+   "e-petitions/items_checked_v2.jsonl": "4c0f3b084d47aff6b98ccc2b8434021f61c9e5898c557147f815cd6921a10ef3",
+   "e-petitions/rb_prod_index.json": "cff4c22039ee3a98f4aa2d0ca637a4d8e0d235ea91499c57d4f742b3abca1db8",
+   "e-petitions/summary.json": "715cb251899551e15d0ccaca6bfe1a62e5d758db9c91a89d5adaee40e1c4fa1b",
+   "eval100.jsonl": "d4ae3ccb562ba4a5f806c46891e05c9c4042005a7e83b78830b3e237c244e44c",
+   "evaluation/algorand-sdk.json": "812f64d1991590a30b5324f244377d7026c697e77f974708c83517c2091d6724",
+   "evaluation/python-docx.json": "c1613afe1b5184273cecd1970ed5f38f3bb24b71938e60353742f6232df62434",
+   "exclusions.csv": "4660399a1492bbab833eecace4caa136ab151277aa357a17875bf7ad31e87988",
+   "items_v1.jsonl": "515a9377f79fd04455a33bd372dd2110e19a8911d921485bee8cfcfce63673fd",
+   "legacy_consistency/cell1_coreshop_aider.egress.json": "9a12accd0e51edbb7e954b9e4cbcfe0ba290a8aa65449ff97dd5918e1bf010ef",
+   "legacy_consistency/cell1_coreshop_aider.json": "691438cdbb7da00dfa2ce87c1a0ad44cc49402c23c9795671b839d49a80aed65",
+   "legacy_consistency/cell2_coreshop_openhands.json": "065ebb12c416284a42f544b7cc1bdf8e18fa26492c93571f550e75b87a3fe04e",
+   "legacy_consistency/cell3_python_docx_openhands_superseded.json": "d6bf5c439ac36f1e908838aa68ce082abe9ca70dc769a405190f13d67ac9ce03",
+   "legacy_consistency/cell4_python_docx_aider.json": "b8eb0e5636665d7ad9f41a955ea9655d4d887c2ed7bce5a86f56d35f0200bb3b",
+   "legacy_consistency/dataset-1.1/boundary_coreshop.yml": "752efb18fbbd9adad7822a521d8d24c970e6251752877df511b8ce401fda8651",
+   "legacy_consistency/dataset-1.1/boundary_python_docx.yml": "556cca9ff5fc3d394bef28f70098af5582fd93a18c7bd53ef5dcc795f12b7009",
+   "legacy_consistency/dataset-1.2/python-docx.items.jsonl": "4626a2857364014fe6d0f397305c0ac28b41fc0115d058b232e3e440fa5f032d",
+   "legacy_consistency/index.json": "f43f6a3a063df308b4838a4b0ae804045e93716144f306159b3cb70e458c0ef0",
+   "legacy_consistency/slice1_mutation_assets.dataset-1.1.json": "a50aa501c5e379c1a587f0efea29da4feeca4a720f8be7764ec55a3f8cf938f7",
+   "mutation_assets_v1.schema.json": "dbabd56a5d32e72562ed313b51c1fab70a1db4909a4f9813fd325a187f2f4c90",
+   "python-docx/anti_vacuity.json": "33e488ecfed2d6034feb3073bbf612c05968a77f839eb7f2712cf9aec0ca0321",
+   "python-docx/closure_clusters.json": "fb56c27f89fb83cbf5ea7e485644c93a4bd839cbd2a6803db012d34ceb163945",
+   "python-docx/evaldocx32.jsonl": "df640051d050706ab7581ba617a9260a622c234be20ddc1115f32544e6f2b582",
+   "python-docx/evaldocx32.provenance.json": "0137eea39ce15aa6024d8788ab77ee287f7500ca9a7004df9e34262f6c48a944",
+   "python-docx/exclusions.csv": "391459e2b7dac0e7ad42c1fb27f5d683dc3a05146c61edc34a86537c92607930",
+   "python-docx/items.jsonl": "9358e4144a0abe31762747edaa8874c7816ff4ec05a10162f1adb1d64895b67d",
+   "python-docx/items_checked_v2.jsonl": "f3bcd0fd852745fa126755bccc93206d65c44e5a53ef7fe4b76f3591b40bcf08",
+   "python-docx/materialisation_audit_v1.json": "64dac5aaf6e3bdcdfefaa69a714d946da4f3cb2dd77ff110bcc609fa9e24a7a8",
+   "python-docx/mutants_v1.json": "ce8f81293c7f48441998e20f6c45ef69d60dca06a9db580af6f1e463f6963682",
+   "python-docx/py_prod_index.json": "be6c93e2ed532c47a82ca244856da37f64f7713c9bdb3efc6050d7609b75c81d",
+   "python-docx/step_definition_census.jsonl": "fabd73daca15d9ab798ff1739b4d00c815c52b7ff7a7f2860ef60d8b949b2af7",
+   "python-docx/step_definition_census.provenance.json": "39a9e0cb9328e8f0a525f20079a1d5cae513428daf5efeb4eb61358ab8bc8a9a",
+   "python-docx/summary.json": "381ad95449a5e10c210b831e4d5c81fb04d836b7f2eb5619a9d62e812532ebaf",
+   "python-docx/validation.jsonl": "e0d69473c13c7cb6b34b79527af4566ca83200556ae1553d61b772cd3a2e5c57",
+   "slice1_mutation_assets.json": "b3b4c3a414a4b761e7918fbe28e8c7204c82ffeda45335f2fbb2bce84cbb2006",
+   "summary.json": "d8acec6fc61185046df1612a24c72547ba6fd8ae0688c4d3a638ff393f2505ac",
+   "sylius/closure_clusters.json": "7d30af3713e58620d2d68b4b9a48ec043b0bbbd71f67cb3a6daabeee1f8f9b2d",
+   "sylius/eval_level1_s20260910.jsonl": "a2d8ac7c613d59a49d2598e5d464864f4a774198fa2f230bd9d9d495689953ce",
+   "sylius/eval_level1_s20260910.provenance.json": "5077e464b4e12b8564df2c05642376f00d7c5ce56bb700a69f0b13c0f536739c",
+   "sylius/exclusions.csv": "223422e9b420f0617f5444c0fb2477c7e6fb91074b7e61e951509a5f1bc093e6",
+   "sylius/items.jsonl": "8a54b954ad22c58a3472653e8d96ee4983b673a5bbad3c83aab18a430e56211f",
+   "sylius/items_checked_v2.jsonl": "dea64682a75666818a3323d9924fc501c084c981beaf4354f8cbcf907c02e183",
+   "sylius/items_sylius.jsonl": "8a54b954ad22c58a3472653e8d96ee4983b673a5bbad3c83aab18a430e56211f",
+   "sylius/summary.json": "6448c9b5824e24940fce3e459e8e69947b7aae551b141c5280397fbaaa0252af",
+   "v1/eval100.provenance.json": "bacb60c818ed8ed02992897278a7460cfde951c0f1b350816a3992d4fbc44769",
+   "v1/legacy_table_eval100_std.md": "16d115f255861429ec56c5ccf51bd188c10ecf6732aa5ade14ae77e930a598e6"
+  },
+  "n_files": 71,
+  "regeneration": "This inventory makes the manifest a function of every byte below release/, including slice1_mutation_assets.json and legacy_consistency/**. Every operator step that rewrites those files must regenerate this manifest and re-pin its sha256 in VERSIONS.yml in the same change."
+ },
+ "schema": "r2t.dataset_manifest/3"
+}

@@ -1,0 +1,29 @@
+# Mutants that scoring removes from every ground-truth kill set G_i.
+#
+# Each mutant below is killed or not by a random draw, so the same test kills
+# it on some runs and not on others.  Scoring drops every pair of a listed
+# mutant from G_i before KillComplete and recall are computed, for every
+# configuration, and the `req2test` mutation stage does not run those pairs.
+#
+# This file is the only copy of the list.  The engine
+# (`r2t.data.mutation.nondeterministic_mutants`) and `req2test`
+# (`req2test/score.py`, `req2test/mutate.py`) read it, and the `req2test`
+# report prints the mutants it removed.
+schema: r2t.nondeterministic-mutants/1
+mutants:
+  - project: coreshop
+    mutant_id: 96e02276fdb04ae5
+    location: src/CoreShop/Component/Resource/TokenGenerator/UniqueTokenGenerator.php:51
+    reason: >-
+      ArithmeticOperator turns `$maxIndex = $this->keyLength - 1` into `+ 1`,
+      the upper bound of a `random_int` index; an execution fails only when
+      the draw lands past the end of the array.  Candidates kill it on 399 of
+      695 pairs, and the ground-truth tests left it alive on 5 of 20 sampled
+      instances in the 2026-10-04 smoke check.
+  - project: coreshop
+    mutant_id: 2ad72862f21752d7
+    location: src/CoreShop/Bundle/CoreBundle/Fixtures/Data/Demo/AbstractProductFixture.php:589
+    reason: >-
+      ArithmeticOperator turns `random_int(0, count($categories) - 1)` into
+      `+ 1`; the demo fixture fails only when the draw lands past the last
+      category.

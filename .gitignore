@@ -1,0 +1,24 @@
+# Python and packaging artifacts.  `pip install -e .` writes req2test.egg-info
+# here; it must stay ignored, because the engine's Docker authority refuses a
+# worktree with untracked files.
+__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+/dist/
+/.venv/
+/venv/
+
+# Local credentials and machine-specific config.
+llm_config.json
+*.env
+.env
+.claude/
+
+# Data never lives in the repository: the dataset, kits and run outputs are
+# downloaded by `req2test fetch` or stay under ~/.req2test/.
+
+# User work inside the clone: tasks, views, predictions.  Everything else
+# under the clone must stay clean (see above), so keep them in ./work/ or
+# outside the clone.
+/work/

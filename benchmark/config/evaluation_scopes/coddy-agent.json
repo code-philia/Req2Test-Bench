@@ -1,0 +1,13 @@
+{
+  "asset_index_sha256": null,
+  "declared_subset": null,
+  "mutation_validation_sha256": null,
+  "schema": "r2t.mutation-evaluation-scope/1",
+  "scope": {
+    "id": "coddy-agent-full282-single-observation-v1",
+    "map_release_sha256": "7e3b829d48bb13a20e04ad9dcf3f553f4f0c51b0f6ae6744130b3e7aa0f3b606",
+    "mutation_map_sha256": null,
+    "population_id": "coddy-agent-v1",
+    "task_items_sha256": "7e3b829d48bb13a20e04ad9dcf3f553f4f0c51b0f6ae6744130b3e7aa0f3b606"
+  }
+}

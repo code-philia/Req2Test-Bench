@@ -1,0 +1,388 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://req2test.example/schemas/docker-execution-binding-v1.schema.json",
+  "title": "r2t Docker Execution Binding v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "captured_at_utc",
+    "authority",
+    "pool",
+    "worker_index",
+    "worker_spec_sha256",
+    "container",
+    "network_policy",
+    "egress_probe",
+    "digest"
+  ],
+  "properties": {
+    "schema": {"const": "r2t.docker-execution-binding/v1"},
+    "captured_at_utc": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 20,
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "authority": {"$ref": "#/$defs/evidenceReference"},
+    "pool": {"$ref": "#/$defs/pool"},
+    "worker_index": {"type": "integer", "minimum": 0},
+    "worker_spec_sha256": {"$ref": "#/$defs/sha256"},
+    "container": {"$ref": "#/$defs/container"},
+    "network_policy": {"$ref": "#/$defs/networkPolicy"},
+    "egress_probe": {"$ref": "#/$defs/egressProbe"},
+    "digest": {"$ref": "#/$defs/sha256"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "network_policy": {
+            "properties": {"mode": {"const": "none"}},
+            "required": ["mode"]
+          }
+        },
+        "required": ["network_policy"]
+      },
+      "then": {
+        "properties": {
+          "container": {
+            "properties": {
+              "host_network_mode": {"const": "none"},
+              "network_attachments": {
+                "minItems": 1,
+                "maxItems": 1,
+                "items": {"$ref": "#/$defs/noneAttachment"}
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "container": {
+            "properties": {
+              "network_attachments": {"minItems": 1, "maxItems": 1}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "absolutePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^/[^\\u0000\\r\\n]*$"
+    },
+    "evidenceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "file_sha256", "digest"],
+      "properties": {
+        "path": {"$ref": "#/$defs/absolutePath"},
+        "file_sha256": {"$ref": "#/$defs/sha256"},
+        "digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "poolWorker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "index",
+        "worker_spec_path",
+        "worker_spec_sha256",
+        "container_name"
+      ],
+      "properties": {
+        "index": {"type": "integer", "minimum": 0},
+        "worker_spec_path": {"$ref": "#/$defs/absolutePath"},
+        "worker_spec_sha256": {"$ref": "#/$defs/sha256"},
+        "container_name": {"type": "string", "minLength": 1}
+      }
+    },
+    "poolDatabase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "container_name"],
+      "properties": {
+        "role": {"const": "database"},
+        "container_name": {"type": "string", "minLength": 1}
+      }
+    },
+    "poolNetwork": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode", "name"],
+          "properties": {
+            "mode": {"const": "none"},
+            "name": {"const": "none"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode", "name"],
+          "properties": {
+            "mode": {"const": "dedicated_internal"},
+            "name": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "pool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "workers", "database", "network", "digest"],
+      "properties": {
+        "schema": {"const": "r2t.docker-execution-pool/v1"},
+        "workers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/poolWorker"}
+        },
+        "database": {
+          "anyOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/poolDatabase"}
+          ]
+        },
+        "network": {"$ref": "#/$defs/poolNetwork"},
+        "digest": {"$ref": "#/$defs/sha256"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"database": {"type": "null"}},
+            "required": ["database"]
+          },
+          "then": {
+            "properties": {
+              "network": {
+                "properties": {"mode": {"const": "none"}},
+                "required": ["mode"]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "network": {
+                "properties": {"mode": {"const": "dedicated_internal"}},
+                "required": ["mode"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "attachment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "id"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "id": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64,
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "noneAttachment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "id"],
+      "properties": {
+        "name": {"const": "none"},
+        "id": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "container": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "id",
+        "image_id",
+        "running",
+        "host_network_mode",
+        "network_attachments"
+      ],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "id": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64,
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "image_id": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "running": {"const": true},
+        "host_network_mode": {"type": "string", "minLength": 1},
+        "network_attachments": {
+          "type": "array",
+          "maxItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/attachment"}
+        }
+      }
+    },
+    "member": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "worker_index",
+        "name",
+        "id",
+        "image_id",
+        "running",
+        "host_network_mode",
+        "network_attachments"
+      ],
+      "properties": {
+        "role": {"enum": ["worker", "database"]},
+        "worker_index": {"type": ["integer", "null"], "minimum": 0},
+        "name": {"type": "string", "minLength": 1},
+        "id": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64,
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "image_id": {
+          "type": "string",
+          "minLength": 71,
+          "maxLength": 71,
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "running": {"const": true},
+        "host_network_mode": {"type": "string", "minLength": 1},
+        "network_attachments": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/attachment"}
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"role": {"const": "worker"}},
+            "required": ["role"]
+          },
+          "then": {
+            "properties": {
+              "worker_index": {"type": "integer", "minimum": 0}
+            }
+          },
+          "else": {
+            "properties": {"worker_index": {"type": "null"}}
+          }
+        }
+      ]
+    },
+    "networkPolicy": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "name",
+            "id",
+            "driver",
+            "scope",
+            "internal",
+            "ingress",
+            "attachable",
+            "expected_members",
+            "observed_members"
+          ],
+          "properties": {
+            "mode": {"const": "none"},
+            "name": {"const": "none"},
+            "id": {"$ref": "#/$defs/sha256"},
+            "driver": {"const": "null"},
+            "scope": {"const": "local"},
+            "internal": {"const": false},
+            "ingress": {"const": false},
+            "attachable": {"const": false},
+            "expected_members": {"type": "array", "maxItems": 0},
+            "observed_members": {"type": "array", "maxItems": 0}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "name",
+            "id",
+            "driver",
+            "scope",
+            "internal",
+            "ingress",
+            "attachable",
+            "expected_members",
+            "observed_members"
+          ],
+          "properties": {
+            "mode": {"const": "dedicated_internal"},
+            "name": {"type": "string", "minLength": 1},
+            "id": {
+              "type": "string",
+              "minLength": 64,
+              "maxLength": 64,
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "driver": {"const": "bridge"},
+            "scope": {"const": "local"},
+            "internal": {"const": true},
+            "ingress": {"const": false},
+            "attachable": {"const": false},
+            "expected_members": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {"$ref": "#/$defs/member"}
+            },
+            "observed_members": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {"$ref": "#/$defs/member"}
+            }
+          }
+        }
+      ]
+    },
+    "egressProbe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "status", "target", "evidence_sha256"],
+      "properties": {
+        "required": {"const": false},
+        "status": {"const": "not_required"},
+        "target": {"type": "null"},
+        "evidence_sha256": {"type": "null"}
+      }
+    }
+  }
+}

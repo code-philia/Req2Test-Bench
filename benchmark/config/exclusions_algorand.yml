@@ -1,0 +1,65 @@
+# Pre-execution exclusion of the live-service integration domain.  The
+# source_items digest covers the exact 210 Algorand JSONL lines in source
+# order, including their LF terminators.  The ID digest covers the sorted
+# item_ids joined by LF, including one terminal LF.
+version: 1
+project: algorand-sdk
+source_items:
+  count: 210
+  bytes: 827202
+  sha256: 9bf47ccaec71fbacfdc97db9429d5225a33ff02f8203f76f5106dad175d83f33
+reason: needs_live_algod
+caption: 51 live-algod integration criteria are excluded before execution.
+item_ids:
+  - algorand-sdk/features/integration/abi.feature:100
+  - algorand-sdk/features/integration/abi.feature:119
+  - algorand-sdk/features/integration/abi.feature:143
+  - algorand-sdk/features/integration/abi.feature:15
+  - algorand-sdk/features/integration/abi.feature:160
+  - algorand-sdk/features/integration/abi.feature:175
+  - algorand-sdk/features/integration/abi.feature:200
+  - algorand-sdk/features/integration/abi.feature:50
+  - algorand-sdk/features/integration/abi.feature:71
+  - algorand-sdk/features/integration/algod.feature:12
+  - algorand-sdk/features/integration/algod.feature:6
+  - algorand-sdk/features/integration/algod.feature:9
+  - algorand-sdk/features/integration/applications.feature:142
+  - algorand-sdk/features/integration/applications.feature:89
+  - algorand-sdk/features/integration/applications.feature:9
+  - algorand-sdk/features/integration/assets.feature:138
+  - algorand-sdk/features/integration/assets.feature:166
+  - algorand-sdk/features/integration/assets.feature:22
+  - algorand-sdk/features/integration/assets.feature:41
+  - algorand-sdk/features/integration/assets.feature:58
+  - algorand-sdk/features/integration/assets.feature:78
+  - algorand-sdk/features/integration/assets.feature:9
+  - algorand-sdk/features/integration/assets.feature:94
+  - algorand-sdk/features/integration/auction.feature:3
+  - algorand-sdk/features/integration/c2c.feature:3
+  - algorand-sdk/features/integration/compile.feature:16
+  - algorand-sdk/features/integration/compile.feature:27
+  - algorand-sdk/features/integration/compile.feature:35
+  - algorand-sdk/features/integration/compile.feature:6
+  - algorand-sdk/features/integration/kmd.feature:11
+  - algorand-sdk/features/integration/kmd.feature:19
+  - algorand-sdk/features/integration/kmd.feature:25
+  - algorand-sdk/features/integration/kmd.feature:31
+  - algorand-sdk/features/integration/kmd.feature:36
+  - algorand-sdk/features/integration/kmd.feature:41
+  - algorand-sdk/features/integration/kmd.feature:54
+  - algorand-sdk/features/integration/kmd.feature:67
+  - algorand-sdk/features/integration/kmd.feature:7
+  - algorand-sdk/features/integration/rekey.feature:8
+  - algorand-sdk/features/integration/send.feature:21
+  - algorand-sdk/features/integration/send.feature:34
+  - algorand-sdk/features/integration/send.feature:8
+  - algorand-sdk/features/integration/simulate.feature:11
+  - algorand-sdk/features/integration/simulate.feature:134
+  - algorand-sdk/features/integration/simulate.feature:161
+  - algorand-sdk/features/integration/simulate.feature:187
+  - algorand-sdk/features/integration/simulate.feature:210
+  - algorand-sdk/features/integration/simulate.feature:24
+  - algorand-sdk/features/integration/simulate.feature:31
+  - algorand-sdk/features/integration/simulate.feature:58
+  - algorand-sdk/features/integration/simulate.feature:84
+sorted_item_ids_sha256: e1de142da6695f02a4634f1704632366d6d156aac999493598a12583d917bd00

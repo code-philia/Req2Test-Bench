@@ -1,0 +1,25 @@
+# D15 boundary for the pinned e-petitions tree. Whole step_definitions/** is
+# removable, including web_steps.rb/email_steps.rb/pickle_steps.rb boilerplate.
+# Memorisation risk is disclosed in profile facts; it does not narrow D15.
+# features/*.feature and app/**/lib/** fall through to production unchanged.
+# S2 checks the tracked tree census; no mutation population is collected here.
+version: 1
+project: e-petitions
+repo_root: projects/e-petitions/source
+removable:
+- path: features/step_definitions/
+  why: 'D15: all step-definition files and helpers, including generated or vendored glue, form the
+    answer.'
+retained:
+- path: features/support/
+  why: Native Cucumber Rails boot, hooks and World support. The retained paths.rb, selectors.rb and
+    sections.rb live here at the pinned commit.
+- path: spec/support/
+  why: Shared test infrastructure, including the constituency API helper required by retained Cucumber
+    support.
+- path: spec/factories.rb
+  why: FactoryBot definitions used by native glue; retained scenario setup substrate.
+- path: spec/fixtures/
+  why: Scenario input files and VCR cassettes; data read by hooks and tests, not regenerated answers.
+removable_config: []
+retained_contexts: []

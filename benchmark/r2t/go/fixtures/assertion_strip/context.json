@@ -1,0 +1,17 @@
+{
+  "schema": "r2t.go-suite-context/1",
+  "feature_path": "features/strip.feature",
+  "scenario_line": 2,
+  "glue_path": "internal/stripfixture/bdd_strip_test.go",
+  "package_dir": "internal/stripfixture",
+  "package_name": "stripfixture",
+  "test_name": "TestStripFixture",
+  "suite_line": 36,
+  "go_build_expression": "",
+  "go_build_tags": [],
+  "godog_tags": "",
+  "godog_tags_origin": {
+    "kind": "literal",
+    "line": 34
+  }
+}

@@ -1,0 +1,14 @@
+{
+ "algorithm_committed_at_sampling_time": false,
+ "closure_clusters": 77,
+ "closure_clusters_key": "sha256 of the sorted gold/<hash>.json['files'] list -- the closure FILE set, the only de-duplication key the release ships",
+ "content_sha256": "d4ae3ccb562ba4a5f806c46891e05c9c4042005a7e83b78830b3e237c244e44c",
+ "item_id_list_digest": "51b96213a5bc10f47c112314b554440c12fdcdcbc45c0634ed84fbc89d1750e3",
+ "n": 100,
+ "note": "Post-hoc. No sampling script existed when these 100 items were drawn on 2026-07-31; the only record of the draw was the free-text 'rule' quoted above, kept in the extraction scratch artifact. This sidecar therefore freezes the subset BY CONTENT (content_sha256 over release/eval100.jsonl and item_id_list_digest over its 100 item ids) and records the rule text as found, verbatim, rather than claiming a reproducible procedure. r2t/subsets.py implements a committed sampler for FUTURE subsets; it cannot reproduce this one, and no attempt was made to, because a different 100 items would invalidate the published 5/100 rather than explain it. Two facts make the gap concrete. (1) The recorded rule de-duplicated by 'distinct step-definition set'; the finest such key lives in the extraction artifacts (closures.json, per-step definition records), which the release does not ship. Under the only such key the release does ship -- the closure file set -- these 100 items fall into 77 clusters, not 100, so the committed sampler's 'one item per cluster' step would not even admit this subset as a candidate. (2) The recorded seed is a date string, 20260731, and which RNG consumed it in which order was never written down. Cross-check: the 100 item ids in the release file are exactly the 100 recorded in the scratch artifact.",
+ "reconstructed": true,
+ "rule_as_recorded": "one representative per distinct step-definition set (lexicographically first item_id), then proportional-by-feature-family random sample, floor 1 per family, seed 20260731",
+ "rule_source": "artifacts/eval100_items.json (extraction scratch artifact, not part of the release)",
+ "schema": "r2t.subset_provenance/1",
+ "seed_as_recorded": "20260731"
+}

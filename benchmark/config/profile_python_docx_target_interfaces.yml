@@ -1,0 +1,228 @@
+# Task profile for python-docx under the TARGET INTERFACES setting
+# (TARGET_INTERFACES_SPEC; r2t/data/profile.py, r2t/data/prompt.py)
+#
+# A one-variable twin of `profile_python_docx.yml`: every word the model reads
+# is that file's, plus ONE block the item supplies -- its `target_interfaces`
+# lists, rendered by `prompt.target_interfaces_block` because `disclosure:`
+# below says so.  The base profile does not carry that key and never renders
+# the block, so its four digests are untouched; this file's `c1.5`, `c2` and
+# `c3` differ from the base's because the canonical task carries a list, and
+# its `single_shot` is identical because the system message is the facts and
+# the return contract, which are unchanged.
+#
+# python-docx is the setting's measured LIMIT (spec section 4.3, owner ruling
+# D2): the behave extractor sees an untyped `context.<attr>` flow, so 134 of
+# its 239 lists are the bare `docx` module.  The list is disclosed anyway, so
+# that one setting applies to every project and the null treatment is
+# measured rather than assumed.
+#
+# THIS FILE IS FROZEN, like its base: the digests at the bottom are re-derived
+# on every load, and a changed word is a NEW profile, not an edit.  Rows
+# generated under it carry `setting: target_interfaces` through the protocol
+# file that copies these digests (`protocol_v14.yml`); they are not comparable
+# with `cold_start` rows and are never labelled as if they were.
+
+version: 1
+project: python-docx
+project_label: python-docx
+language: python
+language_label: Python
+framework: behave
+api_scoring: none
+
+# Cross-checked against, and required to sit beside this file.  Two of this
+# project's decisions are checked THERE rather than asserted here: that
+# `features/steps/` is removable (or a compliant answer would be discarded)
+# and that the fixtures the `retained_note` below promises really did survive
+# removal (or the prompt would be lying to the agent about what it will find).
+boundary: boundary_python_docx.yml
+
+# ------------------------------------------------------------------- task
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: behave test code
+
+# --------------------------------------------------------------- disclosure
+# What the prompt says BEYOND the requirement.  `target_interfaces: true`
+# renders the item's lists under one fixed heading (`prompt.
+# TARGET_INTERFACES_HEADING`), or one fixed sentence when a list is empty;
+# an item that carries no lists at all is refused rather than rendered
+# without the section the profile promises.
+disclosure:
+  target_interfaces: true
+
+# ------------------------------------------------------------- submission
+# behave discovers steps by importing every module under `features/steps/`,
+# so that directory is both where the answer goes and how it is recognised.
+# `extra_names` is empty because there is no out-of-band channel: a behave
+# submission is Python files and nothing else.
+submission:
+  acceptance_root: features/steps/
+  example_path: features/steps/document.py
+  example_code: from behave import given, then ...
+  placement_hint: features/steps/...
+  suffixes:
+    - .py
+  extra_names: []
+  # What the prompt promises survived removal, in the sentence's own words.
+  # BOTH tokens are classified against the boundary and must come back
+  # RETAINED, which is what makes this line a check rather than a claim.
+  #
+  # The fixtures are named here for a reason that cost the design a decision:
+  # `features/steps/helpers.py` is REMOVABLE, and it is the module that held
+  # `test_docx(name)` and `test_file(name)`.  Recreating those paths is part
+  # of the task, so the agent has to be told the files they point at are
+  # still on disk -- otherwise the honest reading of an empty `features/steps/`
+  # is that the fixtures went with it, and every item fails for a reason that
+  # is not test generation.
+  retained_note: '`features/environment.py` and the fixtures in `features/steps/test_files/` are what remain'
+
+# --------------------------------------------------------- wiring channel
+# NULL.  behave has no container: a step module is imported, its decorated
+# functions are registered, and shared state travels on the `context` object.
+# There is nothing to declare, so neither the collection-contract bullet that
+# offers the channel nor the auto-registration fact that explains it is
+# emitted at all.
+wiring_channel: null
+
+# ------------------------------------------------------------- runtime
+# What the STACK needs to run, as opposed to what the prompt says (D6).
+#
+# python-docx is a library: `behave` imports `docx` from `src/`, opens a
+# fixture with lxml and asserts about the object graph.  There is no
+# database, no application kernel and no network.  CoreShop needs all three
+# of Pimcore, MySQL and a compiled container, and every provisioning step
+# that exists exists for that -- a per-worker schema, a per-worker MySQL
+# principal, a 252-table dump, the isolation probe that proves one worker
+# cannot read another's rows, and the `root@%` hardening that makes the
+# separation mean something.
+#
+# Running those against a project with no database does not fail loudly; it
+# provisions an empty schema nobody connects to and then REFUSES the worker
+# for holding fewer than 100 tables, which reads as a broken seed.  So the
+# fact is declared, once, here: `worker.provision`, `seed.build_seed` and the
+# campaign fingerprint all read it, and the campaign records
+# `database_dump_digest: no_database` -- a DECLARED sentinel, never an absent
+# field, because "this stack has no database" and "whoever wrote this forgot
+# to record the database" must not be the same 16 hex characters.
+#
+# `needs_database` defaults to TRUE when the block is absent, so every
+# profile written before this existed keeps its meaning.
+runtime:
+  needs_database: false
+
+# ------------------------------------------------------------- workspace
+# What the agent may read, and where it is mounted.
+#
+# `readable_paths` defines the C1.5-vs-C2 ablation (C1.5 gets none of it) and
+# feeds the agent-seed cache key, so an edit here invalidates every cached
+# seed rather than serving a stale one.  `features` carries both the other
+# `.feature` files and the retained fixtures; `src` is the library under
+# test; `pyproject.toml` is how a reader learns the package layout.
+# There is no `behave.ini` in this repository -- behave finds `features/` by
+# its own base-directory discovery -- so naming one would promise a file that
+# is not there.
+workspace:
+  repo_dir: repo
+  readable_paths:
+    - features
+    - src
+    - pyproject.toml
+
+# ------------------------------------------------------------------ facts
+# What a stripped behave repository cannot tell the model.  The same job as
+# CoreShop's eight bullets and none of the same content: decorators instead
+# of docblocks, `parse`/`re` matchers instead of regex-only annotations,
+# `register_type` instead of `@Transform`, the `context` object instead of a
+# shared-storage service, and `assert` instead of Webmozart.
+#
+# The last three are this PROJECT's rather than the framework's, and each is
+# a thing removal took away with the code: where the library is imported
+# from, where the fixtures are, and where a scenario may write.
+#
+# There is no `<wiring-channel>` slot: a profile with a null channel may
+# leave the slot in (it is dropped) or leave it out, and leaving it out is
+# clearer.
+facts:
+  - |-
+    Step definitions are plain functions decorated with `@given`, `@when` or `@then`, imported from `behave` (`from behave import given, when, then`). behave loads every module under `features/steps/`; the Given/When/Then keyword is irrelevant to matching.
+  - |-
+    Step parameters are captured by the default `parse` matcher with `{name}` or `{name:Type}` placeholders (`@then('the paragraph has {count:d} runs')`). For regular expressions call `use_step_matcher('re')` first, and switch back with `use_step_matcher('parse')` -- the setting applies to every step defined after it.
+  - |-
+    To convert a captured string into an object, register a type with `behave.register_type(Bool=parse_bool)` and name it in the placeholder (`{value:Bool}`). There is no separate transform decorator.
+  - |-
+    The scenario's `Background` steps run before it and need definitions too.
+  - |-
+    `features/environment.py` holds the lifecycle hooks (`before_all`, `before_feature`, `before_scenario`, and their `after_` counterparts). It is retained: do not write one.
+  - |-
+    The `context` object passed to every step is the shared state between steps of a scenario (`context.document = document`, then read `context.document` in a later step). behave resets it per scenario; anything that must outlive a scenario belongs on `context.config` or in the environment hooks.
+  - |-
+    Assertions are plain `assert` statements. behave reports the AssertionError as the step failure, so include a message (`assert len(paragraphs) == 3, "got %d" % len(paragraphs)`).
+  - |-
+    The library under test is imported as `docx` and lives in `src/docx/`; `src` is already on the import path, so `from docx import Document` works without installing anything. Production code is never accepted.
+  - |-
+    The `.docx`, `.jpg`, `.png`, `.bmp`, `.gif`, `.tif`, `.emf` and `.wmf` fixtures a scenario opens are still on disk in `features/steps/test_files/`, and their names are the ones the scenario text uses. The helper module that used to turn a name into a path went with the removed code; write whatever helper you need, or build the path directly.
+  - |-
+    A scenario that SAVES a document writes into `features/_scratch/`, which the retained environment hook creates before the run. Nothing else in the tree may be written.
+
+# The rendered sentence is "You write executable behave test code for
+# <blurb>.", so the framework is already in it and naming it again here would
+# be noise in a prompt whose bytes are frozen.  `lxml` is named instead
+# because it is the only dependency the library has and the one a step that
+# reaches for the XML underneath will meet.
+platform_blurb: |-
+  the python-docx library for reading and writing Word .docx files (Python 3.12, lxml)
+
+# ------------------------------------------------------------- conditions
+# The two clauses the agent conditions differ in.  C1.5 -> C2 isolates
+# repository access, so the ONLY thing that may move between them is what the
+# agent can see; these two nouns are that difference, spelled out.
+conditions:
+  retained_substrate: |-
+    the retained `features/environment.py` hooks and the `features/steps/test_files/` fixtures
+  project_source_noun: python-docx source
+
+# ------------------------------------------------------------------ trial
+# The same two clause forms CoreShop carries, and the same reason for them:
+# an execution is a terminal tool call, so it already costs the agent an
+# iteration and `--max-iterations` bounds executions natively; only the
+# BOUNDED form (`--trials k`) names a count, because a count in the prompt is
+# a scarcity signal and scarcity is a confound in what this benchmark
+# measures.  See `r2t/agents/trials.py` and the CoreShop profile for the argument.
+#
+# The wording is byte-identical to the other two profiles' because the
+# sentence is structural rather than project-specific -- what differs is
+# `{interpreter}` and `{runner}`, which is exactly the parameterisation the
+# profile schema exists for.
+trial:
+  client_interpreter: python3
+  runner_noun: behave
+  clause_bounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this {k} times.
+  clause_unbounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this as often as you want.
+
+# ----------------------------------------------------------------- freeze
+# sha256 of each rendered prompt, over the canonical task fixture in
+# `adapters.CANONICAL_TASK` (criterion_to_test, client=trial.py; c3 rendered
+# UNBOUNDED, which is what the arm runs).  Verified on every load.
+#
+# Derived once, with
+#   python3 -c "from r2t.bench.profile import load_profile;
+#               from r2t.bench.adapters import prompt_digests;
+#               print(prompt_digests(load_profile(
+#                   'config/profile_python_docx_target_interfaces.yml', verify_digests=False)))"
+# and frozen from that moment.  If a load starts refusing, the question is
+# never "update the digest", it is "which docx sweep just became
+# unattributable".
+#
+# `c3` is the UNBOUNDED rendering, like the other two profiles'.  The BOUNDED
+# wording -- what `--trials k` renders -- is frozen too, at
+# f5602a818083bd1bc7ab0beb2b0b818788afc28ec393631c28ff26d16f24a867, and
+# `profile.selftest` pins both so a `--trials 5` docx run stays attributable.
+prompt_digest:
+  single_shot: 6ed34491295e0cbe78da3e3629774a5799a423b68ddde75deb0840b0bb8c63bf
+  c1.5: 163cd563a93d065322211951e8b35855e640ecb7267957b7e91dbb9946b200e2
+  c2: a942a37e27a264a8de9d1e74da73e0db8704ae57192ff16f716b0ab7e967d573
+  c3: 3220a8c6e9391327aa80d150f9ae233c12b8ceee8bc756d643f4e07fe65d5179

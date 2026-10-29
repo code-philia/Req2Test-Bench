@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://req2test.example/schemas/publication-bundle-index-v1.schema.json",
+  "title": "Proposed r2t Publication Bundle Index v1",
+  "description": "Minimal root set for deterministic content-addressed offline receipt verification.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "root_receipts", "digest"],
+  "properties": {
+    "schema": {"const": "r2t.publication-bundle-index/v1"},
+    "root_receipts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/rootReceipt"}
+    },
+    "digest": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "rootReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_kind",
+        "receipt_file_sha256",
+        "receipt_digest"
+      ],
+      "properties": {
+        "artifact_kind": {
+          "enum": ["run_shard", "validation", "merged_run"]
+        },
+        "receipt_file_sha256": {"$ref": "#/$defs/sha256"},
+        "receipt_digest": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

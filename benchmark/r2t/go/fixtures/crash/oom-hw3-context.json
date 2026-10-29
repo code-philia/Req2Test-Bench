@@ -1,0 +1,19 @@
+{
+  "feature_path": "features/cli_remote.feature",
+  "glue_path": "external/cli/bdd_cli_remote_test.go",
+  "go_build_expression": "cli",
+  "go_build_tags": [
+    "cli"
+  ],
+  "godog_tags": "",
+  "godog_tags_origin": {
+    "kind": "default",
+    "line": 331
+  },
+  "package_dir": "external/cli",
+  "package_name": "cli",
+  "scenario_line": 6,
+  "schema": "r2t.go-suite-context/1",
+  "suite_line": 328,
+  "test_name": "TestCLIRemoteFeature"
+}

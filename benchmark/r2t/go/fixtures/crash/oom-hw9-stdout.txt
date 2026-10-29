@@ -1,0 +1,5 @@
+=== RUN   TestCLITUIFeature
+=== RUN   TestCLITUIFeature/Starting_a_new_session_drops_updates_from_the_old_one
+signal: killed
+FAIL	github.com/EvilFreelancer/coddy-agent/external/cli	216.325s
+FAIL

@@ -1,0 +1,290 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://req2test.example/schemas/docker-execution-authority-v1.schema.json",
+  "title": "r2t Docker Execution Authority v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "captured_at_utc",
+    "verifier",
+    "authority_class",
+    "tenant_scope",
+    "canonical_eligible",
+    "refusal_reasons",
+    "endpoint",
+    "client",
+    "daemon",
+    "adapter",
+    "digest"
+  ],
+  "properties": {
+    "schema": {"const": "r2t.docker-execution-authority/v1"},
+    "captured_at_utc": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 20,
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "verifier": {"$ref": "#/$defs/verifier"},
+    "authority_class": {"const": "rootless_current_user"},
+    "tenant_scope": {"const": "current_user"},
+    "canonical_eligible": {"const": true},
+    "refusal_reasons": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "endpoint": {"$ref": "#/$defs/endpoint"},
+    "client": {"$ref": "#/$defs/client"},
+    "daemon": {"$ref": "#/$defs/daemon"},
+    "adapter": {"$ref": "#/$defs/linuxRootlessAdapter"},
+    "digest": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "absolutePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^/[^\\u0000\\r\\n]*$"
+    },
+    "socketPath": {
+      "type": "string",
+      "minLength": 2,
+      "pattern": "^/[A-Za-z0-9._/-]+$"
+    },
+    "verifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "version",
+        "source_path",
+        "source_sha256",
+        "git_commit",
+        "git_tree_clean"
+      ],
+      "properties": {
+        "name": {"const": "r2t.docker_authority"},
+        "version": {"const": "1.0"},
+        "source_path": {"const": "benchmark/r2t/docker_authority.py"},
+        "source_sha256": {"$ref": "#/$defs/sha256"},
+        "git_commit": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 40,
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "git_tree_clean": {"const": true}
+      }
+    },
+    "endpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selection_source",
+        "selection_identity",
+        "transport",
+        "address",
+        "address_sha256",
+        "ambient_keys_checked",
+        "ambient_keys_present",
+        "client_config_mode",
+        "client_config_sha256"
+      ],
+      "properties": {
+        "selection_source": {"const": "explicit_cli"},
+        "selection_identity": {"type": "string", "pattern": "^host:unix:///[A-Za-z0-9._/-]+$"},
+        "transport": {"const": "unix"},
+        "address": {"type": "string", "pattern": "^unix:///[A-Za-z0-9._/-]+$"},
+        "address_sha256": {"$ref": "#/$defs/sha256"},
+        "ambient_keys_checked": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "prefixItems": [
+            {"const": "DOCKER_API_VERSION"},
+            {"const": "DOCKER_CERT_PATH"},
+            {"const": "DOCKER_CONFIG"},
+            {"const": "DOCKER_CONTEXT"},
+            {"const": "DOCKER_DEFAULT_PLATFORM"},
+            {"const": "DOCKER_HOST"},
+            {"const": "DOCKER_TLS"},
+            {"const": "DOCKER_TLS_VERIFY"}
+          ],
+          "items": false
+        },
+        "ambient_keys_present": {"type": "array", "maxItems": 0},
+        "client_config_mode": {"const": "isolated_empty"},
+        "client_config_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "client": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selected_executable",
+        "resolved_executable",
+        "executable_sha256",
+        "selected_executable_kind",
+        "selected_executable_uid",
+        "selected_executable_gid",
+        "selected_executable_mode",
+        "resolved_executable_uid",
+        "resolved_executable_gid",
+        "resolved_executable_mode",
+        "path_chain_secure",
+        "version",
+        "api_version",
+        "operating_system",
+        "architecture"
+      ],
+      "properties": {
+        "selected_executable": {"$ref": "#/$defs/absolutePath"},
+        "resolved_executable": {"$ref": "#/$defs/absolutePath"},
+        "executable_sha256": {"$ref": "#/$defs/sha256"},
+        "selected_executable_kind": {"enum": ["regular", "symlink"]},
+        "selected_executable_uid": {"type": "integer", "minimum": 0},
+        "selected_executable_gid": {"type": "integer", "minimum": 0},
+        "selected_executable_mode": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 4,
+          "pattern": "^[0-7]{4}$"
+        },
+        "resolved_executable_uid": {"type": "integer", "minimum": 0},
+        "resolved_executable_gid": {"type": "integer", "minimum": 0},
+        "resolved_executable_mode": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 4,
+          "pattern": "^[0-7]{4}$"
+        },
+        "path_chain_secure": {"const": true},
+        "version": {"type": "string", "minLength": 1},
+        "api_version": {"type": "string", "minLength": 1},
+        "operating_system": {"type": "string", "minLength": 1},
+        "architecture": {"type": "string", "minLength": 1}
+      }
+    },
+    "daemon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "fingerprint_sha256",
+        "server_version",
+        "api_version",
+        "minimum_api_version",
+        "os_type",
+        "operating_system",
+        "architecture",
+        "kernel",
+        "security_options",
+        "isolation",
+        "rootless",
+        "userns_remap",
+        "storage_driver",
+        "docker_root_dir",
+        "cgroup_driver",
+        "cgroup_version",
+        "default_runtime"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "fingerprint_sha256": {"$ref": "#/$defs/sha256"},
+        "server_version": {"type": "string", "minLength": 1},
+        "api_version": {"type": "string", "minLength": 1},
+        "minimum_api_version": {"type": "string", "minLength": 1},
+        "os_type": {"const": "linux"},
+        "operating_system": {"type": "string", "minLength": 1},
+        "architecture": {"type": "string", "minLength": 1},
+        "kernel": {"type": "string", "minLength": 1},
+        "security_options": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "isolation": {"type": ["string", "null"]},
+        "rootless": {"const": true},
+        "userns_remap": {"type": "boolean"},
+        "storage_driver": {"type": "string", "minLength": 1},
+        "docker_root_dir": {"$ref": "#/$defs/absolutePath"},
+        "cgroup_driver": {"type": ["string", "null"]},
+        "cgroup_version": {"type": ["string", "null"]},
+        "default_runtime": {"type": ["string", "null"]}
+      }
+    },
+    "linuxRootlessAdapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "invoking_uid",
+        "invoking_gid",
+        "selected_socket_path",
+        "resolved_socket_path",
+        "socket_uid",
+        "socket_gid",
+        "socket_mode",
+        "socket_acl",
+        "private_parent_path",
+        "private_parent_uid",
+        "private_parent_gid",
+        "private_parent_mode",
+        "private_parent_acl",
+        "docker_root_resolved_path",
+        "docker_root_uid",
+        "docker_root_gid",
+        "docker_root_mode",
+        "docker_root_acl",
+        "rootless_security_option",
+        "socket_exclusive",
+        "data_root_owned_by_invoking_uid"
+      ],
+      "properties": {
+        "schema": {"const": "r2t.docker-authority-adapter/linux-rootless-v1"},
+        "invoking_uid": {"type": "integer", "minimum": 1},
+        "invoking_gid": {"type": "integer", "minimum": 0},
+        "selected_socket_path": {"$ref": "#/$defs/socketPath"},
+        "resolved_socket_path": {"$ref": "#/$defs/socketPath"},
+        "socket_uid": {"type": "integer", "minimum": 0},
+        "socket_gid": {"type": "integer", "minimum": 0},
+        "socket_mode": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 4,
+          "pattern": "^[0-7][0-7]00$"
+        },
+        "socket_acl": {"const": "absent"},
+        "private_parent_path": {"$ref": "#/$defs/absolutePath"},
+        "private_parent_uid": {"type": "integer", "minimum": 0},
+        "private_parent_gid": {"type": "integer", "minimum": 0},
+        "private_parent_mode": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 4,
+          "pattern": "^[0-7][0-7]00$"
+        },
+        "private_parent_acl": {"const": "absent"},
+        "docker_root_resolved_path": {"$ref": "#/$defs/absolutePath"},
+        "docker_root_uid": {"type": "integer", "minimum": 0},
+        "docker_root_gid": {"type": "integer", "minimum": 0},
+        "docker_root_mode": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 4,
+          "pattern": "^[0-7][0-7]00$"
+        },
+        "docker_root_acl": {"const": "absent"},
+        "rootless_security_option": {"const": "name=rootless"},
+        "socket_exclusive": {"const": true},
+        "data_root_owned_by_invoking_uid": {"const": true}
+      }
+    }
+  }
+}

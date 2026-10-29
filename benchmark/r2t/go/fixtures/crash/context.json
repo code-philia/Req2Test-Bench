@@ -1,0 +1,19 @@
+{
+  "feature_path": "features/cli_tui.feature",
+  "glue_path": "external/cli/bdd_cli_tui_test.go",
+  "go_build_expression": "cli",
+  "go_build_tags": [
+    "cli"
+  ],
+  "godog_tags": "",
+  "godog_tags_origin": {
+    "kind": "default",
+    "line": 1130
+  },
+  "package_dir": "external/cli",
+  "package_name": "cli",
+  "scenario_line": 23,
+  "schema": "r2t.go-suite-context/1",
+  "suite_line": 1127,
+  "test_name": "TestCLITUIFeature"
+}

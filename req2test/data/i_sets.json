@@ -1,0 +1,51 @@
+{
+ "schema": "req2test.i-sets/1",
+ "about": "Per-project sizes of the instance sets the leaderboard aggregation divides by: I_api (eval instances whose ground-truth test calls production methods directly), I_cov (eval instances with a coverage reference) and census_n (the project's eval instances). The kits carry the id lists (behaviour/I_api.json, behaviour/I_cov.json). Exact mode intersects those when it has them.",
+ "provenance": {
+  "source": "the per-project counts of the paper's tables",
+  "source_sha256": "5096d49d3fd50e05d60e784d1cef5a62a90b5c3d718135b7edf5945467f16134",
+  "cross_check": "the eight released kits' behaviour/I_api.json and I_cov.json have exactly these lengths"
+ },
+ "projects": {
+  "python-docx": {
+   "I_api": 237,
+   "I_cov": 237,
+   "census_n": 237
+  },
+  "algorand-sdk": {
+   "I_api": 111,
+   "I_cov": 111,
+   "census_n": 111
+  },
+  "coddy-agent": {
+   "I_api": 271,
+   "I_cov": 274,
+   "census_n": 274
+  },
+  "kapua": {
+   "I_api": 330,
+   "I_cov": 330,
+   "census_n": 330
+  },
+  "e-petitions": {
+   "I_api": 25,
+   "I_cov": 98,
+   "census_n": 98
+  },
+  "sylius": {
+   "I_api": 252,
+   "I_cov": 319,
+   "census_n": 319
+  },
+  "prestashop": {
+   "I_api": 348,
+   "I_cov": 348,
+   "census_n": 348
+  },
+  "coreshop": {
+   "I_api": 333,
+   "I_cov": 334,
+   "census_n": 334
+  }
+ }
+}

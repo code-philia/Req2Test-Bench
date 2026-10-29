@@ -1,0 +1,66 @@
+{
+ "appliers": {
+  "master": {
+   "path": "benchmark/r2t/php/mutate.php",
+   "sha256": "3c9321e13c4675c6e7591ecc6491054cfc0c1a9af934732d12bbdffe6879d215"
+  },
+  "paper": {
+   "refs": [
+    {
+     "commit": "4a2782b4311cd2198de2c8412989f617ba17f138",
+     "role": "references",
+     "tag": "mutation-evaluation-collection-v1.1"
+    },
+    {
+     "commit": "4998a89c979b9afc65fe033e3d586d2e525fd473",
+     "role": "candidate scoring",
+     "tag": "mutation-evaluation-collection-v1.1.2"
+    },
+    {
+     "commit": "a2cff2894ee9c8da24745a598f06d1894517f17b",
+     "role": "candidate scoring",
+     "tag": "mutation-evaluation-collection-v1.1.2-pq1-20260927"
+    }
+   ],
+   "sha256": "0da1838b156531c307d34e3eb77537e32e953e4d9b61f43f09291cc6e88a4e8c",
+   "supplied_file_sha256": "0da1838b156531c307d34e3eb77537e32e953e4d9b61f43f09291cc6e88a4e8c"
+  },
+  "same_source": false
+ },
+ "appliers_run": true,
+ "engine": "r2t-mutate",
+ "environment": {
+  "image_config_digest": "sha256:523a0e86bdd6be1f413cdee493f6c313341537e1937b91f8421cc3db7132d989",
+  "interpreter": "PHP 8.3.16 (cli) (built: Jan 17 2025 01:32:01) (NTS)",
+  "operator_profile": "v1",
+  "seed_tar": "kits/coreshop/exec/seed/workspace.tar",
+  "seed_tar_sha256": "ef53d7bdb442948f32240e0a895e02027dd3ca3b9907bfd7bb3bc2cc4f2240d1",
+  "workdir": "/var/www/html"
+ },
+ "exceptions": [],
+ "generated_at": "2026-10-03T18:33:20Z",
+ "host": "maintainer-host",
+ "kind": "script",
+ "kit": {
+  "g_files": 387,
+  "gt_killed_pairs": 48349,
+  "kit_version": "1.0",
+  "limit": null,
+  "manifest_digest": "72747b079b558cce7d1a12582c0f11b67d276121c6929e471c371673eb87ae85",
+  "pairs": 171174,
+  "path": "kits/coreshop"
+ },
+ "project": "coreshop",
+ "schema": "req2test.applier-check/1",
+ "summary": {
+  "applied_by_both": 1456,
+  "differ_sha256": 0,
+  "equal_sha256": 1456,
+  "g_mutants": 1456,
+  "output_is_descriptor_splice": 1456,
+  "refused_by_both": 0,
+  "refused_by_master_only": 0,
+  "refused_by_paper_only": 0
+ },
+ "verdict": "equal"
+}

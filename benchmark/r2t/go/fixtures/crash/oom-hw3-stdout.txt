@@ -1,0 +1,5 @@
+=== RUN   TestCLIRemoteFeature
+=== RUN   TestCLIRemoteFeature/A_remote_turn_streams_into_the_interactive_transcript
+signal: killed
+FAIL	github.com/EvilFreelancer/coddy-agent/external/cli	457.496s
+FAIL

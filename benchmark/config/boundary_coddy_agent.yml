@@ -1,0 +1,365 @@
+# Test/production boundary for coddy-agent (Track G, owner-approved D15).
+# Source pin: 5fadd23573bafff8a39baa4c19b01af1878e0ac2.
+# Exact paths come from sprint/G/coddy_g0_census.json in the sprint data.
+# Distributed BDD glue is removable; named sibling tests are retained.
+# These lists do not claim a minimal dependency closure. Every other path,
+# including ordinary tests outside the named sibling set, is production by
+# the existing boundary default. No directory or glob grants answer access.
+
+version: 1
+project: coddy-agent
+repo_root: projects/coddy-agent/source
+
+removable:
+  - path: cmd/coddy/bdd_sessions_export_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/cli/bdd_cli_remote_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/cli/bdd_cli_tui_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_ask_mode_e2e_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_background_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_branch_delete_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_codex_e2e_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_compaction_auto_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_compaction_http_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_composer_watch_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_hooks_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_mcp_e2e_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_mcp_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_neuraldeep_auth_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_neuraldeep_usage_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_plugin_command_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_reasoning_levels_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_remote_client_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_remote_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_session_export_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_skills_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_stream_toggle_e2e_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_subagents_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/httpserver/bdd_workspace_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: external/ui/bdd_spawn_agent_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_agents_scope_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_ask_mode_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_at_line_range_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_background_wake_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_compaction_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_hooks_subagents_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_hooks_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_identity_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_limit_wait_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_loop_guard_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_result_eviction_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_rules_agents_dir_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/agent/bdd_subagents_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/llm/bdd_llamacpp_stream_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/llm/bdd_retry_after_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/llm/bdd_retry_ownership_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/llm/bdd_stream_toggle_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/llm/bdd_stream_truncation_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/llm/bdd_transport_retry_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/permission/bdd_acp_permission_answers_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/permission/bdd_background_permissions_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/session/bdd_acp_session_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/session/bdd_attachment_encoding_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/session/bdd_codex_e2e_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/session/bdd_mcp_e2e_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/session/bdd_mcp_trust_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/subagents/bdd_catalog_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/tools/bdd_config_tools_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/tools/bdd_question_args_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/tools/fs/bdd_edit_line_endings_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/tools/shell/bdd_background_reap_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/tools/shell/bdd_background_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/tools/shell/bdd_foreground_timeout_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/tools/shell/bdd_special_characters_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/update/bdd_update_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+  - path: internal/update/bdd_update_windows_test.go
+    why: Godog BDD glue; regenerate at its original package path.
+
+removable_config: []
+
+retained:
+  - path: cmd/coddy/agents_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: cmd/coddy/cli_dispatch_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: cmd/coddy/cli_stub_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: cmd/coddy/hooks_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: cmd/coddy/providers_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: cmd/coddy/sessions_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/cli/chat_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/cli/continue_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/cli/sender_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/cli/status_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/cli/usage_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/bridge_relay_sender_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/bridge_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/coddy_coddy_created_at_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/coddy_plans_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/coddy_toolcalls_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/codex_auth_http_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/composer_stream_http_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/composer_stream_relay_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/composer_stream_resume_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/composer_watch_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/enhance_prompt_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/events_http_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/mcp_config_http_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/memory_http_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/neuraldeep_auth_http_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/permission_resume_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/providers_models_http_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/providers_usage_http_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/reasoning_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/scheduler_http_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/server_no_ui_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/server_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/server_ui_embed_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/subagents_http_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/workspace_context_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: external/httpserver/workspace_file_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/agent/background_notify_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/agent/identity_prompt_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/agent/limit_wait_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/agent/live_neuraldeep_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/agent/loopguard_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/agent/plugin_command_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/agent/react_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/agent/result_eviction_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/agent/rules_activation_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/agent/subagent_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/codex_auth_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/codex_device_auth_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/codex_models_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/codex_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/llm_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/model_list_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/neuraldeep_auth_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/neuraldeep_usage_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/provider_codex_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/proxy_http_client_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/reasoning_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/llm/resilient_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/permission/permission_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/assets_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/at_paths_extract_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/branches_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/cancel_signal_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/compaction_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/cwd_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/export_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/filesystem_concurrent_read_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/filesystem_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/instructions_load_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/manager_mcp_reload_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/manager_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/manager_turn_lock_common_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/manager_usage_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/pending_permission_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/promptfiles_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/provider_usage_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/reasoning_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/run_plan_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/state_mcp_reload_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/state_plan_document_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/stats_store_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/subagent_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/tool_preview_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/toolcalls_store_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/transcript_export_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/transcript_export_unix_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/turn_active_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/turn_events_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/turn_lock_unix_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/ui_log_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/validate_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/session/workspace_path_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/subagents/subagents_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/allowlist_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/config_tools_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/format_prompt_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/fs/fs_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/fs/toolpaths_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/fs_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/load_skill_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/modes_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/plan_read_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/plan_write_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/question_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/shell/run_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/tools/shell/switchwriter_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/update/platform_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/update/update_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/update/version_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/update/windows_other_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+  - path: internal/update/windows_windows_test.go
+    why: Non-BDD sibling test substrate retained under D15.
+
+retained_contexts: []

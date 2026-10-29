@@ -1,0 +1,2930 @@
+{
+ "schema": "req2test.leaderboard/1",
+ "release": "1.0",
+ "provenance": {
+  "research_repo": "the study's research repository (not public)",
+  "research_commit": "21f1cb23315ecb44b220a5c53ae47a01a251c698",
+  "aggregation": "req2test.aggregate paper-v9 (replicates the paper's table generator)",
+  "paper_table": "tables/overall_performance.tex",
+  "paper_table_sha256": "c2debc8317c52d60399e7b6f8de0951204cf171510b1c33e59b90bb11958f214",
+  "paper_table_check": "all 70 values equal"
+ },
+ "metrics": [
+  "pass_at_1",
+  "kill_complete_at_1",
+  "api_f1",
+  "coverage_j",
+  "mutation_recall"
+ ],
+ "rows": [
+  {
+   "id": "aider-ds",
+   "system": "Aider",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "off",
+   "arm": "aider",
+   "views": {
+    "th": {
+     "pass_at_1": 0.0931944036791677,
+     "kill_complete_at_1": 0.044611638568581885,
+     "api_f1": 0.06397383739526151,
+     "coverage_j": 0.07827841847978154,
+     "mutation_recall": 0.08344521508231506,
+     "projects": 8
+    },
+    "ah": {
+     "pass_at_1": 0.09378314638955508,
+     "kill_complete_at_1": 0.044131053125886124,
+     "api_f1": 0.06564917614384931,
+     "coverage_j": 0.078813635213724,
+     "mutation_recall": 0.08539889086172364,
+     "projects": 8
+    }
+   }
+  },
+  {
+   "id": "openhands-ds",
+   "system": "OpenHands",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "off",
+   "arm": "openhands",
+   "views": {
+    "th": {
+     "pass_at_1": 0.3009253150352987,
+     "kill_complete_at_1": 0.17495079690549886,
+     "api_f1": 0.24210022119092756,
+     "coverage_j": 0.28489997517862276,
+     "mutation_recall": 0.28848938497589866,
+     "projects": 8
+    },
+    "ah": {
+     "pass_at_1": 0.2506978478920974,
+     "kill_complete_at_1": 0.16081695256225365,
+     "api_f1": 0.20049423199982178,
+     "coverage_j": 0.23826785109595372,
+     "mutation_recall": 0.23977527338663482,
+     "projects": 8
+    }
+   }
+  },
+  {
+   "id": "claude-code-ds",
+   "system": "Claude Code",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "high",
+   "arm": "claude-code-deepseek-flash",
+   "views": {
+    "th": {
+     "pass_at_1": 0.7280432800663308,
+     "kill_complete_at_1": 0.3290428712137868,
+     "api_f1": 0.5582782566973955,
+     "coverage_j": 0.6625732990413024,
+     "mutation_recall": 0.6647546481283033,
+     "projects": 8
+    },
+    "ah": {
+     "pass_at_1": 0.6623973612333667,
+     "kill_complete_at_1": 0.29226341482722434,
+     "api_f1": 0.5159073148368599,
+     "coverage_j": 0.6128116121749553,
+     "mutation_recall": 0.6068461092857562,
+     "projects": 8
+    }
+   }
+  },
+  {
+   "id": "codex-ds-off",
+   "system": "Codex CLI",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "off",
+   "arm": "codex2-deepseek-flash-ro",
+   "views": {
+    "th": {
+     "pass_at_1": 0.5339365958382776,
+     "kill_complete_at_1": 0.22811590464220097,
+     "api_f1": 0.38556508088177766,
+     "coverage_j": 0.49172203764635425,
+     "mutation_recall": 0.49521524780682713,
+     "projects": 8
+    },
+    "ah": {
+     "pass_at_1": 0.4311512180044675,
+     "kill_complete_at_1": 0.20318061515065958,
+     "api_f1": 0.3064460274932004,
+     "coverage_j": 0.40096822709152563,
+     "mutation_recall": 0.4010318420800559,
+     "projects": 8
+    }
+   }
+  },
+  {
+   "id": "codex-ds",
+   "system": "Codex CLI",
+   "model": "DeepSeek-V4.1-Flash",
+   "reasoning": "high",
+   "arm": "codex2-deepseek-flash",
+   "views": {
+    "th": {
+     "pass_at_1": 0.7654266511079411,
+     "kill_complete_at_1": 0.3268220009402403,
+     "api_f1": 0.5928279561422443,
+     "coverage_j": 0.7027536083201731,
+     "mutation_recall": 0.7059661661711187,
+     "projects": 8
+    },
+    "ah": {
+     "pass_at_1": 0.6846183798586287,
+     "kill_complete_at_1": 0.3204621694777909,
+     "api_f1": 0.5089967539357396,
+     "coverage_j": 0.6376393225735878,
+     "mutation_recall": 0.6296868562568502,
+     "projects": 8
+    }
+   }
+  },
+  {
+   "id": "codex-luna",
+   "system": "Codex CLI",
+   "model": "GPT-6 Luna",
+   "reasoning": "high",
+   "arm": "codex2-gpt-6-luna",
+   "views": {
+    "th": {
+     "pass_at_1": 0.5906738255141583,
+     "kill_complete_at_1": 0.2635037520109197,
+     "api_f1": 0.4426262685584416,
+     "coverage_j": 0.5314388198791804,
+     "mutation_recall": 0.5407860909756285,
+     "projects": 8
+    },
+    "ah": {
+     "pass_at_1": 0.49571436644058486,
+     "kill_complete_at_1": 0.2551364368396157,
+     "api_f1": 0.37253668834785186,
+     "coverage_j": 0.45931109004539417,
+     "mutation_recall": 0.46847045294587514,
+     "projects": 8
+    }
+   }
+  },
+  {
+   "id": "codex-sol",
+   "system": "Codex CLI",
+   "model": "GPT-6 Sol",
+   "reasoning": "high",
+   "arm": "codex2-gpt-6-sol",
+   "views": {
+    "th": {
+     "pass_at_1": 0.6389943717502792,
+     "kill_complete_at_1": 0.29504829726488274,
+     "api_f1": 0.47366860735638905,
+     "coverage_j": 0.5749286058673897,
+     "mutation_recall": 0.583122778033262,
+     "projects": 8
+    },
+    "ah": {
+     "pass_at_1": 0.5706833016967545,
+     "kill_complete_at_1": 0.27410404610699196,
+     "api_f1": 0.4230041523954511,
+     "coverage_j": 0.5279475474571128,
+     "mutation_recall": 0.5349138643762205,
+     "projects": 8
+    }
+   }
+  }
+ ],
+ "cells": [
+  {
+   "project": "algorand-sdk",
+   "arm": "aider",
+   "view": "ah",
+   "population": 111,
+   "pass": 6,
+   "pass_den": 111,
+   "kc": 4,
+   "mut_recall": 0.9671717171717171,
+   "api_f1": 0.829,
+   "api_n": 6,
+   "cov_j": 0.899,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/algorand-sdk__aider__all_hidden.json",
+    "sha256": "8a85e1bab8f2baa5af75cd866dedde7982b6cff85949e83958a0f79886899bef"
+   },
+   "values": {
+    "pass_at_1": 0.05405405405405406,
+    "kill_complete_at_1": 0.036036036036036036,
+    "api_f1": 0.044810810810810814,
+    "coverage_j": 0.048594594594594594,
+    "mutation_recall": 0.05227955227955228
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "aider",
+   "view": "th",
+   "population": 111,
+   "pass": 4,
+   "pass_den": 111,
+   "kc": 2,
+   "mut_recall": 0.8571428571428572,
+   "api_f1": 0.697,
+   "api_n": 4,
+   "cov_j": 0.888,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/algorand-sdk__aider__target_hidden.json",
+    "sha256": "a5bff3a1060b6ae314801b363096f14e99010bd08e672ce605d4520ed2086240"
+   },
+   "values": {
+    "pass_at_1": 0.036036036036036036,
+    "kill_complete_at_1": 0.018018018018018018,
+    "api_f1": 0.025117117117117116,
+    "coverage_j": 0.032,
+    "mutation_recall": 0.03088803088803089
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "openhands",
+   "view": "ah",
+   "population": 111,
+   "pass": 70,
+   "pass_den": 111,
+   "kc": 43,
+   "mut_recall": 0.9416639777993853,
+   "api_f1": 0.829,
+   "api_n": 70,
+   "cov_j": 0.9533743920088744,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/algorand-sdk__openhands__all_hidden.json",
+    "sha256": "3d2c2fd551d9fc49078c59eeb2959d19fa8185cc183175d293c5a69c85d9538f"
+   },
+   "values": {
+    "pass_at_1": 0.6306306306306306,
+    "kill_complete_at_1": 0.38738738738738737,
+    "api_f1": 0.5227927927927928,
+    "coverage_j": 0.6012270940596506,
+    "mutation_recall": 0.5938421481617745
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "openhands",
+   "view": "th",
+   "population": 111,
+   "pass": 75,
+   "pass_den": 111,
+   "kc": 48,
+   "mut_recall": 0.9369466379022162,
+   "api_f1": 0.845,
+   "api_n": 75,
+   "cov_j": 0.9460077307782536,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/algorand-sdk__openhands__target_hidden.json",
+    "sha256": "92bc0f91c33c15aeecdc50d711dc3948b6873ed80b4076f19968a9dc40e205f0"
+   },
+   "values": {
+    "pass_at_1": 0.6756756756756757,
+    "kill_complete_at_1": 0.43243243243243246,
+    "api_f1": 0.5709459459459459,
+    "coverage_j": 0.6391944126880093,
+    "mutation_recall": 0.6330720526366326
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "aider",
+   "view": "ah",
+   "population": 334,
+   "pass": 1,
+   "pass_den": 333,
+   "kc": 0,
+   "mut_recall": 0.1875,
+   "api_f1": 0.545,
+   "api_n": 1,
+   "cov_j": 0.333,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/coreshop__aider__all_hidden.json",
+    "sha256": "7bed66c1f423764f4f6419c9ba0ec4170200f66ce8ff0966cfe51919f2742c4f"
+   },
+   "values": {
+    "pass_at_1": 0.003003003003003003,
+    "kill_complete_at_1": 0.0,
+    "api_f1": 0.0016415514613712812,
+    "coverage_j": 0.001,
+    "mutation_recall": 0.0005630630630630631
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "aider",
+   "view": "th",
+   "population": 334,
+   "pass": 1,
+   "pass_den": 333,
+   "kc": 0,
+   "mut_recall": 0.1875,
+   "api_f1": 0.5,
+   "api_n": 1,
+   "cov_j": 0.328,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/coreshop__aider__target_hidden.json",
+    "sha256": "e26cfb8c63e1f2ae11fb3d31eee48217759ddb725d34256cdbd1f5458c243432"
+   },
+   "values": {
+    "pass_at_1": 0.003003003003003003,
+    "kill_complete_at_1": 0.0,
+    "api_f1": 0.0015060105150195239,
+    "coverage_j": 0.000984984984984985,
+    "mutation_recall": 0.0005630630630630631
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "openhands",
+   "view": "ah",
+   "population": 334,
+   "pass": 3,
+   "pass_den": 333,
+   "kc": 2,
+   "mut_recall": 0.9444444444444445,
+   "api_f1": 0.9523809523809523,
+   "api_n": 3,
+   "cov_j": 0.9898828541001065,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/coreshop__openhands__all_hidden.json",
+    "sha256": "2cfe88cc13f018bbaa70dbf00c413e7b5ab2e135cb1322ed22d43b8a25908d15"
+   },
+   "values": {
+    "pass_at_1": 0.009009009009009009,
+    "kill_complete_at_1": 0.005988023952095809,
+    "api_f1": 0.008605774371540136,
+    "coverage_j": 0.00891786355045141,
+    "mutation_recall": 0.00850850850850851
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "openhands",
+   "view": "th",
+   "population": 334,
+   "pass": 5,
+   "pass_den": 333,
+   "kc": 4,
+   "mut_recall": 0.9444444444444444,
+   "api_f1": 0.9130952380952381,
+   "api_n": 5,
+   "cov_j": 0.9471741764900298,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/coreshop__openhands__target_hidden.json",
+    "sha256": "4b2af2ee237036343ae0658532527eed2ea43eb13179ad5bed09198e895e33dc"
+   },
+   "values": {
+    "pass_at_1": 0.015015015015015015,
+    "kill_complete_at_1": 0.011976047904191617,
+    "api_f1": 0.013751310297856844,
+    "coverage_j": 0.014221834481832278,
+    "mutation_recall": 0.014180847514180847
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "aider",
+   "view": "ah",
+   "population": 237,
+   "pass": 110,
+   "pass_den": 237,
+   "kc": 39,
+   "mut_recall": 0.8929978854860915,
+   "api_f1": 0.76872807100387,
+   "api_n": 110,
+   "cov_j": 0.779635316408942,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/python-docx__aider__all_hidden.json",
+    "sha256": "97a653970b16d0c16223e4341bac07d57ef165cb071adf60634902a541e69b91"
+   },
+   "values": {
+    "pass_at_1": 0.4641350210970464,
+    "kill_complete_at_1": 0.16455696202531644,
+    "api_f1": 0.356793619453273,
+    "coverage_j": 0.3618560540294668,
+    "mutation_recall": 0.4144715924197049
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "aider",
+   "view": "th",
+   "population": 237,
+   "pass": 101,
+   "pass_den": 237,
+   "kc": 39,
+   "mut_recall": 0.8817243791782906,
+   "api_f1": 0.7822294265216101,
+   "api_n": 101,
+   "cov_j": 0.7753057061250443,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/python-docx__aider__target_hidden.json",
+    "sha256": "afbef21e70cce788409760c5d634e60c46292c823ca04e3c21efb4865ad35f6c"
+   },
+   "values": {
+    "pass_at_1": 0.42616033755274263,
+    "kill_complete_at_1": 0.16455696202531644,
+    "api_f1": 0.33335515645013764,
+    "coverage_j": 0.33040454142881637,
+    "mutation_recall": 0.37575595905910275
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "openhands",
+   "view": "ah",
+   "population": 237,
+   "pass": 150,
+   "pass_den": 237,
+   "kc": 104,
+   "mut_recall": 0.9573629082908889,
+   "api_f1": 0.8699445889794187,
+   "api_n": 150,
+   "cov_j": 0.9216323283783021,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/python-docx__openhands__all_hidden.json",
+    "sha256": "7685ed8bdbd0087682b5abb289366334d7b512aa4a4f041315f1d4310508800e"
+   },
+   "values": {
+    "pass_at_1": 0.6329113924050633,
+    "kill_complete_at_1": 0.4388185654008439,
+    "api_f1": 0.5505978411262143,
+    "coverage_j": 0.5833116002394317,
+    "mutation_recall": 0.6059258913233474
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "openhands",
+   "view": "th",
+   "population": 237,
+   "pass": 180,
+   "pass_den": 237,
+   "kc": 106,
+   "mut_recall": 0.9636974590478727,
+   "api_f1": 0.8592901067257411,
+   "api_n": 180,
+   "cov_j": 0.9228531334565206,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/python-docx__openhands__target_hidden.json",
+    "sha256": "7cdd84c351d8ce2002d60263cc7dc683cd293b6af88159efdc8c90872c1fe871"
+   },
+   "values": {
+    "pass_at_1": 0.759493670886076,
+    "kill_complete_at_1": 0.4472573839662447,
+    "api_f1": 0.6526253975132211,
+    "coverage_j": 0.7009011140176106,
+    "mutation_recall": 0.7319221207958527
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "aider",
+   "view": "ah",
+   "population": 319,
+   "pass": 1,
+   "pass_den": 305,
+   "kc": 0,
+   "mut_recall": 0.5544554455445545,
+   "api_f1": 0.5,
+   "api_n": 1,
+   "cov_j": 0.700542,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/sylius__aider__all_hidden.json",
+    "sha256": "3805413100d47e5033a1cdd7798458a9da11b34ad021af8f363770eb1876f320"
+   },
+   "values": {
+    "pass_at_1": 0.003278688524590164,
+    "kill_complete_at_1": 0.0,
+    "api_f1": 0.0020752016653656,
+    "coverage_j": 0.0022968590163934426,
+    "mutation_recall": 0.0018178867067034574
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "aider",
+   "view": "th",
+   "population": 319,
+   "pass": 0,
+   "pass_den": 308,
+   "kc": 0,
+   "mut_recall": null,
+   "api_f1": null,
+   "api_n": 0,
+   "cov_j": null,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/sylius__aider__target_hidden.json",
+    "sha256": "4a6105b7271d0c2e0d487ddfe037a18249074273f8b498659fc2b1aacbf6561c"
+   },
+   "values": {
+    "pass_at_1": 0.0,
+    "kill_complete_at_1": 0.0,
+    "api_f1": 0.0,
+    "coverage_j": 0.0,
+    "mutation_recall": 0.0
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "openhands",
+   "view": "ah",
+   "population": 319,
+   "pass": 43,
+   "pass_den": 317,
+   "kc": 20,
+   "mut_recall": 0.9715552761108229,
+   "api_f1": 0.862792,
+   "api_n": 31,
+   "cov_j": 0.980093,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/sylius__openhands__all_hidden.json",
+    "sha256": "1443957cc1ca76940c8cda4c54bca28eb75c9636d4eea41352936ce532a48511"
+   },
+   "values": {
+    "pass_at_1": 0.13564668769716087,
+    "kill_complete_at_1": 0.06269592476489028,
+    "api_f1": 0.10680674588152822,
+    "coverage_j": 0.13294636908517352,
+    "mutation_recall": 0.1317882551191337
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "openhands",
+   "view": "th",
+   "population": 319,
+   "pass": 45,
+   "pass_den": 316,
+   "kc": 18,
+   "mut_recall": 0.974522250131081,
+   "api_f1": 0.80582,
+   "api_n": 27,
+   "cov_j": 0.983327,
+   "source": {
+    "path": "experiments/checked-interfaces-v2/paper-cells/sylius__openhands__target_hidden.json",
+    "sha256": "f506a9b03e1857474648d0e65575905a014b493fb8e9d8e1dd4ac8b416099cfc"
+   },
+   "values": {
+    "pass_at_1": 0.14240506329113925,
+    "kill_complete_at_1": 0.05642633228840126,
+    "api_f1": 0.08715752034358047,
+    "coverage_j": 0.14003074367088605,
+    "mutation_recall": 0.13877690270854
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "claude-code-deepseek-flash",
+   "view": "ah",
+   "population": 111,
+   "pass": 101,
+   "pass_den": 110,
+   "kc": 65,
+   "mut_recall": 0.9376779203389961,
+   "api_f1": 0.864673473563389,
+   "api_n": 101,
+   "cov_j": 0.9532062107973202,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/algorand-sdk__claude-code-deepseek-flash__all_hidden.json",
+    "sha256": "9e616a9e9db03a7f8cfd7c3c753f9d6dba0b76eb15c7402d1f693a7763c13c2c"
+   },
+   "values": {
+    "pass_at_1": 0.9181818181818182,
+    "kill_complete_at_1": 0.5855855855855856,
+    "api_f1": 0.7939274620900209,
+    "coverage_j": 0.8752166117320849,
+    "mutation_recall": 0.8609588177658055
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 111,
+   "pass": 103,
+   "pass_den": 110,
+   "kc": 70,
+   "mut_recall": 0.9490370371840037,
+   "api_f1": 0.8723606248155397,
+   "api_n": 103,
+   "cov_j": 0.9566397254163864,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/algorand-sdk__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "a8ac6fa9802a1451425b0835e118ef126708186538d01c6e4970dc2a02a43ef5"
+   },
+   "values": {
+    "pass_at_1": 0.9363636363636364,
+    "kill_complete_at_1": 0.6306306306306306,
+    "api_f1": 0.8168467668727326,
+    "coverage_j": 0.8957626519807982,
+    "mutation_recall": 0.8886437711813853
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "claude-code-deepseek-flash",
+   "view": "ah",
+   "population": 274,
+   "pass": 95,
+   "pass_den": 272,
+   "kc": 34,
+   "mut_recall": 0.9126033694618639,
+   "api_f1": 0.8720533670011705,
+   "api_n": 93,
+   "cov_j": 0.9286277606790814,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/coddy-agent__claude-code-deepseek-flash__all_hidden.json",
+    "sha256": "bc078c626de00169958941de581061021aa002840242630afe66ced78bf22352"
+   },
+   "override": {
+    "item": "hooks_project_trust.feature:20",
+    "reason": "substrate_violation (candidate added internal/agent/.coddy/hooks.json to the project tree)"
+   },
+   "values": {
+    "pass_at_1": 0.3492647058823529,
+    "kill_complete_at_1": 0.12408759124087591,
+    "api_f1": 0.30146602856961996,
+    "coverage_j": 0.32433690170776736,
+    "mutation_recall": 0.3187401474223422
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 274,
+   "pass": 106,
+   "pass_den": 273,
+   "kc": 33,
+   "mut_recall": 0.9098950691952047,
+   "api_f1": 0.8029567196214163,
+   "api_n": 103,
+   "cov_j": 0.8825934471750632,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/coddy-agent__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "72a4bc7c0c11599c71142f36729ed6535226e41b891257c355e31a8f8527bb50"
+   },
+   "values": {
+    "pass_at_1": 0.3882783882783883,
+    "kill_complete_at_1": 0.12043795620437957,
+    "api_f1": 0.3063006980138087,
+    "coverage_j": 0.3426919611742003,
+    "mutation_recall": 0.35329259096956667
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "claude-code-deepseek-flash",
+   "view": "ah",
+   "population": 334,
+   "pass": 120,
+   "pass_den": 333,
+   "kc": 8,
+   "mut_recall": 0.5510889988628435,
+   "api_f1": 0.6737598715352037,
+   "api_n": 120,
+   "cov_j": 0.6526210783920458,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/coreshop__claude-code-deepseek-flash__all_hidden.json",
+    "sha256": "a14883bdb18e426f78a2f38eed7cce5459bfb3b3d6be4b13758b78b227d38185"
+   },
+   "values": {
+    "pass_at_1": 0.36036036036036034,
+    "kill_complete_at_1": 0.023952095808383235,
+    "api_f1": 0.2435254682712529,
+    "coverage_j": 0.23517876698812457,
+    "mutation_recall": 0.1985906302208445
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 334,
+   "pass": 240,
+   "pass_den": 333,
+   "kc": 15,
+   "mut_recall": 0.6233067056110656,
+   "api_f1": 0.703044627590296,
+   "api_n": 240,
+   "cov_j": 0.6519850510863059,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/coreshop__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "e8c2ce68acf4976f968dc10c51b1427f9cd44f0f8b216183a16e47129c94fbcc"
+   },
+   "values": {
+    "pass_at_1": 0.7207207207207207,
+    "kill_complete_at_1": 0.04491017964071856,
+    "api_f1": 0.5082204488059061,
+    "coverage_j": 0.46989913591805826,
+    "mutation_recall": 0.44923005809806527
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "claude-code-deepseek-flash",
+   "view": "ah",
+   "population": 98,
+   "pass": 72,
+   "pass_den": 97,
+   "kc": 17,
+   "mut_recall": 0.923037,
+   "api_f1": 0.5611111111111111,
+   "api_n": 18,
+   "cov_j": 0.9784348401846292,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/e-petitions__claude-code-deepseek-flash__all_hidden.json",
+    "sha256": "bb2e36611134aee7370a202509dc4ea246111a65c3074fc6f70fac86ffb4d412"
+   },
+   "values": {
+    "pass_at_1": 0.7422680412371134,
+    "kill_complete_at_1": 0.17346938775510204,
+    "api_f1": 0.40816494845360823,
+    "coverage_j": 0.7262609123019929,
+    "mutation_recall": 0.6851408659793814
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 98,
+   "pass": 69,
+   "pass_den": 97,
+   "kc": 21,
+   "mut_recall": 0.942694,
+   "api_f1": 0.6820512820512821,
+   "api_n": 13,
+   "cov_j": 0.9801704267332697,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/e-petitions__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "aac63e25d2399bb642ae86589b353a2db803e4736a85c22eee0bf9172bddaea4"
+   },
+   "values": {
+    "pass_at_1": 0.711340206185567,
+    "kill_complete_at_1": 0.21428571428571427,
+    "api_f1": 0.35832302405498284,
+    "coverage_j": 0.6972346334494394,
+    "mutation_recall": 0.6705761443298969
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "claude-code-deepseek-flash",
+   "view": "ah",
+   "population": 330,
+   "pass": 281,
+   "pass_den": 329,
+   "kc": 176,
+   "mut_recall": 0.96757,
+   "api_f1": 0.8196800942407688,
+   "api_n": 281,
+   "cov_j": 0.9734624874323369,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/kapua__claude-code-deepseek-flash__all_hidden.json",
+    "sha256": "532ee99edef2de275e2007be8e3bbc82775219b1ad5a63d7d8cbb19985a03dce"
+   },
+   "values": {
+    "pass_at_1": 0.8541033434650456,
+    "kill_complete_at_1": 0.5333333333333333,
+    "api_f1": 0.7000915090627843,
+    "coverage_j": 0.8314375652537589,
+    "mutation_recall": 0.8264047720364742
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 330,
+   "pass": 297,
+   "pass_den": 329,
+   "kc": 205,
+   "mut_recall": 0.97859,
+   "api_f1": 0.8277400609049363,
+   "api_n": 297,
+   "cov_j": 0.9786837053911954,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/kapua__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "68f65163244fb15a5a2a9d7ba69df40050d8e3443edf1ef52c1164633bcd6df5"
+   },
+   "values": {
+    "pass_at_1": 0.9027355623100304,
+    "kill_complete_at_1": 0.6212121212121212,
+    "api_f1": 0.7472303893275565,
+    "coverage_j": 0.8834925851099849,
+    "mutation_recall": 0.8834079939209727
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "claude-code-deepseek-flash",
+   "view": "ah",
+   "population": 348,
+   "pass": 151,
+   "pass_den": 342,
+   "kc": 49,
+   "mut_recall": 0.920519,
+   "api_f1": 0.7439757954339183,
+   "api_n": 151,
+   "cov_j": 0.8909548564839882,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/prestashop__claude-code-deepseek-flash__all_hidden.json",
+    "sha256": "b2ee39f25e26312eba4f75c59792edb61a906023f10c6ff9b1df16931b6e2281"
+   },
+   "values": {
+    "pass_at_1": 0.4415204678362573,
+    "kill_complete_at_1": 0.14080459770114942,
+    "api_f1": 0.3284805412588353,
+    "coverage_j": 0.393374805055796,
+    "mutation_recall": 0.40642797953216375
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 348,
+   "pass": 166,
+   "pass_den": 346,
+   "kc": 62,
+   "mut_recall": 0.929751,
+   "api_f1": 0.7466384422527711,
+   "api_n": 166,
+   "cov_j": 0.898185435039842,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/prestashop__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "846cc0dd846906a3f878ecc9bc74eca73298f2b1305d9ace8c5b5ac0d6f442b8"
+   },
+   "values": {
+    "pass_at_1": 0.4797687861271676,
+    "kill_complete_at_1": 0.1781609195402299,
+    "api_f1": 0.3582138191154913,
+    "coverage_j": 0.430921335886167,
+    "mutation_recall": 0.4460655086705202
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "claude-code-deepseek-flash",
+   "view": "ah",
+   "population": 237,
+   "pass": 217,
+   "pass_den": 237,
+   "kc": 114,
+   "mut_recall": 0.9574955298014893,
+   "api_f1": 0.8260563370117797,
+   "api_n": 217,
+   "cov_j": 0.8915582085872921,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/python-docx__claude-code-deepseek-flash__all_hidden.json",
+    "sha256": "751470bedf062c71f04844c2d239d782bfa46c1b55ae0b4bab10d930cb3f849a"
+   },
+   "values": {
+    "pass_at_1": 0.9156118143459916,
+    "kill_complete_at_1": 0.4810126582278481,
+    "api_f1": 0.7563469414833596,
+    "coverage_j": 0.8163212289596725,
+    "mutation_recall": 0.8766942192697181
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 237,
+   "pass": 212,
+   "pass_den": 236,
+   "kc": 114,
+   "mut_recall": 0.9715769060517738,
+   "api_f1": 0.8220389237436657,
+   "api_n": 212,
+   "cov_j": 0.9023951547510423,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/python-docx__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "a0b3ed38ec330cf4cdcc722a6042cb353b91a2a9bd34a1f2d767a849ae41ae7f"
+   },
+   "values": {
+    "pass_at_1": 0.8983050847457628,
+    "kill_complete_at_1": 0.4810126582278481,
+    "api_f1": 0.7384417450578692,
+    "coverage_j": 0.8106261559628007,
+    "mutation_recall": 0.8727724749278647
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "claude-code-deepseek-flash",
+   "view": "ah",
+   "population": 319,
+   "pass": 229,
+   "pass_den": 319,
+   "kc": 88,
+   "mut_recall": 0.9497722708162581,
+   "api_f1": 0.8108346817046508,
+   "api_n": 185,
+   "cov_j": 0.975619159924638,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/sylius__claude-code-deepseek-flash__all_hidden.json",
+    "sha256": "6aa0c47281279d2a8e21c3c9fb9c8cdc95f9bc9b47aaa112a020ad8a2c110f3c"
+   },
+   "values": {
+    "pass_at_1": 0.7178683385579937,
+    "kill_complete_at_1": 0.27586206896551724,
+    "api_f1": 0.5952556195053984,
+    "coverage_j": 0.7003661054004455,
+    "mutation_recall": 0.6818114420593201
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "claude-code-deepseek-flash",
+   "view": "th",
+   "population": 319,
+   "pass": 251,
+   "pass_den": 319,
+   "kc": 109,
+   "mut_recall": 0.9583327374266197,
+   "api_f1": 0.813406065853907,
+   "api_n": 196,
+   "cov_j": 0.9785521138598468,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/paper-cells/sylius__claude-code-deepseek-flash__target_hidden.json",
+    "sha256": "3f8768fdb57c609c9437255a1c3b79baf4ff85035d6bbcc46712cd371722bdca"
+   },
+   "values": {
+    "pass_at_1": 0.786833855799373,
+    "kill_complete_at_1": 0.34169278996865204,
+    "api_f1": 0.6326491623308165,
+    "coverage_j": 0.7699579328489703,
+    "mutation_recall": 0.7540486429281553
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "aider",
+   "view": "ah",
+   "population": 274,
+   "pass": 3,
+   "pass_den": 274,
+   "kc": 1,
+   "mut_recall": 0.580952,
+   "api_f1": 0.8333333333333333,
+   "api_n": 2,
+   "cov_j": 0.7159722222222222,
+   "source": {
+    "path": "experiments/coddy-agent-v2/paper-cells/coddy-agent__aider__all_hidden.json",
+    "sha256": "2a45880cd88a8b7bf60659820b3b2c9008df575732ebacbcf9bd203a686a7681"
+   },
+   "values": {
+    "pass_at_1": 0.010948905109489052,
+    "kill_complete_at_1": 0.0036496350364963502,
+    "api_f1": 0.006150061500615005,
+    "coverage_j": 0.00783911192214112,
+    "mutation_recall": 0.006360788321167884
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "aider",
+   "view": "th",
+   "population": 274,
+   "pass": 3,
+   "pass_den": 274,
+   "kc": 0,
+   "mut_recall": 0.338095,
+   "api_f1": 0.611111111111111,
+   "api_n": 3,
+   "cov_j": 0.2822772467589541,
+   "source": {
+    "path": "experiments/coddy-agent-v2/paper-cells/coddy-agent__aider__target_hidden.json",
+    "sha256": "06aa97fd5b33cbb2a5f1ad55288dd08fbc03efc9294cea29ec7235f8fbcd5657"
+   },
+   "values": {
+    "pass_at_1": 0.010948905109489052,
+    "kill_complete_at_1": 0.0,
+    "api_f1": 0.006765067650676505,
+    "coverage_j": 0.0030906267893316144,
+    "mutation_recall": 0.0037017700729927005
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "openhands",
+   "view": "ah",
+   "population": 274,
+   "pass": 28,
+   "pass_den": 270,
+   "kc": 14,
+   "mut_recall": 0.936878,
+   "api_f1": 0.9622415632919835,
+   "api_n": 28,
+   "cov_j": 0.9560366684847101,
+   "source": {
+    "path": "experiments/coddy-agent-v2/paper-cells/coddy-agent__openhands__all_hidden.json",
+    "sha256": "2385240c0d41843815c8281640109ab99d078325aca7f2c13513933f6a704d40"
+   },
+   "values": {
+    "pass_at_1": 0.1037037037037037,
+    "kill_complete_at_1": 0.051094890510948905,
+    "api_f1": 0.10089267833232332,
+    "coverage_j": 0.09914454339841439,
+    "mutation_recall": 0.09715771851851851
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "openhands",
+   "view": "th",
+   "population": 274,
+   "pass": 44,
+   "pass_den": 269,
+   "kc": 19,
+   "mut_recall": 0.951815,
+   "api_f1": 0.8669470088794734,
+   "api_n": 43,
+   "cov_j": 0.9328227821126942,
+   "source": {
+    "path": "experiments/coddy-agent-v2/paper-cells/coddy-agent__openhands__target_hidden.json",
+    "sha256": "286e16168627d3dc7645c4cccd90d56c5b63520feb00f0da4528ffb3c757536c"
+   },
+   "values": {
+    "pass_at_1": 0.16356877323420074,
+    "kill_complete_at_1": 0.06934306569343066,
+    "api_f1": 0.1401167321721554,
+    "coverage_j": 0.15258067811508755,
+    "mutation_recall": 0.15568721189591078
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-deepseek-flash",
+   "view": "ah",
+   "population": 111,
+   "pass": 102,
+   "pass_den": 111,
+   "kc": 70,
+   "mut_recall": 0.9501,
+   "api_f1": 0.863,
+   "api_n": 102,
+   "cov_j": 0.953,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/algorand-sdk__codex2-deepseek-flash__all_hidden.json",
+    "sha256": "63fbfed6f8867258c7d67f849695754952ec87be6faa54b05ca5ed7fea05cd43"
+   },
+   "values": {
+    "pass_at_1": 0.918918918918919,
+    "kill_complete_at_1": 0.6306306306306306,
+    "api_f1": 0.793027027027027,
+    "coverage_j": 0.8757297297297296,
+    "mutation_recall": 0.8730648648648648
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 111,
+   "pass": 103,
+   "pass_den": 111,
+   "kc": 68,
+   "mut_recall": 0.9524,
+   "api_f1": 0.868,
+   "api_n": 103,
+   "cov_j": 0.957,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/algorand-sdk__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "376baf04e3b1dddf958a34a95e74b6a2a19796be2934c87b4f759cd4d1cc48ed"
+   },
+   "values": {
+    "pass_at_1": 0.9279279279279279,
+    "kill_complete_at_1": 0.6126126126126126,
+    "api_f1": 0.8054414414414414,
+    "coverage_j": 0.888027027027027,
+    "mutation_recall": 0.8837585585585586
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-gpt-6-luna",
+   "view": "ah",
+   "population": 111,
+   "pass": 80,
+   "pass_den": 111,
+   "kc": 49,
+   "mut_recall": 0.9394897356946984,
+   "api_f1": 0.852,
+   "api_n": 80,
+   "cov_j": 0.941,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/algorand-sdk__codex2-gpt-6-luna__all_hidden.json",
+    "sha256": "96cc92ea5e3ca6efb080cc74fa2f8f7fc9a6a8c9e07d39d9a7f661eda602d030"
+   },
+   "values": {
+    "pass_at_1": 0.7207207207207207,
+    "kill_complete_at_1": 0.44144144144144143,
+    "api_f1": 0.614054054054054,
+    "coverage_j": 0.6781981981981982,
+    "mutation_recall": 0.6771097194196025
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 111,
+   "pass": 78,
+   "pass_den": 111,
+   "kc": 46,
+   "mut_recall": 0.9464071162941445,
+   "api_f1": 0.831,
+   "api_n": 78,
+   "cov_j": 0.942,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/algorand-sdk__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "89fa0871e13e3cc1397617039bb9abee182642d0af8cb9969bd20a2664b610d9"
+   },
+   "values": {
+    "pass_at_1": 0.7027027027027027,
+    "kill_complete_at_1": 0.4144144144144144,
+    "api_f1": 0.583945945945946,
+    "coverage_j": 0.6619459459459459,
+    "mutation_recall": 0.6650428384769664
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-gpt-6-sol",
+   "view": "ah",
+   "population": 111,
+   "pass": 86,
+   "pass_den": 111,
+   "kc": 51,
+   "mut_recall": 0.9353486715291651,
+   "api_f1": 0.818,
+   "api_n": 86,
+   "cov_j": 0.935,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/algorand-sdk__codex2-gpt-6-sol__all_hidden.json",
+    "sha256": "42227fd9f832d6daca36ab920ab973857e450ed341c0bde8a9f5fb5fd27dae04"
+   },
+   "values": {
+    "pass_at_1": 0.7747747747747747,
+    "kill_complete_at_1": 0.4594594594594595,
+    "api_f1": 0.6337657657657657,
+    "coverage_j": 0.7244144144144146,
+    "mutation_recall": 0.7246845563198937
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 111,
+   "pass": 87,
+   "pass_den": 111,
+   "kc": 51,
+   "mut_recall": 0.9328851610667641,
+   "api_f1": 0.8,
+   "api_n": 87,
+   "cov_j": 0.929,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/algorand-sdk__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "de1048a3354c59beacc68cf9efa22df640a9508e92ea93b3654b26af6cd49116"
+   },
+   "values": {
+    "pass_at_1": 0.7837837837837838,
+    "kill_complete_at_1": 0.4594594594594595,
+    "api_f1": 0.6270270270270271,
+    "coverage_j": 0.7281351351351352,
+    "mutation_recall": 0.7311802613766529
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-deepseek-flash",
+   "view": "ah",
+   "population": 274,
+   "pass": 114,
+   "pass_den": 274,
+   "kc": 40,
+   "mut_recall": 0.9392700218066412,
+   "api_f1": 0.873078135390182,
+   "api_n": 111,
+   "cov_j": 0.9476926732189623,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coddy-agent__codex2-deepseek-flash__all_hidden.json",
+    "sha256": "50378d827e98db8763be78927d02d02d3a979812d199e799673207284ab63244"
+   },
+   "values": {
+    "pass_at_1": 0.41605839416058393,
+    "kill_complete_at_1": 0.145985401459854,
+    "api_f1": 0.35760764955096014,
+    "coverage_j": 0.3942954917772325,
+    "mutation_recall": 0.3907911769560478
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 274,
+   "pass": 134,
+   "pass_den": 274,
+   "kc": 41,
+   "mut_recall": 0.9350964247125437,
+   "api_f1": 0.8697343404670845,
+   "api_n": 131,
+   "cov_j": 0.9178792496366855,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coddy-agent__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "5d6f659f07679c86cc39951cf72d3059b3247ed3948473f919cf31e9d24cd95a"
+   },
+   "values": {
+    "pass_at_1": 0.48905109489051096,
+    "kill_complete_at_1": 0.14963503649635038,
+    "api_f1": 0.4204250870892549,
+    "coverage_j": 0.4488898520121017,
+    "mutation_recall": 0.45730993033387174
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-gpt-6-luna",
+   "view": "ah",
+   "population": 274,
+   "pass": 64,
+   "pass_den": 273,
+   "kc": 29,
+   "mut_recall": 0.9614704597408229,
+   "api_f1": 0.891,
+   "api_n": 61,
+   "cov_j": 0.912,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coddy-agent__codex2-gpt-6-luna__all_hidden.json",
+    "sha256": "1cc722277285e2cef2afbcf052e63d283190450d33326e5ad4fe991e50e1a0ad"
+   },
+   "override": {
+    "item": "cli_tui.feature:175",
+    "reason": "passed_but_nonzero_exit (every step passed, Go process exited 1)"
+   },
+   "values": {
+    "pass_at_1": 0.23443223443223443,
+    "kill_complete_at_1": 0.10583941605839416,
+    "api_f1": 0.2012918373139775,
+    "coverage_j": 0.2138021978021978,
+    "mutation_recall": 0.2253996682176288
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 274,
+   "pass": 71,
+   "pass_den": 274,
+   "kc": 29,
+   "mut_recall": 0.9526312616970363,
+   "api_f1": 0.851,
+   "api_n": 70,
+   "cov_j": 0.898,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coddy-agent__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "b137675ee469109ce1b50b3aa3d809f8ff96878d65e6a96a9e08bdb3f4f4c64f"
+   },
+   "values": {
+    "pass_at_1": 0.2591240875912409,
+    "kill_complete_at_1": 0.10583941605839416,
+    "api_f1": 0.21981549815498155,
+    "coverage_j": 0.23269343065693432,
+    "mutation_recall": 0.24684970649813712
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-gpt-6-sol",
+   "view": "ah",
+   "population": 274,
+   "pass": 67,
+   "pass_den": 272,
+   "kc": 28,
+   "mut_recall": 0.9489415457437225,
+   "api_f1": 0.883,
+   "api_n": 65,
+   "cov_j": 0.913,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coddy-agent__codex2-gpt-6-sol__all_hidden.json",
+    "sha256": "7e8cc6b71fc015af26351a8a3229b428caad0a01889b04a8d7e61322ccac2de7"
+   },
+   "values": {
+    "pass_at_1": 0.24632352941176472,
+    "kill_complete_at_1": 0.10218978102189781,
+    "api_f1": 0.2133469448665075,
+    "coverage_j": 0.22489338235294118,
+    "mutation_recall": 0.23374663075304927
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 274,
+   "pass": 74,
+   "pass_den": 274,
+   "kc": 32,
+   "mut_recall": 0.9502619976280778,
+   "api_f1": 0.816,
+   "api_n": 71,
+   "cov_j": 0.876,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coddy-agent__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "7680e3d8a6fae8414f0b918aa6001caf835fab805d523a939a4a0553393cd867"
+   },
+   "values": {
+    "pass_at_1": 0.27007299270072993,
+    "kill_complete_at_1": 0.11678832116788321,
+    "api_f1": 0.21378597785977857,
+    "coverage_j": 0.2365839416058394,
+    "mutation_recall": 0.25664010154918887
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-deepseek-flash",
+   "view": "ah",
+   "population": 334,
+   "pass": 128,
+   "pass_den": 333,
+   "kc": 7,
+   "mut_recall": 0.5978286811206838,
+   "api_f1": 0.6727481360651836,
+   "api_n": 127,
+   "cov_j": 0.7156814552729359,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coreshop__codex2-deepseek-flash__all_hidden.json",
+    "sha256": "16145855c1ec0a55ba423b74725fccb686a5881ae924222c8a190c736c189a45"
+   },
+   "values": {
+    "pass_at_1": 0.3843843843843844,
+    "kill_complete_at_1": 0.020958083832335328,
+    "api_f1": 0.2573441047859838,
+    "coverage_j": 0.2750967756004078,
+    "mutation_recall": 0.22979600955990248
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 334,
+   "pass": 222,
+   "pass_den": 334,
+   "kc": 14,
+   "mut_recall": 0.6791059487852181,
+   "api_f1": 0.7078848237733099,
+   "api_n": 221,
+   "cov_j": 0.6992479622206517,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coreshop__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "b48c0db5e28b8f54f447cc828059003341abcb9eda79943e7276e5059e44bd52"
+   },
+   "values": {
+    "pass_at_1": 0.6646706586826348,
+    "kill_complete_at_1": 0.041916167664670656,
+    "api_f1": 0.46979743559730175,
+    "coverage_j": 0.4647696036316907,
+    "mutation_recall": 0.45138179829436653
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-gpt-6-luna",
+   "view": "ah",
+   "population": 334,
+   "pass": 52,
+   "pass_den": 334,
+   "kc": 8,
+   "mut_recall": 0.6439173510559628,
+   "api_f1": 0.6693744216658759,
+   "api_n": 51,
+   "cov_j": 0.623,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coreshop__codex2-gpt-6-luna__all_hidden.json",
+    "sha256": "b5230a11bc1e4a2673f85f0f4047b5062298ce95476a89077019d75551aae8a1"
+   },
+   "values": {
+    "pass_at_1": 0.15568862275449102,
+    "kill_complete_at_1": 0.023952095808383235,
+    "api_f1": 0.10251680331819721,
+    "coverage_j": 0.0969940119760479,
+    "mutation_recall": 0.10025060555362295
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 334,
+   "pass": 183,
+   "pass_den": 334,
+   "kc": 13,
+   "mut_recall": 0.6468717833030608,
+   "api_f1": 0.6874808326135368,
+   "api_n": 182,
+   "cov_j": 0.63,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coreshop__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "7c2f44761c924e9bc92e37ed5af85a6eb4aa994b8bb1cd84adf8e317a6938d73"
+   },
+   "values": {
+    "pass_at_1": 0.5479041916167665,
+    "kill_complete_at_1": 0.038922155688622756,
+    "api_f1": 0.37574027488187295,
+    "coverage_j": 0.3451796407185629,
+    "mutation_recall": 0.35442376151035965
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-gpt-6-sol",
+   "view": "ah",
+   "population": 334,
+   "pass": 94,
+   "pass_den": 334,
+   "kc": 8,
+   "mut_recall": 0.653848285666212,
+   "api_f1": 0.6726968393222221,
+   "api_n": 93,
+   "cov_j": 0.6417964718908038,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coreshop__codex2-gpt-6-sol__all_hidden.json",
+    "sha256": "d89d25c745f9e74577e8ceec73f1450ba7d23d334977101a317fd44884730f8a"
+   },
+   "values": {
+    "pass_at_1": 0.281437125748503,
+    "kill_complete_at_1": 0.023952095808383235,
+    "api_f1": 0.18787028845935932,
+    "coverage_j": 0.1806253543644777,
+    "mutation_recall": 0.1840171821934848
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 334,
+   "pass": 166,
+   "pass_den": 334,
+   "kc": 11,
+   "mut_recall": 0.6141048385221174,
+   "api_f1": 0.6680441748822427,
+   "api_n": 165,
+   "cov_j": 0.5987889840121438,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/coreshop__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "8c79d4bb944e61de36f85f2dbe5ecffa6b7991c80c571a4c2c7b238b55f0b039"
+   },
+   "values": {
+    "pass_at_1": 0.49700598802395207,
+    "kill_complete_at_1": 0.03293413173652695,
+    "api_f1": 0.33101287944615626,
+    "coverage_j": 0.297601710616814,
+    "mutation_recall": 0.3052137820199745
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "aider",
+   "view": "ah",
+   "population": 98,
+   "pass": 7,
+   "pass_den": 98,
+   "kc": 7,
+   "mut_recall": 1.0,
+   "api_f1": null,
+   "api_n": 0,
+   "cov_j": 1.0,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__aider__all_hidden.json",
+    "sha256": "da1f060b9edc6d02346333a3d332212a917314ce61c7fa7fcc3900d15131ccf2"
+   },
+   "values": {
+    "pass_at_1": 0.07142857142857142,
+    "kill_complete_at_1": 0.07142857142857142,
+    "api_f1": 0.0,
+    "coverage_j": 0.07142857142857142,
+    "mutation_recall": 0.07142857142857142
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "aider",
+   "view": "th",
+   "population": 98,
+   "pass": 8,
+   "pass_den": 98,
+   "kc": 8,
+   "mut_recall": 1.0,
+   "api_f1": null,
+   "api_n": 0,
+   "cov_j": 0.999,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__aider__target_hidden.json",
+    "sha256": "459f4794885d2cc14c7069d7fc5116496045a8d253fd3645b6888b03f49af778"
+   },
+   "values": {
+    "pass_at_1": 0.08163265306122448,
+    "kill_complete_at_1": 0.08163265306122448,
+    "api_f1": 0.0,
+    "coverage_j": 0.08155102040816327,
+    "mutation_recall": 0.08163265306122448
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-deepseek-flash",
+   "view": "ah",
+   "population": 98,
+   "pass": 66,
+   "pass_den": 98,
+   "kc": 18,
+   "mut_recall": 0.914567,
+   "api_f1": 0.325,
+   "api_n": 12,
+   "cov_j": 0.981,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__codex2-deepseek-flash__all_hidden.json",
+    "sha256": "fd8f9f5026c72c0af8eabd526f4c1e3f600b4850ce0e3c16256940bfed5773a7"
+   },
+   "values": {
+    "pass_at_1": 0.673469387755102,
+    "kill_complete_at_1": 0.1836734693877551,
+    "api_f1": 0.15600000000000003,
+    "coverage_j": 0.6606734693877551,
+    "mutation_recall": 0.6159328775510204
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 98,
+   "pass": 76,
+   "pass_den": 98,
+   "kc": 21,
+   "mut_recall": 0.948998,
+   "api_f1": 0.556,
+   "api_n": 19,
+   "cov_j": 0.99,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "e37bd810b86f9005fa716756760ba43e3b9fc5b07d482494631dd79ad3a03d04"
+   },
+   "values": {
+    "pass_at_1": 0.7755102040816326,
+    "kill_complete_at_1": 0.21428571428571427,
+    "api_f1": 0.42256,
+    "coverage_j": 0.7677551020408163,
+    "mutation_recall": 0.7359576326530611
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-gpt-6-luna",
+   "view": "ah",
+   "population": 98,
+   "pass": 45,
+   "pass_den": 98,
+   "kc": 18,
+   "mut_recall": 0.940853,
+   "api_f1": 0.56,
+   "api_n": 5,
+   "cov_j": 0.968,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__codex2-gpt-6-luna__all_hidden.json",
+    "sha256": "a0f6bb61db09577bbf17856d9c6c15f484f8c67bd8ef18cb33178c7bf8574961"
+   },
+   "values": {
+    "pass_at_1": 0.45918367346938777,
+    "kill_complete_at_1": 0.1836734693877551,
+    "api_f1": 0.11200000000000002,
+    "coverage_j": 0.44448979591836735,
+    "mutation_recall": 0.4320243367346939
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 98,
+   "pass": 59,
+   "pass_den": 98,
+   "kc": 23,
+   "mut_recall": 0.90476,
+   "api_f1": 0.759,
+   "api_n": 9,
+   "cov_j": 0.943,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "8e8205dbd70c0aa7030b946a53f5ded4cbe24c7da1529fa56b83e91146b86b99"
+   },
+   "values": {
+    "pass_at_1": 0.6020408163265306,
+    "kill_complete_at_1": 0.23469387755102042,
+    "api_f1": 0.27324000000000004,
+    "coverage_j": 0.5677244897959184,
+    "mutation_recall": 0.5447024489795919
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-gpt-6-sol",
+   "view": "ah",
+   "population": 98,
+   "pass": 53,
+   "pass_den": 98,
+   "kc": 15,
+   "mut_recall": 0.960245,
+   "api_f1": 0.59,
+   "api_n": 7,
+   "cov_j": 0.985,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__codex2-gpt-6-sol__all_hidden.json",
+    "sha256": "659862dd2d6c06e5c0267989c78e1c075cf73d1a78adf578239859936d78fd91"
+   },
+   "values": {
+    "pass_at_1": 0.5408163265306123,
+    "kill_complete_at_1": 0.15306122448979592,
+    "api_f1": 0.16519999999999999,
+    "coverage_j": 0.532704081632653,
+    "mutation_recall": 0.5193161734693877
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 98,
+   "pass": 68,
+   "pass_den": 98,
+   "kc": 23,
+   "mut_recall": 0.919922,
+   "api_f1": 0.78,
+   "api_n": 10,
+   "cov_j": 0.956,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "437cdbaec7b8e30d4413bdaf00f9e7bf53bd5f688bb355a51d9f9f8091664db2"
+   },
+   "values": {
+    "pass_at_1": 0.6938775510204082,
+    "kill_complete_at_1": 0.23469387755102042,
+    "api_f1": 0.31200000000000006,
+    "coverage_j": 0.6633469387755102,
+    "mutation_recall": 0.6383132244897959
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "openhands",
+   "view": "ah",
+   "population": 98,
+   "pass": 10,
+   "pass_den": 98,
+   "kc": 7,
+   "mut_recall": 0.996708,
+   "api_f1": 0.0,
+   "api_n": 1,
+   "cov_j": 1.0,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__openhands__all_hidden.json",
+    "sha256": "a5e88cdeef73647797ee907f2368abd1de2e385fdeb87c87e4aa86967944c002"
+   },
+   "values": {
+    "pass_at_1": 0.10204081632653061,
+    "kill_complete_at_1": 0.07142857142857142,
+    "api_f1": 0.0,
+    "coverage_j": 0.10204081632653061,
+    "mutation_recall": 0.10170489795918368
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "openhands",
+   "view": "th",
+   "population": 98,
+   "pass": 19,
+   "pass_den": 98,
+   "kc": 9,
+   "mut_recall": 0.979624,
+   "api_f1": 1.0,
+   "api_n": 3,
+   "cov_j": 0.992,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/e-petitions__openhands__target_hidden.json",
+    "sha256": "b8315277f97da8a1c868e8874767fd9a3d13ba6326a7017b24ddca646834cc5a"
+   },
+   "values": {
+    "pass_at_1": 0.19387755102040816,
+    "kill_complete_at_1": 0.09183673469387756,
+    "api_f1": 0.12,
+    "coverage_j": 0.1923265306122449,
+    "mutation_recall": 0.18992710204081634
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "aider",
+   "view": "ah",
+   "population": 330,
+   "pass": 35,
+   "pass_den": 330,
+   "kc": 17,
+   "mut_recall": 0.94271,
+   "api_f1": 0.7690908774355595,
+   "api_n": 35,
+   "cov_j": 0.975045799732237,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__aider__all_hidden.json",
+    "sha256": "4f4b7e98a668fd44ca7ed9917c290c6e571983bd7bd6015cc501888aeb9c00c6"
+   },
+   "values": {
+    "pass_at_1": 0.10606060606060606,
+    "kill_complete_at_1": 0.051515151515151514,
+    "api_f1": 0.08157024457649872,
+    "coverage_j": 0.1034139484564494,
+    "mutation_recall": 0.09998439393939394
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "aider",
+   "view": "th",
+   "population": 330,
+   "pass": 43,
+   "pass_den": 330,
+   "kc": 23,
+   "mut_recall": 0.93872,
+   "api_f1": 0.7572802313162442,
+   "api_n": 43,
+   "cov_j": 0.9681363179397361,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__aider__target_hidden.json",
+    "sha256": "447257a01c13552ed2793fabf70b6f8b34f0818673cd3eba0490d3acab2e28e5"
+   },
+   "values": {
+    "pass_at_1": 0.1303030303030303,
+    "kill_complete_at_1": 0.0696969696969697,
+    "api_f1": 0.09867590892908637,
+    "coverage_j": 0.12615109597396562,
+    "mutation_recall": 0.1223180606060606
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-deepseek-flash",
+   "view": "ah",
+   "population": 330,
+   "pass": 286,
+   "pass_den": 330,
+   "kc": 177,
+   "mut_recall": 0.96628,
+   "api_f1": 0.8212771357516315,
+   "api_n": 286,
+   "cov_j": 0.9746959859699073,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__codex2-deepseek-flash__all_hidden.json",
+    "sha256": "147a209a9b85927837215c1b60ed8ed4c34b28e8bcced16bace7e287f6125447"
+   },
+   "values": {
+    "pass_at_1": 0.8666666666666667,
+    "kill_complete_at_1": 0.5363636363636364,
+    "api_f1": 0.7117735176514141,
+    "coverage_j": 0.8447365211739195,
+    "mutation_recall": 0.8374426666666668
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 330,
+   "pass": 313,
+   "pass_den": 330,
+   "kc": 202,
+   "mut_recall": 0.97349,
+   "api_f1": 0.8263816443981713,
+   "api_n": 313,
+   "cov_j": 0.9818010649917897,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "3a1bf50ee3c43e5a658267ac11044f32d2a40059b6c67cc67857191d4e417015"
+   },
+   "values": {
+    "pass_at_1": 0.9484848484848485,
+    "kill_complete_at_1": 0.6121212121212121,
+    "api_f1": 0.7838104687776595,
+    "coverage_j": 0.9312234343710005,
+    "mutation_recall": 0.923340515151515
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-gpt-6-luna",
+   "view": "ah",
+   "population": 330,
+   "pass": 202,
+   "pass_den": 330,
+   "kc": 142,
+   "mut_recall": 0.97609,
+   "api_f1": 0.803,
+   "api_n": 202,
+   "cov_j": 0.978,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__codex2-gpt-6-luna__all_hidden.json",
+    "sha256": "51a05b92c0b4bb35bf7ffd92846c2f586c9d9ca3cb4fb649b4ad768861c7e540"
+   },
+   "values": {
+    "pass_at_1": 0.6121212121212121,
+    "kill_complete_at_1": 0.4303030303030303,
+    "api_f1": 0.4915333333333334,
+    "coverage_j": 0.5986545454545454,
+    "mutation_recall": 0.597485393939394
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 330,
+   "pass": 231,
+   "pass_den": 330,
+   "kc": 162,
+   "mut_recall": 0.98107,
+   "api_f1": 0.816,
+   "api_n": 231,
+   "cov_j": 0.984,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "9a9169091c124b7d851092d288c107ef863ff086558fcfe1558ff542ba396ba4"
+   },
+   "values": {
+    "pass_at_1": 0.7,
+    "kill_complete_at_1": 0.4909090909090909,
+    "api_f1": 0.5711999999999999,
+    "coverage_j": 0.6888,
+    "mutation_recall": 0.686749
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-gpt-6-sol",
+   "view": "ah",
+   "population": 330,
+   "pass": 208,
+   "pass_den": 330,
+   "kc": 151,
+   "mut_recall": 0.98071,
+   "api_f1": 0.807,
+   "api_n": 208,
+   "cov_j": 0.975,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__codex2-gpt-6-sol__all_hidden.json",
+    "sha256": "264b79e38b16044abe68c2d1551dc1efc13e21e17e1cac346444ebee0d6b8b13"
+   },
+   "values": {
+    "pass_at_1": 0.6303030303030303,
+    "kill_complete_at_1": 0.4575757575757576,
+    "api_f1": 0.5086545454545455,
+    "coverage_j": 0.6145454545454545,
+    "mutation_recall": 0.6181444848484848
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 330,
+   "pass": 231,
+   "pass_den": 330,
+   "kc": 155,
+   "mut_recall": 0.97613,
+   "api_f1": 0.795,
+   "api_n": 231,
+   "cov_j": 0.974,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "41a0af7e981491fdfcd9feba3128bcc8c8ac57e28280ec68cb5ca6ee23bdf897"
+   },
+   "values": {
+    "pass_at_1": 0.7,
+    "kill_complete_at_1": 0.4696969696969697,
+    "api_f1": 0.5565,
+    "coverage_j": 0.6818,
+    "mutation_recall": 0.683291
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "openhands",
+   "view": "ah",
+   "population": 330,
+   "pass": 97,
+   "pass_den": 330,
+   "kc": 67,
+   "mut_recall": 0.967,
+   "api_f1": 0.7852075567128789,
+   "api_n": 97,
+   "cov_j": 0.9722641581816523,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__openhands__all_hidden.json",
+    "sha256": "11752d24e2cdb85d51ada40e2eb5db5e85ffd5e00e27cbf8d92e2b21e2c929f9"
+   },
+   "values": {
+    "pass_at_1": 0.29393939393939394,
+    "kill_complete_at_1": 0.20303030303030303,
+    "api_f1": 0.23080343333681594,
+    "coverage_j": 0.2857867374049099,
+    "mutation_recall": 0.2842393939393939
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "openhands",
+   "view": "th",
+   "population": 330,
+   "pass": 113,
+   "pass_den": 330,
+   "kc": 74,
+   "mut_recall": 0.97336,
+   "api_f1": 0.7679440780196999,
+   "api_n": 113,
+   "cov_j": 0.9736335893012174,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/kapua__openhands__target_hidden.json",
+    "sha256": "072835a88f87f75f62cee8f463369ac1c65418e9c6c32144ca15300713d652dc"
+   },
+   "values": {
+    "pass_at_1": 0.3424242424242424,
+    "kill_complete_at_1": 0.22424242424242424,
+    "api_f1": 0.26296266914007904,
+    "coverage_j": 0.33339574421526535,
+    "mutation_recall": 0.3333020606060606
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "aider",
+   "view": "ah",
+   "population": 348,
+   "pass": 13,
+   "pass_den": 348,
+   "kc": 9,
+   "mut_recall": 0.971329,
+   "api_f1": 0.8606821576642548,
+   "api_n": 13,
+   "cov_j": 0.9122938390182287,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/prestashop__aider__all_hidden.json",
+    "sha256": "07242b8803d339c4dc5afe24536423a828c540a1440eb2c3c25302662cd5dbc4"
+   },
+   "values": {
+    "pass_at_1": 0.03735632183908046,
+    "kill_complete_at_1": 0.02586206896551724,
+    "api_f1": 0.03215191968286009,
+    "coverage_j": 0.034079942262175214,
+    "mutation_recall": 0.036285278735632184
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "aider",
+   "view": "th",
+   "population": 348,
+   "pass": 20,
+   "pass_den": 348,
+   "kc": 8,
+   "mut_recall": 0.917018,
+   "api_f1": 0.8068630299009556,
+   "api_n": 20,
+   "cov_j": 0.9055843616020329,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/prestashop__aider__target_hidden.json",
+    "sha256": "8b201b665d9c1b133f324063dbb3b45d27e5cc3c3252d835bff74a88804681fc"
+   },
+   "values": {
+    "pass_at_1": 0.05747126436781609,
+    "kill_complete_at_1": 0.022988505747126436,
+    "api_f1": 0.046371438500054915,
+    "coverage_j": 0.0520450782529904,
+    "mutation_recall": 0.05270218390804598
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-deepseek-flash",
+   "view": "ah",
+   "population": 348,
+   "pass": 179,
+   "pass_den": 347,
+   "kc": 61,
+   "mut_recall": 0.909214,
+   "api_f1": 0.7312697162789326,
+   "api_n": 179,
+   "cov_j": 0.8864248691011466,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/prestashop__codex2-deepseek-flash__all_hidden.json",
+    "sha256": "2a3f90e8772cfdcc30d4dd1bc4ba9cd39fedb3918eaf95911d3ebbe6f3b24d0a"
+   },
+   "values": {
+    "pass_at_1": 0.515850144092219,
+    "kill_complete_at_1": 0.1752873563218391,
+    "api_f1": 0.3772255885127635,
+    "coverage_j": 0.4572623964527529,
+    "mutation_recall": 0.4690181729106628
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 348,
+   "pass": 201,
+   "pass_den": 348,
+   "kc": 67,
+   "mut_recall": 0.924027,
+   "api_f1": 0.7249402990601762,
+   "api_n": 201,
+   "cov_j": 0.8841704735086205,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/prestashop__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "36d238ed2daa60d775c7b3f1c143f4a1f65c4fcd6d09ea79c0ae34a5d314e4ba"
+   },
+   "values": {
+    "pass_at_1": 0.5775862068965517,
+    "kill_complete_at_1": 0.1925287356321839,
+    "api_f1": 0.41871551756061903,
+    "coverage_j": 0.5106846700437722,
+    "mutation_recall": 0.53370525
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-gpt-6-luna",
+   "view": "ah",
+   "population": 348,
+   "pass": 118,
+   "pass_den": 331,
+   "kc": 41,
+   "mut_recall": 0.939807,
+   "api_f1": 0.7561356599916205,
+   "api_n": 118,
+   "cov_j": 0.9137810147859855,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/prestashop__codex2-gpt-6-luna__all_hidden.json",
+    "sha256": "0226ebd05b5feeebcbc87c342bfa1daf906a17fe352052f7865aefa38e4ae826"
+   },
+   "override": {
+    "item": "Product/update_product_type.feature:236",
+    "reason": "substrate_violation (candidate deleted an upload fixture)"
+   },
+   "values": {
+    "pass_at_1": 0.3564954682779456,
+    "kill_complete_at_1": 0.11781609195402298,
+    "api_f1": 0.2695589361903662,
+    "coverage_j": 0.32575879076962627,
+    "mutation_recall": 0.33503693655589123
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 348,
+   "pass": 147,
+   "pass_den": 341,
+   "kc": 45,
+   "mut_recall": 0.928606,
+   "api_f1": 0.730582201577607,
+   "api_n": 147,
+   "cov_j": 0.8944113438134209,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/prestashop__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "787327eeadab0a74e2876ea7cd3722ba7b1de1e7685de4437f84163583fd2e5d"
+   },
+   "values": {
+    "pass_at_1": 0.4310850439882698,
+    "kill_complete_at_1": 0.12931034482758622,
+    "api_f1": 0.3149430605041297,
+    "coverage_j": 0.385567353491416,
+    "mutation_recall": 0.4003081583577713
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-gpt-6-sol",
+   "view": "ah",
+   "population": 348,
+   "pass": 156,
+   "pass_den": 337,
+   "kc": 58,
+   "mut_recall": 0.940684,
+   "api_f1": 0.7485945409790592,
+   "api_n": 156,
+   "cov_j": 0.9002558703688129,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/prestashop__codex2-gpt-6-sol__all_hidden.json",
+    "sha256": "1ebdca5a525073d21a1e8e921a3a4c8fc111d5e6018d81a992f7aaf62c8b971f"
+   },
+   "values": {
+    "pass_at_1": 0.4629080118694362,
+    "kill_complete_at_1": 0.16666666666666666,
+    "api_f1": 0.3465304106609295,
+    "coverage_j": 0.4167356551262161,
+    "mutation_recall": 0.4354501602373887
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 348,
+   "pass": 178,
+   "pass_den": 342,
+   "kc": 73,
+   "mut_recall": 0.939102,
+   "api_f1": 0.7527458609678298,
+   "api_n": 178,
+   "cov_j": 0.8946433555686852,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/prestashop__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "b481e093b237e80d261723c76a7e86775bb6da2a22637967edfba314ec572f6f"
+   },
+   "values": {
+    "pass_at_1": 0.52046783625731,
+    "kill_complete_at_1": 0.20977011494252873,
+    "api_f1": 0.39178000950957226,
+    "coverage_j": 0.4656330914948128,
+    "mutation_recall": 0.4887723859649123
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "openhands",
+   "view": "ah",
+   "population": 348,
+   "pass": 34,
+   "pass_den": 348,
+   "kc": 23,
+   "mut_recall": 0.972715,
+   "api_f1": 0.8541822757282672,
+   "api_n": 34,
+   "cov_j": 0.9495055610784566,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/prestashop__openhands__all_hidden.json",
+    "sha256": "cf113a39b9a83d6a76395e9ba97885fb568772ef5da6b50fcee295dbf0f5a667"
+   },
+   "values": {
+    "pass_at_1": 0.09770114942528736,
+    "kill_complete_at_1": 0.06609195402298851,
+    "api_f1": 0.08345459015735944,
+    "coverage_j": 0.0927677847030676,
+    "mutation_recall": 0.0950353735632184
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "openhands",
+   "view": "th",
+   "population": 348,
+   "pass": 40,
+   "pass_den": 348,
+   "kc": 23,
+   "mut_recall": 0.966107,
+   "api_f1": 0.77640708879686,
+   "api_n": 40,
+   "cov_j": 0.9269740695640006,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/prestashop__openhands__target_hidden.json",
+    "sha256": "58a2c8aace2e6d9277253454ba4088850b516fc5791fb6d373092146f9fefdc4"
+   },
+   "values": {
+    "pass_at_1": 0.11494252873563218,
+    "kill_complete_at_1": 0.06609195402298851,
+    "api_f1": 0.0892421941145816,
+    "coverage_j": 0.10654874362804605,
+    "mutation_recall": 0.11104678160919541
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-deepseek-flash",
+   "view": "ah",
+   "population": 237,
+   "pass": 222,
+   "pass_den": 237,
+   "kc": 141,
+   "mut_recall": 0.9557283955013466,
+   "api_f1": 0.8619092625129777,
+   "api_n": 222,
+   "cov_j": 0.9037715762041117,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/python-docx__codex2-deepseek-flash__all_hidden.json",
+    "sha256": "547dee1a6c3736aa1fefd3682e6fc58b4413e20040fbeb3595123fc286ce3b5b"
+   },
+   "values": {
+    "pass_at_1": 0.9367088607594937,
+    "kill_complete_at_1": 0.5949367088607594,
+    "api_f1": 0.8073580433665868,
+    "coverage_j": 0.8465708435329654,
+    "mutation_recall": 0.8952392565455651
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 237,
+   "pass": 220,
+   "pass_den": 237,
+   "kc": 117,
+   "mut_recall": 0.9533199546966324,
+   "api_f1": 0.8258928547833515,
+   "api_n": 220,
+   "cov_j": 0.8797288065634242,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/python-docx__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "7e92a6c0fe2c2115841eaf32e21204c9d19d18bd2dbe5afdb5748fdf2659cf31"
+   },
+   "values": {
+    "pass_at_1": 0.9282700421940928,
+    "kill_complete_at_1": 0.4936708860759494,
+    "api_f1": 0.7666515951575414,
+    "coverage_j": 0.8166258963879887,
+    "mutation_recall": 0.8849383545707137
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-gpt-6-luna",
+   "view": "ah",
+   "population": 237,
+   "pass": 203,
+   "pass_den": 237,
+   "kc": 114,
+   "mut_recall": 0.9695655819839609,
+   "api_f1": 0.8383562712386972,
+   "api_n": 203,
+   "cov_j": 0.887,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/python-docx__codex2-gpt-6-luna__all_hidden.json",
+    "sha256": "4df3a52766db05e59c7c311260614bdfa10e50ee4fdc1acb75c5550c0293dab8"
+   },
+   "values": {
+    "pass_at_1": 0.8565400843881856,
+    "kill_complete_at_1": 0.4810126582278481,
+    "api_f1": 0.7180857513141583,
+    "coverage_j": 0.7597510548523208,
+    "mutation_recall": 0.8304717854124223
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 237,
+   "pass": 205,
+   "pass_den": 237,
+   "kc": 108,
+   "mut_recall": 0.9665988604620919,
+   "api_f1": 0.8330741538443344,
+   "api_n": 205,
+   "cov_j": 0.888,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/python-docx__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "34e556a3a109d87d2e3898689ff96148b108186ec0186fd60fffa9877a437a6c"
+   },
+   "values": {
+    "pass_at_1": 0.8649789029535865,
+    "kill_complete_at_1": 0.45569620253164556,
+    "api_f1": 0.7205915676712596,
+    "coverage_j": 0.7681012658227848,
+    "mutation_recall": 0.8360876219186871
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-gpt-6-sol",
+   "view": "ah",
+   "population": 237,
+   "pass": 207,
+   "pass_den": 237,
+   "kc": 138,
+   "mut_recall": 0.9616314766723228,
+   "api_f1": 0.8721616026683711,
+   "api_n": 207,
+   "cov_j": 0.908,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/python-docx__codex2-gpt-6-sol__all_hidden.json",
+    "sha256": "8bc3e65e6ba4419ffdcc61a2af2530908cadb6f53a9aa6061413223aa4464cd7"
+   },
+   "values": {
+    "pass_at_1": 0.8734177215189873,
+    "kill_complete_at_1": 0.5822784810126582,
+    "api_f1": 0.761761399798957,
+    "coverage_j": 0.7930632911392406,
+    "mutation_recall": 0.8399059732960794
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 237,
+   "pass": 209,
+   "pass_den": 237,
+   "kc": 133,
+   "mut_recall": 0.9400429525805627,
+   "api_f1": 0.8600344712151636,
+   "api_n": 209,
+   "cov_j": 0.886,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/python-docx__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "0071a281e4e9e7f86ce3ad3a21cfcf74e2d3da61c6fa00d124e0ed322d338db0"
+   },
+   "values": {
+    "pass_at_1": 0.8818565400843882,
+    "kill_complete_at_1": 0.5611814345991561,
+    "api_f1": 0.7584270231391106,
+    "coverage_j": 0.7813248945147679,
+    "mutation_recall": 0.8289830256934076
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-deepseek-flash",
+   "view": "ah",
+   "population": 319,
+   "pass": 244,
+   "pass_den": 319,
+   "kc": 88,
+   "mut_recall": 0.9494300580943551,
+   "api_f1": 0.8069780175339153,
+   "api_n": 191,
+   "cov_j": 0.9762829655160928,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/sylius__codex2-deepseek-flash__all_hidden.json",
+    "sha256": "957f4974274774c3dc600c9cd5c3d19fad14a70d4a7bae2e19bb81b7bc11acf7"
+   },
+   "values": {
+    "pass_at_1": 0.7648902821316614,
+    "kill_complete_at_1": 0.27586206896551724,
+    "api_f1": 0.6116381005911817,
+    "coverage_j": 0.7467493529339393,
+    "mutation_recall": 0.726209825000071
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-deepseek-flash",
+   "view": "th",
+   "population": 319,
+   "pass": 259,
+   "pass_den": 319,
+   "kc": 95,
+   "mut_recall": 0.9574154264416578,
+   "api_f1": 0.8133791629830651,
+   "api_n": 203,
+   "cov_j": 0.9780038480848994,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/sylius__codex2-deepseek-flash__target_hidden.json",
+    "sha256": "c35f8811f7e7c63b18d79ab10ab34e5875200fb5cf34b0b19adcc98838349458"
+   },
+   "values": {
+    "pass_at_1": 0.8119122257053292,
+    "kill_complete_at_1": 0.29780564263322884,
+    "api_f1": 0.6552221035141358,
+    "coverage_j": 0.7940532810469872,
+    "mutation_recall": 0.7773372898068632
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-gpt-6-luna",
+   "view": "ah",
+   "population": 319,
+   "pass": 182,
+   "pass_den": 319,
+   "kc": 82,
+   "mut_recall": 0.9639850093245319,
+   "api_f1": 0.8246923847027747,
+   "api_n": 144,
+   "cov_j": 0.976,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/sylius__codex2-gpt-6-luna__all_hidden.json",
+    "sha256": "5b0b73559ef72e5d664771c8df64b54bc150415c9b7d24997195b0d091d17172"
+   },
+   "values": {
+    "pass_at_1": 0.5705329153605015,
+    "kill_complete_at_1": 0.25705329153605017,
+    "api_f1": 0.47125279125872843,
+    "coverage_j": 0.5568401253918496,
+    "mutation_recall": 0.5499851777337454
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-gpt-6-luna",
+   "view": "th",
+   "population": 319,
+   "pass": 197,
+   "pass_den": 319,
+   "kc": 76,
+   "mut_recall": 0.9588220115140159,
+   "api_f1": 0.798332354802332,
+   "api_n": 152,
+   "cov_j": 0.974,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/sylius__codex2-gpt-6-luna__target_hidden.json",
+    "sha256": "7e4c9e92562a4ee9b10a5416e8998f017d82619f7d92a8a4d4b2a136e039f74c"
+   },
+   "values": {
+    "pass_at_1": 0.6175548589341693,
+    "kill_complete_at_1": 0.23824451410658307,
+    "api_f1": 0.4815338013093431,
+    "coverage_j": 0.6014984326018809,
+    "mutation_recall": 0.5921251920635145
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-gpt-6-sol",
+   "view": "ah",
+   "population": 319,
+   "pass": 241,
+   "pass_den": 319,
+   "kc": 79,
+   "mut_recall": 0.9583842136578695,
+   "api_f1": 0.7363905864314493,
+   "api_n": 194,
+   "cov_j": 0.975,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/sylius__codex2-gpt-6-sol__all_hidden.json",
+    "sha256": "951b55b6ec62097e31762b7ce9ccc7c8495a6bcf717e3e00098eb2a7a5988121"
+   },
+   "values": {
+    "pass_at_1": 0.7554858934169278,
+    "kill_complete_at_1": 0.2476489028213166,
+    "api_f1": 0.5669038641575443,
+    "coverage_j": 0.7365987460815047,
+    "mutation_recall": 0.7240457538919954
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-gpt-6-sol",
+   "view": "th",
+   "population": 319,
+   "pass": 244,
+   "pass_den": 319,
+   "kc": 88,
+   "mut_recall": 0.9577693170980329,
+   "api_f1": 0.7507543151796311,
+   "api_n": 201,
+   "cov_j": 0.974,
+   "source": {
+    "path": "experiments/codex-checked-interfaces-v2/paper-cells/sylius__codex2-gpt-6-sol__target_hidden.json",
+    "sha256": "9b5a7149e124678b7757c2e2b11d6228ea68421dec81ea132268ebbf0e57f039"
+   },
+   "values": {
+    "pass_at_1": 0.7648902821316614,
+    "kill_complete_at_1": 0.27586206896551724,
+    "api_f1": 0.5988159418694676,
+    "coverage_j": 0.7450031347962383,
+    "mutation_recall": 0.7325884431721631
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "ah",
+   "population": 111,
+   "pass": 59,
+   "pass_den": 111,
+   "kc": 36,
+   "mut_recall": 0.9441453771653263,
+   "api_f1": 0.8053382141696147,
+   "api_n": 59,
+   "cov_j": 0.9492072175725742,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/alg-ah.items.jsonl",
+    "per_item_sha256": "b23267fe1066a3fba515f0892c6880162494f3a415d2bed4f2f55cfff84a2dfb"
+   },
+   "values": {
+    "pass_at_1": 0.5315315315315315,
+    "kill_complete_at_1": 0.32432432432432434,
+    "api_f1": 0.4280626543784439,
+    "coverage_j": 0.5045335660971341,
+    "mutation_recall": 0.5018430383131014
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 111,
+   "pass": 74,
+   "pass_den": 111,
+   "kc": 43,
+   "mut_recall": 0.9337440572738277,
+   "api_f1": 0.8273878479377829,
+   "api_n": 74,
+   "cov_j": 0.9404764461349847,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/alg-th.items.jsonl",
+    "per_item_sha256": "3f1f58d9591190cb990e1738e4e9ef41d19b8f709e00a06babbaf09925efb4cd"
+   },
+   "values": {
+    "pass_at_1": 0.6666666666666666,
+    "kill_complete_at_1": 0.38738738738738737,
+    "api_f1": 0.5515918986251885,
+    "coverage_j": 0.6269842974233232,
+    "mutation_recall": 0.6224960381825518
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "ah",
+   "population": 274,
+   "pass": 66,
+   "pass_den": 272,
+   "kc": 22,
+   "mut_recall": 0.9099194897762368,
+   "api_f1": 0.847957020116147,
+   "api_n": 65,
+   "cov_j": 0.9173205350850445,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/cdy-ah.items.jsonl",
+    "per_item_sha256": "32dabd43f2a0c4f0722bd57e6c24db94e288760e5f4c845372b81e46388dd82a"
+   },
+   "values": {
+    "pass_at_1": 0.2426470588235294,
+    "kill_complete_at_1": 0.08029197080291971,
+    "api_f1": 0.20487999956952163,
+    "coverage_j": 0.22258512983681225,
+    "mutation_recall": 0.2207892879604104
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 274,
+   "pass": 65,
+   "pass_den": 274,
+   "kc": 17,
+   "mut_recall": 0.9419131566188564,
+   "api_f1": 0.8373700783668604,
+   "api_n": 64,
+   "cov_j": 0.9131236576425481,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/cdy-th.items.jsonl",
+    "per_item_sha256": "aec9ee877416f4c425a0fa38251640cfb2910a69d96d7360e038baa22afa2665"
+   },
+   "values": {
+    "pass_at_1": 0.23722627737226276,
+    "kill_complete_at_1": 0.06204379562043796,
+    "api_f1": 0.19775529526007035,
+    "coverage_j": 0.21661692608308625,
+    "mutation_recall": 0.22344655175264844
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "ah",
+   "population": 334,
+   "pass": 59,
+   "pass_den": 331,
+   "kc": 3,
+   "mut_recall": 0.5886690025082363,
+   "api_f1": 0.6775773496832838,
+   "api_n": 59,
+   "cov_j": 0.6790567600113956,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/csh-ah.items.jsonl",
+    "per_item_sha256": "b851095ac45dd0c9470a377ce27347557dbc053436f0cf19a5fe705a04abaf03"
+   },
+   "values": {
+    "pass_at_1": 0.1782477341389728,
+    "kill_complete_at_1": 0.008982035928143712,
+    "api_f1": 0.12113931985936502,
+    "coverage_j": 0.1210403288237835,
+    "mutation_recall": 0.10492891585494242
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 334,
+   "pass": 124,
+   "pass_den": 334,
+   "kc": 10,
+   "mut_recall": 0.7035241010094617,
+   "api_f1": 0.71209130485391,
+   "api_n": 124,
+   "cov_j": 0.7264280055179015,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/csh-th.items.jsonl",
+    "per_item_sha256": "2951c193ceeb246b76d4725435ddb48ced5d5a9fdaf9d5e692ae4d1f3a46a579"
+   },
+   "values": {
+    "pass_at_1": 0.3712574850299401,
+    "kill_complete_at_1": 0.029940119760479042,
+    "api_f1": 0.2651631285341887,
+    "coverage_j": 0.26969183438389155,
+    "mutation_recall": 0.26118858839872233
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "ah",
+   "population": 98,
+   "pass": 45,
+   "pass_den": 98,
+   "kc": 15,
+   "mut_recall": 0.9494305111111111,
+   "api_f1": 0.5,
+   "api_n": 5,
+   "cov_j": 0.9885848420026986,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/epe-ah.items.jsonl",
+    "per_item_sha256": "d93b8c22c20739650ed95391426581b3d86f544a8ddd0c94cf012da7b7d68bff"
+   },
+   "values": {
+    "pass_at_1": 0.45918367346938777,
+    "kill_complete_at_1": 0.15306122448979592,
+    "api_f1": 0.1,
+    "coverage_j": 0.45394201928695344,
+    "mutation_recall": 0.43596298979591835
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 98,
+   "pass": 60,
+   "pass_den": 98,
+   "kc": 18,
+   "mut_recall": 0.9321978333333333,
+   "api_f1": 0.5066666666666667,
+   "api_n": 10,
+   "cov_j": 0.9681660178550082,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/epe-th.items.jsonl",
+    "per_item_sha256": "c1e24c85090348ea04cbc0b3a4e4b5c2d41440af2fd81e0bc358fb810683025c"
+   },
+   "values": {
+    "pass_at_1": 0.6122448979591837,
+    "kill_complete_at_1": 0.1836734693877551,
+    "api_f1": 0.2026666666666667,
+    "coverage_j": 0.5927547048091887,
+    "mutation_recall": 0.5707333673469387
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "ah",
+   "population": 330,
+   "pass": 174,
+   "pass_den": 330,
+   "kc": 111,
+   "mut_recall": 0.9699645114942531,
+   "api_f1": 0.7879927875877738,
+   "api_n": 174,
+   "cov_j": 0.9761595682669525,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/kap-ah.items.jsonl",
+    "per_item_sha256": "c932277d4d0a81dfd99450538fc4bdc8d6e9d696f117d624e37d31f1e1832b1f"
+   },
+   "values": {
+    "pass_at_1": 0.5272727272727272,
+    "kill_complete_at_1": 0.33636363636363636,
+    "api_f1": 0.41548710618264434,
+    "coverage_j": 0.5147023178134841,
+    "mutation_recall": 0.5114358333333334
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 330,
+   "pass": 214,
+   "pass_den": 330,
+   "kc": 138,
+   "mut_recall": 0.9758704859813084,
+   "api_f1": 0.7949789653950186,
+   "api_n": 214,
+   "cov_j": 0.9787499640322396,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/kap-th.items.jsonl",
+    "per_item_sha256": "853538d442142680140265f1c8b1d0c2ecfd47d08aa1c986a88b59cba9a8d446"
+   },
+   "values": {
+    "pass_at_1": 0.6484848484848484,
+    "kill_complete_at_1": 0.41818181818181815,
+    "api_f1": 0.5155318139228302,
+    "coverage_j": 0.6347045221299977,
+    "mutation_recall": 0.6328372242424243
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "ah",
+   "population": 237,
+   "pass": 163,
+   "pass_den": 237,
+   "kc": 95,
+   "mut_recall": 0.958206521545382,
+   "api_f1": 0.8329842627249036,
+   "api_n": 163,
+   "cov_j": 0.8994903585453132,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/pdx-ah.items.jsonl",
+    "per_item_sha256": "c92024b540c4f05d5fbf9e33c98019d5dd4096dd4364fba32e4f377b5b3064d7"
+   },
+   "values": {
+    "pass_at_1": 0.6877637130801688,
+    "kill_complete_at_1": 0.4008438818565401,
+    "api_f1": 0.5728963494690265,
+    "coverage_j": 0.618636828872937,
+    "mutation_recall": 0.6590196751556846
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 237,
+   "pass": 189,
+   "pass_den": 237,
+   "kc": 98,
+   "mut_recall": 0.9532523544116124,
+   "api_f1": 0.8199397186691456,
+   "api_n": 189,
+   "cov_j": 0.886749626676087,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/pdx-th.items.jsonl",
+    "per_item_sha256": "334db72fe81a10941fa184b2d42e0008c09033e96b634be13a45b587e08f4921"
+   },
+   "values": {
+    "pass_at_1": 0.7974683544303798,
+    "kill_complete_at_1": 0.41350210970464135,
+    "api_f1": 0.6538759781791921,
+    "coverage_j": 0.7071547655771326,
+    "mutation_recall": 0.7601885864295136
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "ah",
+   "population": 348,
+   "pass": 119,
+   "pass_den": 347,
+   "kc": 41,
+   "mut_recall": 0.9270359579831935,
+   "api_f1": 0.7219001860107321,
+   "api_n": 119,
+   "cov_j": 0.8872053590228063,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/psh-ah.items.jsonl",
+    "per_item_sha256": "80175f3f17ae37a4af4832e77e9e92585c73e0275ad1a17c3275c205d15350a1"
+   },
+   "values": {
+    "pass_at_1": 0.34293948126801155,
+    "kill_complete_at_1": 0.11781609195402298,
+    "api_f1": 0.24756807531780153,
+    "coverage_j": 0.3042577456014811,
+    "mutation_recall": 0.3179172305475505
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 348,
+   "pass": 133,
+   "pass_den": 347,
+   "kc": 44,
+   "mut_recall": 0.9423954887218049,
+   "api_f1": 0.7165920021046829,
+   "api_n": 133,
+   "cov_j": 0.9003996172814104,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/psh-th.items.jsonl",
+    "per_item_sha256": "6d531b0a58384dd97fa938f756450bf9d2e9e233d25e5421caf2db140004fd80"
+   },
+   "values": {
+    "pass_at_1": 0.38328530259365995,
+    "kill_complete_at_1": 0.12643678160919541,
+    "api_f1": 0.27465918236288994,
+    "coverage_j": 0.345109939764921,
+    "mutation_recall": 0.3612063400576371
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "ah",
+   "population": 319,
+   "pass": 153,
+   "pass_den": 319,
+   "kc": 65,
+   "mut_recall": 0.9514910277892967,
+   "api_f1": 0.7529483324176669,
+   "api_n": 121,
+   "cov_j": 0.9758645349508408,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/syl-ah.items.jsonl",
+    "per_item_sha256": "1360c7964eade6495cf51240320c98d0aeff880bfe26194b7460b8c8a84323e8"
+   },
+   "values": {
+    "pass_at_1": 0.47962382445141066,
+    "kill_complete_at_1": 0.20376175548589343,
+    "api_f1": 0.36153471516880037,
+    "coverage_j": 0.4680478803996196,
+    "mutation_recall": 0.4563577656795059
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "codex2-deepseek-flash-ro",
+   "view": "th",
+   "population": 319,
+   "pass": 177,
+   "pass_den": 319,
+   "kc": 65,
+   "mut_recall": 0.9545224081813198,
+   "api_f1": 0.7511670721324298,
+   "api_n": 142,
+   "cov_j": 0.9745888147388388,
+   "source": {
+    "path": "experiments/codex-deepseek-reasoning-off/results/summary.json",
+    "sha256": "0bb38f8b031a30cd65e689afed99386a3c86eede17b0aff6af845a3f6850014d",
+    "per_item": "experiments/codex-deepseek-reasoning-off/results/per-item/syl-th.items.jsonl",
+    "per_item_sha256": "ea58c0d319306d656bc0f5d481ad0b8ec73ef735aad8435e0540d22121ea476c"
+   },
+   "values": {
+    "pass_at_1": 0.554858934169279,
+    "kill_complete_at_1": 0.20376175548589343,
+    "api_f1": 0.4232766835031946,
+    "coverage_j": 0.540759310999293,
+    "mutation_recall": 0.5296252860441806
+   }
+  }
+ ]
+}

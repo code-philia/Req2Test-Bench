@@ -1,0 +1,183 @@
+[
+ {
+  "uri": "classpath:localization/localization.feature",
+  "id": "epubcheck-localization",
+  "keyword": "Feature",
+  "line": 1,
+  "name": "EPUBCheck ▸ Localization",
+  "description": "  Checks the localization configuration of EPUBCheck",
+  "tags": [],
+  "elements": [
+   {
+    "type": "background",
+    "keyword": "Background",
+    "line": 5,
+    "name": "",
+    "description": "",
+    "steps": [
+     {
+      "keyword": "Given ",
+      "line": 6,
+      "name": "EPUB test files located at '/localization/files/'",
+      "result": {
+       "status": "passed",
+       "duration": 0
+      },
+      "match": {
+       "arguments": [
+        {
+         "val": "'/localization/files/'",
+         "offset": 27
+        }
+       ],
+       "location": "org.w3c.epubcheck.test.TestEnvironment.setBasepath(java.lang.String)"
+      }
+     },
+     {
+      "keyword": "And ",
+      "line": 7,
+      "name": "EPUBCheck with default settings",
+      "result": {
+       "status": "passed",
+       "duration": 0
+      },
+      "match": {
+       "location": "org.w3c.epubcheck.test.EPUBCheckConfiguration.configureDefaults()"
+      }
+     }
+    ]
+   },
+   {
+    "type": "scenario",
+    "keyword": "Scenario",
+    "line": 11,
+    "name": "The default testing locale is English",
+    "description": "",
+    "tags": [],
+    "id": "epubcheck-localization;the-default-testing-locale-is-english",
+    "steps": [
+     {
+      "keyword": "When ",
+      "line": 12,
+      "name": "checking EPUB 'schema-error'",
+      "result": {
+       "status": "undefined"
+      },
+      "match": {}
+     },
+     {
+      "keyword": "Then ",
+      "line": 13,
+      "name": "the following errors are reported",
+      "result": {
+       "status": "skipped"
+      },
+      "match": {},
+      "rows": [
+       {
+        "cells": [
+         "RSC-005",
+         "Error"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "type": "background",
+    "keyword": "Background",
+    "line": 5,
+    "name": "",
+    "description": "",
+    "steps": [
+     {
+      "keyword": "Given ",
+      "line": 6,
+      "name": "EPUB test files located at '/localization/files/'",
+      "result": {
+       "status": "passed",
+       "duration": 0
+      },
+      "match": {
+       "arguments": [
+        {
+         "val": "'/localization/files/'",
+         "offset": 27
+        }
+       ],
+       "location": "org.w3c.epubcheck.test.TestEnvironment.setBasepath(java.lang.String)"
+      }
+     },
+     {
+      "keyword": "And ",
+      "line": 7,
+      "name": "EPUBCheck with default settings",
+      "result": {
+       "status": "passed",
+       "duration": 0
+      },
+      "match": {
+       "location": "org.w3c.epubcheck.test.EPUBCheckConfiguration.configureDefaults()"
+      }
+     }
+    ]
+   },
+   {
+    "type": "scenario",
+    "keyword": "Scenario",
+    "line": 16,
+    "name": "The reporting locale can be configured",
+    "description": "",
+    "tags": [],
+    "id": "epubcheck-localization;the-reporting-locale-can-be-configured",
+    "steps": [
+     {
+      "keyword": "Given ",
+      "line": 17,
+      "name": "the reporting locale is set to 'fr-FR'",
+      "result": {
+       "status": "passed",
+       "duration": 0
+      },
+      "match": {
+       "arguments": [
+        {
+         "val": "'fr-FR'",
+         "offset": 31
+        }
+       ],
+       "location": "org.w3c.epubcheck.test.EPUBCheckConfiguration.setReportingLocale(java.util.Locale)"
+      }
+     },
+     {
+      "keyword": "When ",
+      "line": 18,
+      "name": "checking EPUB 'schema-error'",
+      "result": {
+       "status": "undefined"
+      },
+      "match": {}
+     },
+     {
+      "keyword": "Then ",
+      "line": 19,
+      "name": "the following errors are reported",
+      "result": {
+       "status": "skipped"
+      },
+      "match": {},
+      "rows": [
+       {
+        "cells": [
+         "RSC-005",
+         "Erreur"
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+]

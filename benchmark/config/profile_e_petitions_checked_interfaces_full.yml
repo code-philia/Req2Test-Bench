@@ -1,0 +1,93 @@
+# E_PETITIONS_CHECKED_INTERFACES_SPEC.md: fresh final-only development setting.
+version: 1
+project: e-petitions
+project_label: e-petitions
+language: ruby
+language_label: Ruby
+framework: cucumber_ruby
+api_scoring: method_index
+boundary: boundary_e_petitions.yml
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Cucumber step-definition code
+submission:
+  acceptance_root: features/step_definitions/
+  example_path: features/step_definitions/petition_steps.rb
+  example_code: "Then(/^the petition is visible$/) do\n  expect(page).to have_content(\"Petition\")\n\
+    end"
+  placement_hint: features/step_definitions/...
+  suffixes:
+  - .rb
+  extra_names: []
+  retained_note: '`features/support/`, `spec/support/`, `spec/factories.rb` and `spec/fixtures/` remain'
+wiring_channel: null
+workspace:
+  repo_dir: repo
+  readable_paths:
+  - features
+  - app
+  - lib
+  - config
+  - db
+  - spec/support
+  - spec/factories.rb
+  - spec/fixtures
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+facts:
+- Cucumber loads Ruby step definitions from features/step_definitions/. Use Given, When or Then with a
+  regular expression or Cucumber Expression and a Ruby block. The keyword does not distinguish definitions
+  when matching a step.
+- Captured expression parameters become block arguments. A step DocString or DataTable adds its native
+  multiline argument after the captures. Background steps execute before the scenario and need definitions
+  too.
+- Per-scenario state is held on Cucumber World, including Ruby instance variables. Retained features/support/
+  files provide the Rails and Capybara setup, lifecycle hooks, route paths, selectors, sections and World
+  helpers. Do not replace those files.
+- Use the retained RSpec expectations and Capybara rack_test integration to exercise the Rails application.
+  Production code under app/ and lib/ is never accepted as a submission.
+- The retained spec/factories.rb supplies FactoryBot factories; spec/support/ supplies shared support.
+  Scenario fixtures and recorded VCR responses remain under spec/fixtures/. The constituency API is stubbed
+  by retained hooks.
+- The admitted scenario set excludes inherited or scenario-level @wip and @javascript tags. Eligible scenarios
+  run in process with rack_test; no browser or external network is available.
+- The evaluator image provides Ruby 3.2.11, Cucumber 11.1.1, bundled gems, Node dependencies and a private
+  PostgreSQL 16 database with pgvector. Retained hooks rebuild assets at boot. Do not install dependencies
+  or change database configuration.
+- Put Ruby files under features/step_definitions/**, creating the directory if needed. The entire original
+  directory was removed, including helpers and generated web_steps.rb, email_steps.rb and pickle_steps.rb
+  boilerplate. Some boilerplate may be reproducible from public gem documentation; the retained env.rb
+  is also generated cucumber-rails support.
+- Generation is final-only. You may read, search and edit the permitted repository view and use syntax
+  tools. It is not a promised application runtime. The harness evaluates the final submitted tests against
+  the separate complete application after generation ends. You receive no harness execution feedback during
+  generation.
+- TARGET_CONTRACTS.md contains the reviewed public API, route, configuration and resource contracts supplied
+  consistently in every visibility setting; edits to it are not submitted.
+- 'Implementation visibility: the approved source projection retains implementation bodies.'
+platform_blurb: the UK Parliament e-petitions Rails application (Ruby 3.2.11, Cucumber 11.1.1, PostgreSQL
+  16 with pgvector)
+conditions:
+  retained_substrate: the retained features/support/ hooks and World helpers, spec/support/, spec/factories.rb
+    and spec/fixtures/ inputs
+  project_source_noun: e-petitions application source
+trial:
+  client_interpreter: python3
+  runner_noun: Cucumber
+  clause_bounded: This final-only profile has no harness trial channel.
+  clause_unbounded: This final-only profile has no harness trial channel.
+prompt_digest:
+  single_shot: f64e5a339454f7925adf0bcbd8523470c81d0adde8c1a564b13c16779facfa6c
+  c1.5: e1cdd56e3c75d06170be3074343e751a26044c67a47fe437c0d15f9d2d2242b9
+  c2: 58c580f79f6ec8bdc454f80a433ef5d6843cbe303d08e46ff66fd0859c3c0368
+  c3: 5063776207ba5ef5c2af0ae813e1324fac4f159bc2d6ecd69b0bb112485bee6a
+runtime:
+  needs_database: false
+disclosure:
+  checked_interfaces: true
+visibility:
+  scope: full
+  feedback: final_only

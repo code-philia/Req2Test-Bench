@@ -1,0 +1,15 @@
+{
+  "kind": "native_capture_subset",
+  "run": "g2-bootstrap-contexts/native-selection-probe/runs/native-1dd2a2e53343419aaeea145be107a315",
+  "image": "sha256:3a83a33993d4f63b132831d3ec211182fd29f05151ec23b227abe4c1b29c65c9",
+  "helper_sha256": "28a5b103a25c16f4f5a11508a55695585dd54a8a0dc9eff0a6b2163cf85e786c",
+  "complete_native_output_sha256": "6f3cbfc8210915e618583caef0ef56d8f815760636bcc407a72af26cd2e102d4",
+  "selection_indices": [
+    63,
+    64,
+    65,
+    66
+  ],
+  "framework_step_results_claimed": false,
+  "description": "Four complete selections projected from the actual pinned Godog RetrieveFeatures output. Source feature bytes and suite requests are unchanged. Native document IDs, pickle IDs, row positions, tags and step locations are retained. Tests replay these records; they launch no native framework."
+}

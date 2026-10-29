@@ -1,0 +1,64 @@
+{
+ "schema": "req2test.attempt-exclusions/1",
+ "about": "Three generation attempts of the leaderboard's runs ended outside the six outcome categories. Each leaves the Pass@1 denominator of its cell. scripts/build_leaderboard.py applies them when it rebuilds the leaderboard from the recorded cells. A run of this harness classifies such attempts itself (infrastructure_excluded).",
+ "provenance": {
+  "source": "the attempt exclusions of the paper's tables",
+  "source_sha256": "a2344e840f8350e980a2044a6facdedc4aa07f2c4a1bcccaae7f3b4949d7abb3"
+ },
+ "exclude_attempts": [
+  {
+   "project": "coddy-agent",
+   "arm": "codex2-gpt-6-luna",
+   "setting": "all_hidden",
+   "item": "cli_tui.feature:175",
+   "reason": "passed_but_nonzero_exit (every step passed, Go process exited 1)",
+   "pass": 64,
+   "pass_den": 273,
+   "ladder": {
+    "generation": 0,
+    "build": 194,
+    "binding": 5,
+    "execution": 1,
+    "assertion": 9,
+    "pass": 64,
+    "infra_excluded": 0
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "codex2-gpt-6-luna",
+   "setting": "all_hidden",
+   "item": "Product/update_product_type.feature:236",
+   "reason": "substrate_violation (candidate deleted an upload fixture)",
+   "pass": 118,
+   "pass_den": 331,
+   "ladder": {
+    "generation": 1,
+    "build": 1,
+    "binding": 11,
+    "execution": 6,
+    "assertion": 194,
+    "pass": 118,
+    "infra_excluded": 16
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "claude-code-deepseek-flash",
+   "setting": "all_hidden",
+   "item": "hooks_project_trust.feature:20",
+   "reason": "substrate_violation (candidate added internal/agent/.coddy/hooks.json to the project tree)",
+   "pass": 95,
+   "pass_den": 272,
+   "ladder": {
+    "generation": 3,
+    "build": 166,
+    "binding": 0,
+    "execution": 5,
+    "assertion": 3,
+    "pass": 95,
+    "infra_excluded": 1
+   }
+  }
+ ]
+}

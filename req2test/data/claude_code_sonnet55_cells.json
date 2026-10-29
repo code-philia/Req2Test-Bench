@@ -1,0 +1,595 @@
+{
+ "schema": "req2test.supplement-cells/1",
+ "about": "Base cells of Claude Code / Claude Sonnet 5.5, in the fields of req2test/data/leaderboard_base.json. The leaderboard keeps those of the four projects it does not re-score and compares the re-scored cells' recorded pass counts with the others.",
+ "configurations": [
+  {
+   "id": "claude-code-sonnet55",
+   "system": "Claude Code",
+   "model": "Claude Sonnet 5.5",
+   "reasoning": "high",
+   "arm": "claude-code-sonnet-5-5"
+  }
+ ],
+ "provenance": {
+  "research_repo": "the study's research repository (not public)",
+  "record": "experiments/claude-code-checked-interfaces/sonnet-5-5/results",
+  "record_commit": "7d27db130d131a8e3b7f33da935859fb3af87c60",
+  "twin_cells": "experiments/claude-code-checked-interfaces/paper-cells",
+  "paper_commit": "21f1cb23315ecb44b220a5c53ae47a01a251c698",
+  "renders": "each cell's finalize render analysis/results.json, from the arm's preserved generation outputs, checked against the sha256 its evidence file names",
+  "aggregation": "req2test.aggregate leaderboard"
+ },
+ "rows_before_h25": [
+  {
+   "id": "claude-code-sonnet55",
+   "system": "Claude Code",
+   "model": "Claude Sonnet 5.5",
+   "reasoning": "high",
+   "arm": "claude-code-sonnet-5-5",
+   "views": {
+    "th": {
+     "pass_at_1": 0.7213007524033865,
+     "kill_complete_at_1": 0.33837032221810476,
+     "api_f1": 0.5481727813943773,
+     "coverage_j": 0.6800145708498505,
+     "mutation_recall": 0.6758320435048296,
+     "projects": 8
+    },
+    "ah": {
+     "pass_at_1": 0.7009249298352774,
+     "kill_complete_at_1": 0.32518870057704663,
+     "api_f1": 0.5263452213133081,
+     "coverage_j": 0.6636049815699511,
+     "mutation_recall": 0.6618569244715351,
+     "projects": 8
+    }
+   }
+  }
+ ],
+ "cells": [
+  {
+   "project": "algorand-sdk",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 111,
+   "pass": 90,
+   "pass_den": 111,
+   "kc": 54,
+   "mut_recall": 0.9367723932571124,
+   "api_f1": 0.8263790950461063,
+   "api_n": 90,
+   "cov_j": 0.947089737142404,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/algorand-sdk/alg-th-evidence.json",
+    "sha256": "98bf879cd1c3effbacf32ecb25a5801139508889b6f8d573ad8aa8b80943d8aa",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "4b816b7e4036eb0236ac81e81028729648f98102c47f65ffab9bf64401d247e7"
+    },
+    "api_from": "evidence generation.render.api_reporting_only (api_f1, n_scored)",
+    "printed": "API F1 and coverage J equal alg-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/algorand-sdk__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "a8ac6fa9802a1451425b0835e118ef126708186538d01c6e4970dc2a02a43ef5"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.8108108108108109,
+    "kill_complete_at_1": 0.4864864864864865,
+    "api_f1": 0.6700371040914375,
+    "coverage_j": 0.7679105976830303,
+    "mutation_recall": 0.759545183721983
+   }
+  },
+  {
+   "project": "algorand-sdk",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "ah",
+   "population": 111,
+   "pass": 88,
+   "pass_den": 111,
+   "kc": 58,
+   "mut_recall": 0.9538451064505118,
+   "api_f1": 0.8267128854374265,
+   "api_n": 88,
+   "cov_j": 0.9593446685389306,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/algorand-sdk/alg-ah-evidence.json",
+    "sha256": "80158089a8889c8bf8f56815c27846e649e0df54f552c4b72cddf50162e7a403",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "cb2c06eeb58584eafbf3fefa5f512b599533817f6c92f974f8dd7b997ee434e9"
+    },
+    "api_from": "evidence generation.render.api_reporting_only (api_f1, n_scored)",
+    "printed": "API F1 and coverage J equal alg-ah-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/algorand-sdk__claude-code-deepseek-flash__all_hidden.json",
+     "sha256": "9e616a9e9db03a7f8cfd7c3c753f9d6dba0b76eb15c7402d1f693a7763c13c2c"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7927927927927928,
+    "kill_complete_at_1": 0.5225225225225225,
+    "api_f1": 0.6554120172837256,
+    "coverage_j": 0.760561539021855,
+    "mutation_recall": 0.75620152583464
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 274,
+   "pass": 127,
+   "pass_den": 274,
+   "kc": 43,
+   "mut_recall": 0.9377489492818688,
+   "api_f1": 0.8799037626331342,
+   "api_n": 124,
+   "cov_j": 0.9279104919028953,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/coddy-agent/cdy-th-evidence.json",
+    "sha256": "f0640b128dab94849dd5051b4eb817dc03f3d5acfe1cb7cc3763727cff7daa4e",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "ec87fa36f1b428eab0043dc63763cfa20c0027f71c5ed620b49397c8337ffb6d"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal cdy-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/coddy-agent__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "72a4bc7c0c11599c71142f36729ed6535226e41b891257c355e31a8f8527bb50"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.4635036496350365,
+    "kill_complete_at_1": 0.15693430656934307,
+    "api_f1": 0.4026127917583345,
+    "coverage_j": 0.43008989953163396,
+    "mutation_recall": 0.4346500604335669
+   }
+  },
+  {
+   "project": "coddy-agent",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "ah",
+   "population": 274,
+   "pass": 114,
+   "pass_den": 274,
+   "kc": 36,
+   "mut_recall": 0.9296575202995805,
+   "api_f1": 0.840081278427915,
+   "api_n": 111,
+   "cov_j": 0.9114485261431469,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/coddy-agent/cdy-ah-evidence.json",
+    "sha256": "db2c2a1ce3378813e84dcb6c5841bd519ee46162b58ac1fb4e2391e65964ec11",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "7d9e321ef0d945877cd2309f31936577126f15da6228245f4411e82f68b89b48"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal cdy-ah-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/coddy-agent__claude-code-deepseek-flash__all_hidden.json",
+     "sha256": "bc078c626de00169958941de581061021aa002840242630afe66ced78bf22352"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.41605839416058393,
+    "kill_complete_at_1": 0.13138686131386862,
+    "api_f1": 0.34409233175460724,
+    "coverage_j": 0.37921581014714867,
+    "mutation_recall": 0.3867918150151539
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 334,
+   "pass": 284,
+   "pass_den": 334,
+   "kc": 22,
+   "mut_recall": 0.8292264398551373,
+   "api_f1": 0.780351567297262,
+   "api_n": 283,
+   "cov_j": 0.8582956034705731,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/coreshop/csh-th-evidence.json",
+    "sha256": "7e1a92afe9ac28dd0c2b982a628b6e010282e2b3b842a831b6ab95e8009e2f41",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "fcb6487e2c1c0e6a27796d53caaaa18c5f46acc1da38261e30f58f8ecf7ce1b3"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal csh-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/coreshop__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "e8c2ce68acf4976f968dc10c51b1427f9cd44f0f8b216183a16e47129c94fbcc"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.8502994011976048,
+    "kill_complete_at_1": 0.0658682634730539,
+    "api_f1": 0.6631816622976731,
+    "coverage_j": 0.7298082376815651,
+    "mutation_recall": 0.7050907452660449
+   }
+  },
+  {
+   "project": "coreshop",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "ah",
+   "population": 334,
+   "pass": 258,
+   "pass_den": 334,
+   "kc": 13,
+   "mut_recall": 0.837092636902155,
+   "api_f1": 0.7713824750397116,
+   "api_n": 257,
+   "cov_j": 0.8683763328703471,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/coreshop/csh-ah-evidence.json",
+    "sha256": "bf570a4e566076e1061a8f5b88df5fe401a04045620a820c92ede47f8056d884",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "ba90cddd68450085fa094b625e96c1d972553c76ebd81c68560685e6f88ccd19"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal csh-ah-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/coreshop__claude-code-deepseek-flash__all_hidden.json",
+     "sha256": "a14883bdb18e426f78a2f38eed7cce5459bfb3b3d6be4b13758b78b227d38185"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7724550898203593,
+    "kill_complete_at_1": 0.038922155688622756,
+    "api_f1": 0.5953312194750927,
+    "coverage_j": 0.6707817182052381,
+    "mutation_recall": 0.6466164680262155
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 98,
+   "pass": 68,
+   "pass_den": 98,
+   "kc": 23,
+   "mut_recall": 0.936555,
+   "api_f1": 0.4666666666666667,
+   "api_n": 11,
+   "cov_j": 0.9666224957452412,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/e-petitions/epe-th-evidence.json",
+    "sha256": "b8139365d9bfdbe5e299a21b45ac5e3109d03b558ede5c82daec367878ddc6a1",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "754f7d10a47a13325ca4d1bba6754105f92a78ec62b036bf023caf8a5beef6be"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal epe-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/e-petitions__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "aac63e25d2399bb642ae86589b353a2db803e4736a85c22eee0bf9172bddaea4"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.6938775510204082,
+    "kill_complete_at_1": 0.23469387755102042,
+    "api_f1": 0.20533333333333334,
+    "coverage_j": 0.6707176501089429,
+    "mutation_recall": 0.6498544897959184
+   }
+  },
+  {
+   "project": "e-petitions",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "ah",
+   "population": 98,
+   "pass": 68,
+   "pass_den": 98,
+   "kc": 15,
+   "mut_recall": 0.961865,
+   "api_f1": 0.40606060606060607,
+   "api_n": 11,
+   "cov_j": 0.9847324138175655,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/e-petitions/epe-ah-evidence.json",
+    "sha256": "98fd6421eca327ed03669db9ddfca609d7e4aa80a52c3f06ff988b5f120a7416",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "584b62404abde85f14caddcdeeca4c170fa28665a2c53717471ae89cf47f6d4b"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal epe-ah-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/e-petitions__claude-code-deepseek-flash__all_hidden.json",
+     "sha256": "bb2e36611134aee7370a202509dc4ea246111a65c3074fc6f70fac86ffb4d412"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.6938775510204082,
+    "kill_complete_at_1": 0.15306122448979592,
+    "api_f1": 0.17866666666666667,
+    "coverage_j": 0.6832837157101475,
+    "mutation_recall": 0.6674165306122448
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 330,
+   "pass": 261,
+   "pass_den": 330,
+   "kc": 173,
+   "mut_recall": 0.97504,
+   "api_f1": 0.808501009887969,
+   "api_n": 261,
+   "cov_j": 0.967399495409203,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/kapua/kap-th-evidence.json",
+    "sha256": "6fd20539ce451dfd19b3d6f34b983d40051de05ca4ab0eea985e6ba6602efefb",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "c3eab1054b445fe3f7d6287659a82a16f3e4d152ae7ce8d6148389882c1f06c3"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal kap-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/kapua__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "68f65163244fb15a5a2a9d7ba69df40050d8e3443edf1ef52c1164633bcd6df5"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7909090909090909,
+    "kill_complete_at_1": 0.5242424242424243,
+    "api_f1": 0.6394507987295756,
+    "coverage_j": 0.7651250554600061,
+    "mutation_recall": 0.7711680000000001
+   }
+  },
+  {
+   "project": "kapua",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "ah",
+   "population": 330,
+   "pass": 250,
+   "pass_den": 330,
+   "kc": 169,
+   "mut_recall": 0.97239,
+   "api_f1": 0.8061567459834051,
+   "api_n": 250,
+   "cov_j": 0.9659733672553705,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/kapua/kap-ah-evidence.json",
+    "sha256": "8da066e3446aa06c7249355ab0b9f938ccf15e0863e9e31cffaae69fb658f6ba",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "15ae1d73725ef239d037181b9518d60220ed36f9952c66716d380a5684e1b73e"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal kap-ah-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/kapua__claude-code-deepseek-flash__all_hidden.json",
+     "sha256": "532ee99edef2de275e2007be8e3bbc82775219b1ad5a63d7d8cbb19985a03dce"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7575757575757576,
+    "kill_complete_at_1": 0.5121212121212121,
+    "api_f1": 0.6107248075631857,
+    "coverage_j": 0.7317980054964928,
+    "mutation_recall": 0.7366590909090909
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 348,
+   "pass": 154,
+   "pass_den": 348,
+   "kc": 61,
+   "mut_recall": 0.943717,
+   "api_f1": 0.7545331240134467,
+   "api_n": 154,
+   "cov_j": 0.9191204283570534,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/prestashop/psh-th-evidence.json",
+    "sha256": "fce957d7cd791e699ae62494a027f80180eed4a74c32d886900f8f69a011f07b",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "adc6a26176e518a7de2da61f9d008806656b03e215fd446af78f4debe05d7032"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal psh-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/prestashop__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "846cc0dd846906a3f878ecc9bc74eca73298f2b1305d9ace8c5b5ac0d6f442b8"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.4425287356321839,
+    "kill_complete_at_1": 0.1752873563218391,
+    "api_f1": 0.3339025893622724,
+    "coverage_j": 0.40673720105455813,
+    "mutation_recall": 0.4176218908045978
+   }
+  },
+  {
+   "project": "prestashop",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "ah",
+   "population": 348,
+   "pass": 159,
+   "pass_den": 347,
+   "kc": 64,
+   "mut_recall": 0.940753,
+   "api_f1": 0.744183730137731,
+   "api_n": 159,
+   "cov_j": 0.9074361105661792,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/prestashop/psh-ah-evidence.json",
+    "sha256": "530019e277e52bc0539a82a5457ba59b33a2a68c53059fe42c412986d30929bc",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "586bd7a4111e15a898697e9b7141086d032c60d6a2378af2a61440e39198798b"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal psh-ah-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/prestashop__claude-code-deepseek-flash__all_hidden.json",
+     "sha256": "b2ee39f25e26312eba4f75c59792edb61a906023f10c6ff9b1df16931b6e2281"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.45821325648414984,
+    "kill_complete_at_1": 0.1839080459770115,
+    "api_f1": 0.3409948504089315,
+    "coverage_j": 0.41579925527384004,
+    "mutation_recall": 0.4310654956772334
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 237,
+   "pass": 226,
+   "pass_den": 237,
+   "kc": 177,
+   "mut_recall": 0.9761746056456568,
+   "api_f1": 0.9289687275122486,
+   "api_n": 226,
+   "cov_j": 0.963896514280729,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/python-docx/pdx-th-evidence.json",
+    "sha256": "f065b45257e6ef6a0a6b7cf4cf34c5753859abfb133fd5d41df46adee1a177e9",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "547616dd1b85d85fd1fd98ec38f0d10b8888b03a61161e9725a55f1522be125c"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal pdx-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/python-docx__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "a0b3ed38ec330cf4cdcc722a6042cb353b91a2a9bd34a1f2d767a849ae41ae7f"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.9535864978902954,
+    "kill_complete_at_1": 0.7468354430379747,
+    "api_f1": 0.8858520355180092,
+    "coverage_j": 0.9191587013816235,
+    "mutation_recall": 0.930866923527082
+   }
+  },
+  {
+   "project": "python-docx",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "ah",
+   "population": 237,
+   "pass": 227,
+   "pass_den": 237,
+   "kc": 185,
+   "mut_recall": 0.98343079581459,
+   "api_f1": 0.9344916110556281,
+   "api_n": 227,
+   "cov_j": 0.9655584501053033,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/python-docx/pdx-ah-evidence.json",
+    "sha256": "ea2a6c806e2c38705b8fbee1a1e114cd27f376d2b17e9b5a1cda3148a46efc79",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "c34c1c4ea1d087ed6763abd29979fb58e1f37f6e2eddde247cd6350dfaa72844"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal pdx-ah-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/python-docx__claude-code-deepseek-flash__all_hidden.json",
+     "sha256": "751470bedf062c71f04844c2d239d782bfa46c1b55ae0b4bab10d930cb3f849a"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.9578059071729957,
+    "kill_complete_at_1": 0.7805907172995781,
+    "api_f1": 0.8950615852726902,
+    "coverage_j": 0.9248175872316617,
+    "mutation_recall": 0.9419358255270547
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "th",
+   "population": 319,
+   "pass": 244,
+   "pass_den": 319,
+   "kc": 101,
+   "mut_recall": 0.9646599933693963,
+   "api_f1": 0.737115039441123,
+   "api_n": 200,
+   "cov_j": 0.981276977144609,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/sylius/syl-th-evidence.json",
+    "sha256": "f18813fe5221814c0e0503fa0001a4b6ff020fa0dd388839c9e30fb52f251ceb",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "d58868d8d8393f55e67ed5d27357814f13969e94eefff8b9fdb25bd04ead788f"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal syl-th-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/sylius__claude-code-deepseek-flash__target_hidden.json",
+     "sha256": "3f8768fdb57c609c9437255a1c3b79baf4ff85035d6bbcc46712cd371722bdca"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7648902821316614,
+    "kill_complete_at_1": 0.3166144200626959,
+    "api_f1": 0.5850119360643833,
+    "coverage_j": 0.7505692238974438,
+    "mutation_recall": 0.7378590544894442
+   }
+  },
+  {
+   "project": "sylius",
+   "arm": "claude-code-sonnet-5-5",
+   "view": "ah",
+   "population": 319,
+   "pass": 242,
+   "pass_den": 319,
+   "kc": 89,
+   "mut_recall": 0.9598586673158543,
+   "api_f1": 0.7515178262856281,
+   "api_n": 198,
+   "cov_j": 0.9788583828510694,
+   "source": {
+    "path": "experiments/claude-code-checked-interfaces/sonnet-5-5/results/sylius/syl-ah-evidence.json",
+    "sha256": "6134b2c3720ef7ee4ad27a2caa19d0d0f8678a2a768d57b704e0eef85232bb01",
+    "render": {
+     "file": "analysis/results.json of the cell's finalize render",
+     "sha256": "dfae253a78599cbbd2d017bc46708ce8e03d71f1103dcccaa466e666db579e33"
+    },
+    "api_from": "render api.values.f1, api.n_scored",
+    "printed": "API F1 and coverage J equal syl-ah-results.md to its 0.001",
+    "twin": {
+     "path": "experiments/claude-code-checked-interfaces/paper-cells/sylius__claude-code-deepseek-flash__all_hidden.json",
+     "sha256": "6aa0c47281279d2a8e21c3c9fb9c8cdc95f9bc9b47aaa112a020ad8a2c110f3c"
+    }
+   },
+   "values": {
+    "pass_at_1": 0.7586206896551724,
+    "kill_complete_at_1": 0.27899686520376177,
+    "api_f1": 0.5904782920815649,
+    "coverage_j": 0.7425822214732251,
+    "mutation_recall": 0.7281686441706481
+   }
+  }
+ ]
+}

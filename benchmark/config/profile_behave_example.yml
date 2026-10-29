@@ -1,0 +1,153 @@
+# Task profile for a python+behave project  (r2t/bench/profile.py)
+#
+# The second profile, and the reason the first one exists as data at all.
+# CoreShop's prompt was eight paragraphs of PHP, Symfony and Pimcore welded
+# into a Python module; the claim that the benchmark "extends to other
+# repos, languages and frameworks" was untested until something that is not
+# PHP could be rendered from the same renderer.  This is that something.
+#
+# It has no repository behind it (see `boundary_behave_example.yml`).  It is
+# a schema witness and the template for v2: everything a real python+behave
+# project needs is here and filled in, so standing v2 up is pointing
+# `repo_root` at a checkout and re-freezing the digests at the bottom.
+#
+# What it proves, checked in `adapters.selftest`:
+#
+#   * `wiring_channel: null` really does remove BOTH the DI bullet from the
+#     collection contract and the auto-registration fact from the facts list.
+#     behave has no service container, and telling a behave agent to return a
+#     Symfony `services:` block is not harmless filler -- it is an
+#     instruction to produce a file the harness has nowhere to put.
+#   * no CoreShop, Behat, PHP, Symfony or Pimcore noun survives anywhere in
+#     any of the four rendered prompts.
+#   * the task statement and the collection contract are still THERE. A
+#     profile that rendered a clean prompt by rendering an empty one would
+#     pass the first two checks and be useless.
+
+version: 1
+project: behave_example
+project_label: example
+language: python
+language_label: Python
+framework: behave
+api_scoring: none
+
+boundary: boundary_behave_example.yml
+
+# ------------------------------------------------------------------- task
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: behave test code
+
+# ------------------------------------------------------------- submission
+# behave discovers steps by importing every module under `features/steps/`,
+# so that directory is both where the answer goes and how it is recognised.
+# `extra_names` is empty because there is no out-of-band channel: a behave
+# submission is Python files and nothing else.
+submission:
+  acceptance_root: features/steps/
+  example_path: features/steps/cart_steps.py
+  example_code: from behave import given, then ...
+  placement_hint: features/steps/...
+  suffixes:
+    - .py
+  extra_names: []
+  retained_note: '`features/environment.py` is what remains'
+
+# --------------------------------------------------------- wiring channel
+# NULL, and this is the field the whole parameterisation was for.
+#
+# CoreShop needs an out-of-band `behat_services.yml` because its contexts are
+# Symfony services wired by service id.  behave has no container: a step
+# module is imported, its decorated functions are registered, and shared
+# state travels on the `context` object.  There is nothing to declare, so
+# neither the collection-contract bullet that offers the channel nor the
+# auto-registration fact that explains it is emitted.
+wiring_channel: null
+
+# ------------------------------------------------------------- workspace
+workspace:
+  repo_dir: repo
+  readable_paths:
+    - features
+    - src
+    - pyproject.toml
+    - behave.ini
+
+# ------------------------------------------------------------------ facts
+# What a stripped behave repository cannot tell the model.  The same job as
+# CoreShop's eight bullets, and none of the same content: decorators instead
+# of docblocks, `parse`/`re` matchers instead of regex-only annotations,
+# `register_type` instead of `@Transform`, the `context` object instead of a
+# shared-storage service, and `assert` instead of Webmozart.
+#
+# There is no `<wiring-channel>` slot here. A profile with a null channel may
+# leave the slot in (it is dropped) or leave it out; leaving it out is
+# clearer, and `load_profile` only insists on the slot when a channel exists.
+facts:
+  - |-
+    Step definitions are plain functions decorated with `@given`, `@when` or `@then`, imported from `behave` (`from behave import given, when, then`). behave loads every module under `features/steps/`; the Given/When/Then keyword is irrelevant to matching.
+  - |-
+    Step parameters are captured by the default `parse` matcher with `{name}` or `{name:Type}` placeholders (`@then('the cart holds {count:d} items')`). For regular expressions call `use_step_matcher('re')` first, and switch back with `use_step_matcher('parse')` -- the setting applies to every step defined after it.
+  - |-
+    To convert a captured string into an object, register a type with `behave.register_type(Product=parse_product)` and name it in the placeholder (`{item:Product}`). There is no separate transform decorator.
+  - |-
+    The scenario's `Background` steps run before it and need definitions too.
+  - |-
+    `features/environment.py` holds the lifecycle hooks (`before_all`, `before_feature`, `before_scenario`, and their `after_` counterparts). It is retained: do not write one.
+  - |-
+    The `context` object passed to every step is the shared state between steps of a scenario (`context.cart = cart`, then read `context.cart` in a later step). behave resets it per scenario; anything that must outlive a scenario belongs on `context.config` or in the environment hooks.
+  - |-
+    Assertions are plain `assert` statements. behave reports the AssertionError as the step failure, so include a message (`assert total == 4800, f"total was {total}"`).
+  - |-
+    Put your modules under `features/steps/**`. Removal took that directory with the code, so it does NOT exist yet -- create it. Production code lives under `src/` and is never accepted.
+
+platform_blurb: |-
+  the example storefront application (Python 3.11, behave)
+
+# ------------------------------------------------------------- conditions
+conditions:
+  retained_substrate: |-
+    the retained `features/environment.py` hooks
+  project_source_noun: application source
+
+# ------------------------------------------------------------------ trial
+# The same two clause forms CoreShop carries, and the same reason for them:
+# an execution is a terminal tool call, so it already costs the agent an
+# iteration and `--max-iterations` bounds executions natively; only the
+# BOUNDED form (`--trials k`) names a count, because a count in the prompt is
+# a scarcity signal and scarcity is a confound in what this benchmark
+# measures.  See `r2t/agents/trials.py` and the CoreShop profile for the argument.
+#
+# The wording is the same because the sentence is structural rather than
+# project-specific -- what differs is `{interpreter}` and `{runner}`, which is
+# exactly the parameterisation the second profile exists to demonstrate.
+trial:
+  client_interpreter: python3
+  runner_noun: behave
+  clause_bounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this {k} times.
+  clause_unbounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this as often as you want.
+
+# ----------------------------------------------------------------- freeze
+# This profile has no sweep behind it yet, so these digests freeze nothing
+# that has been published -- they are here because the schema requires them
+# and because the moment v2 runs, they become the thing that makes its rows
+# comparable with each other.  Re-derive with
+# `python3 -c "from r2t.bench.profile import load_profile; from r2t.bench.adapters import
+# prompt_digests; print(prompt_digests(load_profile('...', verify_digests=
+# False)))"` when the prose above is still being drafted; after the first
+# sweep, treat them exactly like CoreShop's.
+#
+# `c3` is the UNBOUNDED rendering, like CoreShop's: the arm's affordance is
+# bounded by `--max-iterations`, so the clause states the affordance and names
+# no count.  The bounded wording is still frozen too, at
+# 6ecf2073eca7c2df6b69ba570b07d3c3f971659dc74c2d1e6dfbfb7206b9290b, which is
+# what `--trials k` renders; `adapters.selftest` pins both.
+prompt_digest:
+  single_shot: 64b9d21b031290b21892b37dffbb83a9a30dd535c474f2fdcdbb4046e20a52c4
+  c1.5: 432cd34a5fd56bf6c58dceace61c4be98b78affb3b0a6c11c9e45e07808ce0f6
+  c2: d67b7c7ad82948cee013d781fd2e02fc5440c4baa2be014131dc02fa74663e94
+  c3: 9d8ee6e19d2062ea4aac49c2e668184eecc5651b189df99d834b7eecfda60665

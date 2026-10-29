@@ -1,0 +1,102 @@
+# Task profile for Eclipse Kapua's feature-level @env_none suite.
+version: 1
+project: kapua
+project_label: Eclipse Kapua
+language: java
+language_label: Java
+framework: cucumber
+
+# K7's attributed interfaces and production method index do not exist yet.
+# This profile therefore makes no API-scoring claim.  A method_index analysis
+# profile must be added only after K7 produces and gates those inputs.
+api_scoring: none
+
+boundary: boundary_kapua.yml
+
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Cucumber test code
+
+submission:
+  # The Kapua stack replaces these account-runner fallback values with the
+  # selected feature's measured runner-module package before rendering an
+  # item prompt. Keeping a real removable fallback lets the profile and
+  # boundary cross-check remain fail-closed outside that route.
+  acceptance_root: service/account/test/src/test/java/org/eclipse/kapua/service/account/test/r2t/generated/
+  example_path: service/account/test/src/test/java/org/eclipse/kapua/service/account/test/r2t/generated/GeneratedSteps.java
+  example_code: package org.eclipse.kapua.service.account.test.r2t.generated; ...
+  placement_hint: service/account/test/src/test/java/org/eclipse/kapua/service/account/test/r2t/generated/...
+  suffixes:
+    - .java
+  extra_names: []
+  retained_note: 'The shared qa/common substrate remains available.'
+
+wiring_channel: null
+
+runtime:
+  needs_database: false
+
+workspace:
+  repo_dir: repo
+  readable_paths:
+    - broker
+    - client
+    - commons
+    - commons-rest
+    - console
+    - consumer
+    - extras
+    - job-engine
+    - locator
+    - message
+    - plug-ins
+    - pom.xml
+    - qa
+    - rest-api
+    - service
+    - simulator-kura
+    - translator
+    - transport
+
+facts:
+  - |-
+    Step definitions are public methods on plain Java classes, annotated with `io.cucumber.java.en.Given`, `@When`, `@Then`, `@And` or `@But`. For each item the prompt's answer path is an empty `r2t.generated` package inside that feature's runner module, and the harness adds that exact package to the selected runner's native glue. The runner module supplies the suite's complete test compile classpath. The Given/When/Then keyword is irrelevant to matching.
+  - |-
+    Patterns may be Cucumber Expressions such as `{string}`, `{int}`, `{long}` and `{word}`, or regular expressions. Existing parameter and data-table types under the retained `org.eclipse.kapua.qa.common.cucumber` package remain available.
+  - |-
+    Thirty-six of the 37 selected features have an `@setup` scenario before their scored scenarios. For those features, the harness copies that prerequisite scenario verbatim, including its tags, ahead of the selected scenario. `MiscAuthorization.feature` has no setup scenario or Background and runs its selected two-step scenario alone. `Given Init Security Context` and the `@env_none` hooks remain in retained `BasicSteps`; do not redeclare them.
+  - |-
+    Cucumber-Guice creates glue objects and injects shared `StepData` with `javax.inject.Inject`; glue classes may be `com.google.inject.Singleton`. The selected unit modules also retain a `*LocatorConfiguration` hook that installs the real service under test and its mocked collaborators into `KapuaLocator` during `@setup`.
+  - |-
+    All shared classes under `qa/common`, every selected `Run*.java` runner and every `*LocatorConfiguration.java` are retained. Native runner glue outside the generated package is unchanged. Do not redeclare retained hooks, steps, parameter types or runner classes.
+  - |-
+    The admissible `@env_none` suite uses embedded H2 in the test JVM, migrated by Liquibase, with Shiro and Guice in-process. It needs no database server, broker, Elasticsearch process, Docker socket or other external service.
+  - |-
+    Assertions may use JUnit 4 (`org.junit.Assert`) and should let assertion failures propagate so Cucumber records the failing step. Reuse the retained domain-table objects under `org.eclipse.kapua.qa.common.cucumber` when the feature supplies a data table.
+  - |-
+    Production code spans the Maven reactor's service, commons, locator, message, transport and related modules. Production files, feature files and `pom.xml` are never accepted as an answer.
+  - |-
+    The repository is a 250-pom Maven reactor. Runs use JDK 17 and Cucumber-JVM 6.11.0 with JUnit 4 and surefire 3.0.0-M7. The worker provides the JDK 17 toolchain and the warm dependency repository; changes to `pom.xml` are discarded.
+
+platform_blurb: |-
+  Eclipse Kapua, a modular Java IoT platform (Maven, JDK 17)
+
+conditions:
+  retained_substrate: |-
+    retained common hooks and state, per-suite runners and locator configurations, plus the feature files
+  project_source_noun: Eclipse Kapua source
+
+trial:
+  client_interpreter: python3
+  runner_noun: Cucumber
+  clause_bounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this {k} times.
+  clause_unbounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this as often as you want.
+
+prompt_digest:
+  single_shot: f6f96fcfd1ba78db10daf61c87537ba94da93206579f162ee45f47e7f68a8d29
+  c1.5: 053377ce89ffebbe623943a5d21e39b48d074eace4da5522814f6a1251dfae3f
+  c2: 5a6c378c2e80e7aa0840a357e2469b2600ff8501dc239cc6ea77119f17342f24
+  c3: 4377f8784e7cf18930cb35bb43be3622ca4684e5038e82d5ecb51b57702ec71d

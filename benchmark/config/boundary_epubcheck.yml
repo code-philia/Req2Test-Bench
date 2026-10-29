@@ -1,0 +1,299 @@
+# Test/production boundary for epubcheck  (SPEC.md §3.1; Java corpus D1)
+#
+# The third REAL project and the first Java one.  CoreShop's boundary is one
+# broad prefix narrowed by exceptions; python-docx's is one broad prefix with
+# the fixtures carved back out.  Neither shape fits here, and the reason is
+# worth stating before the lists rather than after them.
+#
+# Cucumber-JVM discovers glue by SCANNING the runner's package.
+# `RunCucumberTest` sits in `org.w3c.epubcheck` and declares
+# `@CucumberOptions(features = "classpath:")` with no `glue`, so the glue path
+# is `org.w3c.epubcheck` AND every subpackage of it.  The obvious boundary is
+# therefore "the whole of `src/test/java/org/w3c/epubcheck/` is removable,
+# with exceptions" -- and that is exactly what cannot be written, because
+# `org/w3c/epubcheck/url/URLUtilsTest.java` lives inside the glue package and
+# is a plain JUnit unit test with no `io.cucumber` import at all.  The
+# grammar here has three verdicts and only two of them can be asserted:
+# `retained` beats `removable` by longest prefix, but there is no way to pull
+# a file back out to PRODUCTION.  A broad prefix would have to call
+# `URLUtilsTest.java` either removed answer glue (it is not: it answers no
+# scenario) or retained substrate (it is not: it is an ordinary unit test of
+# production code, in the same class as `com/adobe/**` and `org/idpf/**`).
+#
+# So the removable list is three directory prefixes plus two named files, and
+# the two named files are named because their PACKAGES are mixed:
+# `org.w3c.epubcheck` holds the two retained runners, and `org.w3c.epubcheck.url`
+# holds one Steps class beside one JUnit test.  The three directories that ARE
+# pure glue stay broad, so a system under test that writes a new class into
+# one of them is accepted rather than silently discarded (the CoreShop lesson:
+# a boundary narrower than the prompt records a compliant answer as no answer).
+#
+# ---------------------------------------------------------------------------
+# OWNER RULINGS THIS FILE IMPLEMENTS
+#
+# R1.5 (2026-08-08, `JAVA_MUTATION_R1_OWNER_RULINGS.md`, commit f63edb6):
+#   "`ParameterTypes.java` is retained, hashed substrate.  It is not removable
+#   answer glue and is not candidate-editable.  Boundary, seed, integrity,
+#   closure, harness and release evidence must bind its exact retained bytes."
+#   It is in the `retained` list below and it is inside a substrate root
+#   (`repo.CUCUMBER_SUBSTRATE_ROOTS`), which is what "binds its exact bytes"
+#   means operationally.
+#
+# Ruling 1 (2026-08-08, recorded in the session that wrote this file):
+#   `SharedParameterTypes.java` is REMOVABLE ANSWER GLUE, and R1.5's retained
+#   ruling for `ParameterTypes.java` is NOT extended to it.  Rationale as
+#   recorded: it is a single-consumer `@ParameterType` registration -- it
+#   declares `{multimap}` and nothing else, and the only step in the tree that
+#   uses `{multimap}` is `ViewportSteps.java:74`, which is itself removable
+#   glue.  Retaining it would leak the shape of the viewport answer (a
+#   `ImmutableListMultimap` parsed out of a `"k=v;k=v"` string) to a candidate
+#   that has to produce the viewport steps.  Gold provides it; candidates must
+#   produce it for viewport items.
+#
+# Ruling 2 (2026-08-08, same session):  Resources classification is FIXTURES
+#   ONLY.  The `<area>/files/` trees and the four stray non-feature resource
+#   directories are RETAINED; the 49 `.feature` files FALL THROUGH to
+#   production (the python-docx precedent, where `features/*.feature` is
+#   production because it is the criterion text itself);
+#   `src/test/resources/cucumber.properties` is framework runtime
+#   configuration and is classified as `removable_config`, the CoreShop
+#   precedent for a per-item-synthesised framework configuration file.  There
+#   is deliberately NO blanket `src/test/resources/**` retained prefix: that
+#   would classify every `.feature` file as test infrastructure, and a
+#   criterion is not infrastructure.
+#
+# ---------------------------------------------------------------------------
+# WHAT IS NOT HIDDEN
+#
+# The two retained step-carrying classes are a LEAK, in CoreShop's sense.
+# `EPUBCheckConfiguration` declares seven step definitions (`EPUBCheck with
+# default settings`, the reporting-format/level/locale setters, ...) and
+# `TestEnvironment` declares two (`test files are located at {string}`, the
+# default-locale setter).  Nine methods of the first file carry a Cucumber
+# annotation, but two of those are the `@Before`/`@After` `@debug` hooks its
+# `retained` entry names separately below, and a hook answers no step of any
+# scenario; this paragraph said nine until it was counted, which is how a
+# leak disclosure overstates itself.  Most epubcheck scenarios open with some
+# of the seven-plus-two, so most items are partly answered by code the
+# candidate never has to write.  That is the price of retaining the
+# environment substrate: unlike CoreShop's file this one carries NO
+# `leak_profile` key, because nothing in the codebase reads that key and a
+# config field nobody reads is a promise nobody keeps.  The disclosure is
+# therefore prose -- but it is not unchecked prose.  Question 8 of
+# `scripts/gate_s2_boundary_epubcheck.py` re-derives both counts from the
+# annotations of the pinned checkout and fails if either moves, the same
+# treatment the fixture-root count gets three questions earlier, and for the
+# same reason: a number dictated into a comment is a number nobody re-reads.
+
+version: 1
+project: epubcheck
+repo_root: projects/epubcheck/source
+
+# ---------------------------------------------------------------- removable
+# Order matters only for readability; classification is longest-prefix
+# against `retained` first, then `removable`.
+#
+# Eight step/hook-annotated Steps classes plus `SharedParameterTypes.java`:
+# nine files, which is the whole of the census's "removable glue" column.
+removable:
+  - path: src/test/java/org/w3c/epubcheck/container/
+    why: >
+      `FilenameCheckerSteps.java`, and nothing else in the package.  Broad
+      rather than named so a system under test may add a class beside it.
+  - path: src/test/java/org/w3c/epubcheck/test/
+    why: >
+      The main glue package: `AssertionSteps`, `CLISteps`, `ExecutionSteps`,
+      `JSONReportAssertionSteps` and `XMLReportAssertionSteps` are the answer.
+      The five files the `retained` list below carves back out are the
+      environment substrate (two hook/config classes, the parameter-type
+      registry R1.5 retains, and the two un-annotated support types they
+      return).  This is the prompt's acceptance root, so it is deliberately
+      the whole package rather than five file names.
+  - path: src/test/java/org/w3c/epubcheck/util/
+    why: >
+      `util/microsyntax/ViewportSteps.java`, and nothing else in the tree.
+      Broad for the same reason as `container/`.
+  - path: src/test/java/org/w3c/epubcheck/url/URLFragmentSteps.java
+    why: >
+      Named rather than covered by a `url/` prefix, because
+      `url/URLUtilsTest.java` sits beside it: a JUnit unit test with no
+      `io.cucumber` import, which falls through to PRODUCTION with the rest
+      of the unit-test tree.  A `url/` prefix could only call that file
+      removable or retained, and it is neither.
+  - path: src/test/java/org/w3c/epubcheck/SharedParameterTypes.java
+    why: >
+      Ruling 1 (see the header).  Named rather than covered by an
+      `org/w3c/epubcheck/` prefix, because the two Cucumber runners sit in
+      the same package and are retained.
+
+# ------------------------------------------------------------- DI fragments
+# Framework runtime configuration, removed with the code and synthesised per
+# item (the CoreShop `removable_config` precedent, decision D2).
+#
+# ONE entry, and it is one line of properties: `cucumber.publish.quiet=true`.
+# It is here rather than in `retained` because it configures the RUNNER, not
+# the project -- the same class of file as CoreShop's `suites.yml` and
+# `profiles.yml`, which the harness re-emits per item so that an item's suite
+# is the harness's statement rather than upstream's.  Ruling 2 settles this
+# explicitly: it is not a fixture.
+removable_config:
+  - src/test/resources/cucumber.properties
+
+# ----------------------------------------------------------------- retained
+# Two groups: the Java substrate that is not an answer, and the fixture trees
+# a scenario READS.
+retained:
+  # -- the Cucumber runners.  Zero step definitions; they exist so that
+  #    `mvn test` finds the suite at all, and their package is the glue path.
+  - path: src/test/java/org/w3c/epubcheck/RunCucumberTest.java
+    why: >
+      The JUnit entry point Cucumber runs under, and the class whose PACKAGE
+      defines the default glue path.  Regenerating it per item would measure
+      recall of `@CucumberOptions` rather than test generation.
+  - path: src/test/java/org/w3c/epubcheck/DebugCucumberTest.java
+    why: >
+      The `@debug`-tagged variant of the same runner.  Retained with it: a
+      tree holding one and not the other is a tree upstream never had.
+  # -- the environment substrate inside the removable glue package.
+  - path: src/test/java/org/w3c/epubcheck/test/EPUBCheckConfiguration.java
+    why: >
+      The checker-configuration object every Steps class takes by constructor
+      injection (cucumber-picocontainer), plus the `@Before`/`@After` hooks
+      for the `@debug` tag.  It is CoreShop's `Context/Hook` and behave's
+      `environment.py`: identical for every item, and beside those two hooks
+      it carries seven step definitions whose leak is stated in the header
+      rather than hidden.
+  - path: src/test/java/org/w3c/epubcheck/test/TestEnvironment.java
+    why: >
+      Where the EPUB fixtures are, and which locale the checker runs under.
+      It is the object that turns the retained `<area>/files/` trees into
+      paths, so removing it would make the retained fixtures unreachable and
+      every item would fail for a reason that is not test generation.
+  - path: src/test/java/org/w3c/epubcheck/test/ParameterTypes.java
+    why: >
+      R1.5, verbatim: retained, hashed substrate; not removable answer glue
+      and not candidate-editable.  It registers the project's own Cucumber
+      expression types (`{bool}`, `{checkerMode}`, `{locale}`, `{messageId}`,
+      `{messageQuantity}`, `{profile}`, `{severity}`, `{version}`) and the
+      `MessageInfo` DataTableType, which the criterion text itself is written
+      in -- a scenario says "ERROR RSC-005 is reported", and `{messageId}`
+      is what makes that a `MessageId` rather than a string.
+  - path: src/test/java/org/w3c/epubcheck/test/MessageInfo.java
+    why: >
+      Un-annotated support type returned by the retained `@DataTableType` in
+      `ParameterTypes.java`.  Retained WITH it: a retained registration whose
+      return type was removed does not compile.
+  - path: src/test/java/org/w3c/epubcheck/test/TestReport.java
+    why: >
+      Un-annotated support type held by the retained `EPUBCheckConfiguration`
+      (`getReport()`), and the object every assertion reads.  Same rule as
+      `MessageInfo.java`.
+
+  # -- the fixture trees.  Every `<area>/files/` directory in the corpus, and
+  #    the four stray non-feature resource directories.  These are scenario
+  #    DATA: EPUB publications, package documents, content documents and
+  #    stylesheets that a scenario OPENS ("when checking EPUB 'foo.epub'").
+  #    They are the direct analogue of python-docx's `features/steps/test_files`
+  #    and of CoreShop's `Behat/Model` stubs -- inputs the criterion text names
+  #    by file name, which no system under test could regenerate.
+  #
+  #    Written WITHOUT a trailing slash so the prefix matches the directory
+  #    itself as well as everything under it.  Enumerated rather than covered
+  #    by one `src/test/resources` prefix because ruling 2 forbids the blanket
+  #    form: the 49 `.feature` files sit between these directories and must
+  #    fall through to production.
+  #
+  #    COUNT: 25 `<area>/files/` directories, holding 3018 of the 3146 tracked
+  #    files under `src/test/resources`.  The ruling as dictated said 26; the
+  #    tree at the pinned commit 82b174ec has 25 (`find src/test/resources
+  #    -type d -name files | wc -l`), and `scripts/gate_s2_boundary_epubcheck.py`
+  #    re-derives the set from the checkout rather than trusting either number.
+  - path: src/test/resources/cli/files
+    why: fixture EPUBs for the CLI scenarios
+  - path: src/test/resources/epub2/files
+    why: fixture publications for the EPUB 2 scenarios
+  - path: src/test/resources/epub3/00-minimal/files
+    why: fixture publications for the minimal-publication scenarios
+  - path: src/test/resources/epub3/02-epub-publication-conformance/files
+    why: fixture publications for the publication-conformance scenarios
+  - path: src/test/resources/epub3/03-resources/files
+    why: fixture publications for the resources scenarios
+  - path: src/test/resources/epub3/04-ocf/files
+    why: fixture containers for the OCF and filename-checker scenarios
+  - path: src/test/resources/epub3/05-package-document/files
+    why: fixture package documents for the package-document scenarios
+  - path: src/test/resources/epub3/06-content-document/files
+    why: fixture XHTML/SVG/CSS content documents
+  - path: src/test/resources/epub3/07-navigation-document/files
+    why: fixture navigation documents
+  - path: src/test/resources/epub3/08-layout/files
+    why: fixture publications for the fixed-layout scenarios
+  - path: src/test/resources/epub3/09-media-overlays/files
+    why: fixture media-overlay documents
+  - path: src/test/resources/epub3/B-external-identifiers/files
+    why: fixture publications for the external-identifier scenarios
+  - path: src/test/resources/epub3/D-vocabularies/files
+    why: fixture publications for the vocabulary scenarios
+  - path: src/test/resources/epub3/H-media-type-registrations/files
+    why: fixture publication for the media-type-registration scenarios
+  - path: src/test/resources/epub-accessibility/files
+    why: fixture publications for the accessibility scenarios
+  - path: src/test/resources/epub-dictionaries/files
+    why: fixture publications for the dictionaries scenarios
+  - path: src/test/resources/epub-distributable-objects/files
+    why: fixture package documents for the distributable-objects scenarios
+  - path: src/test/resources/epub-edupub/files
+    why: fixture publications for the EDUPUB scenarios
+  - path: src/test/resources/epub-indexes/files
+    why: fixture publications for the indexes scenarios
+  - path: src/test/resources/epub-multiple-renditions/files
+    why: fixture publications for the multiple-renditions scenarios
+  - path: src/test/resources/epub-previews/files
+    why: fixture publications for the previews scenarios
+  - path: src/test/resources/epub-region-nav/files
+    why: fixture publications for the region-navigation scenarios
+  - path: src/test/resources/epub-scriptable-components/files
+    why: fixture package documents for the scriptable-components scenarios
+  - path: src/test/resources/localization/files
+    why: fixture publications for the message-localization scenarios
+  - path: src/test/resources/reporting/files
+    why: fixture publications for the JSON and XML report scenarios
+
+  # -- the four stray resource directories: fixture data that upstream never
+  #    put under an `<area>/files/` tree.  Retained on the same argument, and
+  #    named individually because there is no shared prefix that does not also
+  #    swallow a `.feature` file.
+  - path: src/test/resources/css
+    why: >
+      25 stylesheets read by the `org/idpf/**` CSS parser unit tests.  Fixture
+      inputs, not glue; retained so that deleting them cannot be blamed for a
+      unit-test failure that has nothing to do with generation.
+  - path: src/test/resources/epub3/test-files-unused
+    why: >
+      26 fixture files upstream keeps but no scenario currently opens.  Data
+      either way; removing them would be a change to the checkout that the
+      benchmark cannot justify.
+  - path: src/test/resources/opf-peeker
+    why: >
+      20 package documents read by `com/adobe/epubcheck/ocf/OPFPeekerTest.java`.
+      Fixture inputs to a retained-by-fall-through unit test.
+  - path: src/test/resources/stress
+    why: >
+      7 files making up the publication `com/adobe/epubcheck/stress/
+      StressTest.java` generates load from.  Fixture input.
+
+# Contexts always registered in the synthesised per-item suite.  EMPTY, and
+# not merely unset.
+#
+# Cucumber-JVM has no suite file and no service list to synthesise: glue is
+# whatever classes the runner's package scan finds, and cucumber-picocontainer
+# instantiates them by reflection, wiring constructor arguments from the same
+# scanned set.  There is nothing to name here, and an empty list records that
+# the question was asked -- exactly as `boundary_python_docx.yml` does for
+# behave, and for the same reason.
+retained_contexts: []
+
+# `src/test/resources/**/*.feature` (49 files), `src/main/**`,
+# `src/test/java/com/adobe/**` (11), `src/test/java/org/idpf/**` (3),
+# `src/test/java/org/w3c/epubcheck/url/URLUtilsTest.java` and `pom.xml` are
+# PRODUCTION by falling through both lists.  Nothing there is ever touched.

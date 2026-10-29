@@ -1,0 +1,47 @@
+# Benchmark 2.0's population, read by r2t.bench.population and by req2test's
+# aggregate and report (schema in r2t/bench/population.py).
+#
+# protocols: the 2.0 protocols. Rows of a listed protocol are 2.0 rows.
+#
+# excluded: instances whose rows are still collected but enter no numerator or
+# denominator, so 2,037 of the 2,051 eval instances are scored (CoreShop 328,
+# Sylius 311).
+schema: r2t.benchmark-population/1
+benchmark_version: "2.0"
+census: >-
+  the census of record of the execution-enabled TH sensitivity (c2r): EXECUTION_ENABLED_TH_SENSITIVITY_SPEC.md
+  sections 3.3 and 3.4, CoreShop's and Sylius's census tables in the c2r study root (located in
+  docs/artifacts/benchmark-2.0/equivalence-record.md)
+protocols: [401, 402, 404, 406, 407, 408, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426,
+            427, 428, 429, 430, 431, 432, 433, 434]
+excluded:
+  # CoreShop's three approved zero-body instances (CORESHOP_ZERO_BODY_TREATMENT_AMENDMENT.md).
+  - instance_id: coreshop/features/domain/category/create_category.feature:13
+    reason: zero_body
+  - instance_id: coreshop/features/domain/category/create_category.feature:19
+    reason: zero_body
+  - instance_id: coreshop/features/domain/product/adding_product_category.feature:6
+    reason: zero_body
+  # The ground-truth test passes on the runnable TH view (c2r specification section 7).
+  - instance_id: coreshop/features/domain/product/variant/adding_attributes.feature:7
+    reason: census_pass
+  - instance_id: coreshop/features/domain/product/variant/adding_attributes.feature:14
+    reason: census_pass
+  - instance_id: coreshop/features/domain/product/variant/adding_attributes.feature:23
+    reason: census_pass
+  - instance_id: sylius/features/admin/blocking_login_for_disabled_administrators.feature:12
+    reason: census_pass
+  - instance_id: sylius/features/admin/order/managing_orders/resending_order_confirmation_email.feature:35
+    reason: census_pass
+  - instance_id: sylius/features/admin/promotion/managing_catalog_promotions/creating_catalog_promotion.feature:71
+    reason: census_pass
+  - instance_id: sylius/features/admin/promotion/managing_catalog_promotions/creating_catalog_promotion.feature:83
+    reason: census_pass
+  - instance_id: sylius/features/admin/promotion/managing_catalog_promotions/creating_catalog_promotion.feature:97
+    reason: census_pass
+  - instance_id: sylius/features/shop/account/signing_in_validation.feature:21
+    reason: census_pass
+  - instance_id: sylius/features/shop/cart/shopping_cart/maintaining_cart_after_authorization.feature:56
+    reason: census_pass
+  - instance_id: sylius/features/shop/checkout/paying_for_order/changing_offline_payment_method_after_order_confirmation.feature:15
+    reason: census_pass

@@ -1,0 +1,11 @@
+=== RUN   TestCLITUIFeature
+=== RUN   TestCLITUIFeature/Model_selection_through_the_selector_persists_on_the_session
+=== NAME  TestCLITUIFeature
+    bdd_cli_tui_test.go:211: timed out waiting for the footer to name (stub) model-two
+=== NAME  TestCLITUIFeature/Model_selection_through_the_selector_persists_on_the_session
+    testing.go:1811: test executed panic(nil) or runtime.Goexit: subtest may have called FailNow on a parent test
+--- FAIL: TestCLITUIFeature (5.01s)
+    --- FAIL: TestCLITUIFeature/Model_selection_through_the_selector_persists_on_the_session (5.01s)
+FAIL
+FAIL	github.com/EvilFreelancer/coddy-agent/external/cli	5.030s
+FAIL

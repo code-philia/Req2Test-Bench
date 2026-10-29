@@ -1,0 +1,455 @@
+# Test/production boundary for the Sylius 2.3 API arm (onboarding sprint 2026-09, track S)
+#
+# Three classes of code, as in `boundary_coreshop.yml`:
+#
+#   removable   test code the system under test must regenerate.  Deleted
+#               from the repository repo-wide; the ground truth for an item
+#               is its closure over these files.
+#   retained    test *infrastructure* kept in the stripped repo.  A stable
+#               substrate, not an answer.
+#   production  never touched.
+#
+# The removable set is the owner's ruling D15 on the judge's recommendation
+# (`sprint/records/judge_php_python.md`, Sylius section): the API arm's glue
+# is `src/Sylius/Behat/Context/Api/**` (80 files: Admin 47, Shop 26, Common 2,
+# DebugContext, DebugErrorType, EmailContext, Resources, Subresources) plus the
+# per-suite configuration of the 69 API suites.  Setup (36 files), Transform
+# (37), Hook (8), Client (14), Service (50), Behaviour (8) and the DI service
+# files are retained.  The judge states the cost plainly: "Retained -> the
+# task is tractable and per-scenario, but the direct-production-API-call
+# metric collapses, because Api/ and Ui/ step bodies reach production only
+# through the in-process HTTP/Mink client and almost never call a production
+# class directly."  Expect a thin `direct_calls` row; the release note says so.
+#
+# The UI, Domain, Cli and Hybrid contexts, the Page objects and the Elements
+# are NOT this arm's glue and NOT its substrate either: they are Behat code
+# that no API suite registers, so an API item never reaches them.  They are
+# classified RETAINED below so that the whole of `src/Sylius/Behat` classifies
+# and nothing falls through to "production"; the boundary census gate
+# (`scripts/gate_s2_boundary_sylius.py`) proves the moved set is exactly the
+# Api context tree plus the API suite configuration.  Deferred by D10: the UI
+# arm is a later decision and would be a second boundary file, not an edit.
+#
+# Pitfall (b) from the judge, recorded now: most scenarios carry both `@api`
+# and `@ui`, so the same feature file yields two reference answers.  Only the
+# API answer exists in this arm; if the UI arm is ever added, the two must
+# stay in the same split or the benchmark leaks.  Separately, in THIS arm as
+# it stands: the retained `Context/Ui/` tree (kept RETAINED above, and
+# readable -- `workspace.readable_paths` in `profile_sylius.yml` exposes all
+# of `src`) implements the same step text as roughly half of the arm's step
+# occurrences (e.g. `I search for products with name :name` is defined in
+# both `Context/Api/Shop/ProductContext.php` and
+# `Context/Ui/Shop/ProductContext.php`).  That is a same-text implementation
+# channel a C2/C3 agent can read today, distinct from the future-UI-arm leak
+# above; `leak_profile` below does not see it, because it measures only
+# what the harness registers at runtime, and no API suite registers a Ui
+# context.
+
+version: 1
+project: sylius
+repo_root: projects/sylius/source
+
+# ---------------------------------------------------------------- removable
+# One broad prefix, narrowed by the `retained` exceptions below (classification
+# is longest-prefix, so `retained` wins).  Broad ON PURPOSE, for the reason
+# `boundary_coreshop.yml` gives: the harness refuses to write a solution file
+# outside removable territory, and the prompt tells a model to put its classes
+# under `src/Sylius/Behat/Context/Api/**`; a model writing one level up
+# (`src/Sylius/Behat/Context/MyContext.php`) must not be silently discarded.
+removable:
+  - path: src/Sylius/Behat/
+    why: >
+      Behat test code.  What actually moves at strip time is the API context
+      tree `src/Sylius/Behat/Context/Api/**` and the API suite configuration
+      listed under `removable_config`; everything else under this prefix is
+      carved out as retained below.
+
+# ------------------------------------------------------------- DI fragments
+# The service definitions of the removable contexts are removed with them
+# (the harness synthesises registration per item), and so is the per-suite
+# configuration of the API suites, which names the removable contexts by
+# service id.  Sylius's Behat configuration is PHP (`Behat\Config\Config`
+# suites, `ContainerConfigurator` services), not YAML: the retained
+# `services/contexts.php` importer is patched at strip time to drop the
+# imports of `contexts/api.php` and `contexts/hybrid.php`, and the suite map
+# the harness needs (suite name -> tag filter -> context service ids) is
+# captured from these files BEFORE they move, into the GOLD tree's
+# `suite_map.json` -- it lists each suite's removable context ids, so it is
+# evidence and never workspace content (owner ruling 2026-09-10).
+removable_config:
+  - src/Sylius/Behat/Resources/config/services/contexts/api.php
+  - src/Sylius/Behat/Resources/config/services/contexts/api/
+  - src/Sylius/Behat/Resources/config/suites/api.php
+  - src/Sylius/Behat/Resources/config/suites/api/
+  # Hybrid (2 contexts, excluded from the arm -- see `retained` below) is
+  # removed with the API tree too: `services/contexts/hybrid.php` names the
+  # removable Api cart context (`sylius.behat.context.api.shop.cart`), so the
+  # container would not compile with it retained -- verified: of the retained
+  # DI files under `Resources/config/services/`, it is the ONLY one that
+  # references a `sylius.behat.context.api.` service id.
+  - src/Sylius/Behat/Resources/config/services/contexts/hybrid.php
+  - src/Sylius/Behat/Resources/config/suites/hybrid.php
+  - src/Sylius/Behat/Resources/config/suites/hybrid/
+
+# ----------------------------------------------------------------- retained
+retained:
+  - path: src/Sylius/Behat/Context/Setup/
+    why: >
+      36 Given-side fixture contexts (D15: retained).  They build the store
+      state every scenario's Background needs through production factories
+      and repositories; the judge's recommendation retains them so the task
+      is per-scenario and tractable.  Their step definitions are a measured
+      leak (`leak_profile` below), not a hidden one.
+  - path: src/Sylius/Behat/Context/Transform/
+    why: >
+      37 argument-transform contexts (D15: retained).  Typed step arguments
+      (ProductInterface, ChannelInterface, ...) are resolved here by
+      repository lookup; regenerating this resolution layer per item would
+      measure framework recall.
+  - path: src/Sylius/Behat/Context/Hook/
+    why: >
+      8 hook contexts (D15: retained).  `DoctrineORMContext` purges the whole
+      schema in a `#[BeforeScenario]` hook and is the only per-scenario
+      database isolation there is; the others stub the mailer, clock, cache
+      and guest cart.  Environment plumbing, identical for every item.
+  - path: src/Sylius/Behat/Context/Ui/
+    why: >
+      89 UI contexts.  Not this arm's glue: no API suite registers them, and
+      an API item never reaches a Ui step.  Retained so the tree classifies
+      completely; the UI arm (D10, deferred) would be a second boundary.
+  - path: src/Sylius/Behat/Context/Domain/
+    why: >
+      11 domain contexts of the 8 `@domain` suites (12 scenarios, judged
+      too few to stand alone).  Not registered by any API suite.
+  - path: src/Sylius/Behat/Context/Cli/
+    why: >
+      the 4 contexts of the console-driven `@cli` suite, excluded from the arm
+  - path: src/Sylius/Behat/Context/Hybrid/
+    why: >
+      the 2 contexts of the hybrid suites, excluded from the arm
+  - path: src/Sylius/Behat/Page/
+    why: >
+      206 Mink page objects of the UI arm; no API suite reaches them
+  - path: src/Sylius/Behat/Element/
+    why: >
+      109 Mink elements of the UI arm; no API suite reaches them
+  - path: src/Sylius/Behat/Client/
+    why: >
+      14 files (D15: retained).  `ApiPlatformClient` is wired with Symfony's
+      `test.client` (BrowserKit KernelBrowser), so every request runs through
+      the kernel in the same PHP process; `RequestFactory`, `ResponseChecker`
+      and the request builders are the API request substrate the judge says
+      must remain, "otherwise the agent must also rebuild the API request
+      factory and shared storage".
+  - path: src/Sylius/Behat/Service/
+    why: >
+      50 files (D15: retained): `SharedStorage`, `ApiSecurityService`,
+      `SecurityService`, the email checker, the clock, the notification
+      checker and the offline payment request handlers, all registered by
+      the retained DI files.
+  - path: src/Sylius/Behat/Behaviour/
+    why: >
+      8 traits shared by page objects and contexts (D15: retained)
+  - path: src/Sylius/Behat/Application/
+    why: >
+      2 files of the test application kernel plumbing; substrate
+  - path: src/Sylius/Behat/Exception/
+    why: >
+      2 exception classes thrown by retained services
+  - path: src/Sylius/Behat/NotificationType.php
+    why: >
+      an enum used by the retained notification checker
+  - path: src/Sylius/Behat/tests/
+    why: >
+      13 PHPUnit tests of the Behat package itself; not glue, not reached
+  - path: src/Sylius/Behat/Resources/
+    why: >
+      Behat's own configuration tree: the PHP DI files (`services.php`,
+      `services/api.php`, `services/contexts.php`, `services/contexts/{hook,
+      setup,transform,ui,domain,cli,hybrid}.php`, `services/elements/**`,
+      `services/pages/**`), `services.xml`, `suites.php`, the non-API suite
+      files and the image fixtures.  Its removable parts are listed under
+      `removable_config`; what is left is substrate, and a solution must not
+      be able to overwrite it.
+  - path: src/Sylius/Behat/Bench/
+    why: >
+      HARNESS code: the recorder hook that produces every measurement.  A
+      solution able to overwrite it could rewrite its own result.
+  - path: src/Kernel.php
+    why: >
+      the kernel Behat boots (`App\Kernel`; `KERNEL_CLASS` in `.env.test_cached`)
+  - path: behat.dist.php
+    why: >
+      Behat's configuration entry point (Behat 4 style PHP config registering
+      SymfonyExtension, SyliusApiBundleExtension, VariadicExtension and
+      SuiteTagsExtension).  The harness writes its own per-item configuration
+      beside it; this file stays so the upstream suite remains runnable in the
+      image for the smoke.
+
+# Contexts always registered in the synthesised per-item suite.  UNLIKE
+# CoreShop, this list is NOT the whole substrate an item runs under: Sylius
+# suites are tag-filtered (`TagFilter('@managing_products&&@api')`) and each
+# of the 69 API suites registers its own list of Setup, Transform and Hook
+# contexts (median 16), so a scenario is reachable only through its suite
+# (judge pitfall c).  The harness therefore selects the item's suite by its
+# tags from the gold tree's `suite_map.json` and registers THAT suite's
+# retained context ids beside the submission's classes.  What is listed here
+# is the part common to every API suite, by service id as Sylius registers
+# them.
+retained_contexts:
+  - sylius.behat.context.hook.doctrine_orm
+
+# Per-project facts of the Behat stack (S_sylius.md section 7 design):
+# `repo.py`/`harness.py` read this block through `behat_project()`, which
+# overrides `CORESHOP_BEHAT`'s constants field by field; a boundary with no
+# `behat:` block (i.e. `boundary_coreshop.yml`) gets CoreShop's behaviour
+# unchanged.
+behat:
+  config_dir: src/Sylius/Behat/Resources/config
+  config_format: php
+  services_entry: services.php
+  suites_entry: suites.php
+  hook_services: services/contexts/hook.php
+  test_config: config/services_test.yaml
+  original_services_import: "../src/Sylius/Behat/Resources/config/services.php"
+  bench_services_import: "../_bench/services.yml"
+  suite_root: features
+  recorder_rel: src/Sylius/Behat/Bench/BenchRecorderHook.php
+  recorder_namespace: Sylius\Behat\Bench
+  # Behat 4 has NO annotation reader: of `Behat\Behat\Context\Annotation\` only `DocBlockHelper` is
+  # left, and `Hook\Context\Attribute\HookAttributeReader` is the only thing that turns a context
+  # method into a hook. So the recorder template's `/** @BeforeScenario */` is a comment here, and the
+  # record file stayed empty while Behat happily ran the scenario -- live one-worker smoke, 2026-09-09:
+  # item admin/blocking_login_for_disabled_administrators.feature:12 printed `1 scenario (1 undefined) /
+  # 8 steps (3 passed, 5 undefined)` and the row carried `steps: []`, scored `no_scenario_ran`. With
+  # this row `repo.recorder_source` rewrites the five declarations into `#[\Behat\Hook\...]` on the way
+  # into THIS tree; the template keeps the Behat 3 spelling, which is what CoreShop's seed carries.
+  # Sylius's own contexts are already on attributes (`#[Given(...)]` from `Behat\Step`).
+  hook_style: attribute
+  # php-code-coverage 11 removed `Filter::includeDirectory`. CoreShop vendors 10.1.16, which has it;
+  # Sylius vendors 12.5.7 (composer.lock), whose `Filter` has only `includeFile()` and
+  # `includeFiles(array)` (vendor/phpunit/php-code-coverage/src/Filter.php:33,40). The template's
+  # `$filter->includeDirectory(...)` is therefore an undefined method here -- and `bootRecorder`
+  # catches every Throwable around it, so it would have cost one line of stderr (`coverage
+  # unavailable: Call to undefined method ...`) and left `self::$cov` null, which also leaves
+  # `direct_calls` null because the xdebug trace is armed only when the collector exists. Two of
+  # T5's four gold checks want both non-null on every row, so every Sylius row would have failed
+  # them for a reason no scored row records. With this row `repo.recorder_source` rewrites that one
+  # line into an enumeration of the `.php` files under `src/` plus `includeFiles($files)`, using
+  # php-file-iterator's `Facade::getFilesAsArray` (vendor/phpunit/php-file-iterator/src/Facade.php:30,
+  # 6.0.2, vendored by phpunit/phpunit 12.5.35 and in Composer's classmap). The template keeps the
+  # `includeDirectory` spelling, which is what CoreShop's seed carries.
+  coverage_filter: files
+  psr4:
+    Sylius\Behat\: src/Sylius/Behat/
+    Sylius\Bundle\: src/Sylius/Bundle/
+    Sylius\Component\: src/Sylius/Component/
+    Sylius\Abstraction\StateMachine\: src/Sylius/Abstraction/StateMachine/src/
+  index_paths: [src/Sylius/Behat]
+  index_guard: src/Sylius/Behat/Context/Api
+  prod_paths: [src/Sylius/Component, src/Sylius/Bundle, src/Sylius/Abstraction]
+  # OWNER RULING, 2026-09-11 05:55 UTC (track S register section 5): the mutant
+  # population is PRODUCT CODE ONLY -- the unit tests, migrations,
+  # configuration and fixture files that sit inside the production folders are
+  # not part of it. The ruling names those KINDS, not directory spellings, so
+  # the row carries both spellings of each (coordinator ruling on the review of
+  # PR #597). The three roots above are whole trees and Sylius keeps all of it
+  # inside them: of the 43,670 mutants the walk enumerated, 12,373 are product
+  # code and 31,297 are not -- `tests/` 26,436, `Resources/config/` 2,551,
+  # `test/` 240 (26 per-bundle test applications: `test/app/AppKernel.php`,
+  # `test/config/bootstrap.php`, `test/src/Kernel.php`), `Migrations/` 1,237,
+  # `Fixture/` 750, `Test/` 38, `Tests/` 30, `config/` 15
+  # (`Abstraction/StateMachine/config/**`, and nothing else outside the two
+  # already counted). The production boundary cannot separate any of them --
+  # `removable`/`retained` above answer which files are the BEHAT GLUE, and a
+  # component's own unit test is not glue -- so every one of them arrived
+  # classified `production`, raw and scored were the same 43,670 rows, and the
+  # mint refused by name: `REFUSED: sylius boundary_scored role excludes no
+  # rows`.
+  #
+  # `Test/` is the one that matters for scoring rather than for size: 35 of its
+  # 38 mutants are COVERED, in `Component/Core/Test/Services/
+  # DefaultChannelFactory{,Interface}.php` and
+  # `DefaultUnitedStatesChannelFactory.php` -- the channel factory every
+  # scenario's setup runs. That is the scaffolding-mutant hazard the CoreShop
+  # note in `bench/cli.py` records for `Bundle/TestBundle`: the stub exercises
+  # the scaffolding like everything else, so such mutants are "killed" by tests
+  # that measure the scaffolding. They carried 30,799 of the 1,438,574 pairs
+  # (2.1%). Every other fragment added here is 0 covered.
+  #
+  # `spec/` matches NOTHING in this corpus (phpspec's specs are not under these
+  # roots) and is kept anyway: it is the declared kind, and `exclusions` is
+  # inside the manifest digest, so the fragment list is part of the population's
+  # identity for good. `Resources/config/` is likewise subsumed by `config/` and
+  # kept, so the row reads as the ruling reads.
+  #
+  # Each fragment is a run of DIRECTORY segments, matched anywhere under one of
+  # the roots above and never against a file name
+  # (`data.mutation.is_population_excluded`): `Resources/config/` is two
+  # adjacent segments in that order, `tests/` takes `Component/Core/tests/**` at
+  # any depth and leaves a file called `tests.php`, a `tests2/` directory and
+  # the singular `test/` alone -- which is why both spellings are written out.
+  #
+  # WHAT MOVES. The SCORED role only. The RAW catalogue still holds every mutant
+  # the engine produced under the roots -- n 43,670, digest
+  # d8e68149... -- and the completed in-image materialisation audit binds THAT
+  # manifest, so it stays valid and is not re-run. The scored population becomes
+  # 12,373 rows; of the 4,387 mutants the gold run covers, 4,167 are kept and
+  # 220 leave (181 `Fixture`, 35 `Test/`, 4 `Resources/config/`), and the map
+  # keeps 1,407,775 of 1,509,833 pairs. The map is recomputed Docker-free over
+  # the new scored manifest, and the population minted from it is `sylius-v2` --
+  # the first Sylius `populations:` entry in VERSIONS.yml, so no published
+  # identity changes. CoreShop and python-docx name no such row and are not read
+  # for one: their raw and scored manifests, and every digest pinned over them,
+  # are byte-identical.
+  mutation_exclude: [tests/, Tests/, test/, Test/, spec/, Migrations/,
+                     Resources/config/, config/, Fixture/]
+  app_env: test_cached
+  kernel_path: src/Kernel.php
+  kernel_class: App\Kernel
+  bootstrap: null
+  # UPSTREAM'S EXPRESSION, verbatim (behat.dist.php:36-37) -- the two lines directly above the
+  # extension block below, which is why the profile started one line under them and lost this.
+  # Without it Behat falls back to `error_reporting()`, which is 32767 in this image, and
+  # `RuntimeCallHandler` installs THAT as the error handler around every step call: a PHP
+  # diagnostic raised inside an in-process kernel request becomes a `CallErrorException`
+  # (RuntimeCallHandler.php:67) and the kernel returns it as a 500 -- which an API scenario then
+  # reads back as the response under test. The one that fires here is
+  # `Creation of dynamic property Proxies\__CG__\...\Customer::$@context is deprecated`
+  # (vendor/symfony/var-exporter/LazyGhostTrait.php:240), raised when
+  # `ApiPlatformClient::buildUpdateRequest` PUTs a fetched JSON-LD body -- `@context` and all --
+  # back onto a Doctrine proxy. Read-only investigation of the first runs at tag
+  # `onb-sprint-1-sylius-e` (12 `api_customer_account` pass-leg failures): 14 of the 19
+  # `closure_incomplete` items of that suite died on it, and the SAME exception appears in the
+  # worker logs of items that were ADMITTED -- a passing admin taxon scenario -- so the release
+  # and the gold run at that tag are contaminated, not merely short of a few rows. Upstream's API
+  # CI never sees it because behat.dist.php masks the two deprecation levels globally.
+  tester_error_reporting: "E_ALL & ~(E_DEPRECATED | E_USER_DEPRECATED)"
+  # UPSTREAM'S SET, in upstream's order (behat.dist.php:38-107), and not a shorter one. The four at
+  # the bottom are this arm's own; the four Mink ones are here because the RETAINED Sylius services
+  # reach Mink LAZILY. The FriendsOfBehat SymfonyExtension bundle registers `behat.mink`,
+  # `behat.mink.default_session` and `behat.mink.parameters` in the KERNEL container as lazy bridges
+  # that fetch `fob_symfony.mink*` from the Behat container
+  # (Bundle/DependencyInjection/FriendsOfBehatSymfonyExtensionExtension.php:92-135), and the
+  # Behat-side `fob_symfony.mink` alias is created only when `Behat\MinkExtension` is registered
+  # (src/ServiceContainer/SymfonyExtension.php:89-93, 155-175). Retained services hold those bridges
+  # (Resources/config/services.php:80-81 `sylius.behat.cookie_setter`, :137 SessionManager, :177,
+  # :186, :213), so with Mink absent the first lazy resolution on an API path threw
+  # `ServiceNotFoundException: You have requested a non-existent service "fob_symfony.mink"` -- the
+  # harness scored it `container_error` -> `di_unresolvable` (live one-worker smoke, 2026-09-09, item
+  # admin/blocking_login_for_disabled_administrators.feature:21). Upstream's API CI never sees it
+  # because behat.dist.php loads the whole Mink stack globally, which is also what the 69-suite
+  # 1955/1955 T2 smoke ran under. Chrome and Panther are needed by MinkExtension itself: it validates
+  # every `sessions` entry against the driver factories the OTHER extensions registered, and
+  # SymfonyExtension is what registers the `symfony` driver this arm actually uses.
+  extensions: [DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension,
+               Robertfausk\Behat\PantherExtension\ServiceContainer\PantherExtension,
+               FriendsOfBehat\MinkDebugExtension\ServiceContainer\MinkDebugExtension,
+               Behat\MinkExtension\ServiceContainer\MinkExtension,
+               FriendsOfBehat\SymfonyExtension\ServiceContainer\SymfonyExtension,
+               FriendsOfBehat\VariadicExtension\ServiceContainer\VariadicExtension,
+               SyliusLabs\SuiteTagsExtension\ServiceContainer\SuiteTagsExtension,
+               Sylius\Bundle\ApiBundle\Behat\Extension\SyliusApiBundleExtension]
+  # Every one is fully qualified: Sylius runs Behat 4 (behat/behat 4.0.0-alpha1 in the lock), which
+  # dropped Behat 3's short-name resolution (`FriendsOfBehat\SymfonyExtension` is not a class there), so
+  # the CoreShop spelling would abort every item at bootstrap. They are the `use` lines of
+  # behat.dist.php:21-28 verbatim.
+  # The settings are upstream's too (behat.dist.php:40-103), with ONE bench deviation, marked below.
+  # The SymfonyExtension's own body is NOT written here: `kernel_path`/`kernel_class`/`app_env` above
+  # are that body, and the harness computes it.
+  extension_settings:
+    FriendsOfBehat\MinkDebugExtension\ServiceContainer\MinkDebugExtension:
+      directory: etc/build
+      clean_start: false
+      # BENCH DEVIATION -- upstream says `true`. This arm never starts a browser session, so
+      # `FailedStepListener::logFailedStepInformations` returns at its `hasEligibleMinkSession()`
+      # guard and writes neither the page log nor a screenshot; `false` SAYS that rather than leaving
+      # it to that guard. It is a declaration and not a fix: the screenshot call is already wrapped in
+      # a `catch (UnsupportedDriverActionException | WebDriverException)`, so upstream's `true` would
+      # not have added an error to a failed step either.
+      screenshot: false
+    Behat\MinkExtension\ServiceContainer\MinkExtension:
+      files_path: '%paths.base%/src/Sylius/Behat/Resources/fixtures/'
+      base_url: 'http://127.0.0.1:8080/'
+      default_session: symfony
+      javascript_session: panther
+      # Verbatim, including the sessions no API step ever starts. `SessionsListener` reads the
+      # feature's and the scenario's tags before every scenario and calls
+      # `Mink::setDefaultSessionName()` with the NAME `@mink:<name>` gives (or `javascript_session`
+      # for `@javascript`); `setDefaultSessionName` throws `Session "%s" is not registered.` for a
+      # name it was not given. This corpus reaches it: 122 feature files carry both `@api` and
+      # `@mink:chromedriver`, and `standalone_feature` keeps the scenario's tags, so a trimmed
+      # `sessions` map would abort those items before their first step.
+      sessions:
+        symfony:
+          symfony: null
+        chromedriver:
+          chrome:
+            api_url: 'http://127.0.0.1:9222'
+            validate_certificate: false
+        chrome_headless_second_session:
+          chrome:
+            api_url: 'http://127.0.0.1:9222'
+            validate_certificate: false
+        panther:
+          panther:
+            manager_options:
+              connection_timeout_in_ms: 5000
+              request_timeout_in_ms: 120000
+              chromedriver_arguments: ['--log-path=etc/build/chromedriver.log', '--verbose']
+              capabilities:
+                acceptSslCerts: true
+                acceptInsecureCerts: true
+                unexpectedAlertBehaviour: accept
+                'goog:chromeOptions':
+                  args: ['--user-data-dir=/tmp/panther-chrome-data', '--window-size=1920,1200',
+                         '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu',
+                         '--disable-infobars', '--disable-features=TranslateUI',
+                         '--disable-translate', '--disable-popup-blocking',
+                         '--disable-blink-features=AutomationControlled',
+                         '--disable-component-extensions-with-background-pages',
+                         '--disable-background-networking', '--disable-dev-tools',
+                         '--disable-extensions']
+      show_auto: false
+  # The same Behat 4 also deleted the YAML configuration loader: `--config bench.behat.yml` is refused
+  # by NAME ("Configuration file `bench.behat.yml` must be a PHP file", ConfigurationLoader.php:173) --
+  # every item of the first operator run failed there, in the fail leg. The per-item profile is the same
+  # document either way; this row picks the `Behat\Config` rendering and, with it, `bench.behat.php`.
+  bench_config_format: php
+  db_dsn_env: DATABASE_URL
+  db_dsn_suffix: "?charset=utf8mb4"
+  db_install_vars: false
+  cache_dir: var/cache/test_cached
+  container_prefix: App_KernelTest_cached
+  substrate_roots: [src, config, _bench, composer.json, behat.dist.php, .env, .env.test_cached,
+                    vendor/bin, vendor/behat, vendor/friends-of-behat, vendor/phpunit, vendor/sylius-labs]
+  substrate_volatile: [_bench/services_item.yml, _bench/item.feature, _bench/run_record.jsonl,
+                       _bench/solution_index.json]
+  suite_scoped: true
+  # The ARM's suites are the API suite files only: the Hybrid suites are removable_config too (their
+  # DI names removable Api contexts) but are not this arm's suites; without this row one @api&&@ui
+  # hybrid item selected `hybrid_shopping_cart` (first operator run, 2026-09-09).
+  arm_suite_prefixes: [src/Sylius/Behat/Resources/config/suites/api/]
+  stub_namespace: Sylius\Behat\Context\Api
+  stub_dir: src/Sylius/Behat/Context/Api
+  # `worker reset-probe`. The purge under test is the retained
+  # `sylius.behat.context.hook.doctrine_orm`: `ORMPurger::purge()` in a #[BeforeScenario], with
+  # foreign_key_checks off around it. It empties every MAPPED table, so the marker goes into one of
+  # those (`sylius_channel`) and the control goes into `sylius_migrations`, the Doctrine Migrations
+  # version table (`config/packages/doctrine_migrations.yaml`), which is not a mapped entity and so
+  # outside the purger's reach. Pimcore's third marker, a materialised class definition under
+  # `var/classes`, has NO analogue here and is absent rather than renamed.
+  reset_program: doctrine
+  reset_context_rel: src/Sylius/Behat/Context/Api/R2tResetProbeContext.php
+  reset_control_table: sylius_migrations
+  reset_marker_table: sylius_channel
+  # One name, used for all four of `worker probe`'s cross-schema denial checks: CoreShop's second
+  # name (`users`) has no counterpart in the 83-table schema.
+  probe_table: sylius_channel
+
+leak_profile:
+  # Per item the harness records how many of the scenario's steps are
+  # answered by `retained` code (Setup and Transform carry step definitions
+  # and transforms).  Items where that is ALL of them cannot fail the
+  # must-fail leg and are excluded as `passes_without_glue`.
+  record: true

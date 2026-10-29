@@ -1,0 +1,16 @@
+PRESERVED imported package init
+=== RUN   TestStripFixture
+PRESERVED wrapper setup
+=== RUN   TestStripFixture/native_selected_handlers
+PRESERVED before hook
+PRESERVED given 42
+PRESERVED original helper 42
+PRESERVED action 43
+PRESERVED after hook
+R2T_GODOG_EXIT TestStripFixture 0
+PRESERVED wrapper defer
+PRESERVED wrapper cleanup
+--- PASS: TestStripFixture (0.00s)
+    --- PASS: TestStripFixture/native_selected_handlers (0.00s)
+PASS
+ok  	github.com/EvilFreelancer/coddy-agent/internal/stripfixture	0.006s

@@ -1,0 +1,146 @@
+{
+ "file": "external/cli/bdd_cli_remote_test.go",
+ "registration_declarations": [
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 4647,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "kind": "function_or_method",
+    "line": 158,
+    "name": "fakeServerAnswers",
+    "signature": "func(text string) error",
+    "start_byte": 4532
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 9043,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "line": 314,
+    "start_byte": 8960
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 5234,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "kind": "function_or_method",
+    "line": 163,
+    "name": "consoleConnectedToRemote",
+    "signature": "func() error",
+    "start_byte": 4649
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 9131,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "line": 315,
+    "start_byte": 9045
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 5637,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "kind": "function_or_method",
+    "line": 184,
+    "name": "consoleStarts",
+    "signature": "func() error",
+    "start_byte": 5236
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 9185,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "line": 316,
+    "start_byte": 9133
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 6326,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "kind": "function_or_method",
+    "line": 219,
+    "name": "screenShowsRemoteBanner",
+    "signature": "func() error",
+    "start_byte": 6202
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 9268,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "line": 317,
+    "start_byte": 9187
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 6501,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "kind": "function_or_method",
+    "line": 223,
+    "name": "footerNamesRemoteModel",
+    "signature": "func() error",
+    "start_byte": 6328
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 9350,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "line": 318,
+    "start_byte": 9270
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 6687,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "kind": "function_or_method",
+    "line": 228,
+    "name": "operatorSubmits",
+    "signature": "func(text string) error",
+    "start_byte": 6503
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 9414,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "line": 319,
+    "start_byte": 9352
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 6803,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "kind": "function_or_method",
+    "line": 236,
+    "name": "transcriptShowsAssistant",
+    "signature": "func(text string) error",
+    "start_byte": 6689
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 9506,
+    "file": "external/cli/bdd_cli_remote_test.go",
+    "line": 320,
+    "start_byte": 9416
+   },
+   "registration_method": "Step"
+  }
+ ],
+ "test_name": "TestCLIRemoteFeature"
+}

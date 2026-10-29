@@ -1,0 +1,207 @@
+# Task profile for CoreShop under the TARGET INTERFACES setting
+# (TARGET_INTERFACES_SPEC; r2t/data/profile.py, r2t/data/prompt.py)
+#
+# A one-variable twin of `profile_coreshop.yml`: every word the model reads is
+# that file's, plus ONE block the item supplies -- its `target_interfaces`
+# list, rendered by `prompt.target_interfaces_block` because `disclosure:`
+# below says so.  The base profile does not carry that key and never renders
+# the block, so its four digests are untouched; this file's `c1.5`, `c2` and
+# `c3` differ from the base's because the canonical task carries a list, and
+# its `single_shot` is identical because the system message is the facts and
+# the return contract, which are unchanged.
+#
+# THIS FILE IS FROZEN, like its base: the digests at the bottom are re-derived
+# on every load, and a changed word is a NEW profile, not an edit.  Rows
+# generated under it carry `setting: target_interfaces` through the protocol
+# file that copies these digests; they are not comparable with `cold_start`
+# rows and are never labelled as if they were.
+#
+# The prose is written as YAML literal blocks (`|-`) even where it would fit
+# on one line: a literal block needs no escaping at all, so the bytes in this
+# file are the bytes sent to the model, backslashes and backticks included.
+version: 1
+project: coreshop
+project_label: CoreShop
+language: php
+language_label: PHP
+framework: behat
+api_scoring: method_index
+
+# Cross-checked against, and required to sit beside this file.  `load_profile`
+# refuses when `submission.acceptance_root` is not REMOVABLE there, or when
+# the carve-out promised in `submission.retained_note` is not RETAINED: a
+# prompt that tells a system to write where the harness will not accept is
+# unobeyable, and the resulting zero is recorded against the model.
+boundary: boundary_coreshop.yml
+
+# ------------------------------------------------------------------- task
+# What the system is asked to produce, in the words the prompt uses.
+# `artefact_noun` is the bare noun ("Return the step-definition code ...");
+# `language_label` is prepended in the two headline sentences ("Write the PHP
+# step-definition code ...") and nowhere else.
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Behat test code
+
+# --------------------------------------------------------------- disclosure
+# What the prompt says BEYOND the requirement.  `target_interfaces: true`
+# renders the item's list under one fixed heading (`prompt.
+# TARGET_INTERFACES_HEADING`), or one fixed sentence when the list is empty;
+# an item that carries no list at all is refused rather than rendered
+# without the section the profile promises.
+disclosure:
+  target_interfaces: true
+
+# ------------------------------------------------------------- submission
+# Where the answer goes, and how it is recognised once it is on disk.
+#
+# `suffixes` + `extra_names` are the harvest's filter, threaded through the
+# trial channel AND the final scoring read so the two cannot disagree about
+# what the submission was (SPEC 3.8).  Without `.php` here a PHP answer is
+# invisible; the same is true of `behat_services.yml`, which has no suffix
+# the filter would catch and no path under the acceptance root.
+submission:
+  acceptance_root: src/CoreShop/Behat/
+  # The one path a single-shot system copies, so it must classify removable.
+  example_path: src/CoreShop/Behat/Context/Domain/XContext.php
+  example_code: '<?php ...'
+  # Narrower than the acceptance root on purpose: the prompt has always
+  # pointed at the `Context/` subtree, while the boundary accepts the whole
+  # of `src/CoreShop/Behat/` so that a model writing one level up is not
+  # silently discarded.
+  placement_hint: src/CoreShop/Behat/Context/...
+  suffixes:
+    - .php
+  extra_names:
+    - behat_services.yml
+  # What the prompt promises survived removal, in the sentence's own words.
+  # Every backticked path in here is classified against the boundary and must
+  # come back RETAINED.
+  retained_note: '`Context/Hook` is what remains'
+
+# --------------------------------------------------------- wiring channel
+# The out-of-band file a submission may use to wire its own classes.
+#
+# Null for a framework with no container (behave has none), and when it is
+# null neither the collection-contract bullet nor the auto-registration fact
+# is emitted at all.  CoreShop needs it: contexts are Symfony services and
+# many collaborators are wired by service id, which autowiring cannot guess.
+wiring_channel:
+  name: behat_services.yml
+  when_needed: a constructor argument cannot be autowired
+  format: |-
+    a Symfony `services:` block for your classes
+  # Rendered into the facts list at the `<wiring-channel>` slot below.
+  auto_registration: |-
+    Contexts are Symfony services. The harness registers every class you return as `public`, `autowired` and `autoconfigured`. If a constructor argument cannot be autowired (CoreShop wires many collaborators by service id, e.g. `@coreshop.repository.product`, `@coreshop.factory.product`, `@coreshop.behat.shared_storage`), return an extra file named `behat_services.yml` containing a Symfony `services:` block with explicit `arguments:` for your classes.
+
+# ------------------------------------------------------------- workspace
+# What the agent may read, and where it is mounted.
+#
+# `readable_paths` defines the C1.5-vs-C2 ablation (C1.5 gets none of it) and
+# feeds the agent-seed cache key, so an edit here invalidates every cached
+# seed rather than serving a stale one.  `vendor/` and `var/` are excluded:
+# 800 MB, not CoreShop's own code, and useless without a database.
+workspace:
+  repo_dir: repo
+  readable_paths:
+    - src
+    - features
+    - config
+    - composer.json
+    - behat-bootstrap.php
+    - _bench/retained_services.yml
+
+# ------------------------------------------------------------------ facts
+# The framework facts a stripped repository cannot tell the model.
+# Withholding them would measure recall of CoreShop's conventions rather than
+# the ability to write the test.
+#
+# `<wiring-channel>` is a SLOT, not a fact: it is replaced by
+# `wiring_channel.auto_registration` above, and dropped entirely by a profile
+# whose `wiring_channel` is null.  It sits at position four because that is
+# where the bullet has always been and the position is part of the frozen
+# bytes.
+facts:
+  - |-
+    Step definitions live in classes that implement `Behat\Behat\Context\Context` and declare their patterns in DOCBLOCK annotations: `/** @Given /^regex$/ */`, `@When`, `@Then`. Plain-text patterns (`@Given I am logged in as :email`) also work. The Given/When/Then keyword is irrelevant to matching.
+  - |-
+    Argument transforms use `/** @Transform /^regex$/ */` methods on a context class and convert a captured string into an object.
+  - |-
+    The scenario's `Background` steps run before it and need definitions too.
+  - "<wiring-channel>"
+  - |-
+    `CoreShop\Bundle\TestBundle\Service\SharedStorageInterface` is the shared clipboard between steps (`->set($key, $value)`, `->get($key)`).
+  - |-
+    Assertions are made with `Webmozart\Assert\Assert`.
+  - |-
+    Production namespaces are `CoreShop\Component\*` and `CoreShop\Bundle\*`. Put your classes under `src/CoreShop/Behat/Context/**`. Removal took those directories with the code, so `Context/Domain` and its siblings do NOT exist yet — create the path you need; only `Context/Hook` remains.
+
+platform_blurb: |-
+  the CoreShop e-commerce platform (PHP 8.3, Symfony, Pimcore)
+
+# ------------------------------------------------------------- conditions
+# The two clauses the agent conditions differ in.  C1.5 -> C2 isolates
+# repository access, so the ONLY thing that may move between them is what the
+# agent can see; these two nouns are that difference, spelled out.
+conditions:
+  retained_substrate: |-
+    the retained `CoreShop\Bundle\TestBundle`
+  project_source_noun: CoreShop source
+
+# ------------------------------------------------------------------ trial
+# C3's execution channel: how the trial client is invoked, whose per-step
+# output the agent will read back, and the two forms of the sentence that
+# offers it.
+#
+# TWO FORMS, and only one of them names a number.  A trial is a terminal tool
+# call, so running one already costs the agent an iteration -- `--max-iterations`
+# bounds executions natively, in the same currency as every other tool call,
+# which is how the SWE-bench-style harnesses do it.  The separate counter is
+# gone (`r2t/agents/trials.py`, "WHY THERE IS NO LONGER A SEPARATE EXECUTION BUDGET"),
+# and with it the sentence that told the agent its executions were scarce:
+# scarcity invites hoarding and further exploration, which is the exact
+# behaviour this benchmark is measuring rather than a thing it may induce.
+#
+# `clause_bounded` is what `--trials k` still renders and is the wording every
+# C3 sweep on disk was generated with, kept BYTE-IDENTICAL so that those rows
+# stay attributable; `adapters.selftest` pins its rendering against the c3
+# digest this file used to carry.  `clause_unbounded` is what `--trials
+# unlimited` renders and what the `c3` digest below now freezes.
+#
+# `{interpreter}` and `{runner}` are the two fields above; `{client}` is the
+# client's real path, known only once the socket exists; `{k}` is the budget
+# and may appear in the bounded form only (`profile._check_trial_clauses`).
+trial:
+  client_interpreter: python3
+  runner_noun: Behat
+  clause_bounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this {k} times.
+  clause_unbounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this as often as you want.
+
+# ----------------------------------------------------------------- freeze
+# sha256 of each rendered prompt, over the canonical task fixture in
+# `prompt.CANONICAL_TASK` (criterion_to_test, client=trial.py; c3 rendered
+# UNBOUNDED, which is what the arm runs).  Verified on every load.  See the
+# header: if these stop matching, the question is not "update the digest", it
+# is "which sweep is now unattributable".
+#
+# `c3` MOVED ONCE, deliberately, when the execution affordance stopped being
+# rationed by a counter and became bounded by `--max-iterations` like every
+# other tool call the agent makes (`trial.clause_unbounded` above,
+# `r2t/agents/trials.py` for the argument).  Nothing else moved with it: the
+# single_shot, c1.5 and c2 digests below are the bytes they have always been,
+# and `adapters.selftest` asserts that explicitly, because those three arms'
+# published numbers depend on it.  The OLD c3 value,
+# ef53192e9050468f0200805953c531fd33c891669c5505b2336ff00496c66290, is still
+# reachable and still checked -- it is what `--trials 5` renders today, byte
+# for byte, so the C3 sweeps generated under it remain attributable and the
+# rows say which form they ran (`prompt_digest` on the row, `trials` beside
+# it).
+prompt_digest:
+  single_shot: 0cec12ed4a460043b31cac0d1c4b98a6a06f53c74a88cbf36850f62f4e8a2029
+  c1.5: 7e03b40e62a0a03b560a2262f18665e5f4ab525a2ce83f67b0a2a6a833996977
+  c2: 28ac939297a38bb3334edf9159ea6f74499bd8f15bdb9ae1ff3a9a5f23dfb2dc
+  c3: 06284b2d59fdae5032346ab2e1144f4ef9d67014a2c26f62a762c458deabcfe6

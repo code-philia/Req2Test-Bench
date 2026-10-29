@@ -1,0 +1,17 @@
+{
+  "schema": "r2t.go-suite-context/1",
+  "feature_path": "features/shape.feature",
+  "scenario_line": 6,
+  "glue_path": "internal/r2tfixture/bdd_fixture_test.go",
+  "package_dir": "internal/r2tfixture",
+  "package_name": "fixture",
+  "test_name": "TestHarnessFixture",
+  "suite_line": 55,
+  "go_build_expression": "",
+  "go_build_tags": [],
+  "godog_tags": "@selected",
+  "godog_tags_origin": {
+    "kind": "literal",
+    "line": 55
+  }
+}

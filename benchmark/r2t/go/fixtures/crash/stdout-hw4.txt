@@ -1,0 +1,12 @@
+=== RUN   TestCLITUIFeature
+=== RUN   TestCLITUIFeature/Switching_to_another_provider_hides_the_usage_line
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x18 pc=0xf015ff]
+
+goroutine 9 [running]:
+github.com/EvilFreelancer/coddy-agent/external/cli.(*App).setModel.func1()
+	/r2t-go/run/work/external/cli/app.go:767 +0x27f
+created by github.com/EvilFreelancer/coddy-agent/external/cli.(*App).setModel in goroutine 171
+	/r2t-go/run/work/external/cli/app.go:763 +0xab
+FAIL	github.com/EvilFreelancer/coddy-agent/external/cli	0.099s
+FAIL

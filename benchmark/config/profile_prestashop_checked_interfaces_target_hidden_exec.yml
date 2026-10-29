@@ -1,0 +1,177 @@
+# Execution-enabled target-hidden variant (`c2r`); EXECUTION_ENABLED_TH_SENSITIVITY_SPEC.md
+# section 4.1. A byte copy of profile_prestashop_checked_interfaces_target_hidden.yml
+# except this header, the one replaced sentence of the visibility fact, the section 4.2
+# entry-point sentence (`trial.clause_runnable_entry`) and the five prompt digests
+# (`c2r` added).
+# PrestaShop checked interfaces; TARGET_INTERFACES_V2_SPEC sections 5 and 7.
+# The approved projection excludes the native ps_apiresources alias.
+# Protocols, reviewed maps/contracts, backend qualification and collection
+# approval remain separate gates; this profile admits no project results.
+version: 1
+project: prestashop
+project_label: PrestaShop
+language: php
+language_label: PHP
+framework: behat
+api_scoring: method_index
+runtime:
+  needs_database: true
+boundary: boundary_prestashop.yml
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Behat test code
+submission:
+  acceptance_root: tests/Integration/Behaviour/Features/Context/
+  example_path: tests/Integration/Behaviour/Features/Context/Domain/XFeatureContext.php
+  example_code: <?php ...
+  placement_hint: tests/Integration/Behaviour/Features/Context/...
+  suffixes:
+  - .php
+  extra_names: []
+  retained_note: '`CommonFeatureContext.php`, `ContextFeatureContext.php`, `OrderMessageContext.php`,
+    `AbstractPrestaShopFeatureContext.php`, `Domain/AbstractDomainFeatureContext.php`, the abstract product
+    and combination helpers, `SharedStorage.php`, `SharedStorageTrait.php`, `LastExceptionTrait.php`,
+    `CartAwareTrait.php`, `Configuration/`, `Util/`, `tests/Integration/Behaviour/Features/Transform/`,
+    `tests/Integration/Behaviour/bootstrap.php`, `tests/Integration/Utility/` and `tests/Resources/` (with
+    the approved readable-view module exclusion) remain'
+wiring_channel: null
+workspace:
+  repo_dir: repo
+  readable_paths:
+  - src
+  - classes
+  - controllers
+  - app
+  - config
+  - tests/Integration/Behaviour
+  - tests/Integration/Utility
+  - tests/Resources/ApiPlatform
+  - tests/Resources/Context
+  - tests/Resources/Controller
+  - tests/Resources/DatabaseDump.php
+  - tests/Resources/DummyFileUploader.php
+  - tests/Resources/DummyMultistoreConfiguration.php
+  - tests/Resources/MailDevClient.php
+  - tests/Resources/Resetter
+  - tests/Resources/ResourceResetter.php
+  - tests/Resources/SampleFilters.php
+  - tests/Resources/SampleShopFilters.php
+  - tests/Resources/TestCase
+  - tests/Resources/Translator
+  - tests/Resources/assets
+  - tests/Resources/assets_manager
+  - tests/Resources/classes
+  - tests/Resources/config
+  - tests/Resources/download
+  - tests/Resources/dummyFile
+  - tests/Resources/env
+  - tests/Resources/img
+  - tests/Resources/import
+  - tests/Resources/legacy-to-standard-locales.json
+  - tests/Resources/modules/bankwire
+  - tests/Resources/modules/demo
+  - tests/Resources/modules/dummy_payment
+  - tests/Resources/modules/ganalytics
+  - tests/Resources/modules/ps_banner
+  - tests/Resources/modules/ps_conflictingcheckoutprovider
+  - tests/Resources/modules/ps_emailalerts
+  - tests/Resources/modules/ps_emailsubscription
+  - tests/Resources/modules/ps_featuredproducts
+  - tests/Resources/modules/ps_onepagecheckoutprovider
+  - tests/Resources/modules/test_install_cqrs_command.zip
+  - tests/Resources/modules/translationtest
+  - tests/Resources/modules/xlftranslatedmodule
+  - tests/Resources/modules_tests
+  - tests/Resources/sql
+  - tests/Resources/template-hierarchy
+  - tests/Resources/themes
+  - tests/Resources/translations
+  - composer.json
+facts:
+- Scoring also excludes Disable debug mode and Enable debug mode in `Misc/debug_mode.feature` (criteria
+  at lines 8 and 12), because their transitions rewrite protected `config/defines.inc.php`. This two-criterion
+  boundary was approved after the native diagnostic on 2026-09-13, before release or model collection;
+  it was not an H0 exclusion. Existing valid H15 validation observations remain raw evidence under the
+  unchanged execution method.
+- 'Step definitions live in classes that implement `Behat\Behat\Context\Context` and declare their patterns
+  in DOCBLOCK annotations: `/** @Given /^regex$/ */`, `@When`, `@Then`. Plain-text patterns (`@Given I
+  am logged in as :email`) also work. The Given/When/Then keyword is irrelevant to matching.'
+- The scenario's `Background` steps run before it and need definitions too. Each benchmark item executes
+  one scenario with its Background; earlier scenarios are not setup.
+- Context classes use the `Tests\Integration\Behaviour\Features\Context` namespace and its subnamespaces.
+  Composer maps `Tests\` to `tests/`. Behat registers context class names directly in each suite. CommonFeatureContext
+  is the shared fixed context. Each item requires the retained context list of its original upstream suite,
+  in the original order, alongside submitted context classes. That list is selected from the original
+  Behat configuration, independently of the reference closure. The other suites' retained transforms and
+  hooks are not globally registered. No Symfony service definition file is part of the submission.
+- Extend retained `AbstractPrestaShopFeatureContext` for `getSharedStorage()` and reference helpers, or
+  `Domain\AbstractDomainFeatureContext` for `getCommandBus()`, `getQueryBus()` and exception helpers.
+  Shared storage uses `set($key, $value)`, `get($key)` and `exists($key)`. Production code lives under
+  `src/`, `classes/` and `controllers/`, including Symfony services, CQRS handlers and legacy classes.
+- ALL 57 are in-process and headless. There is no browser suite to exclude, and no @javascript tag exists
+  anywhere in the corpus.
+- tests/UI (Playwright) and tests/Unit + tests/Integration PHPUnit are NOT part of behat.yml and are out
+  of scope by construction.
+- Scoring excludes every scenario selected by the upstream employee suite and every scenario carrying
+  an actual @todo or @example Gherkin tag, including inherited tags. At the pinned commit the employee
+  suite contains seven scenarios and neither excluded tag occurs in a Gherkin tag block. Comments and
+  email addresses are not tags. Population exclusions are preserved by item identity and reason in the
+  release exclusions histogram.
+- "PHP >= 8.1 (CI matrix runs several 8.x) with ext mbstring, intl, gd, xml, dom, json, fileinfo, curl,\
+  \ zip, iconv. MySQL 8.0 REQUIRED (MariaDB variant also in CI) \u2014 the shop is really installed into\
+  \ it."
+- CommonFeatureContext retains its four step definitions and all 24 hook annotations. Configuration contexts
+  retain another 14 step annotations because their directory is outside the approved removable set. Top-level
+  OrderMessageContext retains one because its name is outside the approved *FeatureContext.php pattern.
+  The retained files contain 19 step annotations in total. Only the original suite's retained contexts
+  are registered for an item, and its matched retained steps are measured; a scenario passing without
+  removable glue is excluded by validation.
+- "tests/Integration/Behaviour/bootstrap.php; CommonFeatureContext.php (it holds only 4 step defs but\
+  \ ALL the @BeforeSuite kernel boot, @BeforeFeature/@AfterScenario DatabaseDump restore hooks, cache\
+  \ clearing and ContextMocker); AbstractPrestaShopFeatureContext.php and AbstractDomainFeatureContext.php\
+  \ (0 step defs each \u2014 pure helpers: referenceToId, getCommandBus, getQueryBus); SharedStorage.php\
+  \ + SharedStorageTrait.php + LastExceptionTrait.php + CartAwareTrait.php; Features/Context/Util/**;\
+  \ Features/Transform/** (the @Transform table converters); and the retained test resources under tests/Resources/**\
+  \ (DatabaseDump, ResourceResetter, MailDevClient, test modules/themes)."
+- "Cross-scenario state inside a feature file \u2014 SharedStorage persists across scenarios, so customer_group_management.feature's\
+  \ 'Update the created customer group' presupposes the preceding 'Create' scenario ran. Per-scenario\
+  \ isolation will fail unless you run whole feature files as the unit, or synthesise the prior scenarios\
+  \ as setup. This is the single biggest harness decision."
+- The benchmark keeps the scenario execution unit. Per-scenario fail-then-pass validation excludes order-dependent
+  scenarios by refusal, and the release reports that exclusions histogram. It neither runs whole feature
+  files as one item nor synthesises earlier scenarios as setup.
+- "`--strict --no-snippets` is the upstream invocation; keep --strict so undefined/pending steps fail\
+  \ rather than silently pass \u2014 this is also your vacuous-pass guard."
+- The readable source views omit `tests/Resources/modules/ps_apiresources` under the approved native-module
+  alias exclusion. The real module remains available in the separate evaluator runtime; it is not part
+  of the agent workspace.
+- This workspace supports reading, searching, editing, and syntax parsing. It is a provisioned application runtime for the code in `./repo`; nothing here is executed by the harness. The harness executes your final submitted test artifacts
+  against a separate, complete implementation after generation ends. You receive no harness execution
+  feedback during generation.
+- TARGET_CONTRACTS.md contains the reviewed public API and configuration supplement supplied in every
+  visibility view. It is context for writing tests; edits to it are not submitted.
+- 'Implementation visibility: the reviewed target bodies, including behavior-bearing delegated helpers,
+  are hidden; declarations and permitted surrounding implementations remain visible.'
+platform_blurb: the PrestaShop e-commerce platform (PHP, Symfony, CQRS and legacy classes, MySQL 8.0)
+conditions:
+  retained_substrate: the retained PrestaShop Behat hooks, configuration contexts, abstract helpers, transforms
+    and test resources
+  project_source_noun: PrestaShop source
+trial:
+  client_interpreter: python3
+  runner_noun: Behat
+  clause_bounded: This final-only profile has no harness trial channel.
+  clause_unbounded: This final-only profile has no harness trial channel.
+  clause_runnable_entry: '`behat-scenario <feature file>:<line>` runs one Scenario in this workspace.'
+prompt_digest:
+  single_shot: 8630c886a3b69619b4236db48b90f92f6c889acec2be66e68dac2755f2aa90f0
+  c1.5: 6c362f8c502b6793b1a6f8a93769663f395e41fb299b9c0521880bd2e4a8079e
+  c2: 27c92132d037d511b3edf6681b6b9292ed1ab61b3a62fbf48aeea605bc3f0052
+  c3: 466f055dd59985a5a11896301beeeea2e4928bf0a9ad2fe2618feaea07d0f75d
+  c2r: 03722470974f59288457958f550c8a9b96bac7055b6ce2721211524d10eb886b
+disclosure:
+  checked_interfaces: true
+visibility:
+  scope: target_hidden
+  feedback: final_only

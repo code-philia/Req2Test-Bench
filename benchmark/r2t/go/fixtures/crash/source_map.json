@@ -1,0 +1,126 @@
+{
+ "file": "external/cli/bdd_cli_tui_test.go",
+ "registration_declarations": [
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 17009,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "kind": "function_or_method",
+    "line": 562,
+    "name": "aConsoleAppOverStubRunner",
+    "signature": "func() error",
+    "start_byte": 16930
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 32502,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "line": 1045,
+    "start_byte": 32416
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 17086,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "kind": "function_or_method",
+    "line": 564,
+    "name": "theConsoleAppStarts",
+    "signature": "func() error",
+    "start_byte": 17011
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 32562,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "line": 1046,
+    "start_byte": 32504
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 17668,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "kind": "function_or_method",
+    "line": 580,
+    "name": "operatorSubmitsPrompt",
+    "signature": "func(text string) error",
+    "start_byte": 17527
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 32911,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "line": 1050,
+    "start_byte": 32832
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 93,
+    "end_byte": 33443,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "kind": "function_literal",
+    "line": 1055,
+    "name": "func@33359",
+    "signature": "func(tool string, path string) error",
+    "start_byte": 33359
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 33444,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "line": 1055,
+    "start_byte": 33268
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 19104,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "kind": "function_or_method",
+    "line": 622,
+    "name": "transcriptShowsPendingToolBox",
+    "signature": "func(tool string) error",
+    "start_byte": 18988
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 34269,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "line": 1068,
+    "start_byte": 34167
+   },
+   "registration_method": "Step"
+  },
+  {
+   "handler": {
+    "column": 1,
+    "end_byte": 19544,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "kind": "function_or_method",
+    "line": 626,
+    "name": "stubToolCompletesWithLines",
+    "signature": "func(count int) error",
+    "start_byte": 19106
+   },
+   "registration": {
+    "column": 2,
+    "end_byte": 34372,
+    "file": "external/cli/bdd_cli_tui_test.go",
+    "line": 1069,
+    "start_byte": 34271
+   },
+   "registration_method": "Step"
+  }
+ ],
+ "test_name": "TestCLITUIFeature"
+}

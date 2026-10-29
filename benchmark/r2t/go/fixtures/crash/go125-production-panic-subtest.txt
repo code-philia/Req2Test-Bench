@@ -1,0 +1,24 @@
+=== RUN   TestProductionPanic
+=== RUN   TestProductionPanic/scenario
+--- FAIL: TestProductionPanic (0.00s)
+    --- FAIL: TestProductionPanic/scenario (0.00s)
+panic: runtime error: invalid memory address or nil pointer dereference [recovered, repanicked]
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x0 pc=0x52aae3]
+
+goroutine 8 [running]:
+testing.tRunner.func1.2({0x5563e0, 0x6b7860})
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1872 +0x237
+testing.tRunner.func1()
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1875 +0x35b
+panic({0x5563e0?, 0x6b7860?})
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/runtime/panic.go:783 +0x132
+github.com/EvilFreelancer/coddy-agent/external/cli.render(...)
+	/srv/r2t/binhang/t.dQxY/mod/external/cli/render.go:3
+github.com/EvilFreelancer/coddy-agent/external/cli.TestProductionPanic.func1(0xc000003dc0?)
+	/srv/r2t/binhang/t.dQxY/mod/external/cli/subtest_test.go:10 +0x3
+testing.tRunner(0xc000003dc0, 0x58d030)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1934 +0xea
+created by testing.(*T).Run in goroutine 7
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1997 +0x465
+FAIL	github.com/EvilFreelancer/coddy-agent/external/cli	0.004s
+FAIL

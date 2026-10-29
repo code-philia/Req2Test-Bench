@@ -1,0 +1,274 @@
+# Task profile for epubcheck  (r2t/bench/profile.py, r2t/bench/adapters.py)
+#
+# The fourth profile, the third REAL one, and the first for a JVM project.
+# CoreShop froze the shipped v1 prompt, `profile_behave_example.yml` proved
+# the renderer survives a framework whose assumptions CoreShop's prose
+# contradicts, `profile_python_docx.yml` was that second framework with a
+# repository behind it -- and this one is the third framework with a
+# repository behind it, written entirely as data: the renderer and the
+# boundary grammar take it as-is, and what they gained beside it in
+# `r2t/bench/profile.py` and `r2t/core/boundary.py` is selftest cases, nothing
+# a run executes.
+#
+# The stack underneath it is a different matter, and the honest sentence is
+# the narrow one.  No PROMPT and no classification a published number was
+# generated with changed -- but `r2t/bench/repo.py` did.  It learned a third set of
+# substrate roots and the target/ sweep, and `StripManifest` gained
+# `build_roots`, so every strip manifest written from here on carries one
+# field more than it did.  The reader of that field
+# (`result_ledger._strip_manifest`) was widened in the same milestone, so a
+# manifest this head WRITES is a manifest this head reads -- which is the
+# whole of the claim, and an earlier version of this paragraph claimed more:
+# that shipping the writer alone would have left both existing corpora
+# refused at the publication ceremony.  It would not have.  Both were already
+# refused before this milestone began, for three causes it neither created
+# nor removed.  Checked by running the real `_strip_manifest` over the real
+# bytes at base 7dbf0f12 and at head:
+#
+#   - `/data2/binhang/coreshop_bench/gold/strip_manifest.json` (2026-07-28)
+#     carries the eight fields of the pre-`ad6db2a` manifest, so it has been
+#     refused since ad6db2a added `substrate_roots`, `substrate_volatile` and
+#     `bytecode_roots` on 2026-08-02, six days before this round.  Its
+#     `repo_root` DOES match `boundary_coreshop.yml`, so it is a live
+#     production path.  `build_roots` makes its missing list four long
+#     rather than three and changes nothing else.
+#   - `/data2/binhang/req2test_docx_bench/gold/strip_manifest.json`
+#     (2026-08-02) lacks `build_roots` alone -- but its `repo_root` is
+#     `/data2/binhang/req2test_docx_bench/app`, and no boundary in `config/`
+#     has ever named that tree (`boundary_python_docx.yml` has said
+#     `/data2/binhang/req2test_corpora/python-docx` since 2c8fec4 created
+#     it), so at base it already refused with "strip manifest repository
+#     root differs from boundary".  It did not go from accepted to refused;
+#     it went from one refusal to another.
+#   - And both refuse earlier than either of those: the production
+#     `_LiveReader` will not open a path whose directory chain is
+#     group-writable, and both bench roots are mode 775.
+#
+# None of that is repaired here, because it is repaired by re-stripping those
+# corpora under `umask 022` -- an operator act on trees this repository does
+# not own.  It is written down because the commit that widened the reader
+# (74e6c96) recorded the opposite, "requiring the key breaks no manifest on
+# disk", having searched the repository and `req2test_corpora`, neither of
+# which holds a strip manifest at all.  The two that exist are the two above.
+# `scripts/gate_s7_gold_manifests.py` now asks that question of the
+# `gold_root`s instead of the wrong directories, and it is RED today on both
+# for the three reasons listed; it goes green on a manifest this head writes.
+#
+# THIS FILE IS FROZEN from the milestone that added it.  The four digests at
+# the bottom are the sha256 of the four prompts it renders and `load_profile`
+# re-derives them on every load.  Nothing has been generated with them yet --
+# the cucumber stack lands at J5 and `stacks.for_framework("cucumber")` still
+# refuses -- but the freeze exists BEFORE the first run rather than after it,
+# so the first epubcheck sweep is attributable to bytes that were reviewed
+# rather than to bytes that happened to be on disk when it started.  A changed
+# prompt is a NEW profile, not an edit.
+#
+# The prose is written as YAML literal blocks (`|-`) even where it would fit
+# on one line: a literal block needs no escaping at all, so the bytes in this
+# file are the bytes sent to the model, backticks and braces included.  Java
+# and Cucumber Expressions are made of braces (`{messageId}`, `{string}`), and
+# `facts` is the one field that may carry them: it reaches the prompt as a
+# format ARGUMENT, never as part of the template.
+
+version: 1
+project: epubcheck
+project_label: EPUBCheck
+language: java
+language_label: Java
+framework: cucumber
+api_scoring: none
+
+# Cross-checked against, and required to sit beside this file.  Two of this
+# project's decisions are checked THERE rather than asserted here: that
+# `src/test/java/org/w3c/epubcheck/test/` is removable (or a compliant answer
+# would be discarded), and that the five files the `retained_note` below
+# promises the agent really did survive removal (or the prompt would be lying
+# about what it will find -- and one of them, `ParameterTypes.java`, is
+# retained by owner ruling R1.5, so a boundary that lost it would be a
+# methodology change discovered here).
+boundary: boundary_epubcheck.yml
+
+# ------------------------------------------------------------------- task
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Cucumber test code
+
+# ------------------------------------------------------------- submission
+# Cucumber-JVM discovers glue by scanning the RUNNER's package, and
+# `RunCucumberTest` sits in `org.w3c.epubcheck` with no `glue` option -- so
+# anything under that package or its subpackages is glue and there is no one
+# directory the framework itself privileges.  The acceptance root is therefore
+# a choice, and it is `org/w3c/epubcheck/test/`: the package that holds five
+# of the eight removed Steps classes, the whole of the retained substrate a
+# solution collaborates with, and (unlike `org/w3c/epubcheck/` itself, which
+# also holds the two retained runners, and unlike `org/w3c/epubcheck/url/`,
+# which also holds a production JUnit test) nothing that is not either
+# removable or explicitly carved out.
+#
+# `extra_names` is empty because there is no out-of-band channel: a
+# cucumber-picocontainer submission is `.java` files and nothing else.
+submission:
+  acceptance_root: src/test/java/org/w3c/epubcheck/test/
+  example_path: src/test/java/org/w3c/epubcheck/test/ScenarioSteps.java
+  example_code: package org.w3c.epubcheck.test; ...
+  placement_hint: src/test/java/org/w3c/epubcheck/test/...
+  suffixes:
+    - .java
+  extra_names: []
+  # What the prompt promises survived removal, in the sentence's own words.
+  # EVERY backticked token here is classified against the boundary and must
+  # come back RETAINED, which is what makes this line a check rather than a
+  # claim.  All five are named because all five are things the agent would
+  # otherwise write itself and be scored for: the configuration object and the
+  # environment object are constructor-injected collaborators, `ParameterTypes`
+  # already registers the expression types the criterion text is written in,
+  # and re-declaring any of them makes Cucumber abort the whole run on a
+  # duplicate registration rather than fail one scenario.
+  retained_note: '`EPUBCheckConfiguration.java`, `TestEnvironment.java`, `ParameterTypes.java`, `MessageInfo.java` and `TestReport.java` are what remain'
+
+# --------------------------------------------------------- wiring channel
+# NULL.  cucumber-picocontainer instantiates every glue class it scanned and
+# fills each constructor argument from the same scanned set, so a solution
+# declares its collaborators by writing a constructor and there is nothing to
+# register out of band.  With the channel null neither the collection-contract
+# bullet that offers it nor the auto-registration fact that explains it is
+# emitted at all -- offering a Java agent a Symfony `services:` block would be
+# an instruction to produce a file the harness has nowhere to put.
+wiring_channel: null
+
+# ------------------------------------------------------------- runtime
+# What the STACK needs to run, as opposed to what the prompt says (D6).
+#
+# EPUBCheck is a validator: Maven compiles it, Cucumber runs a scenario, the
+# scenario opens a fixture EPUB off the filesystem and asserts about the
+# messages the checker reported.  No database, no application kernel, no
+# network.  Declaring it here is what stops `worker.provision` creating an
+# empty MySQL schema for it and then REFUSING the worker for holding fewer
+# than 100 tables, which reads as a broken seed rather than as a profile that
+# never needed one; the campaign fingerprint records
+# `database_dump_digest: no_database` as a declared sentinel.
+runtime:
+  needs_database: false
+
+# ------------------------------------------------------------- workspace
+# What the agent may read, and where it is mounted.
+#
+# `readable_paths` defines the C1.5-vs-C2 ablation (C1.5 gets none of it) and
+# feeds the agent-seed cache key, so an edit here invalidates every cached
+# seed rather than serving a stale one.  `src` carries all three of the
+# production checker (`src/main/java`), the other `.feature` files and the
+# retained EPUB fixtures (`src/test/resources`), and the retained Java
+# substrate (`src/test/java`); `pom.xml` is how a reader learns the dependency
+# set and the Java level.  `target/` is deliberately absent: it is Maven's
+# build output, it is derived from the code that removal took away, and
+# `repo.CUCUMBER_BUILD_ROOTS` purges it from a candidate-visible workspace for
+# exactly that reason.
+workspace:
+  repo_dir: repo
+  readable_paths:
+    - src
+    - pom.xml
+
+# ------------------------------------------------------------------ facts
+# What a stripped Cucumber-JVM repository cannot tell the model.  The same job
+# as CoreShop's eight bullets and none of the same content: annotated methods
+# instead of docblocks, Cucumber Expressions instead of regexes, constructor
+# injection instead of a shared-storage service, and Hamcrest instead of
+# Webmozart.
+#
+# The last four are this PROJECT's rather than the framework's, and each is a
+# thing removal took away with the code: which expression types are already
+# registered, what the retained substrate already answers, where the fixtures
+# are, and what the build will and will not accept.
+#
+# There is no `<wiring-channel>` slot: a profile with a null channel may leave
+# the slot in (it is dropped) or leave it out, and leaving it out is clearer.
+facts:
+  - |-
+    Step definitions are public methods on a plain class, annotated with `io.cucumber.java.en.Given`, `@When`, `@Then`, `@And` or `@But` (`import io.cucumber.java.en.Then;`). Cucumber-JVM finds them by SCANNING a package: `RunCucumberTest` sits in `org.w3c.epubcheck` and sets no `glue`, so every class under that package and its subpackages is glue. The Given/When/Then keyword is irrelevant to matching.
+  - |-
+    Patterns are Cucumber Expressions, not regular expressions. `{string}`, `{int}` and `{word}` are built in; `(the )` marks optional text, `errors/warnings` an alternation, and `\(` escapes a literal parenthesis. A pattern that both starts and ends with `/` is treated as a regex instead.
+  - |-
+    The project's own parameter types are ALREADY registered, by the retained `org.w3c.epubcheck.test.ParameterTypes`: `{bool}`, `{checkerMode}`, `{locale}`, `{messageId}` (e.g. `RSC-005`, returning a `MessageId`), `{messageQuantity}`, `{profile}`, `{severity}` (`fatal error|error|warning|usage|info`), `{version}`, and a `@DataTableType` that turns a table row into a `Matcher<? super MessageInfo>`. Use them. Do NOT re-register them: a duplicate `@ParameterType` makes Cucumber abort the entire run instead of failing one scenario. To add one of your own, annotate a method `@ParameterType("regex")` on any glue class.
+  - |-
+    The scenario's `Background` steps run before it and need definitions too.
+  - |-
+    Shared state between steps is CONSTRUCTOR INJECTION. cucumber-picocontainer creates one instance of every glue class per scenario and passes the other glue objects it needs as constructor arguments (`public MySteps(EPUBCheckConfiguration configuration, TestEnvironment environment) { ... }`). There is no static state to reach for and no shared-storage service.
+  - |-
+    Five classes in `org.w3c.epubcheck.test` are retained -- do not write them, and do not redeclare their steps. `EPUBCheckConfiguration` holds the checker settings, the `TestReport` that messages accumulate into, and the `@Before`/`@After` hooks for the `@debug` tag; `TestEnvironment` holds the fixture base path and the default locale; `ParameterTypes` is the expression registry above; `MessageInfo` and `TestReport` are the types those two return. Between them they already answer `Given EPUBCheck with default settings`, the reporting format/level/locale steps, and `And the EPUB test files are located at {string}`.
+  - |-
+    Assertions are Hamcrest: `import static org.hamcrest.MatcherAssert.assertThat;` with the matchers in `org.hamcrest.Matchers`. Cucumber reports the AssertionError as the step failure, so pass a message (`assertThat("Unexpected error", report.getAll(Severity.ERROR), is(emptyIterable()))`).
+  - |-
+    The checker under test is `src/main/java/**`, in the packages `com.adobe.epubcheck.*` and `org.w3c.epubcheck.*` -- `com.adobe.epubcheck.api.EpubCheck` is the entry point, and `com.adobe.epubcheck.messages.MessageId` and `com.adobe.epubcheck.messages.Severity` are what a reported message is made of. Production code is never accepted.
+  - |-
+    The EPUB fixtures a scenario opens are still on disk, under one `files/` directory per feature area (`src/test/resources/epub3/05-package-document/files/`, `src/test/resources/epub2/files/`, and so on), and their names are the ones the scenario text uses. The retained `TestEnvironment` turns `Given the EPUB test files are located at 'epub3/05-package-document/files'` into that directory; the step that CHECKS one of those files went with the removed code.
+  - |-
+    The build is Maven at Java 8 source/target. The test classpath already has cucumber-java, cucumber-junit and cucumber-picocontainer 7.8.0, JUnit 4.13.1, Hamcrest 2.1, Guava and json-path-assert. `pom.xml` is production: a dependency you add there is discarded, so write against what is on the classpath.
+
+# The rendered sentence is "You write executable Cucumber test code for
+# <blurb>.", so the framework is already in it and naming it again here would
+# be noise in a prompt whose bytes are frozen.  The three things named instead
+# are the three a reader cannot infer from the scenario text: what EPUBCheck
+# IS, that the JVM level is 8 rather than something modern, and that Maven is
+# the build.
+platform_blurb: |-
+  EPUBCheck, the W3C conformance checker for EPUB publications (Java 8, Maven)
+
+# ------------------------------------------------------------- conditions
+# The two clauses the agent conditions differ in.  C1.5 -> C2 isolates
+# repository access, so the ONLY thing that may move between them is what the
+# agent can see; these two nouns are that difference, spelled out.
+conditions:
+  retained_substrate: |-
+    the retained `EPUBCheckConfiguration`, `TestEnvironment` and `ParameterTypes` substrate, plus the EPUB fixtures beside the feature files
+  project_source_noun: EPUBCheck source
+
+# ------------------------------------------------------------------ trial
+# The same two clause forms the other three profiles carry, and the same
+# reason for them: an execution is a terminal tool call, so it already costs
+# the agent an iteration and `--max-iterations` bounds executions natively;
+# only the BOUNDED form (`--trials k`) names a count, because a count in the
+# prompt is a scarcity signal and scarcity is a confound in what this
+# benchmark measures.  See `r2t/agents/trials.py` and the CoreShop profile.
+#
+# The wording is byte-identical to the other three profiles' because the
+# sentence is structural rather than project-specific -- what differs is
+# `{interpreter}` and `{runner}`, which is exactly the parameterisation the
+# profile schema exists for.  `client_interpreter` is `python3` and not `mvn`:
+# the trial CLIENT is the harness's own script that reaches the execution
+# socket, not the runner it asks for on the other side.
+trial:
+  client_interpreter: python3
+  runner_noun: Cucumber
+  clause_bounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this {k} times.
+  clause_unbounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this as often as you want.
+
+# ----------------------------------------------------------------- freeze
+# sha256 of each rendered prompt, over the canonical task fixture in
+# `adapters.CANONICAL_TASK` (criterion_to_test, client=trial.py; c3 rendered
+# UNBOUNDED, which is what the arm runs).  Verified on every load.
+#
+# Derived once, with
+#   PYTHONPATH=benchmark python3 -c "from r2t.bench.profile import load_profile;
+#               from r2t.bench.adapters import prompt_digests;
+#               print(prompt_digests(load_profile(
+#                   'benchmark/config/profile_epubcheck.yml',
+#                   verify_digests=False)))"
+# and frozen from that moment.  If a load starts refusing, the question is
+# never "update the digest", it is "which epubcheck sweep just became
+# unattributable" -- and until J5 the honest answer may be "none yet", which
+# is the only moment at which re-deriving these four values is free.  After
+# the first sweep it is not.
+#
+# `c3` is the UNBOUNDED rendering, like the other three profiles'.  The
+# BOUNDED wording -- what `--trials k` renders -- is frozen in
+# `profile.selftest` beside the docx one, so a `--trials 5` epubcheck run
+# stays attributable too.
+prompt_digest:
+  single_shot: 75e11b3ad3fb78a70b3804a9300703744520495c17e87c84f6d1f90c8b4f3fdc
+  c1.5: 25a57078871a5932ea7b4db8d7dd2eb41e6d83b0f468adee2a2a0b3be7e78597
+  c2: d48d8c4a9c2fb3bdaca8c7420871cabb29489bfde46ba9561ef4d512f2682713
+  c3: a335e447408f9709c39de3a6b840e59a7b817e36c59d0e4cef5214e8dd2a5b08

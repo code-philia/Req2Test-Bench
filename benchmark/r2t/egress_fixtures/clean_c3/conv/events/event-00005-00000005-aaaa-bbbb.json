@@ -1,0 +1,1 @@
+{"id": "obs-4", "kind": "ObservationEvent", "source": "environment", "parent_id": "act-4", "tool_name": "terminal", "tool_call_id": "call-4", "observation": {"kind": "TerminalObservation", "content": [{"type": "text", "text": "src/A.php:3: * @license https://www.coreshop.com/license\nsrc/B.php:3: * @license https://opensource.org/licenses/MIT\n"}]}}

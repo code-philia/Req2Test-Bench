@@ -1,0 +1,28 @@
+=== RUN   TestOutOfMemory
+runtime: out of memory: cannot allocate 1073741824-byte block (4298473472 in use)
+fatal error: out of memory
+
+goroutine 7 gp=0xc000003c00 m=4 mp=0xc000100008 [running]:
+runtime.throw({0x580f3c?, 0x20000?})
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/runtime/panic.go:1094 +0x48 fp=0xc0000bcdc8 sp=0xc0000bcd98 pc=0x4783e8
+runtime.(*mcache).allocLarge(0x425ca0?, 0x40000000, 0x1)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/runtime/mcache.go:238 +0x17c fp=0xc0000bce18 sp=0xc0000bcdc8 pc=0x41aadc
+runtime.mallocgcLarge(0x4e4f8d?, 0x54d320, 0x1)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/runtime/malloc.go:1552 +0x79 fp=0xc0000bce70 sp=0xc0000bce18 pc=0x417cd9
+runtime.mallocgc(0x40000000, 0x54d320, 0x1)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/runtime/malloc.go:1072 +0xcc fp=0xc0000bcea0 sp=0xc0000bce70 pc=0x476b4c
+runtime.makeslice(0xc0000c6240?, 0x4e4f8d?, 0x691ad8?)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/runtime/slice.go:116 +0x49 fp=0xc0000bcec8 sp=0xc0000bcea0 pc=0x479f89
+github.com/EvilFreelancer/coddy-agent/external/cli.TestOutOfMemory(0xc000003a40)
+	/srv/r2t/binhang/t.dQxY/mod/external/cli/crash_test.go:20 +0x85 fp=0xc0000bcf70 sp=0xc0000bcec8 pc=0x52a845
+testing.tRunner(0xc000003a40, 0x58cf00)
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1934 +0xea fp=0xc0000bcfc0 sp=0xc0000bcf70 pc=0x4e504a
+testing.(*T).Run.gowrap1()
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1997 +0x25 fp=0xc0000bcfe0 sp=0xc0000bcfc0 pc=0x4e61a5
+runtime.goexit({})
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/runtime/asm_amd64.s:1693 +0x1 fp=0xc0000bcfe8 sp=0xc0000bcfe0 pc=0x47f941
+created by testing.(*T).Run in goroutine 1
+	/srv/r2t/binhang/tools/test-gates-20260920/go1.25.0/src/testing/testing.go:1997 +0x465
+
+FAIL	github.com/EvilFreelancer/coddy-agent/external/cli	0.011s
+FAIL

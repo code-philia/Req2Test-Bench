@@ -1,0 +1,71 @@
+# Test/production boundary for the deterministic Algorand composition.
+#
+# The path below is a nominal identity, not a checkout.  Runtime callers load
+# this file with the actual composed workspace as boundary.load_boundary's
+# repo_root override.  The workspace is composed from java-algorand-sdk at
+# 4e38dadc4eec827ed8742c8bb272e0545c801932 and algorand-sdk-testing at
+# 7c67284b52675257e66c017cc3606bcd4803f4c6.
+version: 1
+project: algorand-sdk
+repo_root: /runtime/composed/algorand-sdk
+
+# The three glue packages are answer code.  Longest-prefix retained entries
+# below carve out only the two runners and the unit helper substrate.
+removable:
+  - path: src/test/java/com/algorand/algosdk/unit/
+    why: unit Cucumber step definitions and their answer-side support classes
+  - path: src/test/java/com/algorand/algosdk/integration/
+    why: integration Cucumber glue, including the admitted relocated offline feature
+  - path: src/test/java/com/algorand/algosdk/cucumber/shared/
+    why: Cucumber step definitions shared by the unit and integration suites
+
+removable_config:
+  - src/test/resources/cucumber.properties
+
+retained:
+  - path: src/test/java/com/algorand/algosdk/unit/R2TBenchCucumberTest.java
+    why: harness-owned unit runner with the JSON recorder plugin
+  - path: src/test/java/com/algorand/algosdk/integration/R2TBenchCucumberTest.java
+    why: harness-owned offline-feature runner with the JSON recorder plugin
+  - path: src/test/java/com/algorand/algosdk/unit/R2TStepTagListener.java
+    why: harness-owned step-tag listener the unit runner's plugin list names
+  - path: src/test/java/com/algorand/algosdk/integration/R2TStepTagListener.java
+    why: harness-owned step-tag listener the offline runner's plugin list names
+  - path: src/test/java/com/algorand/algosdk/unit/RunCucumberUnitTest.java
+    why: retained unit-suite runner; it contains no step definitions
+  - path: src/test/java/com/algorand/algosdk/integration/RunCucumberIntegrationTest.java
+    why: retained integration-suite runner; it contains no step definitions
+  - path: src/test/java/com/algorand/algosdk/unit/utils/
+    why: non-step helper substrate used by the unit glue
+
+  # Scenario data.  The feature files themselves are deliberately not listed
+  # and therefore fall through to production with ordinary JUnit tests.
+  - path: src/test/resources/com/algorand/algosdk/unit/abi_responsejsons
+    why: ABI response fixtures used by unit scenarios
+  - path: src/test/resources/generated_responses
+    why: generated algod and indexer response fixtures
+  - path: src/test/resources/generated_responses_231
+    why: generated 2.3.1 response fixtures
+  - path: src/test/resources/generated_responses_unlimited_assets
+    why: generated unlimited-assets response fixtures
+  - path: src/test/resources/programs
+    why: TEAL source and token fixtures named by scenarios
+  - path: src/test/resources/stateproof
+    why: state-proof response fixtures named by scenarios
+  - path: src/test/resources/v2algodclient_responsejsons
+    why: algod v2 response fixtures used by unit scenarios
+  - path: src/test/resources/v2indexerclient_responsejsons
+    why: indexer v2 response fixtures used by unit scenarios
+  - path: src/test/resources/msig_delegated.txn
+    why: delegated multisig transaction fixture
+  - path: src/test/resources/msig_delegated_other.txn
+    why: second delegated multisig transaction fixture
+  - path: src/test/resources/.gitkeep
+    why: tracked empty-resource marker from the pinned SDK tree
+  - path: src/test/unit.tags
+    why: pinned admitted-unit tag inventory
+  - path: src/test/integration.tags
+    why: pinned integration tag inventory retained for audit only
+
+# Everything else, including composed .feature files and ordinary JUnit test
+# classes, falls through to production and is never accepted as an answer.

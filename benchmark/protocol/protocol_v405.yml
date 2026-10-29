@@ -1,0 +1,71 @@
+# Immutable execution-enabled target-hidden recipe v405; specifications/EXECUTION_ENABLED_TH_SENSITIVITY_SPEC.md.
+# deepseek-flash, Eclipse Kapua, `setting: checked_interfaces_target_hidden`, condition c2r: final-only
+# generation in a workspace that can run the agent's own target-hidden view through the kapua runtime pack.
+# The blind twin is protocol_v102.yml, the codex@2 census recipe of this model, project and setting. Every field
+# but protocol_version, condition, prompt_profile (the variant profile, its five digests and arm key c2r),
+# runtime_pack and notes is the twin's.
+# IMMUTABLE after its digests are pinned.
+schema: r2t.protocol/1
+protocol_version: 405
+reconstructed: false
+condition: c2r
+trials: 0
+agent_timeout_seconds: 3600
+primary_budget: agent_timeout_seconds
+native_knobs:
+  codex:
+    max_model_calls: 200
+repeats: 1
+coverage: true
+setting: checked_interfaces_target_hidden
+comparison_class: fixed_model_scaffold
+prompt_profile:
+  path: config/profile_kapua_checked_interfaces_target_hidden_exec.yml
+  project: kapua
+  arm_prompt_key: c2r
+  prompt_digest:
+    single_shot: c993365d6d3ce54ca2e8ff421c192148d1cf9d687015e16b212c1fece2516bef
+    c1.5: bf5b39831d3c7139c89eea6cd03d76a97bdf7970fcc50046db1c92397a8ba2f9
+    c2: f1806d47e2cf1d9774925eae56a9a3647e1efb1c817a1853da08ab8855c5e5e0
+    c3: 3cf1fc2899cdbc83e849b0f67c7ae4fa9a3fe7ec38e692a7a87c1c3424e582f1
+    c2r: 1e8bde6792c11b9d6f9acd2b9757d7f6448500e7f31f3bea010cff8eb8834d57
+runtime_pack:
+  project: kapua
+  manifest_sha256: fb242fa86cc2ef33e60b0ae38ab8dd3c9ae5ec1c25ab55c05c62e27137b48cce
+notes:
+  specification: specifications/EXECUTION_ENABLED_TH_SENSITIVITY_SPEC.md defines the execution-enabled
+    target-hidden condition c2r, a labelled sensitivity. Its rows carry condition c2r, are paired item by item
+    with the rows of the blind twin protocol_v102.yml and are never pooled with c2 rows, in a table or in any
+    mean. This file fixes the recipe of one c2r cell only; it authorizes no collection.
+  admission: Codex development arm under CODEX_AGENT_ADMISSION_SPEC.md. Existing publication and qualification
+    gates remain unchanged.
+  execution_channel: The workspace is a provisioned runtime of the agent's own target-hidden view through the
+    kapua runtime pack (specification section 3), so the agent's own commands and tests run on its own files in
+    its own sandbox. No harness trial client, socket, callback or evaluation results are available during
+    generation.
+  runtime_pack: The launch binds the kapua runtime pack whose manifest digest is runtime_pack manifest_sha256 and
+    refuses an installed pack with any other, so the cell cannot mix pack versions and a rebuilt pack needs a new
+    protocol (specification section 6).
+  request_budget: max_model_calls counts upstream provider request attempts including retries, not native
+    turns or tool calls. Request 201 is never forwarded.
+  model_input: The native Responses request names deepseek-flash with high reasoning effort, omits
+    temperature and top_p, and has web search and provider-hosted tools disabled. Codex protocols 33-44
+    keep deepseek-v4-flash.
+  comparability: protocol_v102.yml, the codex@2 census recipe of this model, project and setting, is this file's
+    blind twin, and this file differs from it only in protocol_version, condition, prompt_profile, runtime_pack
+    and notes. Its prompt profile is the twin's with the visibility fact's runtime sentence replaced
+    (specification section 4.1), and its arm prompt is that profile's c2r prompt. How rows under the two files are
+    compared is the specification's decision (section 8), not this file's.
+  evaluation_runtime_inputs: Final evaluation uses the existing --timeout 600, --repeats 1 and --coverage policy.
+    The 600-second evaluator timeout is an explicit run argument, not a field applied by the current protocol runtime.
+visibility:
+  scope: target_hidden
+  feedback: final_only
+model_request:
+  schema: r2t.protocol-model-request/1
+  model: deepseek-flash
+  wire_api: responses
+  reasoning_effort: high
+  omitted_parameters:
+  - temperature
+  - top_p

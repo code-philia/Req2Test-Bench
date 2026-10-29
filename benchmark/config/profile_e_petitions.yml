@@ -1,0 +1,89 @@
+# e-petitions at 8968fc9c24a205094132c884c18982fec8ccbb5f (Track B, D15).
+# Copied from the frozen behave example; that example is never edited.
+# Project tag selection is owned by r2t/ruby/e_petitions.py.
+# Route A: needs_database:false bypasses the external MySQL dump/provisioner;
+# the image still owns one private PostgreSQL16+pgvector service per worker.
+# No source-visibility admission or publication is granted by this profile.
+# Four rendered prompt digests are verified by data.profile.load_profile.
+version: 1
+project: e-petitions
+project_label: e-petitions
+language: ruby
+language_label: Ruby
+framework: cucumber_ruby
+api_scoring: method_index
+boundary: boundary_e_petitions.yml
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Cucumber step-definition code
+submission:
+  acceptance_root: features/step_definitions/
+  example_path: features/step_definitions/petition_steps.rb
+  example_code: "Then(/^the petition is visible$/) do\n  expect(page).to have_content(\"Petition\")\n\
+    end"
+  placement_hint: features/step_definitions/...
+  suffixes:
+  - .rb
+  extra_names: []
+  retained_note: '`features/support/`, `spec/support/`, `spec/factories.rb` and `spec/fixtures/` remain'
+wiring_channel: null
+workspace:
+  repo_dir: repo
+  readable_paths:
+  - features
+  - app
+  - lib
+  - config
+  - db
+  - spec/support
+  - spec/factories.rb
+  - spec/fixtures
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+facts:
+- Cucumber loads Ruby step definitions from features/step_definitions/. Use Given, When or Then with a
+  regular expression or Cucumber Expression and a Ruby block. The keyword does not distinguish definitions
+  when matching a step.
+- Captured expression parameters become block arguments. A step DocString or DataTable adds its native
+  multiline argument after the captures. Background steps execute before the scenario and need definitions
+  too.
+- Per-scenario state is held on Cucumber World, including Ruby instance variables. Retained features/support/
+  files provide the Rails and Capybara setup, lifecycle hooks, route paths, selectors, sections and World
+  helpers. Do not replace those files.
+- Use the retained RSpec expectations and Capybara rack_test integration to exercise the Rails application.
+  Production code under app/ and lib/ is never accepted as a submission.
+- The retained spec/factories.rb supplies FactoryBot factories; spec/support/ supplies shared support.
+  Scenario fixtures and recorded VCR responses remain under spec/fixtures/. The constituency API is stubbed
+  by retained hooks.
+- The admitted scenario set excludes inherited or scenario-level @wip and @javascript tags. Eligible scenarios
+  run in process with rack_test; no browser or external network is available.
+- The image provides Ruby 3.2.11, Cucumber 11.1.1, bundled gems, Node dependencies and a private PostgreSQL
+  16 database with pgvector. Retained hooks rebuild assets at boot. Do not install dependencies or change
+  database configuration.
+- Put Ruby files under features/step_definitions/**, creating the directory if needed. The entire original
+  directory was removed, including helpers and generated web_steps.rb, email_steps.rb and pickle_steps.rb
+  boilerplate. Some boilerplate may be reproducible from public gem documentation; the retained env.rb
+  is also generated cucumber-rails support.
+platform_blurb: the UK Parliament e-petitions Rails application (Ruby 3.2.11, Cucumber 11.1.1, PostgreSQL
+  16 with pgvector)
+conditions:
+  retained_substrate: the retained features/support/ hooks and World helpers, spec/support/, spec/factories.rb
+    and spec/fixtures/ inputs
+  project_source_noun: e-petitions application source
+trial:
+  client_interpreter: python3
+  runner_noun: Cucumber
+  clause_bounded: 'You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace
+    now and prints {runner}''s per-step results and error messages. You may do this {k} times.'
+  clause_unbounded: 'You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace
+    now and prints {runner}''s per-step results and error messages. You may do this as often as you want.'
+prompt_digest:
+  single_shot: b06939ce0196ea1ada3ba9e1adda863fe2a1648a061b1f7b321dcdcf161d9ab7
+  c1.5: bf25ce25818f0c29ac8d77c774ce95aea58dcef1f68bf25119f6d40af95f7da9
+  c2: 1c46f68287876664d2078dc1ac603d05bf09e8274d9915d23a26dfe63747e98a
+  c3: 7b5e5cee927c8202ac467c98729b92dee8a6e83ca0563fe42683f1bb9fd87ffd
+runtime:
+  needs_database: false

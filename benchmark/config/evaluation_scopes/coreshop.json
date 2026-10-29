@@ -1,0 +1,13 @@
+{
+  "asset_index_sha256": null,
+  "declared_subset": null,
+  "mutation_validation_sha256": null,
+  "schema": "r2t.mutation-evaluation-scope/1",
+  "scope": {
+    "id": "coreshop-full422-single-observation-v1",
+    "map_release_sha256": "19678c89808b13cb2c9cf0a8d3758670e9085e5286c6d51942357fb750797087",
+    "mutation_map_sha256": null,
+    "population_id": "coreshop-v1",
+    "task_items_sha256": "19678c89808b13cb2c9cf0a8d3758670e9085e5286c6d51942357fb750797087"
+  }
+}

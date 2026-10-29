@@ -1,0 +1,40 @@
+# Test/production boundary for the python+behave EXAMPLE profile.
+#
+# There is no repository behind this file and there is not meant to be one.
+# It exists so that `profile_behave_example.yml` can be cross-checked the way
+# every profile is: `load_profile` classifies the profile's acceptance root
+# and its retained carve-out against the boundary named beside it, and a
+# profile with no boundary would have to skip that check -- which would make
+# the second profile prove less than the first, exactly where the schema is
+# supposed to be proving the most.
+#
+# `repo_root` is therefore a path that does not exist.  Nothing in the
+# classification path touches the filesystem (see `Boundary.classify`, which
+# is pure prefix arithmetic), so the cross-check is real even though the tree
+# is not.  A v2 project replaces this file with a real one and the profile
+# beside it needs no change at all.
+
+version: 1
+project: behave_example
+repo_root: /nonexistent/behave_example
+
+# ---------------------------------------------------------------- removable
+removable:
+  - path: features/steps/
+    why: >
+      behave step definitions and the helpers they import.  This is the
+      whole of what a system under test must regenerate: behave discovers
+      steps by importing every module under `features/steps/`, so the
+      directory IS the answer.
+
+# ----------------------------------------------------------------- retained
+retained:
+  - path: features/environment.py
+    why: >
+      behave's hook module (`before_all`, `before_scenario`, ...).  The
+      direct analogue of CoreShop's retained `Context/Hook`: environment
+      plumbing, identical for every item, and regenerating it per item would
+      measure recall of behave's lifecycle rather than test generation.
+      Note that it sits BESIDE the acceptance root rather than under it,
+      which is why the profile cross-check reads its `retained_note` both as
+      a repo-relative path and as one relative to the acceptance root.

@@ -1,0 +1,31 @@
+{
+  "features": {
+    "features/native_selection_fixture.feature": "@top\nFeature: native selection fixture\n  Background:\n    Given a shared background\n\n  @blue\n  Scenario: ordinary\n    Then an ordinary step\n\n  @outline\n  Scenario Outline: examples inherit tags\n    Then value <value>\n    @fast\n    Examples: fast rows\n      | value |\n      | one   |\n      | two   |\n    @slow\n    Examples: slow row\n      | value |\n      | three |\n"
+  },
+  "suites": [
+    {
+      "glue_path": "fixture/bdd_native_test.go",
+      "test_name": "TestNativeSelection63",
+      "feature_path": "features/native_selection_fixture.feature",
+      "godog_tags": ""
+    },
+    {
+      "glue_path": "fixture/bdd_native_test.go",
+      "test_name": "TestNativeSelection64",
+      "feature_path": "features/native_selection_fixture.feature",
+      "godog_tags": "@fast"
+    },
+    {
+      "glue_path": "fixture/bdd_native_test.go",
+      "test_name": "TestNativeSelection65",
+      "feature_path": "features/native_selection_fixture.feature",
+      "godog_tags": "~@slow"
+    },
+    {
+      "glue_path": "fixture/bdd_native_test.go",
+      "test_name": "TestNativeSelection66",
+      "feature_path": "features/native_selection_fixture.feature",
+      "godog_tags": "@top&&@fast,@blue"
+    }
+  ]
+}

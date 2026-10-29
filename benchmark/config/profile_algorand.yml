@@ -1,0 +1,79 @@
+# Task profile for the unit domain of the deterministic Algorand composition.
+version: 1
+project: algorand-sdk
+project_label: Algorand Java SDK
+language: java
+language_label: Java
+framework: cucumber
+api_scoring: none
+
+boundary: boundary_algorand.yml
+
+task:
+  artefact_noun: step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Cucumber test code
+
+submission:
+  acceptance_root: src/test/java/com/algorand/algosdk/unit/
+  example_path: src/test/java/com/algorand/algosdk/unit/ScenarioSteps.java
+  example_code: package com.algorand.algosdk.unit; ...
+  placement_hint: src/test/java/com/algorand/algosdk/unit/...
+  suffixes:
+    - .java
+  extra_names: []
+  retained_note: '`RunCucumberUnitTest.java`, `utils/` and `src/test/resources/programs/` are what remain'
+
+wiring_channel: null
+
+runtime:
+  needs_database: false
+
+workspace:
+  repo_dir: repo
+  readable_paths:
+    - src
+    - pom.xml
+
+facts:
+  - |-
+    Step definitions are public methods on plain Java classes, annotated with `io.cucumber.java.en.Given`, `@When`, `@Then`, `@And` or `@But`. The Given/When/Then keyword is irrelevant to matching. Put unit-domain definitions in `com.algorand.algosdk.unit`; the retained runner also scans `com.algorand.algosdk.cucumber.shared`.
+  - |-
+    Patterns are Cucumber Expressions. `{string}`, `{int}`, `{long}` and `{word}` are built in; a pattern that starts and ends with `/` is treated as a regular expression.
+  - |-
+    The scenario's `Background` steps run before it and need definitions too.
+  - |-
+    Shared state is constructor-injected by cucumber-picocontainer. Declare a public constructor taking another glue class when steps must share an object; instances are scoped to one scenario.
+  - |-
+    `RunCucumberUnitTest.java` and the helper classes under `unit/utils/` are retained. Do not redeclare the runner. `ClientMocker` and `TestingUtils` may be imported from `com.algorand.algosdk.unit.utils`.
+  - |-
+    Assertions use AssertJ (`import static org.assertj.core.api.Assertions.assertThat;`) or JUnit. Let assertion failures propagate so Cucumber records the step as failed.
+  - |-
+    The SDK under test is `src/main/java/com/algorand/algosdk/**`. Production code and composed `.feature` files are never accepted as an answer.
+  - |-
+    Scenario fixtures remain under `src/test/resources/`, including the generated response directories, `programs/`, `stateproof/`, the v2 client response directories and the two multisig transaction files. Use the paths named by the scenario text.
+  - |-
+    The build is Maven in a JDK 11 runtime and compiles the project at its pinned Java 8 release level. The test classpath already contains Cucumber-JVM 6.6.0, cucumber-picocontainer, JUnit and AssertJ; `pom.xml` is production and changes to it are discarded.
+
+platform_blurb: |-
+  the Algorand Java SDK (Maven, JDK 11)
+
+conditions:
+  retained_substrate: |-
+    the retained unit runner and helper classes, plus the composed unit fixtures
+  project_source_noun: Algorand Java SDK source
+
+trial:
+  client_interpreter: python3
+  runner_noun: Cucumber
+  clause_bounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this {k} times.
+  clause_unbounded: |-
+    You can run the scenario: `{interpreter} {client}` executes whatever is in your workspace now and prints {runner}'s per-step results and error messages. You may do this as often as you want.
+
+# Filled from adapters.prompt_digests over the canonical task before use.
+prompt_digest:
+  single_shot: e7fbb648d0bfc42169e1a89475dddad858d058d4995bad9476dfec94c8684afa
+  c1.5: dcf3836a9ca28c347ef4780d63421f33ca2e06b27decdbd1b7acfb630f7f5a4e
+  c2: f6c19acc2ad9186eb6ab508d84ed31d2c2f711f292b9fa929e52ef86d6645f2b
+  c3: 86176e5c196b3e4a07479b8578e7acae8bb6746be439233a486604a31e14e051

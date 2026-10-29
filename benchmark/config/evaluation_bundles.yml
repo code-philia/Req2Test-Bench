@@ -1,0 +1,114 @@
+# Coordinator-owned declarations, not a fetchable release index: `bundle
+# fetch` and `bundle validate` read release/evaluation/<project>.json.
+# Per-project status: `reserved` means no asset is uploaded and no index is
+# committed; `pinned` means collected, privately accepted, uploaded to the
+# private pre-release, re-downloaded and validated, and its measured index
+# committed. This is a partial release (spec section 7): CoreShop is reserved.
+release_tag: v1.0.0-rc.10
+repository: code-philia/req2test-bench
+access: existing_repository_permissions
+specification: EVALUATION_ONLY_NATIVE_BUNDLE_SPEC.md
+method: r2t.full-population-single-observation/1
+collection_tag: mutation-evaluation-collection-v1
+collection_commit: 0ebd5496209776c8159960b01208c20f24e682b3
+projects:
+  python-docx:
+    status: pinned
+    version: v1.0.0-rc.10
+    schema: r2t.mutation-evaluation-bundle/1
+    asset_name: r2t-v1.0.0-rc.10-python-docx.tar.gz
+    asset_sha256: d54c12a0cc18cffdc990e55d99c98cc9fb4acd75f94a879a9e2b9ead8a785d0e
+    release_index: release/evaluation/python-docx.json
+    bundle_root: bundles/evaluation/v1/python-docx
+    scope_id: python-docx-full239-single-observation-v1
+    population_id: python-docx-v1
+    n_items: 239
+    n_scored_mutants: 2225
+    task_items: release/python-docx/items.jsonl
+    task_items_sha256: 9358e4144a0abe31762747edaa8874c7816ff4ec05a10162f1adb1d64895b67d
+    map_release_sha256: 4626a2857364014fe6d0f397305c0ac28b41fc0115d058b232e3e440fa5f032d
+    map_policy: preserve_existing_full239
+    n_mapped_pairs_before_exclusion: 41000
+  coreshop:
+    status: reserved
+    version: v1.0.0-rc.10
+    schema: r2t.mutation-evaluation-bundle/1
+    asset_name: r2t-v1.0.0-rc.10-coreshop.tar.gz
+    asset_sha256: null
+    release_index: release/evaluation/coreshop.json
+    bundle_root: bundles/evaluation/v1/coreshop
+    scope_id: coreshop-full422-single-observation-v1
+    scope_specification: CORESHOP_FULL422_EVALUATION_SPEC.md
+    population_id: coreshop-v1
+    n_items: 422
+    n_scored_mutants: 10205
+    # Frozen collection-source bytes; the current dataset companion is separate.
+    task_items: release/coreshop/items.jsonl
+    task_items_sha256: 19678c89808b13cb2c9cf0a8d3758670e9085e5286c6d51942357fb750797087
+    map_release_sha256: 19678c89808b13cb2c9cf0a8d3758670e9085e5286c6d51942357fb750797087
+    map_policy: construct_new_full422
+    n_mapped_pairs_before_exclusion: null
+  algorand-sdk:
+    status: pinned
+    version: 8
+    schema: r2t.algorand-native-bundle/8
+    asset_name: r2t-algorand-bundle-v8.tar.gz
+    asset_sha256: 2876c942839611b82d841a9dfcc6ff230772f2e0aea5658b5babc67aa6e77e4b
+    release_index: release/evaluation/algorand-sdk.json
+    bundle_root: bundles/v8/algorand-sdk
+    scope_id: algorand-sdk-declared111-single-observation-v1
+    population_id: algorand-sdk-v2
+    n_items: 111
+    n_map_release_items: 117
+    n_scored_mutants: 7766
+    task_items_sha256: 01253f00c5d1d38333cef96d1fb1e469e225a00786bd948fa89918e01c189437
+    map_release_sha256: 0f537d6eacb4fa75d384c300b34e6c1d8a359e1f2520165e1068a81be2fd7407
+    map_policy: preserve_historical117_with_reviewed_declaration
+    subset_specification: DECLARED_REFERENCE_SUBSET_SPEC.md
+    n_mapped_pairs_before_exclusion: 14499
+    n_declared_pairs_before_exclusion: 12853
+    # The Java inputs this frozen bundle carries. dataset_manifest.yml's
+    # native_projects entry declares the project's current lineage and moved
+    # to the checked-interfaces v2 jar and seed revision 3 in #673 (1f221e83);
+    # version 8 keeps the identities it was built and accepted with.
+    java_inputs:
+      production_index_sha256: 38e099da56c3c0931cd7c1f0a7857777882b3e900c8ca39e572070e20f1e0419
+      direct_call_agent_sha256: d403eb2827ee3f0e17e147bc46ae78cfa4f836c42430fb281d32ec9947c07902
+      direct_call_agent_route: read_only_mount
+      direct_call_agent_runtime: /opt/r2t/r2t-direct-calls-agent.jar
+      substrate_baseline_sha256: 0b944e036272c98139b5d441ecb1e9c278d0d02bbae778d4ed60d52bc556af9d
+      pom_sha256: fe45cb77a3f7225712a5e77f6c6136ac9fbd3f813feaf711026e3ab992a2e418
+      stripped_corpus_sha256: 38b23d8b4614b436f455906827b372e203e791d36d6831aa1737a8b1b06382b7
+  coddy-agent:
+    status: reserved
+    version: v1.0.0-rc.10
+    schema: r2t.mutation-evaluation-bundle/1
+    asset_name: r2t-v1.0.0-rc.10-coddy-agent.tar.gz
+    release_index: release/evaluation/coddy-agent.json
+    bundle_root: bundles/evaluation/v1/coddy-agent
+    scope_id: coddy-agent-full282-single-observation-v1
+    scope_specification: CODDY_AGENT_FULL282_MUTATION_SPEC.md
+    population_id: coddy-agent-v1
+    generation: 2
+    n_items: 282
+    task_items: release/coddy-agent/items.jsonl
+    task_items_sha256: 7e3b829d48bb13a20e04ad9dcf3f553f4f0c51b0f6ae6744130b3e7aa0f3b606
+    map_release_sha256: 7e3b829d48bb13a20e04ad9dcf3f553f4f0c51b0f6ae6744130b3e7aa0f3b606
+    map_policy: construct_new_full282
+  sylius:
+    status: reserved
+    scope_id: sylius319-single-observation-v1
+    scope_specification: SYLIUS319_MUTATION_REFERENCE_SPEC.md
+    population_id: sylius-v2
+    n_items: 319
+    n_map_release_items: 1950
+    n_scored_mutants: 12373
+    n_mapped_mutants: 3414
+    n_full_mapped_mutants: 4167
+    coverage_run_sha256: efa846e2593d1562e79b5304095b7ff4ec0c8e999d503a52c0f9232649420235
+    task_items_sha256: f3b7f0c7d17315ff3749322ac6b685d75de8a014db4b1de4ec936810f89b3805
+    map_release_sha256: 8a54b954ad22c58a3472653e8d96ee4983b673a5bbad3c83aab18a430e56211f
+    map_policy: fresh_full1950_with_reviewed_implementation319_declaration
+    subset_specification: SYLIUS319_MUTATION_REFERENCE_SPEC.md
+    n_mapped_pairs_before_exclusion: 1407775
+    n_declared_pairs_before_exclusion: 256324

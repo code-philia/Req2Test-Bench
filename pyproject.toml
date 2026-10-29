@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "req2test"
+version = "1.1.0"
+description = "Req2Test-Bench: a benchmark and evaluation harness for requirement-to-test generation"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [{name = "The Req2Test-Bench Authors"}]
+requires-python = ">=3.10"
+keywords = ["benchmark", "test generation", "behaviour-driven development",
+            "gherkin", "mutation testing", "software engineering"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Testing",
+]
+# The engine's runtime pins.  Its core, data and bench components import
+# only these two.
+dependencies = [
+    "PyYAML==6.0.2",
+    "jsonschema==4.26.0",
+]
+
+[project.optional-dependencies]
+# Structural PHP/Ruby parsing for the engine's maintainer source-view builder
+# (toolkit component).
+toolkit = [
+    "tree-sitter==0.25.2",
+    "tree-sitter-php==0.24.1",
+    "tree-sitter-ruby==0.23.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/code-philia/Req2Test-Bench"
+Repository = "https://github.com/code-philia/Req2Test-Bench"
+Dataset = "https://huggingface.co/datasets/code-philia/Req2Test-Bench"
+
+[project.scripts]
+req2test = "req2test.cli:main"
+
+# Install from a git clone with `pip install -e .`: the engine under
+# benchmark/ is not packaged and must stay at its place in the clone.
+[tool.setuptools.packages.find]
+include = ["req2test*"]

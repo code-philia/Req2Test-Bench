@@ -1,0 +1,157 @@
+# Test/production boundary for Eclipse Kapua at the corpus pin recorded in
+# corpora.yml.  Kapua's answer glue lives in eleven Maven `test-steps`
+# modules, while the criteria and retained runners live in ten separate test
+# modules.  Classification is therefore by repository-relative prefix.
+version: 1
+project: kapua
+repo_root: projects/kapua/source
+
+removable:
+  - path: service/account/test-steps/src/main/java/
+    why: account Cucumber step definitions
+  - path: service/datastore/test-steps/src/main/java/
+    why: datastore Cucumber step definitions
+  - path: service/device/registry/test-steps/src/main/java/
+    why: device-registry Cucumber step definitions
+  - path: service/endpoint/test-steps/src/main/java/
+    why: endpoint Cucumber step definitions
+  - path: service/job/test-steps/src/main/java/
+    why: job Cucumber step definitions
+  - path: service/scheduler/test-steps/src/main/java/
+    why: scheduler Cucumber step definitions
+  - path: service/security/test-steps/src/main/java/
+    why: authentication and authorization Cucumber step definitions
+  - path: service/system/test-steps/src/main/java/
+    why: system-information Cucumber step definitions
+  - path: service/tag/test-steps/src/main/java/
+    why: tag Cucumber step definitions
+  - path: service/user/test-steps/src/main/java/
+    why: user Cucumber step definitions
+  - path: translator/test-steps/src/main/java/
+    why: translator Cucumber answer module, including its answer-side ExampleTranslator helper
+
+  # Candidate definitions compile in an empty package in the selected
+  # runner's own Maven test module. That module has the suite's complete test
+  # classpath. K3 maps each feature to one of these packages and adds it to
+  # that runner's glue; the 13 distinct admitted packages cover 17 runners.
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/account/r2t/generated/
+    why: generated definitions for the admitted account integration runner
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/authentication/r2t/generated/
+    why: generated definitions for the admitted authentication integration runner
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/authorization/r2t/generated/
+    why: generated definitions for the admitted authorization integration runner
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/user/r2t/generated/
+    why: generated definitions for the five admitted user integration runners
+  - path: service/account/test/src/test/java/org/eclipse/kapua/service/account/test/r2t/generated/
+    why: generated definitions for the account unit runner
+  - path: service/device/registry/test/src/test/java/org/eclipse/kapua/service/device/registry/test/r2t/generated/
+    why: generated definitions for the device-registry unit runner
+  - path: service/job/test/src/test/java/org/eclipse/kapua/service/job/test/r2t/generated/
+    why: generated definitions for the job unit runner
+  - path: service/scheduler/test/src/test/java/org/eclipse/kapua/service/scheduler/test/r2t/generated/
+    why: generated definitions for the scheduler unit runner
+  - path: service/security/test/src/test/java/org/eclipse/kapua/service/security/test/r2t/generated/
+    why: generated definitions for the security unit runner
+  - path: service/system/test/src/test/java/org/eclipse/kapua/service/systeminfo/test/r2t/generated/
+    why: generated definitions for the system-information unit runner
+  - path: service/tag/test/src/test/java/org/eclipse/kapua/service/tag/test/r2t/generated/
+    why: generated definitions for the tag unit runner
+  - path: service/user/test/src/test/java/org/eclipse/kapua/service/user/test/r2t/generated/
+    why: generated definitions for the user unit runner
+  - path: translator/test/src/test/java/org/eclipse/kapua/translator/test/r2t/generated/
+    why: generated definitions for the translator unit runner
+
+  # This package is diagnostic-only: K6 must execute the held datastore
+  # feature to decide whether its @env_none tag is truthful without admitting
+  # it to the 37-feature population.
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/datastore/r2t/generated/
+    why: generated definitions for the held DatastoreMetricStore round-trip probe
+
+removable_config: []
+
+retained:
+  # D15 retains the complete shared qa/common substrate. Candidate classes
+  # live in the runner-module packages above, where suite-specific production
+  # dependencies are present on the Maven test classpath.
+  - path: qa/common/src/main/java/org/eclipse/kapua/qa/common/
+    why: complete retained common glue, hooks, state, parameter types and utilities
+
+  # Non-step helper types inside service test-steps modules.  The broad
+  # removable module prefixes above remove answer classes; longest-prefix
+  # carve-outs keep helpers that declare no Cucumber step annotation.
+  - path: service/datastore/test-steps/src/main/java/org/eclipse/kapua/service/datastore/internal/MetricEntry.java
+    why: non-step datastore helper
+  - path: service/device/registry/test-steps/src/main/java/org/eclipse/kapua/service/device/registry/steps/AclCreator.java
+    why: non-step device helper
+  - path: service/device/registry/test-steps/src/main/java/org/eclipse/kapua/service/device/registry/steps/AclPermission.java
+    why: non-step device helper
+  - path: service/device/registry/test-steps/src/main/java/org/eclipse/kapua/service/device/registry/steps/KuraDevice.java
+    why: non-step device helper
+  - path: service/device/registry/test-steps/src/main/java/org/eclipse/kapua/service/device/registry/steps/MqttDevice.java
+    why: non-step device helper
+  - path: service/job/test-steps/src/main/java/org/eclipse/kapua/service/job/steps/JobServiceTestBase.java
+    why: non-step job helper
+  - path: service/job/test-steps/src/main/java/org/eclipse/kapua/service/job/steps/model/TestJobStepProcessor.java
+    why: non-step job helper
+  - path: service/security/test-steps/src/main/java/org/eclipse/kapua/service/authorization/steps/AuthorizationModuleTests.java
+    why: non-step authorization helper
+  - path: service/security/test-steps/src/main/java/org/eclipse/kapua/service/authorization/steps/NoGroupsClaimsFetcher.java
+    why: non-step authorization helper
+  - path: service/user/test-steps/src/main/java/org/eclipse/kapua/service/user/steps/ComparableUser.java
+    why: non-step user helper
+  - path: service/user/test-steps/src/main/java/org/eclipse/kapua/service/user/steps/SSODataTest.java
+    why: non-step user helper
+  - path: service/user/test-steps/src/main/java/org/eclipse/kapua/service/user/steps/StubOpenIDService.java
+    why: non-step user helper
+
+  # Nine unit-suite trees: each contains only its runner and locator
+  # configuration at the pinned commit.
+  - path: service/account/test/src/test/java/
+    why: retained account runner and Guice locator configuration
+  - path: service/device/registry/test/src/test/java/
+    why: retained device-registry runner and Guice locator configuration
+  - path: service/job/test/src/test/java/
+    why: retained job runner and Guice locator configuration
+  - path: service/scheduler/test/src/test/java/
+    why: retained scheduler runner and Guice locator configuration
+  - path: service/security/test/src/test/java/
+    why: retained security runner and Guice locator configuration
+  - path: service/system/test/src/test/java/
+    why: retained system runner and Guice locator configuration
+  - path: service/tag/test/src/test/java/
+    why: retained tag runner and Guice locator configuration
+  - path: service/user/test/src/test/java/
+    why: retained user runner and Guice locator configuration
+  - path: translator/test/src/test/java/
+    why: retained translator runner and Guice locator configuration
+
+  # qa/integration packages that contain the 35 retained Run*.java runners.
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/rest/
+    why: retained REST runners
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/account/
+    why: retained account integration runner
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/authentication/
+    why: retained authentication integration runner
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/authorization/
+    why: retained authorization integration runner
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/connection/
+    why: retained connection integration runner
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/datastore/
+    why: retained datastore integration runners
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/device/
+    why: retained device integration runners
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/endpoint/
+    why: retained endpoint integration runner
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/job/
+    why: retained job integration runner
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/jobEngine/
+    why: retained job-engine integration runner
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/jobScheduling/
+    why: retained job-scheduling integration runners
+  - path: qa/integration/src/test/java/org/eclipse/kapua/integration/service/user/
+    why: retained user integration runners
+
+retained_contexts: []
+
+# Feature files match no removable prefix and therefore remain production:
+# criteria are benchmark inputs, not candidate-editable test infrastructure.

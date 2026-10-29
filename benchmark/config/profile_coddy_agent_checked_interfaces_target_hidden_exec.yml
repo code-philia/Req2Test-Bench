@@ -1,0 +1,99 @@
+# Execution-enabled target-hidden variant (`c2r`); EXECUTION_ENABLED_TH_SENSITIVITY_SPEC.md
+# section 4.1. A byte copy of profile_coddy_agent_checked_interfaces_target_hidden.yml
+# except this header, the one replaced sentence of the visibility fact and the five
+# prompt digests (`c2r` added).
+# Checked-interfaces profile; TARGET_INTERFACES_V2_SPEC sections 5, 5a and 7.
+# coddy-agent ships no v1 visibility trio, so this is its level-one
+# profile_coddy_agent.yml plus exactly the delta every other project's
+# trio applies: the three visibility facts, final-only trial clauses,
+# the disclosure and the visibility block. The level-one profile is
+# not edited.
+version: 1
+project: coddy-agent
+project_label: coddy-agent
+language: go
+language_label: Go
+framework: godog
+api_scoring: method_index
+boundary: boundary_coddy_agent.yml
+task:
+  artefact_noun: Godog step-definition code
+  gherkin_suffix: .feature
+  removed_noun: Godog BDD glue
+submission:
+  acceptance_mode: item_path
+  example_path: external/httpserver/bdd_hooks_test.go
+  example_code: package httpserver // define the item-specified test and its Godog steps here
+  placement_hint: the exact original file set supplied with the item
+  suffixes:
+  - .go
+  extra_names: []
+  retained_note: Sibling ordinary test helpers remain in their original packages, including `internal/update/update_test.go`;
+    they contain worked production-API examples
+wiring_channel: null
+workspace:
+  repo_dir: repo
+  readable_paths:
+  - cmd
+  - internal
+  - external
+  - features
+  - go.mod
+  - go.sum
+facts:
+- The project uses Go 1.25.0 and github.com/cucumber/godog v0.15.1. Return complete Go files at every path named by the item. Define the primary glue in
+  the package and top-level Test function named by the item. Package placement matters because glue
+  may use unexported production names and retained package-local helpers.
+- Register steps through godog.ScenarioContext.Step, Given, When or Then inside the suite ScenarioInitializer.
+  Matching uses Godog's registry. Capture arguments follow the function signature; multiline tables and
+  docstrings arrive as *godog.Table and *godog.DocString.
+- 'The item supplies two independent selections: explicit Go build tags (empty, http or cli) and the original
+  effective Godog tag expression. Preserve the required package/build directive. The harness freezes the
+  selected suite''s feature path, Godog filter, TestingT and serial execution options immediately before
+  Run.'
+- Use one godog.TestSuite.Run call in the named test function. Named or inline initializers, captured
+  testing.T, wrapper setup and cleanup remain part of the glue. A missing or malformed suite is an installation
+  or compilation failure. No other parent top-level test or suite is selected; do not call t.Parallel.
+- The scenario Background needs step definitions too. A selected Scenario Outline runs all its permitted
+  Examples rows serially in one fresh process. Compilation and execution share the existing 600-second
+  item budget; runtime module downloads and external network access are unavailable, while loopback fixtures
+  can run.
+- All 61 bdd_*_test.go files are removed across their original packages. The 112 named sibling non-BDD
+  test helpers are retained; the other 83 ordinary test files remain readable too. These files contain
+  worked production-API examples. Ordinary test functions compile as support but are excluded by the exact
+  test selector.
+- The subject is itself a coding agent and heavily agent-developed. Its reference glue may have been written
+  by language models, which may make the task appear easier; the retained helper examples are also disclosed
+  inputs.
+- No Node/npm or UI build is available. The upstream HTTP and CLI build tags remain separate. The attachment-encoding
+  suite keeps its original Linux ~@windows filter. These choices preserve the declared item population;
+  the item specifies the selected configuration.
+- Put answer helpers within the exact accepted Go file set. The harness adds execution support only in its
+  private compilation copy. Production files, retained support, original features, go.mod and go.sum are
+  protected inputs.
+- This workspace supports reading, searching, editing, and syntax parsing. It is a provisioned application runtime for the code in `./repo`; nothing here is executed by the harness. The harness executes your final submitted test artifacts against a separate, complete implementation after generation ends. You receive no harness execution feedback during generation.
+- TARGET_CONTRACTS.md contains the reviewed public API and configuration supplement supplied in every visibility view. It is context for writing tests; edits to it are not submitted.
+- 'Implementation visibility: the reviewed target bodies, including behavior-bearing delegated helpers, are hidden; declarations and permitted surrounding implementations remain visible.'
+platform_blurb: coddy-agent, a Go coding-agent application (Go 1.25.0, Godog v0.15.1)
+conditions:
+  retained_substrate: the retained sibling Go test helpers and ordinary test examples in their original
+    packages
+  project_source_noun: coddy-agent source
+trial:
+  client_interpreter: python3
+  runner_noun: Godog
+  clause_bounded: This final-only profile has no harness trial channel.
+  clause_unbounded: This final-only profile has no harness trial channel.
+prompt_digest:
+  single_shot: 3f05c21b0a8ff63e214cb839fb4d2f6b0003433d76517dd6aabf30c1937bfc19
+  c1.5: 8dbe39c3a20b2ceb402b44f6e67e52c45ca7e5b9ca38e1d2f4f7fc352197ec98
+  c2: 7c22d6f6ae342439c866296d9d1b71ca034d5d828e5660f07b7b1040d8ed8dfa
+  c3: 8f5bcda382f60a694e4d1a4f563aafa2b5a455221d1a40a0154e00d3b7091127
+  c2r: ec18ab24a4af70b330ec2535e7cdfc2e7e97302248b9fa8d5a875e35ba11080b
+runtime:
+  needs_database: false
+disclosure:
+  checked_interfaces: true
+visibility:
+  scope: target_hidden
+  feedback: final_only

@@ -1,0 +1,143 @@
+# PrestaShop boundary at 2961c63ece3c09a443daae38149ca92ffaaad2d8.
+# Sprint D15's removable set, quoted verbatim:
+# "the per-domain step-definition classes under tests/Integration/Behaviour/Features/Context/Domain/** and the top-level *FeatureContext.php domain classes."
+# CommonFeatureContext keeps its four steps and all 24 hook annotations.
+# Configuration/* is outside that approved removable set: its six concrete
+# contexts retain 14 step annotations; OrderMessageContext retains one.
+# The disclosed retained total is 19.
+# A scenario answered wholly by retained code must fail the validation
+# must-fail leg as passes_without_glue, not enter the satisfied set.
+# The on-demand gate enumerates the pinned test tree and every suite list.
+
+version: 1
+project: prestashop
+repo_root: projects/prestashop/source
+
+removable:
+  - path: tests/Integration/Behaviour/Features/Context/
+    why: >
+      Domain step classes and top-level domain step classes, with the
+      explicit retained helpers, hooks and Configuration carve-outs below.
+      The root also accepts newly generated context classes at the location
+      promised by the profile; the census checks the actual removed files.
+
+removable_config:
+  - tests/Integration/Behaviour/behat.yml
+
+retained:
+  - path: tests/Integration/Behaviour/bootstrap.php
+    why: Boots the installed shop, test modules/themes and AppKernel.
+  - path: tests/Integration/Behaviour/Features/Context/CommonFeatureContext.php
+    why: >
+      Retains all kernel, DatabaseDump, cache and ContextMocker hooks and
+      its four Given/Then step annotations; no hook splitting is performed.
+  - path: tests/Integration/Behaviour/Features/Context/ContextFeatureContext.php
+    why: ContextMocker before/after scenario hooks, zero step definitions.
+  - path: tests/Integration/Behaviour/Features/Context/AbstractPrestaShopFeatureContext.php
+    why: Shared storage, reference and localisation helpers; no step definitions.
+  - path: tests/Integration/Behaviour/Features/Context/Domain/AbstractDomainFeatureContext.php
+    why: Command/query buses and exception helpers; no step definitions.
+  - path: tests/Integration/Behaviour/Features/Context/Domain/Product/AbstractProductFeatureContext.php
+    why: Product lookup and assertion helpers; no step definitions.
+  - path: tests/Integration/Behaviour/Features/Context/Domain/Product/AbstractShippingFeatureContext.php
+    why: Shipping value conversion helpers; no step definitions.
+  - path: tests/Integration/Behaviour/Features/Context/Domain/Product/Combination/AbstractCombinationFeatureContext.php
+    why: Combination lookup and assertion helpers; no step definitions.
+  - path: tests/Integration/Behaviour/Features/Context/SharedStorage.php
+    why: Shared references across contexts; does not define steps.
+  - path: tests/Integration/Behaviour/Features/Context/SharedStorageTrait.php
+    why: Gives contexts access to shared storage; does not define steps.
+  - path: tests/Integration/Behaviour/Features/Context/LastExceptionTrait.php
+    why: Exception storage and assertions; does not define steps.
+  - path: tests/Integration/Behaviour/Features/Context/CartAwareTrait.php
+    why: Cart assertions and access helpers; does not define steps.
+  - path: tests/Integration/Behaviour/Features/Context/OrderMessageContext.php
+    why: >
+      Its name is outside the approved top-level *FeatureContext.php
+      removable pattern. Its one step annotation is a disclosed retained answer.
+  - path: tests/Integration/Behaviour/Features/Context/Configuration/
+    why: >
+      Outside D15's Domain and top-level removable scope. Retains the
+      abstract restore hook and six concrete contexts with 14 step
+      annotations, disclosed alongside CommonFeatureContext's four.
+  - path: tests/Integration/Behaviour/Features/Context/Util/
+    why: Shared test helpers and data types; no step definitions.
+  - path: tests/Integration/Behaviour/Features/Transform/
+    why: Five Behat argument-transform classes, six Transform annotations.
+  - path: tests/Integration/Behaviour/Bench/
+    why: Harness recorder installed after stripping; never candidate-editable.
+  - path: tests/Integration/Utility/
+    why: ContextMocker and other integration infrastructure used by retained hooks.
+  - path: tests/Resources/
+    why: DatabaseDump, ResourceResetter, MailDevClient and test modules/themes.
+
+# Only CommonFeatureContext is registered in every upstream suite. The harness
+# must preserve each original suite's retained context list and order before
+# removing behat.yml, then select that list per item from the original config.
+# Registering the union adds foreign transforms/hooks and changes gold behavior.
+# This fixed core is the intersection, not a substitute for per-suite wiring.
+retained_contexts:
+  - Tests\Integration\Behaviour\Features\Context\CommonFeatureContext
+
+# Runtime row for the pinned Behat 3 suite. Worker initialization and the
+# native reset program are supplied by the PrestaShop runtime integration.
+# The census checks this row and its source map; it is not an execution gate.
+# CommonFeatureContext itself loads
+# bootstrap.php and boots AdminKernel; no Symfony Behat extension or context
+# services file is used. Suite maps are gold-side harness evidence, never
+# workspace content. Original paths and tag filters select ordered retained
+# contexts per item; the fixed Common context above is only their intersection.
+behat:
+  config_dir: tests/Integration/Behaviour
+  config_format: yaml
+  services_entry: null
+  suites_entry: behat.yml
+  hook_services: null
+  test_config: null
+  original_services_import: null
+  bench_services_import: null
+  suite_root: tests/Integration/Behaviour/Features/Scenario
+  recorder_rel: tests/Integration/Behaviour/Bench/BenchRecorderHook.php
+  recorder_namespace: Tests\Integration\Behaviour\Bench
+  hook_style: annotation
+  coverage_filter: directory
+  coverage_roots: [src, classes, controllers]
+  trace_roots: [src, classes, controllers, tests/Integration/Behaviour]
+  callee_roots: [src, classes, controllers]
+  psr4:
+    Tests\: tests/
+    PrestaShopBundle\: src/PrestaShopBundle/
+    PrestaShop\PrestaShop\: src/
+  index_paths: [tests/Integration/Behaviour, tests/Integration/Utility, tests/Resources]
+  index_guard: tests/Integration/Behaviour/Features/Context/Domain
+  prod_paths: [src, classes, controllers]
+  bench_config_format: yaml
+  app_env: test
+  kernel_path: app/AdminKernel.php
+  kernel_class: AdminKernel
+  bootstrap: null
+  extensions: []
+  cache_dir: var/cache/test/admin
+  container_prefix: AdminKernelTestDebugContainer
+  substrate_roots: [src, classes, controllers, app, config, mails, translations,
+                    robots.txt, _bench,
+                    tests/Integration/Behaviour, tests/Integration/Utility,
+                    tests/Resources, composer.json, vendor/bin, vendor/behat,
+                    vendor/phpunit]
+  substrate_volatile: [_bench/services_item.yml, _bench/item.feature,
+                       _bench/run_record.jsonl, _bench/solution_index.json]
+  suite_scoped: true
+  arm_suite_prefixes: [tests/Integration/Behaviour/behat.yml]
+  stub_namespace: Tests\Integration\Behaviour\Features\Context\Domain
+  stub_dir: tests/Integration/Behaviour/Features/Context/Domain
+  db_dsn_env: DATABASE_URL
+  db_dsn_suffix: ''
+  db_install_vars: false
+  probe_table: [ps_configuration]
+  worker_init: prestashop
+  reset_program: prestashop
+  reset_marker_table: ps_configuration
+  reset_context_rel: tests/Integration/Behaviour/Features/Context/Domain/R2tResetProbeContext.php
+
+leak_profile:
+  record: true

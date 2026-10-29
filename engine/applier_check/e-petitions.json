@@ -1,0 +1,61 @@
+{
+ "appliers": {
+  "master": {
+   "path": "benchmark/r2t/ruby/mutate.rb",
+   "sha256": "0a1ade79caf3a32b6dd10a1f8db9d659bd09cfb8580e22102f8458c10add2922"
+  },
+  "paper": {
+   "refs": [
+    {
+     "commit": "47b9933cc2e86e1473b8182a66b747cac4a783a3",
+     "role": "references (harness 21)",
+     "tag": "e-petitions_mutation_full-gold-results_v1"
+    },
+    {
+     "commit": "d5df64c325d1c4c884527f74c7fd21d629f33086",
+     "role": "candidate scoring",
+     "tag": "epet-task-revision-r2-20260928"
+    }
+   ],
+   "sha256": "0a1ade79caf3a32b6dd10a1f8db9d659bd09cfb8580e22102f8458c10add2922",
+   "supplied_file_sha256": "0a1ade79caf3a32b6dd10a1f8db9d659bd09cfb8580e22102f8458c10add2922"
+  },
+  "same_source": true
+ },
+ "appliers_run": true,
+ "engine": "r2t-mutate-rb",
+ "environment": {
+  "image_config_digest": "sha256:df58279c613fb59500be4a53989d239b13c1dd257f7b292b47c9dce3117f6d96",
+  "interpreter": "ruby 3.2.11 (2026-03-27 revision 5483bfc1ae) [x86_64-linux]",
+  "operator_profile": "v2",
+  "seed_tar": "kits/e-petitions/exec/seed/workspace.tar",
+  "seed_tar_sha256": "6c12a83d1bed090a69c170f703f59674ad3b453d3e3c5308b2d76e8a82eb388a",
+  "workdir": "/app"
+ },
+ "exceptions": [],
+ "generated_at": "2026-10-03T18:59:07Z",
+ "host": "maintainer-host",
+ "kind": "script",
+ "kit": {
+  "g_files": 94,
+  "gt_killed_pairs": 14425,
+  "kit_version": "1.0",
+  "limit": null,
+  "manifest_digest": "0c7d42eadf219e75b732b9e89a00f7fa243184ee437d5643bdebd9d3dcddfc1a",
+  "pairs": 105193,
+  "path": "kits/e-petitions"
+ },
+ "project": "e-petitions",
+ "schema": "req2test.applier-check/1",
+ "summary": {
+  "applied_by_both": 916,
+  "differ_sha256": 0,
+  "equal_sha256": 916,
+  "g_mutants": 916,
+  "output_is_descriptor_splice": 916,
+  "refused_by_both": 0,
+  "refused_by_master_only": 0,
+  "refused_by_paper_only": 0
+ },
+ "verdict": "equal"
+}

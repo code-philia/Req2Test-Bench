@@ -1,0 +1,267 @@
+# The corpora `r2t/toolkit/extract.py` walks — one entry per project, with
+# identity of the checkout it reads.
+#
+# WHY this file exists.  `default_projects()` used to hard-code six paths into
+# one researcher's scratch tree, and nothing recorded which upstream or which
+# commit those trees were supposed to BE.  That is how 645 of the 2859
+# items in `items.jsonl` came to claim `code-philia/ReqEnhancement.git` as
+# their upstream with a null `file_date`: python-pptx and algorand-sdk had
+# been unpacked inside
+# a wrapper checkout, `git` walked up, and the extractor wrote down the
+# enclosing repository's answer.  `repo_provenance` now refuses that shape, and
+# this file is the other half of the fix: a project's identity is DATA, checked
+# against the checkout, not a literal buried in a function.
+#
+# Per-project fields:
+#   name, root, subdir, language, framework
+#       exactly the five arguments `extract_project()` takes.  `subdir` narrows
+#       the walk to the suite under study (null = walk the whole tree).
+#   upstream
+#       the URL the checkout's `origin` MUST carry.  Every item's `repo_url`
+#       comes from `git config --get remote.origin.url`, so if this field and
+#       the clone disagree, the items are mislabelled — extraction REFUSES.
+#   resolved_commit
+#       the 40-char SHA the items in `items.jsonl` were extracted from.
+#   pinned_commit
+#       set when the checkout is deliberately HELD there (detached HEAD, or a
+#       tree whose items are already published); null when the clone tracks its
+#       default branch and `resolved_commit` merely records where that branch
+#       stood at extraction time.  A pinned project whose HEAD has moved is a
+#       refusal; an unpinned one that has moved is a loud note, because its
+#       items are being re-minted on purpose.
+#
+# Changing `root`, `upstream` or a checkout means re-running
+# `PYTHONPATH=benchmark python3 -m r2t.toolkit.extract` and re-checking the
+# byte-identity gate on the projects that must not move (coreshop,
+# python-docx).
+version: 1
+
+projects:
+  - name: activeadmin
+    root: projects/activeadmin/source
+    subdir: features
+    language: ruby
+    framework: cucumber_ruby
+    upstream: https://github.com/activeadmin/activeadmin.git
+    resolved_commit: ecf1333d819b8d4097110935ef4c4e0f6881734c
+    pinned_commit: ecf1333d819b8d4097110935ef4c4e0f6881734c
+    why: >
+      Track B T0–T2 only. This immutable upstream HEAD was selected on
+      2026-09-12 because the judge record does not preserve its source pin.
+      Extraction inventories every feature criterion. The image smoke uses
+      the upstream default profile, excludes JavaScript, and fixes defined
+      scenario order. No release, stripped runtime or model evaluation is
+      admitted by this row; see docker/activeadmin/README.md.
+
+  - name: e-petitions
+    root: projects/e-petitions/source
+    subdir: features
+    language: ruby
+    framework: cucumber_ruby
+    upstream: https://github.com/alphagov/e-petitions.git
+    resolved_commit: 8968fc9c24a205094132c884c18982fec8ccbb5f
+    pinned_commit: 8968fc9c24a205094132c884c18982fec8ccbb5f
+    why: >
+      Track B pins the complete source and feature inventory. Extraction keeps
+      all criterion items; r2t/ruby/e_petitions.py partitions the reviewed
+      eligible set before native matching and closure generation. This row
+      declares an operator-provided checkout and does not create one.
+
+  - name: coreshop
+    root: projects/coreshop/source
+    subdir: features/domain
+    language: php
+    framework: behat
+    upstream: https://github.com/coreshop/CoreShop.git
+    resolved_commit: 05bf7af946c919896d0807e4f0c7af37f446653b
+    pinned_commit: 05bf7af946c919896d0807e4f0c7af37f446653b
+    why: >
+      The v1 release was measured on this tree: 422 published items, their
+      gold sidecars, the frozen campaign digests and every archived run file
+      key on item ids of the form `coreshop/<path>:<line>`.  Re-minting them
+      from a moved checkout would orphan all of it silently, so the pin is
+      here and a moved CoreShop tree is a refusal rather than a re-extraction.
+      This is the same working tree the containers are built from — it is not
+      re-cloned into `req2test_corpora/` for exactly that reason.
+
+  - name: python-docx
+    root: projects/python-docx/source
+    subdir: features
+    language: python
+    framework: behave
+    upstream: https://github.com/python-openxml/python-docx.git
+    resolved_commit: e45454602b53e8e572b179ccf1c91093ec9f4ed7
+    pinned_commit: e45454602b53e8e572b179ccf1c91093ec9f4ed7
+    why: >
+      Slice 1's second project, and the one place where "re-clone at latest"
+      is deliberately NOT applied: its 306 items were already extracted at
+      e454546, provenance carries no absolute paths, and a same-commit clone
+      therefore reproduces every item byte-identically (gated by diff) while a
+      latest clone would re-mint item ids and lines for no gain.  The pin costs
+      nothing today — e454546 IS the tip of upstream master as of 2026-08-02 —
+      but it is written down so that the day upstream moves, this corpus does
+      not move with it by accident.
+
+  - name: python-pptx
+    root: projects/python-pptx/source
+    subdir: features
+    language: python
+    framework: behave
+    upstream: https://github.com/scanny/python-pptx.git
+    resolved_commit: 278b47b1dedd5b46ee84c286e77cdfb0bf4594be
+    pinned_commit: null
+    why: >
+      Fresh clone of the true upstream, replacing the wrapper-repo checkout
+      whose 425 items all carried the wrong URL and a null file_date.  The
+      upstream is `scanny/python-pptx` — its own `pyproject.toml` names it as
+      Homepage and Repository, and `python-openxml/python-pptx` does not exist
+      (`git ls-remote` answers "Repository not found"), so the sibling-of-docx
+      guess is wrong and is recorded here as checked rather than assumed.
+      Unpinned: slice 3 uses it as the config-only proof and wants the current
+      suite.
+
+  - name: epubcheck
+    root: projects/epubcheck/source
+    subdir: null
+    language: java
+    framework: cucumber
+    upstream: https://github.com/w3c/epubcheck.git
+    resolved_commit: 82b174ec319ea3e6c9d2488f84155fa4a9171fc2
+    pinned_commit: 82b174ec319ea3e6c9d2488f84155fa4a9171fc2
+    why: >
+      Slice 3 moves the corpus out of the old scratch checkout and pins the
+      exact commit from which its 1088 existing items were extracted.  The
+      source identity does not change: a re-extraction from this same commit
+      must therefore leave item bytes identical even though the absolute
+      checkout path changes.  The pin also gives the Java substrate, closure
+      and release work one immutable source tree.  This config records the
+      required external checkout; it does not create or repair it, and
+      extraction refuses until an operator has cloned this upstream at the
+      recorded commit under `projects/epubcheck/source` below the
+      operator's `R2T_DATA_ROOT`.
+
+  - name: algorand-sdk
+    root: projects/algorand-sdk/source
+    subdir: features
+    language: java
+    framework: cucumber
+    upstream: https://github.com/algorand/algorand-sdk-testing.git
+    resolved_commit: 7c67284b52675257e66c017cc3606bcd4803f4c6
+    pinned_commit: 7c67284b52675257e66c017cc3606bcd4803f4c6
+    step_definitions_upstream: https://github.com/algorand/java-algorand-sdk.git
+    step_definitions_commit: 4e38dadc4eec827ed8742c8bb272e0545c801932
+    step_definitions_root: projects/algorand-java-sdk/source
+    why: >
+      The criteria and the code that answers them live in DIFFERENT
+      repositories, and the wrapper checkout hid that.
+      `algorand/java-algorand-sdk` gitignores `*.feature` (line 4 of its
+      .gitignore) and vendors the suite at test time via `test-harness.sh`,
+      which clones `algorand/algorand-sdk-testing` into
+      `src/test/resources/...` — so in the old tree those .feature files
+      were untracked, which is the real reason all 220 items had
+      `file_commit: null` and `file_date: null`.  Cloning the java SDK alone
+      would have reproduced that defect at a nicer-looking URL.  The Gherkin's
+      upstream is therefore the testing repo (walked here, one shared suite
+      for every Algorand SDK); the java step definitions that make it
+      executable are recorded beside it and cloned at
+      `step_definitions_root` for the slice-3 work that will need them.
+      Their identity is recorded, not walked: nothing
+      in this file's items comes from that tree.
+
+  - name: sylius
+    root: projects/sylius/source
+    subdir: features
+    language: php
+    framework: behat
+    upstream: https://github.com/Sylius/Sylius.git
+    resolved_commit: 70cf6ca686ec3efa4635a451bdd2b1358ab71d42
+    pinned_commit: 70cf6ca686ec3efa4635a451bdd2b1358ab71d42
+    why: >
+      The Sylius API arm of the 2026-09 onboarding sprint: the pinned tip of
+      upstream branch 2.3 at screening time (MIT, `LICENSE` and
+      `composer.json`).  The extractor walks every `.feature` under
+      `features/`; the API restriction is not a corpus property but is
+      enforced downstream by the profile and boundary (the item is answered
+      inside an API suite), by `validate`'s fail-then-pass round trip (which
+      refuses every scenario that cannot run in the image: no Chrome, no
+      chromedriver, no console driver) and by `release --min-live-steps 2`,
+      whose exclusions record the histogram.  Pinned from the first
+      extraction because item ids of the form `sylius/<path>:<line>` are
+      referenced by every later artifact of the track.
+
+  - name: kapua
+    root: projects/kapua/source
+    subdir: null
+    language: java
+    framework: cucumber
+    upstream: https://github.com/eclipse-kapua/kapua.git
+    resolved_commit: 15c3c1e2c44f4a71885e2a16ed8c100c59e15091
+    pinned_commit: 15c3c1e2c44f4a71885e2a16ed8c100c59e15091
+    why: >
+      Eclipse Kapua's feature-level `@env_none` suite exercises real services
+      in one Cucumber JVM with embedded H2 and no external service.  The
+      feature files span ten Maven test modules, so the extractor must walk
+      the repository rather than one suite directory.  The corpus is pinned
+      for the boundary, closure and release work.  Its license is EPL-2.0,
+      accepted for benchmark use by owner ruling D18 and recorded here in the
+      manifest field the current schema reads.
+
+  - name: coddy-agent
+    root: projects/coddy-agent/source
+    subdir: features
+    language: go
+    framework: godog
+    upstream: https://github.com/coddy-project/coddy-agent
+    resolved_commit: 5fadd23573bafff8a39baa4c19b01af1878e0ac2
+    pinned_commit: 5fadd23573bafff8a39baa4c19b01af1878e0ac2
+    why: >
+      Track G pins the upstream criteria and distributed Godog glue to one
+      source tree. Its go.mod declares Go 1.25.0 and Godog v0.15.1; the module
+      path remains github.com/EvilFreelancer/coddy-agent. The Track G census
+      (`sprint/G/G0_CENSUS.md` in the sprint data) owns the measured population
+      and build/tag selection. This entry records the external checkout for
+      onboarding; it does not establish a runnable profile or admit items.
+
+  - name: prestashop
+    root: projects/prestashop/source
+    subdir: tests/Integration/Behaviour/Features/Scenario
+    language: php
+    framework: behat
+    upstream: https://github.com/PrestaShop/PrestaShop.git
+    resolved_commit: 2961c63ece3c09a443daae38149ca92ffaaad2d8
+    pinned_commit: 2961c63ece3c09a443daae38149ca92ffaaad2d8
+    why: >
+      PrestaShop's in-process Behat corpus, pinned to the upstream commit
+      verified at Track R H0. Only tests/Integration/Behaviour/Features/Scenario
+      is collected; the Playwright and PHPUnit trees are outside this corpus.
+      License: "OSL-3.0 for core (LICENSE.md; AFL-3.0 for bundled modules).
+      OSI-approved but copyleft-style, not permissive". Accepted for benchmark
+      use by sprint rulings D5 and D18. Clone this exact commit into the
+      configured source root before extraction; the pin keeps scenario paths,
+      lines and provenance fixed when upstream moves.
+
+# Projects that were extracted at least once and are NOT in the corpus.
+# Recorded rather than deleted: "we never looked at it" and "we looked and
+# dropped it" are different claims, and only the second one is true here.
+evaluated_and_excluded:
+  - name: kedro
+    upstream: https://github.com/kedro-org/kedro.git
+    last_extracted_commit: d762f6c7dac544601d65538f0a6a8c1210230805
+    items_when_extracted: 41          # 30 criterion + 11 requirement
+    excluded_in: slice-1 (2026-08-02)
+    reason: >
+      Its behave suite is not a test suite this harness can execute or measure.
+      `features/environment.py` builds a fresh venv and pip-installs kedro
+      before the run, and `features/steps/cli_steps.py` drives the `kedro`
+      command as a CHILD PROCESS through `sh_run.py` / `ChildTerminatingPopen`,
+      generating projects from cookiecutter starters.  Three consequences, each
+      fatal on its own: the run needs the network for package installation,
+      which the fail-closed egress rule forbids; a scenario costs minutes
+      rather than the milliseconds the python substrate is designed around; and
+      the per-scenario coverage recorder measures the in-process interpreter,
+      so every scenario would record coverage 0.000 and the whole
+      execution-grounded half of the measurement would be vacuous.  Its 30
+      criterion items — the smallest project in the corpus, ~1% of the items —
+      do not pay for a second, subprocess-shaped substrate.  The exclusion is
+      about MEASURABILITY, not quality: kedro's CLI-driven suite is exactly the
+      E2E tier RELATED_WORK.md cites it for, and that citation stands.

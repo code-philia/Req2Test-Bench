@@ -1,0 +1,56 @@
+{
+ "appliers": {
+  "master": {
+   "path": "benchmark/r2t/java/Mutate.java",
+   "sha256": "1b9dce7bbc6a2a3d3a97b76ecfab7999d60a430e839632daec7d86e23bee8824"
+  },
+  "paper": {
+   "refs": [
+    {
+     "commit": "b59a81cb26d57813fe6662c3fa0ed499cc321ef9",
+     "role": "references",
+     "tag": "kapua-census330-mutation-r1-20260927"
+    },
+    {
+     "commit": "3f5f28eb273c3b79ea91cd30a24ab5c6e1c54f8c",
+     "role": "candidate scoring",
+     "tag": "kapua-census330-candidates-r2-20260927"
+    },
+    {
+     "commit": "ccbd50e9c961c0b5aa295ab20cfaa9981e12ef56",
+     "role": "candidate scoring (replacement view)",
+     "tag": "kapua-census330-candidates-r3-20260928"
+    }
+   ],
+   "sha256": "1b9dce7bbc6a2a3d3a97b76ecfab7999d60a430e839632daec7d86e23bee8824"
+  },
+  "same_source": true
+ },
+ "appliers_run": false,
+ "engine": "r2t-mutate-java",
+ "environment": {
+  "seed_tar": "kits/kapua/exec/seed/workspace.tar",
+  "seed_tar_sha256": "15870dabe51f63feee87af57b4f0b53d747d23790f9133c4941914a1ea4d7bbf"
+ },
+ "exceptions": [],
+ "generated_at": "2026-10-03T18:31:58Z",
+ "host": "maintainer-host",
+ "kind": "splice",
+ "kit": {
+  "g_files": 266,
+  "gt_killed_pairs": 13804,
+  "kit_version": "1.0",
+  "limit": null,
+  "manifest_digest": "70713874805778f488571c7f87f37682bb4339006af6b14b37a5d1bfb61e1d21",
+  "pairs": 33000,
+  "path": "kits/kapua"
+ },
+ "project": "kapua",
+ "schema": "req2test.applier-check/1",
+ "summary": {
+  "g_mutants": 1248,
+  "splice_refused": 0,
+  "splices_on_seed": 1248
+ },
+ "verdict": "equal"
+}
